@@ -66,8 +66,9 @@ const config: Config = {
       },
     },
     fontFamily: {
-
-    }
+      lato: ["var(--font-lato)"],
+      lora: ["var(--font-lora)"],
+    },
   },
   plugins: [],
 }
