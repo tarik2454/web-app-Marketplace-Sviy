@@ -1,28 +1,6 @@
 import type { Metadata } from 'next'
 import { Header } from '@/modules';
-import localFont from 'next/font/local';
 import './globals.css'
-
-const lato = localFont({
-  src: "../fonts/Lato/Lato-Regular.ttf",
-  variable: "--font-lato",
-});
-
-const lora = localFont({
-  src: [
-    {
-      path: "../fonts/Lora/Lora-SemiBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../fonts/Lora/Lora-Regular.ttf", 
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  variable: "--font-lora",
-});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -36,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${lato.className} ${lora.className}`}>
+      <body className="font-lato font-normal">
         <Header />
         {children}
       </body>

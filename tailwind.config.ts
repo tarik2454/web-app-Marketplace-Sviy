@@ -66,8 +66,8 @@ const config: Config = {
       },
     },
     fontFamily: {
-      lato: ["var(--font-lato)"],
-      lora: ["var(--font-lora)"],
+      lato: "Lato",
+      lora: "Lora",
     },
     screens: {
       "sm": "375px",
