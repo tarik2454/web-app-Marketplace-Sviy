@@ -69,6 +69,11 @@ const config: Config = {
       lato: ["var(--font-lato)"],
       lora: ["var(--font-lora)"],
     },
+    screens: {
+      "sm": "375px",
+      "md": "768px",
+      "xl": "1440px",
+    },
   },
   plugins: [],
 }
