@@ -73,6 +73,11 @@ const config: Config = {
       'gradient-94deg':
         'linear-gradient(94deg,#dd9301 5.14%,#e8b860 55.47%,#e8b65e 95.45%)',
     },
+    screens: {
+      "sm": "375px",
+      "md": "768px",
+      "xl": "1440px",
+    },
   },
   plugins: [],
 };
