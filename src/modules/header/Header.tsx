@@ -1,9 +1,10 @@
-import { BurgerMenu } from "..";
-import Logo from "../../shared/components/Logo/Logo";
-import { HamburgerButton, FunctionalButtons } from "./components";
-import { CatalogueButton } from "@/shared/components";
+import Container from '@/shared/components/Container/Container';
+import { BurgerMenu } from '..';
+import Logo from '../../shared/components/Logo/Logo';
+import { HamburgerButton, FunctionalButtons } from './components';
+import { CatalogueButton } from '@/shared/components';
 
-export default function Header () {
+export default function Header() {
   return (
     <header className="flex items-center w-full h-20 px-4 gap-auto md:px-14 xl:px-20 xl:h-24">
       <BurgerMenu />
