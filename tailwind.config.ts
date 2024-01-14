@@ -63,20 +63,30 @@ const config: Config = {
         },
         white: '#FFFFFF',
         black: '#000000',
+        general: '#010031',
       },
     },
     fontFamily: {
       lato: ['var(--font-lato)'],
       lora: ['var(--font-lora)'],
     },
+    fontSize: {
+      sm: '0.8rem',
+      base: '1rem',
+      xl: '1.25rem',
+      '14x1': '0.875rem',
+    },
     backgroundImage: {
       'gradient-94deg':
         'linear-gradient(94deg,#dd9301 5.14%,#e8b860 55.47%,#e8b65e 95.45%)',
     },
+    rotate: {
+      '28': '28deg',
+    },
     screens: {
-      "sm": "375px",
-      "md": "768px",
-      "xl": "1440px",
+      sm: '375px',
+      md: '768px',
+      xl: '1440px',
     },
   },
   plugins: [],

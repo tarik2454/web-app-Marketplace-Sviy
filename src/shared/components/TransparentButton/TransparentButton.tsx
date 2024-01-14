@@ -6,7 +6,11 @@ type Props = {
 
 const TransparentButton = ({ type = 'button', children, onClick }: Props) => {
   return (
-    <button type={type} onClick={onClick}>
+    <button
+      className="border text-general px-[18px] py-3 flex gap-3 rounded-full action-tr-btn"
+      type={type}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

@@ -2,9 +2,9 @@ export const SpriteSVG = ({ name }: { name: string }) => {
   switch (name) {
     case 'arrow-right':
       return (
-        <svg width="29" height="29" fill="none">
+        <svg width="28" height="28" fill="none">
           <path
-            fill="#fff"
+            fill="currentColor"
             d="m20.636 11.532.224-.716.715.224-.223.716-.716-.224ZM9.48 18.222a.75.75 0 0 1-.696-1.329l.696 1.33Zm4.368-9.597 7.012 2.191-.448 1.432-7.011-2.191.447-1.432Zm7.504 3.13-2.191 7.012-1.432-.447 2.191-7.012 1.432.448Zm-.368.441L9.48 18.222l-.696-1.329 11.504-6.025.696 1.328Z"
           />
         </svg>
