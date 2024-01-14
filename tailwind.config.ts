@@ -74,6 +74,10 @@ const config: Config = {
       md: '768px',
       xl: '1440px',
     },
+    borderRadius: {
+      default: '20px',
+      circle: '50%',
+    },
   },
   plugins: [],
 };
