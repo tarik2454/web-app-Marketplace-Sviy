@@ -7,7 +7,7 @@ type Props = {
 const ColorButton = ({ children, type = 'button', onClick }: Props) => {
   return (
     <button
-      className="flex justify-center items-center px-[45px] py-[10px] rounded-full bg-gradient-94deg text-white text-14x1 font-medium"
+      className="flex justify-center items-center px-[45px] py-[10px] rounded-full bg-gradient-94deg text-white text-14x1 font-medium bg-gradient-to-r from-yellow-600 via-orange-300 to-orange-300 rounded-[20px] shadow"
       onClick={onClick}
     >
       {children}
