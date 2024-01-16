@@ -2,13 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+ul,
+ol {
+  padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration-skip-ink: auto;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+article > * + * {
+  margin-top: 1em;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
 body {
   font-family: Lato, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
-  color: #0e0e0e;
+  color: #1f1f1f;
   background-color: #f6f6f6;
 }
 
@@ -17,6 +77,10 @@ body {
     @apply py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
   }
 } */
+
+.custom-box-shadow {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.14);
+}
 
 @font-face {
   font-family: 'Lato';
