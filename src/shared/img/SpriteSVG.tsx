@@ -218,6 +218,50 @@ export const SpriteSVG = ({ name }: { name: string }) => {
         </svg>
       );
 
+    case 'heart':
+      return (
+        <svg width="24" height="24" fill="none">
+          <path
+            stroke="url(#a)"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 7.695C10 3 3 3.5 3 9.5s9 11 9 11 9-5 9-11-7-6.5-9-1.806Z"
+          />
+          <defs>
+            <linearGradient
+              id="a"
+              x1="3.985"
+              x2="21.19"
+              y1="4.541"
+              y2="5.782"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#DD9301" />
+              <stop offset=".557" stopColor="#E8B860" />
+              <stop offset="1" stopColor="#E8B65E" />
+            </linearGradient>
+          </defs>
+        </svg>
+      );
+
+    case 'card-part':
+      return (
+        <svg width="95" height="98" fill="none">
+          <g clip-path="url(#a)">
+            <path
+              fill="#F6F6F6"
+              d="M30 36.999C9.5 61 33 81.5 0 97.999h74.508C85.554 98 94.5 89.05 94.5 78.004V0C85 27.5 59 1.5 30 36.999Z"
+            />
+          </g>
+          <defs>
+            <clipPath id="a">
+              <path fill="#fff" d="M0 0h95v98H0z" />
+            </clipPath>
+          </defs>
+        </svg>
+      );
+
     default:
       return 'SVG not found';
   }
