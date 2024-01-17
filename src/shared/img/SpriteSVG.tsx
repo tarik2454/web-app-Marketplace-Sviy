@@ -233,7 +233,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
             d="M3.391 2.67c.238-.595.356-.892.55-.933a.37.37 0 0 1 .154 0c.193.04.312.338.55.932.135.338.203.507.33.622a.758.758 0 0 0 .114.086c.147.088.33.105.694.137.618.056.928.084 1.022.26.02.037.033.076.04.117.03.198-.196.406-.651.82l-.126.115c-.213.194-.319.29-.38.412a.746.746 0 0 0-.073.23c-.02.135.011.276.074.557l.022.1c.112.504.167.756.098.88a.371.371 0 0 1-.306.189c-.141.006-.341-.157-.74-.483-.264-.215-.395-.322-.54-.364a.742.742 0 0 0-.41 0c-.146.042-.277.15-.54.364-.4.326-.6.49-.74.483a.371.371 0 0 1-.306-.189c-.07-.124-.014-.376.098-.88l.022-.1c.062-.281.093-.422.074-.556a.746.746 0 0 0-.073-.231c-.062-.121-.168-.218-.38-.412l-.126-.115c-.455-.414-.682-.622-.65-.82a.384.384 0 0 1 .039-.117c.094-.176.403-.204 1.021-.26.366-.032.548-.049.695-.137a.758.758 0 0 0 .114-.086c.127-.115.194-.284.33-.622Z"
             fill="url(#a)"
             stroke="url(#b)"
-            stroke-width="2"
+            strokeWidth="2"
           />
           <defs>
             <linearGradient
@@ -244,8 +244,8 @@ export const SpriteSVG = ({ name }: { name: string }) => {
               y2="7.194"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#FBFF25" />
-              <stop offset="1" stop-color="#B78400" />
+              <stop stopColor="#FBFF25" />
+              <stop offset="1" stopColor="#B78400" />
             </linearGradient>
             <linearGradient
               id="b"
@@ -255,8 +255,8 @@ export const SpriteSVG = ({ name }: { name: string }) => {
               y2="7.194"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#FBFF25" />
-              <stop offset="1" stop-color="#B78400" />
+              <stop stopColor="#FBFF25" />
+              <stop offset="1" stopColor="#B78400" />
             </linearGradient>
           </defs>
         </svg>
