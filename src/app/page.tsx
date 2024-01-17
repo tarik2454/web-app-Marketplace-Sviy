@@ -4,8 +4,8 @@ import { HeroSection } from '@/modules';
 export default function Home() {
   return (
     <main className="">
-      <AboutUs />
       <HeroSection />
+      <AboutUs />
     </main>
   );
 }
