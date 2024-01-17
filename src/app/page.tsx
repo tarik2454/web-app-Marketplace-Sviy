@@ -1,3 +1,9 @@
+import { HeroSection } from '@/modules';
+
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <main className="">
+      <HeroSection />
+    </main>
+  );
 }
