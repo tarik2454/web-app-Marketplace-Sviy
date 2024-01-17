@@ -11,7 +11,3 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-
-.action-tr-btn:hover svg {
-  transform: rotate(28deg);
-}

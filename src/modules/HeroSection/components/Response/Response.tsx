@@ -13,7 +13,7 @@ const Response = ({ text, uName, avatar, styleSetting }: Props) => {
   return (
     <div
       className={
-        'absolute flex items-center justify-center w-[163px] h-[75px] gap-3 bg-white/70 rounded-default ' +
+        'absolute flex items-center justify-center w-[163px] h-[75px] p-3 gap-3 bg-white/70 rounded-default ' +
         `${styleSetting}`
       }
     >
