@@ -1,2 +1,2 @@
-export { default as About } from './Contacts';
-export { default as Contacts } from './SocialNetworks';
+export { default as Contacts } from './Contacts';
+export { default as SocialNetworks } from './SocialNetworks';
