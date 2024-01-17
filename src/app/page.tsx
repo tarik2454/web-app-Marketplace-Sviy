@@ -3,9 +3,9 @@ import { HeroSection } from '@/modules';
 
 export default function Home() {
   return (
-    <main className="">
-      <AboutUs />
+    <main className="font-lato">
       <HeroSection />
+      <AboutUs />
     </main>
   );
 }

@@ -11,7 +11,7 @@ export default function Header() {
       <Container>
         <header className="flex font-normal items-center w-full h-20 gap-auto xl:h-24">
           <BurgerMenu />
-          <div className="hidden pl-5 pr-8 py-3 border-2 border-slate-300 rounded-default md:block">
+          <div className="hidden pl-5 pr-8 py-3 border-2 border-blue-700 text-blue-700 rounded-default md:block">
             <CatalogueButton />
           </div>
           <HamburgerButton />
