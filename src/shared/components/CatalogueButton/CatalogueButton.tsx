@@ -1,8 +1,8 @@
 import { SpriteSVG } from "@/shared/img/SpriteSVG"
 
-export default function CatalogueButton ({ gap }: { gap: String }) {
+export default function CatalogueButton () {
   return (
-    <button className={`flex gap-${gap} text-cyan-700`}>
+    <button className="flex gap-4 text-cyan-700 md:gap-2">
       <SpriteSVG name="catalog" />
       <p>Каталог</p>
     </button>

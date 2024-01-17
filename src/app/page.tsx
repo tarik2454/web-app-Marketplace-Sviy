@@ -1,10 +1,11 @@
 import AboutUs from '@/modules/AboutUs/AboutUs';
+import { HeroSection } from '@/modules';
 
 export default function Home() {
   return (
-    <div>
-      Home
+    <main className="">
       <AboutUs />
-    </div>
+      <HeroSection />
+    </main>
   );
 }

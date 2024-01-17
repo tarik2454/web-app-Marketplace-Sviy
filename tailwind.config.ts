@@ -11,72 +11,37 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        amber: {
-          100: '#F8E8CA',
-          300: '#FFDB5B',
-          500: '#DF9B17',
-        },
-        yellow: {
-          200: '#FDFF9F',
-          400: '#FFCC00',
-          500: '#E1C111',
-          600: '#CB8800',
-          700: '#9B6600',
-        },
-        slate: {
-          200: '#DBE5EE',
-          300: '#C1D7E9',
-          500: '#4A7CAC',
-        },
-        cyan: {
-          700: '#386A93',
-          900: '#264A67',
-        },
-        stone: {
-          300: '#C1C1C1',
-          900: '#1E1E1E',
-          950: '#0D0D0D',
+        blue: {
+          200: '#BBDEFB',
+          700: '#1565C0',
         },
         neutral: {
-          100: '#F6F6F6',
-          200: '#E6E6E6',
-          400: '#A0A0A0',
-          700: '#3C3C3C',
+          50: '#FAFAFA',
+          400: '#9E9E9E',
+          800: '#212121',
         },
-        violet: {
-          100: '#E9E5FF',
-          500: '#7B61FF',
-        },
-        zinc: {
-          100: '#EEEEEE',
-          300: '#DCDCDC',
-          400: '#B8B8B8',
-        },
-        blue: {
-          300: '#98CEFB',
-        },
-        sky: {
-          100: '#E0FBFF',
+        amber: {
+          500: '#FF9800',
         },
         orange: {
-          200: '#FFDE9D',
-        },
-        white: '#FFFFFF',
-        black: '#000000',
+          300: '#FFCC80',
+        }
+        ,
+        "white": "#FFFFFF",
       },
-    },
-    fontFamily: {
-      lato: 'Lato',
-      lora: 'Lora',
-    },
-    screens: {
-      sm: '375px',
-      md: '768px',
-      xl: '1440px',
-    },
-    borderRadius: {
-      default: '20px',
-      circle: '50%',
+      fontFamily: {
+        lato: 'Lato',
+        lora: 'Lora',
+      },
+      screens: {
+        sm: '375px',
+        md: '768px',
+        xl: '1440px',
+      },
+      borderRadius: {
+        default: '20px',
+        circle: '50%',
+      },
     },
   },
   plugins: [],
