@@ -1,9 +1,21 @@
+'use client';
+
 import Image from 'next/image';
 
 import cardImg from '@/shared/img/salo.jpeg';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
-export default function Card() {
+type ProductType = {
+  id?: number;
+  image: string;
+  name: string;
+  information: string;
+  price: number;
+  currency: string;
+};
+
+export default function Card({ product }: { product: ProductType }) {
+  const { id, image, name, information, price, currency } = product;
   return (
     <li className="max-w-[302px] rounded-default bg-white relative">
       <Image
@@ -18,16 +30,14 @@ export default function Card() {
       </button>
 
       <div className="p-[18px]">
-        <div className="w-[266px] mb-4">
-          Lorem ipsum dolor sit amet amet consectetur.
-        </div>
+        <div className="w-[266px] mb-4">{name}</div>
         <div className="text-stone-500 mb-[18px] text-xs leading-[19.2px]">
-          Бренд / ім’я продавця
+          {information}
         </div>
 
         <div className="justify-start items-start gap-2 inline-flex mb-6">
-          <div className="text-xl leading-8">200</div>
-          <div className="text-xl leading-8">грн</div>
+          <div className="text-xl leading-8">{price}</div>
+          <div className="text-xl leading-8">{currency}</div>
         </div>
 
         <button className="flex justify-center items-center w-[52px] h-[52px] rounded-circle bg-cyan-700 absolute right-[7px] bottom-4 z-10">

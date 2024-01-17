@@ -9,7 +9,6 @@ const productsData = [
   },
   {
     id: 1,
-
     image: '../img/salo.jpeg',
     name: 'Lorem ipsum dolor sit amet amet consectetur.',
     information: 'Бренд / ім’я продавця',
