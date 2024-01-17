@@ -99,7 +99,7 @@ body {
 }
 
 .swiper-slide {
-  width: 302px !important;
+  /* width: 302px !important; */
 }
 
 .swiper-button-prev {

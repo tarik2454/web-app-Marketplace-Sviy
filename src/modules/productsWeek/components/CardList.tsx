@@ -22,7 +22,7 @@ export default function CardList() {
         pagination={{ clickable: true }}
         onSwiper={swiper => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}
-        // autoplay={{ delay: 3000 }}
+        autoplay={{ delay: 3000 }}
         breakpoints={{
           // when window width is >= 320px
           320: {

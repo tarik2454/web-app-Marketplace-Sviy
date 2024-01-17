@@ -4,7 +4,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
       return (
         <svg width="28" height="28" fill="none">
           <path
-            fill="currentColor"
+            fill="#fff"
             d="m20.636 11.532.224-.716.715.224-.223.716-.716-.224ZM9.48 18.222a.75.75 0 0 1-.696-1.329l.696 1.33Zm4.368-9.597 7.012 2.191-.448 1.432-7.011-2.191.447-1.432Zm7.504 3.13-2.191 7.012-1.432-.447 2.191-7.012 1.432.448Zm-.368.441L9.48 18.222l-.696-1.329 11.504-6.025.696 1.328Z"
           />
         </svg>
@@ -308,12 +308,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
 
     case 'catalog-arrow':
       return (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
           <path stroke="#333" d="m9 6 6 6-6 6" />
         </svg>
       );
@@ -406,7 +401,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
     case 'card-part':
       return (
         <svg width="95" height="98" fill="none">
-          <g clip-path="url(#a)">
+          <g clipPath="url(#a)">
             <path
               fill="#F6F6F6"
               d="M30 36.999C9.5 61 33 81.5 0 97.999h74.508C85.554 98 94.5 89.05 94.5 78.004V0C85 27.5 59 1.5 30 36.999Z"
@@ -423,14 +418,14 @@ export const SpriteSVG = ({ name }: { name: string }) => {
     case 'slider-prev':
       return (
         <svg width="24" height="24" fill="none">
-          <path stroke="#212121" stroke-width="2" d="m15 6-6 6 6 6" />
+          <path stroke="#212121" strokeWidth="2" d="m15 6-6 6 6 6" />
         </svg>
       );
 
     case 'slider-next':
       return (
         <svg width="24" height="24" fill="none">
-          <path stroke="#212121" stroke-width="2" d="m9 6 6 6-6 6" />
+          <path stroke="#212121" strokeWidth="2" d="m9 6 6 6-6 6" />
         </svg>
       );
 

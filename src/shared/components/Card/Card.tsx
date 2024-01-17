@@ -4,6 +4,8 @@ import Image from 'next/image';
 
 import cardImg from '@/shared/img/salo.jpeg';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import ButtonArrowLeft from '../CatalogButtons/ButtonArrowLeft';
+import ButtonToСart from '../CatalogButtons/ButtonToСart';
 
 type ProductType = {
   id?: number;
@@ -17,7 +19,7 @@ type ProductType = {
 export default function Card({ product }: { product: ProductType }) {
   const { id, image, name, information, price, currency } = product;
   return (
-    <li className="w-[302px] rounded-default bg-white relative">
+    <li className="w-[328px] xl:w-[302px] rounded-default bg-white relative">
       <Image
         className="max-h-[216px] rounded-tl-default rounded-tr-default"
         src={cardImg}
@@ -34,23 +36,13 @@ export default function Card({ product }: { product: ProductType }) {
         <div className="text-stone-500 mb-[18px] text-xs leading-[19.2px]">
           {information}
         </div>
-
         <div className="justify-start items-start gap-2 inline-flex mb-6">
           <div className="text-xl leading-8">{price}</div>
           <div className="text-xl leading-8">{currency}</div>
         </div>
 
-        <button className="flex justify-center items-center w-[52px] h-[52px] rounded-circle bg-cyan-700 absolute right-[7px] bottom-4 z-10">
-          <SpriteSVG name="arrow-right" />
-        </button>
-
-        <div className="w-[100%]">
-          <button className="inline-flex justify-center items-center w-[186px] md:w-[190px] py-2.5 md:py-3 bg-gradient-to-r from-yellow-600 via-orange-300 to-orange-300 rounded-[20px] custom-box-shadow hover:bg-orange-400">
-            <div className="text-white text-base font-normal leading-relaxed">
-              В кошик
-            </div>
-          </button>
-        </div>
+        <ButtonArrowLeft />
+        <ButtonToСart />
       </div>
 
       <div className="absolute right-[-0.3px] bottom-0">
