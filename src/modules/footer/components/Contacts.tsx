@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Contacts() {
   return (
-    <div className="grid">
+    <div className="flex flex-col md:flex-wrap">
       <Link href="/" className="pb-4">
         Про нас
       </Link>
