@@ -98,6 +98,10 @@ body {
   }
 }
 
+.swiper-slide {
+  width: 302px !important;
+}
+
 .swiper-button-prev {
   display: inline-flex !important;
   justify-content: center !important;
@@ -154,6 +158,18 @@ body {
   justify-content: center;
 
   position: initial !important;
+}
+
+.swiper-pagination-bullet {
+  width: 12px !important;
+  height: 12px !important;
+  margin: 0 7px !important;
+  border: 1px solid #ff9800;
+  background-color: transparent !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ff9800 !important;
 }
 
 @font-face {

@@ -44,7 +44,7 @@ export default function CardList() {
         <ul className="swiper-wrapper">
           {productsData.map((product, index) => (
             <SwiperSlide key={index} className="swiper-slide">
-              <div className="w-auto>">
+              <div>
                 <Card product={product} />
               </div>
             </SwiperSlide>
