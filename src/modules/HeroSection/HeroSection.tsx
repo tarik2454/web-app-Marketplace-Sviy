@@ -23,7 +23,7 @@ const HeroSection = () => {
             height={422}
           />
           <Image
-            className=" sm:max-md:hidden md:max-xl:absolute -z-[1] -right-8 top-[76px] "
+            className=" sm:max-md:hidden md:absolute -z-[1] -right-8 top-[76px] "
             src={bg_hero_tablet}
             alt="girl with products"
             width={492}
