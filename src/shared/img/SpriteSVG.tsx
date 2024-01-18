@@ -329,7 +329,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
 
     case 'catalog-arrow':
       return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
           <path stroke="#333" d="m9 6 6 6-6 6" />
         </svg>
       );
@@ -422,8 +422,44 @@ export const SpriteSVG = ({ name }: { name: string }) => {
           <path stroke="#212121" strokeWidth="2" d="m9 6 6 6-6 6" />
         </svg>
       );
+    
+    case 'profile-picture':
+      return (
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="30" 
+          height="30" 
+          fill="none">
+          <g 
+            stroke="#212121" 
+            strokeWidth="2">
+            <path 
+              strokeLinejoin="round" 
+              d="M1 25.5a6.9998 6.9998 0 0 1 7-7h14c1.8565 0 3.637.7375 4.9497 2.0503A6.9997 6.9997 0 0 1 29 25.5a3.5 3.5 0 0 1-3.5 3.5h-21A3.5003 3.5003 0 0 1 1 25.5Z"/>
+            <path 
+              d="M15 11.5c2.8995 0 5.25-2.3505 5.25-5.25S17.8995 1 15 1 9.75 3.3505 9.75 6.25 12.1005 11.5 15 11.5Z"/>
+          </g>
+        </svg>
+      )
 
+    case 'close-button':
+      return (
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="24" 
+          height="24" 
+          fill="none">
+          <g 
+            stroke="#212121" 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth="2">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </g>
+        </svg>
+      )
+    
     default:
-      return 'SVG not found';
+      return 'SVG not found'; 
   }
 };
