@@ -14,7 +14,7 @@ const HeroSection = () => {
   return (
     <Section>
       <Container>
-        <div className="relative pt-[132px] pb-[178px]">
+        <div className="relative pt-[132px] pb-[178px] xl:pt-[195px] xl:pb-[294px]">
           <Image
             className="absolute -z-[1] -right-4 top-[72px] md:hidden"
             src={bg_hero}
@@ -23,46 +23,41 @@ const HeroSection = () => {
             height={422}
           />
           <Image
-            className="hidden absolute z-[1] right-8 top-[76px] md:block xl:block"
+            className="hidden absolute -z-[1] -right-8 top-[76px] w-[492px] h-[429px] md:block xl:block xl:w-[767px] xl:h-[679px] xl:right-0 xl:top-10"
             src={bg_hero_tablet}
             alt="girl with products"
-            width={492}
-            height={429}
           />
           <Response
             text="Надійні продавці поруч з домом"
             uName="Тамара"
             avatar={av_tamara}
-            styleSetting="hidden z-[3] top-[483px] right-0 top-[450px] md:flex xl:flex"
+            styleSetting="z-[3] top-[483px] right-0 md:top-[450px] md:flex xl:flex xl:top-[618px] xl:right-[167px]"
           />
           <Response
             text="Відмінна якість"
             uName="Аліна"
             avatar={av_alina}
-            styleSetting="hidden z-[3] top-[417px] right-[223px] md:flex xl:flex"
+            styleSetting="hidden z-[3] top-[417px] right-[223px] md:flex xl:flex xl:top-[443px] xl:right-0"
           />
           <Response
             text="Лояльні ціни"
             uName="Матвій"
             avatar={av_matvij}
-            styleSetting="hidden top-[50px] right-0 z-[3] md:flex xl:flex"
+            styleSetting="hidden top-[40px] right-0 -z-[3] md:flex xl:flex xl:top-[220px] xl:z-[0]"
           />
           <div className="w-fit">
-            <Ellipse settings="bg-[#89C0ED] w-2.5 h-2.5 top-[62px] left-[35px]" />
-            <Ellipse settings="bg-[#D3DADF] w-3 h-3 top-[16px] left-[292px]" />
-            <Ellipse settings="bg-[#D3DADF] w-3 h-3 top-[16px] left-[295px]" />
-            <Ellipse settings="bg-[#F9E9CA] w-4 h-4 top-[92px] left-[179px] opacity-60" />
-            <Ellipse settings="bg-[#F9E9CA] w-4 h-[16px] top-[557px] left-[165px]" />
-            <Ellipse settings="bg-[#98CFFC] w-2 h-2 top-[522px] left-[44px]" />
-            <Ellipse settings="bg-[#98CFFC] w-2 h-2 top-[522px] left-[47px]" />
+            <Ellipse settings="bg-[#89C0ED] w-2.5 h-2.5 top-[62px] left-[35px] md:hidden" />
+            <Ellipse settings="bg-[#D3DADF] w-3 h-3 top-[16px] left-[292px] md:hidden" />
+            <Ellipse settings="bg-[#D3DADF] w-3 h-3 top-[16px] left-[295px] md:bg-[#FFDE9D] md:w-3.5 md:h-3.5 md:top-[156px] md:left-[740px]" />
+            <Ellipse settings="bg-[#F9E9CA] w-4 h-4 top-[92px] left-[179px] opacity-60 md:hidden" />
+            <Ellipse settings="bg-[#F9E9CA] w-4 h-[16px] top-[557px] left-[165px] md:bg-[#FFDE9D] md:w-3.5 md:h-3.5 md:top-[44px] md:left-[50px]" />
+            <Ellipse settings="bg-[#98CFFC] w-2 h-2 top-[522px] left-[44px] md:w-2.5 md:h-2.5 md:top-[102px] md:left-[446px]" />
+            <Ellipse settings="bg-[#98CFFC] w-2 h-2 top-[522px] left-[47px] md:h-3.5 md:w-3.5 md:top-[24px] md:left-[676px]" />
             <Ellipse settings="bg-[#BBDEFB] w-[368px] h-[368px] -top-[23px] -left-[143px] blur-[150px] -z-[2] md:w-[729px] h-[729px] -top-[434px] -left-[304px]" />
-            <span
-              className="block text-orange-200 w-[65px] h-[15px] absolute top-[72px] left-[169px] 
-            md:top-[83px] md:left-[318px] md:w-[105px] md:h-[25px]"
-            >
+            <span className="block text-orange-200 w-[65px] h-[15px] absolute top-[72px] left-[169px] md:top-[83px] md:left-[318px] md:w-[105px] md:h-[25px] xl:w-[160px] xl:h-[40px] xl:top-[116px] xl:left-[453px]">
               <SpriteSVG name="h-arrow-top" />
             </span>
-            <span className="block text-[#BBDEFB] w-[65px] h-[15px] absolute top-[497px] left-[107px] rotate-[15deg] md:w-[115px] md:h-[30px] md:top-[505px] md:left-[245px] md:rotate-[0deg]">
+            <span className="block text-[#BBDEFB] w-[65px] h-[15px] absolute top-[497px] left-[107px] rotate-[15deg] md:w-[115px] md:h-[30px] md:top-[505px] md:left-[245px] md:rotate-[0deg] xl:w-[166px] xl:h-[55px] xl:top-[598px] xl:left-[358px]">
               <SpriteSVG name="h-arrow-bottom" />
             </span>
             <div className="px-3 py-4 rounded-[20px] w-[185px] bg-[#FFFFFF32] backdrop-blur-[3px] mb-8 md:w-[403px] md:bg-transparent md:backdrop-blur-[0px] md:p-0 md:mb-10">
@@ -79,7 +74,7 @@ const HeroSection = () => {
               <ColorButton>Обрати товар</ColorButton>
               <TransparentButton>
                 Стати продавцем
-                <span className="flex justify-center items-center text-white bg-slate-500 rounded-[100%] w-7 h-7 group-hover/trBtn:rotate-[28deg]">
+                <span className="flex justify-center items-center text-white bg-[#1565C0] rounded-[100%] w-7 h-7 group-hover/trBtn:rotate-[28deg]">
                   <SpriteSVG name="arrow-right" />
                 </span>
               </TransparentButton>

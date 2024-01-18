@@ -20,8 +20,8 @@ export default function CardList() {
         modules={[Navigation, Pagination, A11y, Autoplay]}
         navigation={{ nextEl: '.myslider-next', prevEl: '.myslider-prev' }}
         pagination={{ clickable: true }}
-        onSwiper={swiper => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
+        // onSwiper={swiper => console.log(swiper)}
+        // onSlideChange={() => console.log('slide change')}
         autoplay={{ delay: 3000 }}
         breakpoints={{
           // when window width is >= 320px
