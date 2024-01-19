@@ -6,7 +6,7 @@ import config from '../../../tailwind.config';
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-200">
+    <footer className="bg-blue-200">
       <Container>
         <div className="flex justify-between pt-5 pb-3 md:items-center">
           <div>
@@ -14,7 +14,6 @@ export default function Footer() {
           </div>
           <div>
             <Contacts />
-            {/* <SocialNetworks /> */}
           </div>
         </div>
       </Container>
