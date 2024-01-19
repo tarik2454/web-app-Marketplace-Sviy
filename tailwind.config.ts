@@ -25,9 +25,8 @@ const config: Config = {
         },
         orange: {
           300: '#FFCC80',
-        }
-        ,
-        "white": "#FFFFFF",
+        },
+        white: '#FFFFFF',
       },
       fontFamily: {
         lato: 'Lato',
