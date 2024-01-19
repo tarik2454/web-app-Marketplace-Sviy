@@ -19,7 +19,7 @@ type ProductType = {
 export default function Card({ product }: { product: ProductType }) {
   const { id, image, name, information, price, currency } = product;
   return (
-    <li className="max-w-[343px] rounded-default bg-white relative">
+    <div className="max-w-[343px] rounded-default bg-white relative">
       <Image
         className="h-[216px] rounded-tl-default rounded-tr-default"
         src={cardImg}
@@ -48,6 +48,6 @@ export default function Card({ product }: { product: ProductType }) {
       <div className="absolute right-[-0.3px] bottom-0">
         <SpriteSVG name="card-part" />
       </div>
-    </li>
+    </div>
   );
 }
