@@ -22,12 +22,13 @@ export default function CardList() {
         pagination={{ clickable: true }}
         // onSwiper={swiper => console.log(swiper)}
         // onSlideChange={() => console.log('slide change')}
-        autoplay={{ delay: 3000 }}
+        // autoplay={{ delay: 3000 }}
+
         breakpoints={{
           // when window width is >= 320px
           320: {
             slidesPerView: 1,
-            spaceBetween: 16,
+            spaceBetween: 24,
           },
           // when window width is >= 768px
           768: {
@@ -44,9 +45,7 @@ export default function CardList() {
         <ul className="swiper-wrapper">
           {productsData.map((product, index) => (
             <SwiperSlide key={index} className="swiper-slide">
-              <div>
-                <Card product={product} />
-              </div>
+              <Card product={product} />
             </SwiperSlide>
           ))}
         </ul>

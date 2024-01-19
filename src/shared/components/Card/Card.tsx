@@ -19,9 +19,9 @@ type ProductType = {
 export default function Card({ product }: { product: ProductType }) {
   const { id, image, name, information, price, currency } = product;
   return (
-    <li className="w-[328px] xl:w-[302px] rounded-default bg-white relative">
+    <li className="max-w-[343px] rounded-default bg-white relative">
       <Image
-        className="max-h-[216px] rounded-tl-default rounded-tr-default"
+        className="h-[216px] rounded-tl-default rounded-tr-default"
         src={cardImg}
         sizes="100vw"
         alt="Card image"
@@ -32,8 +32,8 @@ export default function Card({ product }: { product: ProductType }) {
       </button>
 
       <div className="p-[18px]">
-        <div className="w-[266px] mb-4">{name}</div>
-        <div className="text-stone-500 mb-[18px] text-xs leading-[19.2px]">
+        <div className="mb-4">{name}</div>
+        <div className="text-neutral-400 mb-[18px] text-xs leading-[19.2px]">
           {information}
         </div>
         <div className="justify-start items-start gap-2 inline-flex mb-6">
