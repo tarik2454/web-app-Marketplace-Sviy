@@ -1,12 +1,18 @@
 import { CloseButton } from "@/shared/components";
 import { Category } from "./components";
+import { MouseEventHandler } from "react";
 
-export default function Categories () {
+type Props = {
+  categoriesDisplay: String,
+  closeCategoriesClick: MouseEventHandler<HTMLButtonElement>,
+}
+
+export default function Categories ({categoriesDisplay, closeCategoriesClick }: Props) {
   return (
-    <div className="hidden absolute w-full h-screen left-0 top-0 z-20 bg-white">
+    <div className={`${categoriesDisplay} absolute w-full h-screen left-0 top-0 z-20 overflow-y-auto bg-white`}>
       <div className="flex w-screen left-0 px-4 py-6 border-b-2">
         <h1 className="text-stone-900 text-xl font-normal font-lato leading-loose">Категорії товарів</h1>
-        <CloseButton />
+        <CloseButton closeButtonClick={closeCategoriesClick} />
       </div>
       <div className="px-4">
         <Category categoryName="Фрукти, ягоди та овочі" />

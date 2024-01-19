@@ -23,7 +23,7 @@ const HeroSection = () => {
             height={422}
           />
           <Image
-            className=" sm:max-md:hidden md:absolute -z-[1] -right-8 top-[76px] "
+            className="hidden absolute z-[1] right-8 top-[76px] md:block xl:block"
             src={bg_hero_tablet}
             alt="girl with products"
             width={492}
@@ -33,19 +33,19 @@ const HeroSection = () => {
             text="Надійні продавці поруч з домом"
             uName="Тамара"
             avatar={av_tamara}
-            styleSetting="top-[483px] right-0 md:top-[450px]"
+            styleSetting="hidden z-[3] top-[483px] right-0 top-[450px] md:flex xl:flex"
           />
           <Response
             text="Відмінна якість"
             uName="Аліна"
             avatar={av_alina}
-            styleSetting="sm:max-md:hidden md:top-[417px]  md:right-[223px]"
+            styleSetting="hidden z-[3] top-[417px] right-[223px] md:flex xl:flex"
           />
           <Response
             text="Лояльні ціни"
             uName="Матвій"
             avatar={av_matvij}
-            styleSetting="sm:max-md:hidden md:top-[50px]  md:right-0 -z-[3]"
+            styleSetting="hidden top-[50px] right-0 z-[3] md:flex xl:flex"
           />
           <div className="w-fit">
             <Ellipse settings="bg-[#89C0ED] w-2.5 h-2.5 top-[62px] left-[35px]" />

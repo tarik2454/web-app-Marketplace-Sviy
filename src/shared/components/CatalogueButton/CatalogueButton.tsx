@@ -1,8 +1,9 @@
 import { SpriteSVG } from "@/shared/img/SpriteSVG"
+import { MouseEventHandler } from "react";
 
-export default function CatalogueButton () {
+export default function CatalogueButton ({ catalogueClick }: { catalogueClick: MouseEventHandler<HTMLButtonElement> }) {
   return (
-    <button className="flex gap-4 text-cyan-700 md:gap-2">
+    <button onClick={catalogueClick} className="flex gap-4 md:gap-2">
       <SpriteSVG name="catalog" />
       <p>Каталог</p>
     </button>
