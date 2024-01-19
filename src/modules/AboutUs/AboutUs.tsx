@@ -6,15 +6,17 @@ import Container from '@/shared/components/Container/Container';
 
 import map_phone from '@/shared/img/AboutUs/map/map_phone.png';
 import map_tablet from '@/shared/img/AboutUs/map/map_tablet.png';
+import map_descktop from '@/shared/img/AboutUs/map/map_descktop.png';
 import magnifier_phone from '@/shared/img/AboutUs/magnifier/magnifier_phone.png';
 import magnifier_tablet from '@/shared/img/AboutUs/magnifier/magnifier_tablet.png';
+import magnifier_descktop from '@/shared/img/AboutUs/magnifier/magnifier_descktop.png';
 
 export default function AboutUs() {
   return (
     <Section>
-      <div className=" relative">
+      <div className=" relative sm:mb-20 md:mb-24">
         <Container>
-          <div className="mb-20">
+          <div>
             <SectionTitle name="Хто ми?"></SectionTitle>
             <p className="mb-5 md:text-xl md:mb-10">
               <span className="text-blue-700 text-2xl">Свій</span> -
@@ -62,19 +64,29 @@ export default function AboutUs() {
               alt="map Ukraine"
             />
             <Image
-              className="sm:max-md:hidden md:absolute top-[100px] right-0"
+              className="sm:max-md:hidden md:absolute top-[100px] right-0 xl:hidden "
               src={map_tablet}
               alt="map Ukraine"
             />
             <Image
-              className="absolute z-10 top-[150px] right-3 md:hidden"
-              src={magnifier_phone}
-              alt="magnifying lens"
+              className="sm:max-xl:hidden xl:absolute top-[100px] right-0"
+              src={map_descktop}
+              alt="map Ukraine"
             />
             <Image
-              className="sm:max-md:hidden md:absolute z-10 top-[85px] right-[95px]"
+              className="absolute z-10 top-[150px] right-3 md:hidden xl:hidden"
+              src={magnifier_phone}
+              alt="magnifier"
+            />
+            <Image
+              className="sm:max-md:hidden md:absolute z-10 top-[85px] right-[95px] xl:hidden"
               src={magnifier_tablet}
-              alt="magnifying lens"
+              alt="magnifier"
+            />
+            <Image
+              className="sm:max-xl:hidden xl:absolute z-10 top-[85px] right-[95px]"
+              src={magnifier_descktop}
+              alt="magnifier"
             />
           </div>
         </Container>
