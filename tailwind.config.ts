@@ -35,6 +35,7 @@ const config: Config = {
       screens: {
         sm: '375px',
         md: '768px',
+        Lg: 'none',
         xl: '1440px',
       },
       borderRadius: {
