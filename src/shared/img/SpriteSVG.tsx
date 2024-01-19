@@ -132,7 +132,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
     case 'facebook':
       return (
         <svg width="24" height="24" fill="none">
-          <g clip-path="url(#a)">
+          <g clipPath="url(#a)">
             <path
               stroke="#386A93"
               strokeWidth="2"
@@ -150,7 +150,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
     case 'instagram':
       return (
         <svg width="24" height="24" fill="none">
-          <g clip-path="url(#a)">
+          <g clipPath="url(#a)">
             <path
               stroke="#386A93"
               strokeWidth="2"
@@ -344,9 +344,9 @@ export const SpriteSVG = ({ name }: { name: string }) => {
         <svg width="24" height="24" fill="none">
           <path
             stroke="#FF9800"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="M12 7.694C10 3 3 3.5 3 9.5s9 11 9 11 9-5 9-11-7-6.5-9-1.806Z"
           />
         </svg>

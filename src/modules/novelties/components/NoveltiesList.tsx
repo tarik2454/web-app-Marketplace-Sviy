@@ -40,7 +40,7 @@ export default function NoveltiesList() {
         {productsData
           .slice(0, Math.min(visibleCards, viewportWidth >= 768 ? 16 : 8))
           .map((product, index) => (
-            <li key={product.id}>
+            <li key={`${product.id}-${index}`}>
               <Card product={product} />
             </li>
           ))}
@@ -49,9 +49,9 @@ export default function NoveltiesList() {
       <div className="flex justify-center ">
         <button
           onClick={handleShowMore}
-          className="text-xl leading-8 text-blue-900"
+          className="text-xs md:text-xl leading-[25.6px] md:leading-8 text-blue-900"
         >
-          {viewportWidth <= 375 && visibleCards >= 8
+          {viewportWidth >= 320 && visibleCards >= 8 && viewportWidth < 768
             ? 'До каталогу'
             : viewportWidth >= 768 && visibleCards >= 16
             ? 'До каталогу'
