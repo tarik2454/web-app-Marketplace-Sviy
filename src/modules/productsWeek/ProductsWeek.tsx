@@ -1,8 +1,8 @@
 import React from 'react';
 import Section from '@/shared/components/Section/Section';
-import CardList from './CardList';
 import Container from '@/shared/components/Container/Container';
 import SectionTitle from '@/shared/components/SectionTitle/SectionTitle';
+import ProductsList from './components/ProductsList';
 
 export default function ProductsWeek() {
   return (
@@ -10,7 +10,7 @@ export default function ProductsWeek() {
       <Container>
         <SectionTitle name="Товари тижня" />
 
-        <CardList />
+        <ProductsList />
       </Container>
     </Section>
   );

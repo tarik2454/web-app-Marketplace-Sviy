@@ -7,13 +7,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Card from '@/shared/components/Card/Card';
 import productsData from '@/shared/data/products-data';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import ButtonAllAds from '@/shared/components/CatalogButtons/ButtonAllAds';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
-export default function CardList() {
+export default function ProductsList() {
   return (
     <div className="relative">
       <Swiper
@@ -41,17 +42,16 @@ export default function CardList() {
       >
         <ul className="swiper-wrapper">
           {productsData.map((product, index) => (
-            <SwiperSlide key={index} className="swiper-slide">
-              <Card product={product} />
-            </SwiperSlide>
+            <li key={product.id + 1}>
+              <SwiperSlide className="swiper-slide">
+                <Card product={product} />
+              </SwiperSlide>
+            </li>
           ))}
         </ul>
       </Swiper>
 
-      <div className="flex gap-3 xl:gap-5 items-center absolute top-[-70px] md:top-[-85px] xl:top-[-139px]  right-0">
-        <button className="text-blue-700 text-sm md:text-xl leading-[22.4px] md:leading-8">
-          Дивитись всі
-        </button>
+      <ButtonAllAds>
         <div className="hidden gap-3 md:flex">
           <button className="myslider-prev swiper-button-prev">
             <SpriteSVG name="slider-prev" />
@@ -60,7 +60,7 @@ export default function CardList() {
             <SpriteSVG name="slider-next" />
           </button>
         </div>
-      </div>
+      </ButtonAllAds>
     </div>
   );
 }
