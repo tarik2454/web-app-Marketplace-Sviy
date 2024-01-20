@@ -9,11 +9,11 @@ export default function Novelties() {
     <Section>
       <Container>
         <SectionTitle name="Новинки" />
-        <div className="relative">
-          <ButtonAllAds />
-        </div>
 
-        <NoveltiesList />
+        <div className="relative ">
+          <ButtonAllAds />
+          <NoveltiesList />
+        </div>
       </Container>
     </Section>
   );

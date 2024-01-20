@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -41,16 +41,18 @@ export default function ProductsList() {
         }}
       >
         <ul className="swiper-wrapper">
-          {productsData.slice(0, 16).map((product, index) => (
-            <SwiperSlide
-              key={`${product.id}-${index}`}
-              className="swiper-slide"
-            >
-              <li>
-                <Card product={product} />
-              </li>
-            </SwiperSlide>
-          ))}
+          {productsData
+            .slice(0, window.innerWidth >= 768 ? 8 : 4)
+            .map((product, index) => (
+              <SwiperSlide
+                key={`${product.id}-${index}`}
+                className="swiper-slide"
+              >
+                <li>
+                  <Card product={product} />
+                </li>
+              </SwiperSlide>
+            ))}
         </ul>
       </Swiper>
 
