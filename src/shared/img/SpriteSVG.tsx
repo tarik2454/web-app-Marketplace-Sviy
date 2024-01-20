@@ -92,9 +92,9 @@ export const SpriteSVG = ({ name }: { name: string }) => {
               y2="21.781"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#DD9301" />
-              <stop offset=".557" stop-color="#E8B860" />
-              <stop offset="1" stop-color="#E8B65E" />
+              <stop stopColor="#DD9301" />
+              <stop offset=".557" stopColor="#E8B860" />
+              <stop offset="1" stopColor="#E8B65E" />
             </linearGradient>
             <filter
               id="a"
@@ -349,6 +349,33 @@ export const SpriteSVG = ({ name }: { name: string }) => {
             strokeWidth="2"
             d="M12 7.694C10 3 3 3.5 3 9.5s9 11 9 11 9-5 9-11-7-6.5-9-1.806Z"
           />
+          <defs>
+            <linearGradient
+              id="a"
+              x1="4.018"
+              y1="1.728"
+              x2="4.018"
+              y2="7.194"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#FBFF25" />
+              <stop offset="1" stopColor="#B78400" />
+            </linearGradient>
+            <linearGradient
+              id="b"
+              x1="4.018"
+              y1="1.728"
+              x2="4.018"
+              y2="7.194"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#FBFF25" />
+              <stop offset="1" stopColor="#B78400" />
+              <stop stopColor="#DD9301" />
+              <stop offset=".557" stopColor="#E8B860" />
+              <stop offset="1" stopColor="#E8B65E" />
+            </linearGradient>
+          </defs>
         </svg>
       );
 
