@@ -5,7 +5,7 @@ type Props = {
 };
 
 const Ellipse = ({ settings }: Props) => {
-  return <div className={`absolute rounded-[100%] ${settings}`}></div>;
+  return <div className={`absolute rounded-[100%] z-[-3] ${settings}`}></div>;
 };
 
 export default Ellipse;
