@@ -19,11 +19,13 @@ type ProductType = {
 export default function Card({ product }: { product: ProductType }) {
   const { id, image, name, information, price, currency } = product;
   return (
-    <li className="max-w-[343px] rounded-default bg-white relative">
+    <div className="max-w-[343px] rounded-default bg-white relative group">
       <Image
-        className="h-[216px] rounded-tl-default rounded-tr-default"
+        className="h-[216px] rounded-tl-default rounded-tr-default group-hover:h-[223px] transition-all"
         src={cardImg}
         sizes="100vw"
+        width={343}
+        height={216}
         alt="Card image"
       />
 
@@ -31,7 +33,7 @@ export default function Card({ product }: { product: ProductType }) {
         <SpriteSVG name="heart" />
       </button>
 
-      <div className="p-[18px]">
+      <div className="p-[18px] group-hover:pb-[11px] transition-all">
         <div className="mb-4">{name}</div>
         <div className="text-neutral-400 mb-[18px] text-xs leading-[19.2px]">
           {information}
@@ -48,6 +50,6 @@ export default function Card({ product }: { product: ProductType }) {
       <div className="absolute right-[-0.3px] bottom-0">
         <SpriteSVG name="card-part" />
       </div>
-    </li>
+    </div>
   );
 }

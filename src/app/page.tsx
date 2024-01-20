@@ -1,13 +1,15 @@
-import ProductsWeek from '@/modules/productsWeek/components/ProductsWeek';
+import ProductsWeek from '@/modules/productsWeek/ProductsWeek';
 import AboutUs from '@/modules/AboutUs/AboutUs';
 import { HeroSection } from '@/modules';
+import Novelties from '@/modules/novelties/Novelties';
 
 export default function Home() {
   return (
-    <main className="font-lato">
+    <>
       <HeroSection />
       <ProductsWeek />
+      <Novelties />
       <AboutUs />
-    </main>
+    </>
   );
 }

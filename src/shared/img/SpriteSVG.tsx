@@ -429,7 +429,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
         <svg width="95" height="98" fill="none">
           <g clipPath="url(#a)">
             <path
-              fill="#F6F6F6"
+              fill="#FAFAFA"
               d="M30 36.999C9.5 61 33 81.5 0 97.999h74.508C85.554 98 94.5 89.05 94.5 78.004V0C85 27.5 59 1.5 30 36.999Z"
             />
           </g>
