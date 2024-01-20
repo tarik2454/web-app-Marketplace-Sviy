@@ -59,6 +59,9 @@ const config: Config = {
       jump: 'jump 2s ease-out 1',
       rotateAndTranslate: 'rotateAndTranslate 2s ease-out forwards',
     },
+    variants: {
+      fill: ['hover', 'focus'],
+    },
   },
   plugins: [],
 };
