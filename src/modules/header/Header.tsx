@@ -24,7 +24,7 @@ export default function Header() {
   }
 
   return (
-    <div className="bg-white">
+    <div className="w-full bg-white">
       <Section>
         <Container>
           <header className="flex font-normal w-full items-center h-20 gap-auto xl:h-24">
