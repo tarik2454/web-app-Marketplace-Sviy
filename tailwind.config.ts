@@ -60,17 +60,10 @@ const config: Config = {
         jump: 'jump 2s ease-out 1',
         rotateAndTranslate: 'rotateAndTranslate 2s ease-out forwards',
       },
+      variants: {
+        fill: ['hover', 'focus'],
+      },
     },
-<<<<<<< HEAD
-    animation: {
-      jump: 'jump 2s ease-out 1',
-      rotateAndTranslate: 'rotateAndTranslate 2s ease-out forwards',
-    },
-    variants: {
-      fill: ['hover', 'focus'],
-    },
-=======
->>>>>>> 070001814ab4ba1c7da750b3e258decb859f4de9
   },
   plugins: [],
 };
