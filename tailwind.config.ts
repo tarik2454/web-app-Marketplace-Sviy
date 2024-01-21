@@ -42,6 +42,24 @@ const config: Config = {
         default: '20px',
         circle: '50%',
       },
+      keyframes: {
+        jump: {
+          '0%, 13%, 24%': { transform: 'translateY(0)' },
+          '8%': { transform: 'translateY(6px)' },
+          '19%': { transform: 'translateY(1.5px)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        rotateAndTranslate: {
+          '0%, 13%, 24%': { transform: 'rotate(70deg)' },
+          '8%': { transform: 'translateY(6px) rotate(70deg)' },
+          '19%': { transform: 'translateY(1.5px) rotate(70deg)' },
+          '100%': { transform: 'translateY(0) rotate(70deg)' },
+        },
+      },
+      animation: {
+        jump: 'jump 2s ease-out 1',
+        rotateAndTranslate: 'rotateAndTranslate 2s ease-out forwards',
+      },
     },
   },
   plugins: [],
