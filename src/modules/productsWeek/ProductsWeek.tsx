@@ -9,7 +9,6 @@ export default function ProductsWeek() {
     <Section>
       <Container>
         <SectionTitle name="Товари тижня" />
-
         <ProductsList />
       </Container>
     </Section>

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -15,6 +15,26 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
 export default function ProductsList() {
+  const [viewportWidth, setViewportWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 0
+  );
+
+  const handleResize = () => {
+    setViewportWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const maxItemsToShow = viewportWidth >= 768 ? 8 : 4;
+
   return (
     <div className="relative">
       <Swiper
@@ -40,18 +60,16 @@ export default function ProductsList() {
           },
         }}
       >
-        <ul className="swiper-wrapper">
-          {productsData.slice(0, 16).map((product, index) => (
+        <div className="swiper-wrapper">
+          {productsData.slice(0, 6).map((product, index) => (
             <SwiperSlide
               key={`${product.id}-${index}`}
               className="swiper-slide"
             >
-              <li>
-                <Card product={product} />
-              </li>
+              <Card product={product} />
             </SwiperSlide>
           ))}
-        </ul>
+        </div>
       </Swiper>
 
       <ButtonAllAds>

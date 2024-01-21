@@ -1,8 +1,7 @@
 import Logo from '@/shared/components/Logo/Logo';
 import Container from '@/shared/components/Container/Container';
 
-import { Contacts, SocialNetworks } from './components';
-import config from '../../../tailwind.config';
+import { Contacts } from '.';
 
 export default function Footer() {
   return (
