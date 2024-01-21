@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -15,14 +15,32 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
 export default function ProductsList() {
+  const [viewportWidth, setViewportWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 0
+  );
+
+  const handleResize = () => {
+    setViewportWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const maxItemsToShow = viewportWidth >= 768 ? 8 : 4;
+
   return (
     <div className="relative">
       <Swiper
         modules={[Navigation, Pagination, A11y, Autoplay]}
         navigation={{ nextEl: '.myslider-next', prevEl: '.myslider-prev' }}
         pagination={{ clickable: true }}
-        // onSwiper={swiper => console.log(swiper)}
-        // onSlideChange={() => console.log('slide change')}
         autoplay={{ delay: 3000 }}
         breakpoints={{
           // when window width is >= 320px
@@ -42,20 +60,16 @@ export default function ProductsList() {
           },
         }}
       >
-        <ul className="swiper-wrapper">
-          {productsData
-            .slice(0, window.innerWidth >= 768 ? 8 : 4)
-            .map((product, index) => (
-              <SwiperSlide
-                key={`${product.id}-${index}`}
-                className="swiper-slide"
-              >
-                <li>
-                  <Card product={product} />
-                </li>
-              </SwiperSlide>
-            ))}
-        </ul>
+        <div className="swiper-wrapper">
+          {productsData.slice(0, 6).map((product, index) => (
+            <SwiperSlide
+              key={`${product.id}-${index}`}
+              className="swiper-slide"
+            >
+              <Card product={product} />
+            </SwiperSlide>
+          ))}
+        </div>
       </Swiper>
 
       <ButtonAllAds>
