@@ -25,9 +25,8 @@ const config: Config = {
         },
         orange: {
           300: '#FFCC80',
-        }
-        ,
-        "white": "#FFFFFF",
+        },
+        white: '#FFFFFF',
       },
       fontFamily: {
         lato: 'Lato',
@@ -36,7 +35,7 @@ const config: Config = {
       screens: {
         sm: '375px',
         md: '768px',
-        Lg: 'none',
+        lg: 'none',
         xl: '1440px',
       },
       borderRadius: {
