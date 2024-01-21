@@ -26,25 +26,25 @@ export default function Header() {
   return (
     <div className="bg-white">
       <Section>
-      <Container>
-        <header className="flex font-normal w-full items-center h-20 gap-auto xl:h-24">
-          <BurgerMenu display={displayMenu} closeButtonClick={() => setDisplayMenu("hidden")} />
-          <Cart closeButtonClick={() => setDisplayCart("hidden")} display={displayCart} />
-          <div className="hidden pl-5 pr-8 py-3 border-2 border-blue-700 text-blue-700 rounded-default md:block">
-            <CatalogueButton catalogueClick={() => {}} />
-          </div>
-          <HamburgerButton hamburgerClick={() => setDisplayMenu("block")} />
-          <div className="mx-auto">
-            <Logo />
-          </div>
-          <FunctionalButtons 
-            searchButtonClick={searchButtonHandler}
-            cartButtonClick={() => setDisplayCart("flex")}
-          />
-        </header>
-        <SearchProducts display={displaySearchProducts} />
-      </Container>
-    </Section>
+        <Container>
+          <header className="flex font-normal w-full items-center h-20 gap-auto xl:h-24">
+            <BurgerMenu display={displayMenu} closeButtonClick={() => setDisplayMenu("hidden")} />
+            <Cart closeButtonClick={() => setDisplayCart("hidden")} display={displayCart} />
+            <div className="hidden pl-5 pr-8 py-3 border-2 border-blue-700 text-blue-700 rounded-default md:block">
+              <CatalogueButton catalogueClick={() => {}} />
+            </div>
+            <HamburgerButton hamburgerClick={() => setDisplayMenu("block")} />
+            <div className="mx-auto">
+              <Logo />
+            </div>
+            <FunctionalButtons 
+              searchButtonClick={searchButtonHandler}
+              cartButtonClick={() => setDisplayCart("flex")}
+            />
+          </header>
+          <SearchProducts display={displaySearchProducts} />
+        </Container>
+      </Section>
     </div>
   );
 }
