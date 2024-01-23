@@ -6,9 +6,9 @@ import { MouseEventHandler, useState } from "react";
 import { Contacts } from "../footer";
 
 type Props = {
-  display: String,
-  closeButtonClick: MouseEventHandler<HTMLButtonElement>,
-}
+  display: String;
+  closeButtonClick: MouseEventHandler<HTMLButtonElement>;
+};
 
 export default function BurgerMenu ({ display, closeButtonClick }: Props) {
   const [categoriesDisplay, setCategoriesDisplay] = useState("hidden");
@@ -33,5 +33,5 @@ export default function BurgerMenu ({ display, closeButtonClick }: Props) {
         closeCategoriesClick={() => setCategoriesDisplay("hidden")} 
       />
     </nav>
-  )
+  );
 }

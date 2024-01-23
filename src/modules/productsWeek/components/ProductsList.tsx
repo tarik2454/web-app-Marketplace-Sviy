@@ -15,26 +15,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
 export default function ProductsList() {
-  const [viewportWidth, setViewportWidth] = useState(
-    typeof window !== 'undefined' ? window.innerWidth : 0
-  );
-
-  const handleResize = () => {
-    setViewportWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const maxItemsToShow = viewportWidth >= 768 ? 8 : 4;
-
   return (
     <div className="relative">
       <Swiper

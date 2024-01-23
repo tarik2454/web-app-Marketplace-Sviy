@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import Section from '@/shared/components/Section/Section';
 import { BurgerMenu, Cart, Categories } from '..';
 import Logo from '../../shared/components/Logo/Logo';
@@ -9,19 +9,19 @@ import { SearchProducts } from '..';
 import { useState } from 'react';
 
 export default function Header() {
-  const [displayMenu, setDisplayMenu] = useState("hidden");
-  const [displaySearchProducts, setDisplaySearchProducts] = useState("hidden");
-  const [displayCart, setDisplayCart] = useState("hidden");
+  const [displayMenu, setDisplayMenu] = useState('hidden');
+  const [displaySearchProducts, setDisplaySearchProducts] = useState('hidden');
+  const [displayCart, setDisplayCart] = useState('hidden');
 
   const searchButtonHandler = () => {
-    if (displaySearchProducts === "hidden") {
-      setDisplaySearchProducts("block");
-      document.body.style.overflow = "hidden";
+    if (displaySearchProducts === 'hidden') {
+      setDisplaySearchProducts('block');
+      document.body.style.overflow = 'hidden';
     } else {
-      setDisplaySearchProducts("hidden");
-      document.body.style.overflow = "auto";
+      setDisplaySearchProducts('hidden');
+      document.body.style.overflow = 'auto';
     }
-  }
+  };
 
   const cartHandler = () => {
     if (displayCart === "hidden") {
@@ -57,7 +57,7 @@ export default function Header() {
             <div className="mx-auto">
               <Logo />
             </div>
-            <FunctionalButtons 
+            <FunctionalButtons
               searchButtonClick={searchButtonHandler}
               cartButtonClick={cartHandler}
             />
