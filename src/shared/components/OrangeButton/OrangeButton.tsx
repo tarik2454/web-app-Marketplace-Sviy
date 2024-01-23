@@ -6,7 +6,7 @@ type Props = {
   onClick: (...args: any[]) => any;
 };
 
-const ColorButton = ({
+const OrangeButton = ({
   children,
   cssSettings,
   type = 'button',
@@ -26,4 +26,4 @@ const ColorButton = ({
   );
 };
 
-export default ColorButton;
+export default OrangeButton;
