@@ -12,7 +12,7 @@ export default function FinalPrice () {
         <p>До сплати</p>
         <p className="ml-auto">450 ₴</p>
       </div>
-      <OrangeButton onClick={() => {}} children={"Оформити замовлення"} />
+      <OrangeButton onClick={() => {}}>Оформити замовлення</OrangeButton>
     </div>
   )
 }
