@@ -1,6 +1,6 @@
-import { SpriteSVG } from "@/shared/img/SpriteSVG";
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
-export default function AmountButtons () {
+export default function AmountButtons() {
   return (
     <div className="flex items-center xl:ml-auto">
       <div className="flex w-20 xl:mr-10">
@@ -16,5 +16,5 @@ export default function AmountButtons () {
         <SpriteSVG name="trash" />
       </button>
     </div>
-  )
+  );
 }
