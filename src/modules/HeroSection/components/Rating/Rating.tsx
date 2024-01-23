@@ -1,15 +1,29 @@
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import React from 'react';
 
-const Rating = () => {
+type Props = {
+  cssSettings?: string;
+};
+
+const Rating = ({ cssSettings }: Props) => {
   return (
-    <div className="flex items-center justify-center w-fit">
-      <SpriteSVG name="rating-star" />
-      <SpriteSVG name="rating-star" />
-      <SpriteSVG name="rating-star" />
-      <SpriteSVG name="rating-star" />
-      <SpriteSVG name="rating-star" />
-    </div>
+    <ul className="flex items-center justify-center w-fit gap-[3px]">
+      <li className={'w-2 h-2 md:w-3 md:h-3' + ' ' + cssSettings}>
+        <SpriteSVG name="rating-star" />
+      </li>
+      <li className={'w-2 h-2 md:w-3 md:h-3' + ' ' + cssSettings}>
+        <SpriteSVG name="rating-star" />
+      </li>
+      <li className={'w-2 h-2 md:w-3 md:h-3' + ' ' + cssSettings}>
+        <SpriteSVG name="rating-star" />
+      </li>
+      <li className={'w-2 h-2 md:w-3 md:h-3' + ' ' + cssSettings}>
+        <SpriteSVG name="rating-star" />
+      </li>
+      <li className={'w-2 h-2 md:w-3 md:h-3' + ' ' + cssSettings}>
+        <SpriteSVG name="rating-star" />
+      </li>
+    </ul>
   );
 };
 
