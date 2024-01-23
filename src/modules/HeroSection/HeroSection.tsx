@@ -1,5 +1,5 @@
 'use client';
-import { ColorButton, TransparentButton } from '@/shared/components';
+import { ArrowButton, OrangeButton } from '@/shared/components';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { BottomListItem, CommonRating, Ellipse, Response } from './components';
 import Section from '@/shared/components/Section/Section';
@@ -71,13 +71,8 @@ const HeroSection = () => {
               </p>
             </div>
             <div className="flex flex-col items-start gap-5 xl:flex-row xl:gap-6">
-              <ColorButton onClick={() => {}}>Обрати товар</ColorButton>
-              <TransparentButton onClick={() => {}}>
-                Продати товар
-                <span className="flex justify-center items-center text-white bg-blue-700 rounded-[100%] w-7 h-7 group-hover/trBtn:rotate-[50deg] group-active/trBtn:bg-white group-active/trBtn:text-blue-700 transition-all">
-                  <SpriteSVG name="arrow-right" />
-                </span>
-              </TransparentButton>
+              <OrangeButton onClick={() => {}}>Обрати товар</OrangeButton>
+              <ArrowButton onClick={() => {}}>Продати товар</ArrowButton>
             </div>
           </div>
         </div>
