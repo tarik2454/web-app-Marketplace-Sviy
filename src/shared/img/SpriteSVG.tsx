@@ -19,14 +19,13 @@ export const SpriteSVG = ({ name }: { name: string }) => {
     case 'favorite-header':
       return (
         <svg
-          className="hover:fill-blue-700"
           xmlns="http://www.w3.org/2000/svg"
           width="28"
           height="28"
           fill="none"
+          className="text-blue-700 hover:text-neutral-800 active:text-neutral-400 stroke-current"
         >
           <path
-            stroke="#1565C0"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
@@ -38,27 +37,24 @@ export const SpriteSVG = ({ name }: { name: string }) => {
     case 'cart':
       return (
         <svg
-          className="hover:fill-blue-700"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="25"
+          className="text-blue-700 hover:text-neutral-800 active:text-neutral-400 stroke-current"
           fill="none"
         >
           <path
-            stroke="#1565C0"
             strokeLinecap="round"
             strokeWidth="2"
             d="M1.5 1.333h2.2318c.7782 0 1.1666 0 1.4768.1702.128.0704.2438.1607.3432.2676.2402.2595.3349.637.523 1.3918l.2497.9979c.1386.5545.2086.8317.3157 1.065a2.745 2.745 0 0 0 1.9847 1.551c.2525.0467.538.0467 1.1104.0467"
           />
           <path
-            stroke="#1565C0"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
             d="M20.7159 19.1762H6.3729c-.1991 0-.2993 0-.3762-.0082a1.3733 1.3733 0 0 1-1.1911-1.0821 1.373 1.373 0 0 1 .0011-.5691 4.227 4.227 0 0 1 .1112-.3596c.0714-.2114.1057-.317.1455-.4117a2.7456 2.7456 0 0 1 2.3306-1.68c.1015-.0069.2141-.0069.435-.0069h7.3967"
           />
           <path
-            stroke="#1565C0"
             strokeLinecap="round"
             strokeWidth="2"
             d="M15.9505 15.0585h-4.878c-1.669 0-2.5035 0-3.1473-.3774a2.7433 2.7433 0 0 1-.715-.6067c-.4805-.5737-.6177-1.3972-.8908-3.0429-.2787-1.6677-.4173-2.5022-.0865-3.1198a2.0588 2.0588 0 0 1 .56-.6616c.5545-.4269 1.4-.4269 3.091-.4269h9.1357c1.9901 0 2.9852 0 3.3888.6506.4021.652-.0439 1.5414-.9334 3.3216l-.6135 1.2284c-.7384 1.4769-1.1076 2.2153-1.7706 2.6243-.6643.4104-1.4892.4104-3.1404.4104Z"
@@ -191,14 +187,13 @@ export const SpriteSVG = ({ name }: { name: string }) => {
     case 'search':
       return (
         <svg
-          className="hover:fill-blue-700"
           xmlns="http://www.w3.org/2000/svg"
           width="28"
           height="28"
+          className="text-blue-700 hover:text-neutral-800 active:text-neutral-400 stroke-current"
           fill="none"
         >
           <path
-            stroke="#1565C0"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
@@ -210,13 +205,13 @@ export const SpriteSVG = ({ name }: { name: string }) => {
     case 'user':
       return (
         <svg
-          className="hover:fill-blue-700"
           xmlns="http://www.w3.org/2000/svg"
           width="22"
           height="22"
+          className="text-blue-700 hover:text-neutral-800 active:text-neutral-400 stroke-current"
           fill="none"
         >
-          <g stroke="#1565C0" strokeWidth="2">
+          <g strokeWidth="2">
             <path
               strokeLinejoin="round"
               d="M1.667 18.0007a4.6668 4.6668 0 0 1 4.6667-4.6667h9.3333a4.6668 4.6668 0 0 1 4.6667 4.6667 2.3334 2.3334 0 0 1-2.3334 2.3333h-14a2.3333 2.3333 0 0 1-2.3333-2.3333Z"
@@ -483,41 +478,6 @@ export const SpriteSVG = ({ name }: { name: string }) => {
           </g>
         </svg>
       );
-
-    case 'micro':
-      return (
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width="24" 
-          height="24" 
-          fill="none">
-          <g 
-            stroke="#1565C0" 
-            strokeLinejoin="round" 
-            strokeWidth="2">
-            <rect 
-              width="6" 
-              height="11" 
-              x="9" 
-              y="3" 
-              rx="3"/>
-            <path 
-              strokeLinecap="round" 
-              d="M5 11a6.9998 6.9998 0 0 0 11.9497 4.9497A6.9997 6.9997 0 0 0 19 11M12 21v-2"/>
-          </g>
-        </svg>
-      )
-    
-    case 'arrow-to-bottom':
-      return (
-        <svg
-          xmlns="http://www.w3.org/2000/svg" 
-          width="24" 
-          height="24" 
-          fill="none">
-          <path stroke="#212121" d="m18 9-6 6-6-6"/>
-        </svg>
-      )
     
     case 'location':
       return (

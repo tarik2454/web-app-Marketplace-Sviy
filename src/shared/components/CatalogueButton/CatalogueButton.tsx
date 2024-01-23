@@ -7,7 +7,7 @@ export default function CatalogueButton({
   catalogueClick?: MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
-    <button onClick={catalogueClick} className="flex gap-4 md:gap-2">
+    <button onClick={catalogueClick} className="flex w-full gap-4 md:gap-2">
       <SpriteSVG name="catalog" />
       <p>Каталог</p>
     </button>
