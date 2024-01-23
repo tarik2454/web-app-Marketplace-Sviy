@@ -1,4 +1,6 @@
+import React from 'react';
 import Image from 'next/image';
+
 import Container from '@/shared/components/Container/Container';
 import Section from '@/shared/components/Section/Section';
 
@@ -22,11 +24,15 @@ const Advertising: React.FC<AdvertisingProps> = ({
             className="rounded-[20px] sm:mb-4 w-[357px] sm:h-[212px] md:w-[704px] md:h-[372px] xl:mr-[24px]"
             src={image1}
             alt="batch_cooking"
+            width={704}
+            height={372}
           />
           <Image
             className="rounded-[20px] sm:w-[357px] sm:h-[212px] md:w-[704px] md:h-[372px]"
             src={image2}
             alt="delicious_food"
+            width={704}
+            height={372}
           />
         </div>
       </Container>
