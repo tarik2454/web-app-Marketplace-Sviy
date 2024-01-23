@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -21,8 +21,6 @@ export default function ProductsList() {
         modules={[Navigation, Pagination, A11y, Autoplay]}
         navigation={{ nextEl: '.myslider-next', prevEl: '.myslider-prev' }}
         pagination={{ clickable: true }}
-        // onSwiper={swiper => console.log(swiper)}
-        // onSlideChange={() => console.log('slide change')}
         autoplay={{ delay: 3000 }}
         breakpoints={{
           // when window width is >= 320px
@@ -42,18 +40,16 @@ export default function ProductsList() {
           },
         }}
       >
-        <ul className="swiper-wrapper">
-          {productsData.slice(0, 16).map((product, index) => (
+        <div className="swiper-wrapper">
+          {productsData.slice(0, 6).map((product, index) => (
             <SwiperSlide
               key={`${product.id}-${index}`}
               className="swiper-slide"
             >
-              <li>
-                <Card product={product} />
-              </li>
+              <Card product={product} />
             </SwiperSlide>
           ))}
-        </ul>
+        </div>
       </Swiper>
 
       <ButtonAllAds>

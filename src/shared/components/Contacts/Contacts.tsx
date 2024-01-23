@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SocialNetworks } from '.';
+import { SocialNetworks } from '../../../modules/footer';
 
 export default function Contacts() {
   return (
