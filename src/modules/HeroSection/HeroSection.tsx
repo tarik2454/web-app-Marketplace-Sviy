@@ -1,3 +1,4 @@
+'use client';
 import { ColorButton, TransparentButton } from '@/shared/components';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { BottomListItem, CommonRating, Ellipse, Response } from './components';
@@ -14,16 +15,14 @@ const HeroSection = () => {
   return (
     <Section>
       <Container>
-        <div className="relative pt-[132px] pb-[178px] xl:pt-[195px] xl:pb-[294px]">
+        <div className="relative h-auto pt-[132px] pb-[178px] xl:pt-[195px] xl:pb-[294px]">
           <Image
-            className="absolute -z-[1] -right-4 top-[72px] md:hidden"
+            className="absolute w-[314px] -z-[1] -right-4 top-[72px] md:hidden"
             src={bg_hero}
             alt="girl with products"
-            width={314}
-            height={422}
           />
           <Image
-            className="hidden absolute -z-[1] -right-8 top-[76px] w-[492px] h-[429px] md:block xl:block xl:w-[767px] xl:h-[679px] xl:right-0 xl:top-10"
+            className="hidden absolute -z-[1] -right-8 top-[76px] w-[492px] h-auto md:block xl:block xl:w-[767px] xl:right-0 xl:top-10"
             src={bg_hero_tablet}
             alt="girl with products"
           />
@@ -44,6 +43,7 @@ const HeroSection = () => {
             uName="Матвій"
             avatar={av_matvij}
             styleSetting="hidden top-[40px] right-0 -z-[3] md:flex xl:flex xl:top-[220px] xl:z-[0]"
+            reverse={'xl:flex-row-reverse'}
           />
           <CommonRating />
           <div className="w-fit">
@@ -71,10 +71,10 @@ const HeroSection = () => {
               </p>
             </div>
             <div className="flex flex-col items-start gap-5 xl:flex-row xl:gap-6">
-              <ColorButton>Обрати товар</ColorButton>
-              <TransparentButton>
+              <ColorButton onClick={() => {}}>Обрати товар</ColorButton>
+              <TransparentButton onClick={() => {}}>
                 Продати товар
-                <span className="flex justify-center items-center text-white bg-[#1565C0] rounded-[100%] w-7 h-7 group-hover/trBtn:rotate-[28deg]">
+                <span className="flex justify-center items-center text-white bg-blue-700 rounded-[100%] w-7 h-7 group-hover/trBtn:rotate-[50deg] group-active/trBtn:bg-white group-active/trBtn:text-blue-700 transition-all">
                   <SpriteSVG name="arrow-right" />
                 </span>
               </TransparentButton>
