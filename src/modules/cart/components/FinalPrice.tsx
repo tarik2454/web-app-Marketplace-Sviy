@@ -1,4 +1,4 @@
-import { ColorButton } from "@/shared/components";
+import { OrangeButton } from "@/shared/components";
 
 export default function FinalPrice () {
   return (
@@ -12,7 +12,7 @@ export default function FinalPrice () {
         <p>До сплати</p>
         <p className="ml-auto">450 ₴</p>
       </div>
-      <ColorButton onClick={() => {}} children={"Оформити замовлення"} />
+      <OrangeButton onClick={() => {}} children={"Оформити замовлення"} />
     </div>
   )
 }
