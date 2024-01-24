@@ -1,4 +1,4 @@
-import { CloseCatalogButton } from '@/shared/components';
+import { CloseButton } from '@/shared/components';
 import { MouseEventHandler } from 'react';
 import categoriesData from '../../data/categories-data';
 import Container from '@/shared/components/Container/Container';
