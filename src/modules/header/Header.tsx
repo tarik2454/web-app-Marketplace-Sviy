@@ -1,7 +1,6 @@
 'use client';
 
-import Section from '@/shared/components/Section/Section';
-import { BurgerMenu, Cart } from '..';
+import { BurgerMenu, Cart, Categories } from '..';
 import Logo from '../../shared/components/Logo/Logo';
 import { HamburgerButton, FunctionalButtons, Catalog } from './components';
 import Container from '@/shared/components/Container/Container';
@@ -59,5 +58,6 @@ export default function Header() {
         <SearchProducts display={displaySearchProducts} />
       </Container>
     </header>
+
   );
 }

@@ -24,7 +24,7 @@ const CommonRating = () => {
           />
         ))}
       </div>
-      <Rating />
+      <Rating cssSettings="xl:w-6 xl:h-6" />
     </div>
   );
 };

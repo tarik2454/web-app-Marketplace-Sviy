@@ -5,10 +5,10 @@ export default function SocialNetworks() {
   return (
     <div className="justify-start items-start gap-6 inline-flex">
       <Link href="/">
-        <SpriteSVG name="facebook" />
+        <SpriteSVG name="instagram" />
       </Link>
       <Link href="/">
-        <SpriteSVG name="instagram" />
+        <SpriteSVG name="facebook" />
       </Link>
     </div>
   );

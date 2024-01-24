@@ -6,3 +6,4 @@ export { default as HeroSection } from './HeroSection/HeroSection';
 export { default as Categories } from './header/components/Catalog/Catalog';
 export { default as SearchProducts } from './searchProducts/SearchProducts';
 export { default as Cart } from './cart/Cart';
+export { default as Advertising } from './advertising/Advertising';
