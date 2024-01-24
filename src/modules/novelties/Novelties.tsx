@@ -1,4 +1,4 @@
-import ButtonAllAds from '@/shared/components/CatalogButtons/ButtonAllAds';
+import ButtonAllAds from '@/shared/components/CardButtons/ButtonAllAds';
 import Container from '@/shared/components/Container/Container';
 import Section from '@/shared/components/Section/Section';
 import SectionTitle from '@/shared/components/SectionTitle/SectionTitle';

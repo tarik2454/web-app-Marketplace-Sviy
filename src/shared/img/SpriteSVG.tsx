@@ -498,111 +498,113 @@ export const SpriteSVG = ({ name }: { name: string }) => {
 
     case 'micro':
       return (
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width="24" 
-          height="24" 
-          fill="none">
-          <g 
-            stroke="#1565C0" 
-            strokeLinejoin="round" 
-            strokeWidth="2">
-            <rect 
-              width="6" 
-              height="11" 
-              x="9" 
-              y="3" 
-              rx="3"/>
-            <path 
-              strokeLinecap="round" 
-              d="M5 11a6.9998 6.9998 0 0 0 11.9497 4.9497A6.9997 6.9997 0 0 0 19 11M12 21v-2"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+        >
+          <g stroke="#1565C0" strokeLinejoin="round" strokeWidth="2">
+            <rect width="6" height="11" x="9" y="3" rx="3" />
+            <path
+              strokeLinecap="round"
+              d="M5 11a6.9998 6.9998 0 0 0 11.9497 4.9497A6.9997 6.9997 0 0 0 19 11M12 21v-2"
+            />
           </g>
         </svg>
-      )
-    
+      );
+
     case 'arrow-to-bottom':
       return (
         <svg
-          xmlns="http://www.w3.org/2000/svg" 
-          width="24" 
-          height="24" 
-          fill="none">
-          <path stroke="#212121" d="m18 9-6 6-6-6"/>
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+        >
+          <path stroke="#212121" d="m18 9-6 6-6-6" />
         </svg>
-      )
-    
+      );
+
     case 'location':
       return (
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width="18" 
-          height="22" 
-          fill="none">
-          <g 
-            stroke="#1565C0" 
-            strokeLinejoin="round" 
-            strokeWidth="2">
-            <path 
-              d="M9 21s7.5-6 7.5-12.5C16.5 4.358 13.142 1 9 1 4.858 1 1.5 4.358 1.5 8.5 1.5 15 9 21 9 21Z"/>
-            <path 
-              d="M9 11.5a2.9998 2.9998 0 0 0 3-3 2.9994 2.9994 0 0 0-.8787-2.1213A3.0008 3.0008 0 0 0 9 5.5a3 3 0 1 0 0 6Z"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="22"
+          fill="none"
+        >
+          <g stroke="#1565C0" strokeLinejoin="round" strokeWidth="2">
+            <path d="M9 21s7.5-6 7.5-12.5C16.5 4.358 13.142 1 9 1 4.858 1 1.5 4.358 1.5 8.5 1.5 15 9 21 9 21Z" />
+            <path d="M9 11.5a2.9998 2.9998 0 0 0 3-3 2.9994 2.9994 0 0 0-.8787-2.1213A3.0008 3.0008 0 0 0 9 5.5a3 3 0 1 0 0 6Z" />
           </g>
         </svg>
-      )
-    
+      );
+
     case 'minus':
       return (
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width="8" 
-          height="8" 
-          fill="none">
-          <path 
-            stroke="#656565" 
-            strokeWidth="2" 
-            d="M.5332 4h6.9333"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="8"
+          height="8"
+          fill="none"
+        >
+          <path stroke="#656565" strokeWidth="2" d="M.5332 4h6.9333" />
         </svg>
-      )
-    
+      );
+
     case 'plus':
       return (
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width="8" 
-          height="8" 
-          fill="none">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="8"
+          height="8"
+          fill="none"
+        >
           <g clipPath="url(#a)">
-            <path 
-              stroke="#656565" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth="2" 
-              d="M4 1.5v5M6.5 4h-5"/>
+            <path
+              stroke="#656565"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 1.5v5M6.5 4h-5"
+            />
           </g>
           <defs>
             <clipPath id="a">
-              <path fill="#fff" d="M0 0h8v8H0z"/>
+              <path fill="#fff" d="M0 0h8v8H0z" />
             </clipPath>
           </defs>
         </svg>
-      )
+      );
 
-    case "trash":
+    case 'trash':
       return (
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width="24" 
-          height="24" 
-          fill="none">
-          <g 
-            stroke="#9E9E9E" 
-            strokeLinecap="round" 
-            strokeWidth="2">
-            <path 
-              d="M10 15v-3M14 15v-3M3 7h18v0c-.9319 0-1.3978 0-1.7654.1522-.49.203-.8794.5924-1.0824 1.0824C18 8.6022 18 9.0681 18 10v6c0 1.8856 0 2.8284-.5858 3.4142C16.8284 20 15.8856 20 14 20h-4c-1.8856 0-2.8284 0-3.4142-.5858C6 18.8284 6 17.8856 6 16v-6c0-.9319 0-1.3978-.1522-1.7654a2 2 0 0 0-1.0824-1.0824C4.3978 7 3.9319 7 3 7v0ZM10.0681 3.3706c.114-.1063.3651-.2003.7144-.2673C11.1318 3.0363 11.5597 3 12 3s.8682.0363 1.2175.1033c.3493.067.6004.161.7144.2673"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+        >
+          <g stroke="#9E9E9E" strokeLinecap="round" strokeWidth="2">
+            <path d="M10 15v-3M14 15v-3M3 7h18v0c-.9319 0-1.3978 0-1.7654.1522-.49.203-.8794.5924-1.0824 1.0824C18 8.6022 18 9.0681 18 10v6c0 1.8856 0 2.8284-.5858 3.4142C16.8284 20 15.8856 20 14 20h-4c-1.8856 0-2.8284 0-3.4142-.5858C6 18.8284 6 17.8856 6 16v-6c0-.9319 0-1.3978-.1522-1.7654a2 2 0 0 0-1.0824-1.0824C4.3978 7 3.9319 7 3 7v0ZM10.0681 3.3706c.114-.1063.3651-.2003.7144-.2673C11.1318 3.0363 11.5597 3 12 3s.8682.0363 1.2175.1033c.3493.067.6004.161.7144.2673" />
           </g>
         </svg>
-      )
+      );
+
+    case 'close-catalog-button':
+      return (
+        <svg width="24" height="24" fill="none">
+          <g
+            stroke="#FAFAFA"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+          >
+            <path d="M18 6 6 18M6 6l12 12" />
+          </g>
+        </svg>
+      );
 
     default:
       return 'SVG not found';
