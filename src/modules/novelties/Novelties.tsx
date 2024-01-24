@@ -6,7 +6,7 @@ import NoveltiesList from './components/NoveltiesList';
 
 export default function Novelties() {
   return (
-    <Section>
+    <Section className='pb-[104px]'>
       <Container>
         <SectionTitle name="Новинки" />
 

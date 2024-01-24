@@ -13,7 +13,7 @@ import Container from '@/shared/components/Container/Container';
 
 const HeroSection = () => {
   return (
-    <Section>
+    <Section className='pt-[113px]'>
       <Container>
         <div className="relative h-auto pt-[132px] pb-[178px] xl:pt-[195px] xl:pb-[294px]">
           <Image

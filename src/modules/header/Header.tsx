@@ -1,10 +1,11 @@
 'use client';
 
-import { BurgerMenu, Cart, Categories } from '..';
+import { Cart, Categories } from '..';
+import { BurgerMenu } from './components';
 import Logo from '../../shared/components/Logo/Logo';
 import { HamburgerButton, FunctionalButtons, Catalog } from './components';
 import Container from '@/shared/components/Container/Container';
-import { SearchProducts } from '..';
+import { SearchProducts } from './components';
 import { useState } from 'react';
 import CatalogButton from './components/Catalog/CatalogButton';
 

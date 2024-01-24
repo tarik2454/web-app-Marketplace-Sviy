@@ -1,4 +1,4 @@
-import { CloseCatalogButton } from '@/shared/components';
+import { CloseButton } from '@/shared/components';
 import { CartList, FinalPrice } from './components';
 import { MouseEventHandler } from 'react';
 
@@ -14,7 +14,7 @@ export default function Cart({ closeButtonClick, display }: Props) {
     >
       <div className="flex border-b-2 font-lora text-3xl items-center">
         <h1>Кошик</h1>
-        <CloseCatalogButton closeButtonClick={closeButtonClick} />
+        <CloseButton closeButtonClick={closeButtonClick} />
       </div>
       <div className="block items-start md:flex">
         <CartList />

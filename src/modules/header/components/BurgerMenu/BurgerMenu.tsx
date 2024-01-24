@@ -1,9 +1,10 @@
 'use client';
-import { CatalogButton, CloseCatalogButton } from '@/shared/components/index';
-import { Cabinet } from './components';
-import { Categories } from '..';
+import { CatalogButton } from '@/shared/components/index';
+import { Cabinet } from '.';
+import { CloseButton } from '@/shared/components/index';
+import { Categories } from '@/modules';
 import { MouseEventHandler, useState } from 'react';
-import { Contacts } from "../footer";
+import { Contacts } from '@/modules/footer';
 
 type Props = {
   display: String;
@@ -17,7 +18,7 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
     <nav
       className={`${display} fixed z-20 w-full h-screen inset-0 px-4 py-5 overflow-y-auto bg-white`}
     >
-      <CloseCatalogButton closeButtonClick={closeButtonClick} />
+      <CloseButton closeButtonClick={closeButtonClick} />
       {/* <Cabinet />
       <div className="block absolute w-screen left-0 py-5 px-4 mt-5 border-y-2">
         <CatalogButton catalogueClick={() => setCategoriesDisplay('block')} />
