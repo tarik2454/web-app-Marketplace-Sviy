@@ -1,4 +1,4 @@
-import { SearchArea, SearchCategories, SearchInput } from "./components";
+import { SearchArea, SearchCategories, SearchInput } from ".";
 
 export default function SearchProducts ({ display }: { display: String }) {
   return (
