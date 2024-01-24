@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Card from '@/shared/components/Card/Card';
 import productsData from '@/shared/data/products-data';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import ButtonAllAds from '@/shared/components/CatalogButtons/ButtonAllAds';
+import ButtonAllAds from '@/shared/components/CardButtons/ButtonAllAds';
 
 import 'swiper/css';
 import 'swiper/css/navigation';

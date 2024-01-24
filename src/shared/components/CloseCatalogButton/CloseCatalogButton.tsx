@@ -1,10 +1,10 @@
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { MouseEventHandler } from 'react';
 
-export default function CloseButton({
+export default function CloseCatalogButton({
   closeButtonClick,
 }: {
-  closeButtonClick: MouseEventHandler<HTMLButtonElement>;
+  closeButtonClick?: MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
     <button onClick={closeButtonClick} className="block ml-auto mr-0 p-2">

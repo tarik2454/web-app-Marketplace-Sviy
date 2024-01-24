@@ -4,8 +4,8 @@ import Image from 'next/image';
 
 import cardImg from '@/shared/img/salo.jpeg';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import ButtonArrowLeft from '../CatalogButtons/ButtonArrowrRight';
-import ButtonToСart from '../CatalogButtons/ButtonToСart';
+import ButtonArrowLeft from '../CardButtons/ButtonArrowrRight';
+import ButtonToСart from '../CardButtons/ButtonToСart';
 
 type ProductType = {
   id?: number;
