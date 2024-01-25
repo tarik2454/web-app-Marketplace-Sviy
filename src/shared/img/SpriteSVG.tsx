@@ -23,7 +23,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
           width="28"
           height="28"
           fill="none"
-          className="text-blue-700 hover:text-neutral-800 active:text-neutral-400 stroke-current"
+          className="stroke-current"
         >
           <path
             strokeLinecap="round"
@@ -40,7 +40,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="25"
-          className="text-blue-700 hover:text-neutral-800 active:text-neutral-400 stroke-current"
+          className="stroke-current"
           fill="none"
         >
           <path
@@ -190,7 +190,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
           xmlns="http://www.w3.org/2000/svg"
           width="28"
           height="28"
-          className="text-blue-700 hover:text-neutral-800 active:text-neutral-400 stroke-current"
+          className="stroke-current"
           fill="none"
         >
           <path
@@ -208,7 +208,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
           xmlns="http://www.w3.org/2000/svg"
           width="22"
           height="22"
-          className="text-blue-700 hover:text-neutral-800 active:text-neutral-400 stroke-current"
+          className="stroke-current"
           fill="none"
         >
           <g strokeWidth="2">
