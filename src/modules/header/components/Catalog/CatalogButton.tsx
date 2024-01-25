@@ -4,18 +4,18 @@ import { useState } from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { MouseEventHandler } from 'react';
 
+// ... (imports)
+
 export default function CatalogButton({
   catalogueClick,
+  isClicked,
 }: {
   catalogueClick?: MouseEventHandler<HTMLButtonElement>;
+  isClicked: boolean; // Add isClicked prop
 }) {
-  const [isClicked, setIsClicked] = useState(false);
-
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    setIsClicked(!isClicked);
-
     if (catalogueClick) {
       catalogueClick(event);
     }
