@@ -3,6 +3,8 @@
 import { FormInput, OrangeButton } from "@/shared/components";
 import * as Yup from 'yup';
 import { useFormik } from "formik";
+import Section from "@/shared/components/Section/Section";
+import Container from "@/shared/components/Container/Container";
 
 export default function Page () {
   const formik = useFormik({
@@ -19,36 +21,44 @@ export default function Page () {
         .required('Password is required'),
     }),
     onSubmit: async values => {
-      console.log(values);
+      alert(values);
     },
   })
 
   return (
-    <main className="pt-80 pb-80">
-      <div className="w-[400px] mx-auto">
-        <form className="flex flex-col gap-5" onSubmit={formik.handleSubmit}>
-          <FormInput
-            formik={formik}
-            onChange={formik.handleChange}
-            value={formik.values.email} 
-            id="email" 
-            label={"Електронна пошта"} 
-            inputType="email"
-          />
-
-          <FormInput
-            formik={formik}
-            onChange={formik.handleChange}
-            value={formik.values.password} 
-            id="password" 
-            label={"Пароль"} 
-            inputType="password"
-          />
-          <div className="w-28 mt-10 mx-auto">
-            <OrangeButton onClick={() => {}} type="submit">Увійти</OrangeButton>
+    <>
+      <Section className="pt-60 pb-60">
+        <Container>
+          <div className="max-w-[400px] flex flex-col gap-5 mx-auto mb-10">
+            <h1 className="text-neutral-800 text-2xl text-center font-normal font-lato leading-10">Увійти в акаунт</h1>
+            <p className="text-center text-neutral-800 text-sm font-normal font-lato leading-snug">Увійдіть, щоб мати можливість додавати товари до обраного та бачити свої замовлення.</p>
           </div>
-        </form>
-      </div>
-    </main>
+          <div className="max-w-[400px] mx-auto">
+            <form className="flex flex-col gap-5" onSubmit={formik.handleSubmit}>
+              <FormInput
+                formik={formik}
+                onChange={formik.handleChange}
+                value={formik.values.email} 
+                id="email" 
+                label={"Електронна пошта"} 
+                inputType="email"
+              />
+
+              <FormInput
+                formik={formik}
+                onChange={formik.handleChange}
+                value={formik.values.password} 
+                id="password" 
+                label={"Пароль"} 
+                inputType="password"
+              />
+              <div className="w-28 mt-10 mx-auto">
+                <OrangeButton onClick={() => {}} type="submit">Увійти</OrangeButton>
+              </div>
+            </form>
+          </div>
+        </Container>
+      </Section>
+    </>
   )
 }
