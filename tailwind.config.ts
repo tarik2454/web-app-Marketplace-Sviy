@@ -26,6 +26,9 @@ const config: Config = {
         orange: {
           300: '#FFCC80',
         },
+        red: {
+          700: "#C50000",
+        },
         white: '#FFFFFF',
       },
       fontFamily: {
