@@ -3,7 +3,6 @@
 import { MouseEventHandler, useEffect, useRef, useState } from 'react';
 import categoriesData from './data/categories-data';
 import CatalogItem from './CatalogItem';
-import Backdrop from '@/shared/components/Backdrop/Backdrop';
 
 type CatalogProps = {
   displayCategories: string;
@@ -19,10 +18,10 @@ export default function Catalog({ displayCategories }: CatalogProps) {
           <p className="text-stone-900 text-xl">Категорії товарів</p>
         </div> */}
 
-      <nav className="px-8 py-4">
-        <ul className="">
+      <nav className="px-8 py-4 ">
+        <ul className="relative">
           {categoriesData.map((category, index) => (
-            <CatalogItem categoryName={category} key={index} />
+            <CatalogItem object={category} key={index} />
           ))}
         </ul>
       </nav>
