@@ -1,7 +1,10 @@
 import { SpriteSVG } from "@/shared/img/SpriteSVG";
+import Link from "next/link";
 
 export default function Logo () {
   return (
-    <SpriteSVG name="logo" />
+    <Link href={"/"}>
+      <SpriteSVG name="logo" />
+    </Link>
   )
 }
