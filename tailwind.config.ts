@@ -36,10 +36,11 @@ const config: Config = {
         lora: 'Lora',
       },
       screens: {
-        sm: '375px',
-        md: '768px',
-        lg: "-1px",
-        xl: '1440px',
+        "sm": '375px',
+        "md": '768px',
+        "lg": "-1px",
+        "xl": '1440px',
+        "2xl": "-1px",
       },
       borderRadius: {
         default: '20px',
