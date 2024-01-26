@@ -16,6 +16,8 @@ export default function Header() {
   const [displayCategories, setDisplayCategories] = useState('hidden');
   const [displayBackdrop, setDisplayBackdrop] = useState('hidden');
 
+  const backdropRef = useRef<HTMLDivElement | null>(null);
+
   const searchButtonHandler = () => {
     if (displaySearchProducts === 'hidden') {
       setDisplaySearchProducts('block');
@@ -27,6 +29,12 @@ export default function Header() {
   };
 
   const toggleCatalogVisibility = () => {
+    if (displayCategories && displayBackdrop === 'hidden') {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
     setDisplayCategories(prevClass =>
       prevClass === 'hidden' ? 'visible' : 'hidden'
     );
@@ -36,12 +44,11 @@ export default function Header() {
     );
   };
 
-  const backdropRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent): void => {
       if (backdropRef.current === (event.target as Node)) {
         toggleCatalogVisibility();
+        document.body.style.overflow = 'auto';
       }
     };
 
@@ -49,6 +56,26 @@ export default function Header() {
 
     return () => {
       window.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
+  const closeCatalog = () => {
+    setDisplayCategories('hidden');
+    setDisplayBackdrop('hidden');
+    document.body.style.overflow = 'auto';
+  };
+
+  useEffect(() => {
+    const handleEscapeClick = (event: KeyboardEvent): void => {
+      if (event.code === 'Escape') {
+        closeCatalog();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscapeClick);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscapeClick);
     };
   }, []);
 
