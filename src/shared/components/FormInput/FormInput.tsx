@@ -8,12 +8,10 @@ type Props = {
   id: string,
   label: string,
   inputType: "password" | "text" | "email",
-  onChange: ChangeEventHandler<HTMLInputElement>,
-  value: string,
   formik: FormikProps<any>,
 };
 
-export default function FormInput ({ label, inputType, id, onChange, formik, value }: Props ) {
+export default function FormInput ({ label, inputType, id, formik }: Props ) {
   const [inputTypePass, setInputTypePass] = useState(inputType);
   const error = formik.touched[id] && formik.errors[id];
 
@@ -32,15 +30,15 @@ export default function FormInput ({ label, inputType, id, onChange, formik, val
       <label htmlFor={label} className="ml-4">{ label }</label>
       <div className={`flex px-4 py-3 gap-2 ${borderColor} border-2 bg-white rounded-default`}>
         <input 
-          onChange={onChange} 
+          onChange={formik.handleChange} 
           type={inputTypePass} 
           id={id}
-          value={value} 
+          value={formik.values.id} 
           className="w-full h-6 outline-none" 
         />
         {inputType === "password" && 
           (
-            <button onClick={eyeButtonHandler}>
+            <button onClick={eyeButtonHandler} type="button">
               <SpriteSVG name={inputTypePass === "password" ? "eye" : "eye-off"} />
             </button>
           )

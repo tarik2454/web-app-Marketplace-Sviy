@@ -17,11 +17,11 @@ export default function Page () {
         .email('Email is not correct')
         .required('Email is required'),
       password: Yup.string()
-        .min(6, 'Password should be of minimum 6 characters length')
+        .min(8, 'Password should be of minimum 8 characters length')
         .required('Password is required'),
     }),
     onSubmit: async values => {
-      alert(values);
+      console.log(values);
     },
   })
 
@@ -37,8 +37,6 @@ export default function Page () {
             <form className="flex flex-col gap-5" onSubmit={formik.handleSubmit}>
               <FormInput
                 formik={formik}
-                onChange={formik.handleChange}
-                value={formik.values.email} 
                 id="email" 
                 label={"Електронна пошта"} 
                 inputType="email"
@@ -46,8 +44,6 @@ export default function Page () {
 
               <FormInput
                 formik={formik}
-                onChange={formik.handleChange}
-                value={formik.values.password} 
                 id="password" 
                 label={"Пароль"} 
                 inputType="password"
