@@ -4,4 +4,5 @@ export { default as CloseButton } from './CloseButton/CloseButton';
 export { default as OrangeButton } from './OrangeButton/OrangeButton';
 export { default as ArrowButton } from './ArrowButton/ArrowButton';
 export { default as FormInput } from './FormInput/FormInput';
+export { default as FormHeading } from "./FormHeading/FormHeading";
 export { default as Breadcrumbs } from './Breadcrumbs/Breadcrumbs';
