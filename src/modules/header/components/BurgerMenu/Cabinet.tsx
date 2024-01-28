@@ -1,8 +1,8 @@
-import { SpriteSVG } from "@/shared/img/SpriteSVG";
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
 export default function Cabinet() {
   return (
-    <div className="flex gap-4 mt-6 px-4">
+    <div className="flex gap-4 mt-[80px] mb-[124px]">
       <div className="p-4 bg-blue-200 border-2 rounded-circle border-transparent">
         <SpriteSVG name="profile-picture" />
       </div>
