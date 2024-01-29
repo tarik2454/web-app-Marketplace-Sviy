@@ -19,7 +19,7 @@ const Advertising: React.FC<AdvertisingProps> = ({
   return (
     <Section>
       <Container>
-        <div className="mb-[105px] xl:flex">
+        <div className="xl:flex">
           <div className="xl:mr-[24px]">
             <Image
               className="rounded-[20px] sm:mb-4 w-[357px] sm:h-[212px] md:w-[704px] md:h-[372px] "

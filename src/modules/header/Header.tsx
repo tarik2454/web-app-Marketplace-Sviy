@@ -88,7 +88,7 @@ export default function Header() {
 
             <CatalogButton
               catalogueClick={() => toggleCatalogVisibility()}
-              isClicked={displayCategories === 'visible'}
+              isClicked={displayCategories !== 'hidden'}
             />
 
             <HamburgerButton hamburgerClick={() => setDisplayMenu('block')} />
