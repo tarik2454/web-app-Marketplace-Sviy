@@ -1,9 +1,9 @@
 import React from 'react';
 
 type Props = {
-  icon: React.ReactNode,
-  title: string,
-  text: string,
+  icon: React.ReactNode;
+  title: string;
+  text: string;
 };
 
 const BottomListItem = ({ icon, title, text }: Props) => {
