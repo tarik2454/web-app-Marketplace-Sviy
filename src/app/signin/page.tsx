@@ -1,10 +1,11 @@
 "use client"
 
-import { FormHeading, FormInput, OrangeButton } from "@/shared/components";
+import { Breadcrumbs, FormHeading, FormInput, OrangeButton } from "@/shared/components";
 import * as Yup from 'yup';
 import { useFormik } from "formik";
 import Section from "@/shared/components/Section/Section";
 import Container from "@/shared/components/Container/Container";
+import { SpriteSVG } from "@/shared/img/SpriteSVG";
 
 export default function Page () {
   const formik = useFormik({
@@ -27,8 +28,13 @@ export default function Page () {
 
   return (
     <>
-      <Section className="py-52">
+      <Section className="py-[153px]">
         <Container>
+          <Breadcrumbs 
+            homeElement={<span>Головна</span>}
+            separator={<SpriteSVG name="expand_right" />}
+            capitalizeLinks 
+          />
           <FormHeading 
             heading="Увійти в акаунт"
             additionalText="Увійдіть, щоб мати можливість додавати товари до обраного та бачити свої замовлення."
