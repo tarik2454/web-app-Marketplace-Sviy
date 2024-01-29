@@ -6,7 +6,7 @@ import ProductsList from './components/ProductsList';
 
 export default function ProductsWeek() {
   return (
-    <Section className='pt-[106px] pb-[106px]'>
+    <Section>
       <Container>
         <SectionTitle name="Товари тижня" />
         <ProductsList />

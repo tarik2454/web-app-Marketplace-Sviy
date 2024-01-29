@@ -13,8 +13,8 @@ import magnifier_desktop from '@/shared/img/AboutUs/magnifier/magnifier_desktop.
 
 export default function AboutUs() {
   return (
-    <Section>
-      <div className=" relative sm:mb-20 md:mb-24">
+    <Section className="py-20 md:py-[104px] xl:py-[164px]">
+      <div className="relative sm:mb-20 md:mb-24">
         <Container>
           <div>
             <SectionTitle name="Хто ми?"></SectionTitle>
