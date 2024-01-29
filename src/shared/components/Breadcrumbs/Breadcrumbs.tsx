@@ -37,35 +37,33 @@ const Breadcrumbs = ({
   );
 
   return (
-    <div className="pt-[120px]">
-      <ul className={`flex items-center ${containerClasses}`}>
-        <li className={`${listClasses}`}>
-          <Link href={'/'}>{homeElement}</Link>
-        </li>
-        {pathNames.length > 0 && separator}
-        {items.map(({ link, title }, index) => {
-          const isLastItem = pathNames.length !== index + 1;
-          const href = `/${pathNames.slice(0, index + 1).join('/')}`;
-          //   const itemLink = capitalizeLinks
-          //     ? link[0].toUpperCase() + link.slice(1, link.length)
-          //     : link;
-          return (
-            <React.Fragment key={index}>
-              <li className={`${listClasses}`}>
-                {isLastItem ? (
-                  <Link href={href}>{title}</Link>
-                ) : (
-                  <span className={`text-[#1565C0] ${activeClasses}`}>
-                    {title}
-                  </span>
-                )}
-              </li>
-              {isLastItem && separator}
-            </React.Fragment>
-          );
-        })}
-      </ul>
-    </div>
+    <ul className={`flex items-center mb-10 ${containerClasses}`}>
+      <li className={`${listClasses}`}>
+        <Link href={'/'}>{homeElement}</Link>
+      </li>
+      {pathNames.length > 0 && separator}
+      {items.map(({ link, title }, index) => {
+        const isLastItem = pathNames.length !== index + 1;
+        const href = `/${pathNames.slice(0, index + 1).join('/')}`;
+        //   const itemLink = capitalizeLinks
+        //     ? link[0].toUpperCase() + link.slice(1, link.length)
+        //     : link;
+        return (
+          <React.Fragment key={index}>
+            <li className={`${listClasses}`}>
+              {isLastItem ? (
+                <Link href={href}>{title}</Link>
+              ) : (
+                <span className={`text-[#1565C0] ${activeClasses}`}>
+                  {title}
+                </span>
+              )}
+            </li>
+            {isLastItem && separator}
+          </React.Fragment>
+        );
+      })}
+    </ul>
   );
 };
 
