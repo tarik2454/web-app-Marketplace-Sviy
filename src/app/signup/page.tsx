@@ -2,6 +2,7 @@
 
 import {
   Breadcrumbs,
+  FormCheckbox,
   FormHeading,
   FormInput,
   OrangeButton,
@@ -45,11 +46,7 @@ export default function Page() {
     <>
       <Section className="py-[153px]">
         <Container>
-          <Breadcrumbs
-            homeElement={<span>Головна</span>}
-            separator={<SpriteSVG name="expand_right" />}
-            capitalizeLinks
-          />
+          <Breadcrumbs homeElement={<span>Головна</span>} capitalizeLinks />
           <FormHeading
             heading="Реєстрація нового користувача"
             additionalText=""
@@ -70,7 +67,6 @@ export default function Page() {
               label={'Електронна пошта'}
               inputType="email"
             />
-
             <FormInput
               formik={formik}
               id="password"
@@ -83,21 +79,15 @@ export default function Page() {
               label={'Повторіть пароль'}
               inputType="password"
             />
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                id="rememberMe"
-                name="rememberMe"
-                onChange={formik.handleChange}
-                checked={formik.values.rememberMe}
-              />
-              <label htmlFor="rememberMe">Запам’ятати мене</label>
-            </div>
+            <FormCheckbox
+              formik={formik}
+              id="rememberMe"
+              label="Запам’ятати мене"
+            />
             <p className="text-[#656565] font-lato text-sm">
               Реєструючись ви погоджуєтесь з Правилами використання сайту та
               Політикою конфіденційності
             </p>
-
             <OrangeButton
               onClick={() => {}}
               type="submit"

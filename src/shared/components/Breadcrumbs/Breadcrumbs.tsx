@@ -3,21 +3,26 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { ReactNode } from 'react';
 import { TlinksTitles, linksTitles } from './breadcrumbs_links_titles';
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
 type TBreadCrumbProps = {
   homeElement: ReactNode;
-  separator: ReactNode;
+  separator?: ReactNode;
   containerClasses?: string;
-  listClasses?: string;
+  linkClasses?: string;
   activeClasses?: string;
   capitalizeLinks?: boolean;
 };
 
 const Breadcrumbs = ({
   homeElement,
-  separator,
+  separator = (
+    <span className="flex items-center justify-center w-[18px] h-[18px]">
+      <SpriteSVG name="expand_right" />
+    </span>
+  ),
   containerClasses,
-  listClasses,
+  linkClasses,
   activeClasses,
   capitalizeLinks,
 }: TBreadCrumbProps) => {
@@ -28,7 +33,6 @@ const Breadcrumbs = ({
     (acc: TlinksTitles[], path) => {
       const item = linksTitles.find(el => el.link === path);
       if (item) {
-        //   acc.push(item);
         return [...acc, item];
       }
       return acc;
@@ -38,8 +42,10 @@ const Breadcrumbs = ({
 
   return (
     <ul className={`flex items-center mb-10 ${containerClasses}`}>
-      <li className={`${listClasses}`}>
-        <Link href={'/'}>{homeElement}</Link>
+      <li className={`${linkClasses}`}>
+        <Link href={'/'} className="hover:underline">
+          {homeElement}
+        </Link>
       </li>
       {pathNames.length > 0 && separator}
       {items.map(({ link, title }, index) => {
@@ -50,9 +56,11 @@ const Breadcrumbs = ({
         //     : link;
         return (
           <React.Fragment key={index}>
-            <li className={`${listClasses}`}>
+            <li className={`${linkClasses}`}>
               {isLastItem ? (
-                <Link href={href}>{title}</Link>
+                <Link href={href} className="hover:underline">
+                  {title}
+                </Link>
               ) : (
                 <span className={`text-[#1565C0] ${activeClasses}`}>
                   {title}
