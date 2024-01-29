@@ -1,10 +1,12 @@
 'use client';
-import { CatalogButton } from '@/shared/components/index';
+
 import { Cabinet } from '.';
 import { CloseButton } from '@/shared/components/index';
 import { Categories } from '@/modules';
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import { Contacts } from '@/modules/footer';
+import CatalogueButton from '@/shared/components/CatalogueButton/CatalogueButton';
+import Container from '@/shared/components/Container/Container';
 
 type Props = {
   display: String;
@@ -12,32 +14,44 @@ type Props = {
 };
 
 export default function BurgerMenu({ display, closeButtonClick }: Props) {
-  const [categoriesDisplay, setCategoriesDisplay] = useState('hidden');
+  const [displayCategories, setDisplayCategories] = useState('hidden');
+
+  useEffect(() => {
+    if (display === 'hidden') {
+      document.body.style.overflow = 'visible';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+  }, [display]);
 
   return (
-    <nav
-      className={`${display} fixed z-20 w-full h-screen inset-0 px-4 py-5 overflow-y-auto bg-white`}
+    <div
+      className={`${display} md:hidden w-full h-screen pb-5 bg-neutral-50 fixed inset-0 z-10`}
     >
       <CloseButton closeButtonClick={closeButtonClick} />
-      {/* <Cabinet />
-      <div className="block absolute w-screen left-0 py-5 px-4 mt-5 border-y-2">
-        <CatalogButton catalogueClick={() => setCategoriesDisplay('block')} />
-      </div>
-      <Cabinet />
 
-      <div className="block w-screen py-5 px-4 mt-5 border-y-2">
-        <CatalogueButton catalogueClick={() => setCategoriesDisplay("block")} />
-      </div>
+      <nav>
+        <Container>
+          <Cabinet />
 
-      <div className="mt-5 px-4">
-        <Contacts />
-      </div>
+          <div className="w-full max-w-[375px] py-5 border-y-2 absolute top-[158px] left-[50%] -translate-x-2/4">
+            <div className="px-4 py-2.5 bg-white">
+              <CatalogueButton
+                catalogueClick={() => setDisplayCategories('block')}
+              />
+            </div>
+          </div>
+
+          <div className="h-screen overflow-y-auto ">
+            <Contacts />
+          </div>
+        </Container>
+      </nav>
 
       <Categories
-        categoriesDisplay={categoriesDisplay}
-        closeCategoriesClick={() => setCategoriesDisplay('hidden')}
-      />  */}
-
-    </nav>
+        displayCategories={displayCategories}
+        closeCategoriesClick={() => setDisplayCategories('hidden')}
+      />
+    </div>
   );
 }

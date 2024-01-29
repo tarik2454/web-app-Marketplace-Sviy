@@ -1,17 +1,14 @@
 'use client';
 
-import { useState } from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { MouseEventHandler } from 'react';
-
-// ... (imports)
 
 export default function CatalogButton({
   catalogueClick,
   isClicked,
 }: {
   catalogueClick?: MouseEventHandler<HTMLButtonElement>;
-  isClicked: boolean; // Add isClicked prop
+  isClicked: boolean;
 }) {
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -24,7 +21,7 @@ export default function CatalogButton({
   return (
     <button
       onClick={handleClick}
-      className={`flex gap-2 py-3 pl-5 pr-8 border-2 border-blue-700 text-blue-700 rounded-default transition-all ${
+      className={`hidden md:flex gap-2 py-3 pl-5 pr-8 border-2 border-blue-700 text-blue-700 rounded-default transition-all ${
         (isClicked && 'text-neutral-50 bg-blue-700') || null
       } `}
     >

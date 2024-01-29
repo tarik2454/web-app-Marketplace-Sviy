@@ -7,7 +7,10 @@ export default function CloseButton({
   closeButtonClick?: MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
-    <button onClick={closeButtonClick} className="block ml-auto mr-0 p-2">
+    <button
+      onClick={closeButtonClick}
+      className="block p-2 absolute top-5 right-4 z-50"
+    >
       <SpriteSVG name="close-button" />
     </button>
   );

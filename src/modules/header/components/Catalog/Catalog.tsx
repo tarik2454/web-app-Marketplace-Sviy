@@ -1,8 +1,10 @@
 'use client';
 
-import { MouseEventHandler, useEffect, useRef, useState } from 'react';
+import { MouseEventHandler } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import categoriesData from './data/categories-data';
 import CatalogItem from './CatalogItem';
+import Container from '@/shared/components/Container/Container';
 
 type CatalogProps = {
   displayCategories: string;
@@ -10,15 +12,25 @@ type CatalogProps = {
 };
 
 export default function Catalog({ displayCategories }: CatalogProps) {
+  const isSmallScreen = useMediaQuery({ query: '(max-width: 767.9px)' });
+
   return (
     <div
-      className={`${displayCategories} w-[1216px] bg-neutral-50 rounded-br-default rounded-bl-default overflow-y-auto shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] transition-all translate ease-in-out delay-900 duration-900 -translate-x-2/4 fixed top-[113px] left-[50%] z-20`}
+      className={`${displayCategories} ${
+        !isSmallScreen ? 'overflow-y-auto' : ''
+      } w-full md:w-[704px] xl:w-[1280px] h-screen my-0 mx-auto  bg-neutral-50 md:rounded-br-default md:rounded-bl-default shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] fixed top-0 md:top-[113px] left-[50%] z-20 -translate-x-2/4`}
     >
-      {/* <div className="flex w-screen left-0 py-6 border-b-2">
+      <div className="md:hidden py-6 border-b-2">
+        <Container>
           <p className="text-stone-900 text-xl">Категорії товарів</p>
-        </div> */}
+        </Container>
+      </div>
 
-      <nav className="px-8 py-4 ">
+      <nav
+        className={`${
+          isSmallScreen ? 'my-0 mx-auto overflow-y-auto' : ''
+        } max-w-[375px] h-full px-4 md:px-8 py-5 md:py-4`}
+      >
         <ul className="relative">
           {categoriesData.map((category, index) => (
             <CatalogItem object={category} key={index} />

@@ -3,29 +3,25 @@ import { SocialNetworks } from '../../../modules/footer';
 
 export default function Contacts() {
   return (
-    <div className="flex flex-col  md:flex-row">
-      <div className="flex flex-col md:mr-16 xl:w-72">
-        <Link href="/" className="pb-4">
-          Про нас
-        </Link>
-        <Link href="/" className="pb-4">
-          Доставка
-        </Link>
-      </div>
-      <div className="flex flex-col md:mr-16 xl:w-72">
-        <Link href="/" className="pb-4">
-          Питання та відповіді
-        </Link>
-        <Link href="/" className="pb-4">
-          Реклама на сайті
-        </Link>
-      </div>
-      <div className="flex flex-col xl:w-72">
-        <Link href="/" className="pb-4 text-neutral-800">
-          Контакти
-        </Link>
-        <SocialNetworks />
-      </div>
+    <div>
+      <ul className="flex flex-col mb-[27px]">
+        <li className="py-2.5">
+          <Link href="#">Про нас</Link>
+        </li>
+        <li className="py-2.5">
+          <Link href="#">Доставка</Link>
+        </li>
+        <li className="py-2.5">
+          <Link href="#">Питання та відповіді</Link>
+        </li>
+        <li className="py-2.5">
+          <Link href="#">Реклама на сайті</Link>
+        </li>
+        <li className="py-2.5">
+          <Link href="#">Контакти</Link>
+        </li>
+      </ul>
+      <SocialNetworks />
     </div>
   );
 }

@@ -6,7 +6,7 @@ import Logo from '../../shared/components/Logo/Logo';
 import { HamburgerButton, FunctionalButtons, Catalog } from './components';
 import Container from '@/shared/components/Container/Container';
 import { SearchProducts } from './components';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import CatalogButton from './components/Catalog/CatalogButton';
 
 export default function Header() {
@@ -28,7 +28,7 @@ export default function Header() {
     }
   };
 
-  const toggleCatalogVisibility = () => {
+  const toggleCatalogVisibility = useCallback(() => {
     if (displayCategories && displayBackdrop === 'hidden') {
       document.body.style.overflow = 'hidden';
     } else {
@@ -36,28 +36,13 @@ export default function Header() {
     }
 
     setDisplayCategories(prevClass =>
-      prevClass === 'hidden' ? 'visible' : 'hidden'
+      prevClass === 'hidden' ? 'visible ' : 'hidden'
     );
 
     setDisplayBackdrop(prevClass =>
       prevClass === 'hidden' ? 'visible' : 'hidden'
     );
-  };
-
-  useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent): void => {
-      if (backdropRef.current === (event.target as Node)) {
-        toggleCatalogVisibility();
-        document.body.style.overflow = 'auto';
-      }
-    };
-
-    window.addEventListener('click', handleOutsideClick);
-
-    return () => {
-      window.removeEventListener('click', handleOutsideClick);
-    };
-  }, []);
+  }, [displayBackdrop, displayCategories]);
 
   const closeCatalog = () => {
     setDisplayCategories('hidden');
@@ -66,18 +51,26 @@ export default function Header() {
   };
 
   useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent): void => {
+      if (backdropRef.current === (event.target as Node)) {
+        toggleCatalogVisibility();
+      }
+    };
+
     const handleEscapeClick = (event: KeyboardEvent): void => {
       if (event.code === 'Escape') {
         closeCatalog();
       }
     };
 
+    window.addEventListener('click', handleOutsideClick);
     window.addEventListener('keydown', handleEscapeClick);
 
     return () => {
+      window.removeEventListener('click', handleOutsideClick);
       window.removeEventListener('keydown', handleEscapeClick);
     };
-  }, []);
+  }, [toggleCatalogVisibility]);
 
   return (
     <>
@@ -114,7 +107,7 @@ export default function Header() {
       <>
         <div
           ref={backdropRef}
-          className={`${displayBackdrop} w-full h-full bg-neutral-400 opacity-50 fixed top-0 left-0 z-10`}
+          className={`${displayBackdrop} w-full h-full bg-black bg-opacity-40 fixed top-0 left-0 z-10`}
         ></div>
         <Catalog displayCategories={displayCategories} />
       </>
