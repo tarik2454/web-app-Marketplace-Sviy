@@ -17,9 +17,13 @@ type CategoryWithSubcategories = {
 
 type CatalogItemProps = {
   object: CategoryWithSubcategories;
+  onCategoryClick: (categoryName: string) => void;
 };
 
-export default function CatalogItem({ object }: CatalogItemProps) {
+export default function CatalogItem({
+  object,
+  onCategoryClick,
+}: CatalogItemProps) {
   const [isHovered, setHovered] = useState(false);
   const [hoveredSubCategory, setHoveredSubCategory] = useState<string | null>(
     null
@@ -35,8 +39,8 @@ export default function CatalogItem({ object }: CatalogItemProps) {
     setHoveredSubCategory(null);
   };
 
-  const styleLink = `flex justify-between items-center w-full md:px-5 py-2.5 hover:bg-blue-200 focus:bg-blue-200 transition-all relative`;
-  const styleLining = `hidden md:block w-full h-full bg-transparent absolute top-0 left-2 z-10`;
+  const stylesLink = `flex justify-between items-center w-full px-4 md:px-5 py-2.5 hover:bg-blue-200 focus:bg-blue-200 transition-all relative`;
+  const stylesLining = `hidden md:block w-full h-full bg-transparent absolute top-0 left-2 z-10`;
 
   return (
     <li
@@ -44,14 +48,16 @@ export default function CatalogItem({ object }: CatalogItemProps) {
       onMouseEnter={() => handleMouseEnter(object.category)}
       onMouseLeave={handleMouseLeave}
     >
-      <Link href="#" className={styleLink}>
-        <p className="text-black text-base leading-relaxed">
-          {object.category}
-        </p>
+      <Link
+        href="#"
+        className={stylesLink}
+        onClick={() => onCategoryClick(object.category)}
+      >
+        <p className="text-black leading-3">{object.category}</p>
 
         <SpriteSVG name="catalog-arrow" />
 
-        {<div className={styleLining}></div>}
+        {<div className={stylesLining}></div>}
       </Link>
 
       {isHovered && object.subCategories && (
@@ -63,26 +69,22 @@ export default function CatalogItem({ object }: CatalogItemProps) {
               onMouseLeave={handleMouseLeave}
               key={index}
             >
-              <Link href="#" className={styleLink}>
-                <p className="text-black text-base leading-relaxed">
-                  {subCategory.title}
-                </p>
+              <Link href="#" className={stylesLink}>
+                <p className="text-black leading-3">{subCategory.title}</p>
 
                 <div className="">
                   <SpriteSVG name="catalog-arrow" />
                 </div>
 
-                <div className={styleLining}></div>
+                <div className={stylesLining}></div>
               </Link>
 
               {hoveredSubCategory === subCategory.title && (
                 <ul className="w-[302px] absolute top-0 left-[310px]">
                   {subCategory.items.map((item, index) => (
                     <li key={index} className="flex md:bg-white">
-                      <Link href="#" className={styleLink}>
-                        <p className="text-black text-base leading-relaxed">
-                          {item}
-                        </p>
+                      <Link href="#" className={stylesLink}>
+                        <p className="text-black leading-3">{item}</p>
                       </Link>
                     </li>
                   ))}
