@@ -612,8 +612,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
         <svg
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
+          className="w-full h-full"
           viewBox="0 0 32 32"
         >
           <path
@@ -624,6 +623,42 @@ export const SpriteSVG = ({ name }: { name: string }) => {
             strokeMiterlimit="4"
             strokeWidth="3.5556"
             d="M12 8l8 8-8 8"
+          ></path>
+        </svg>
+      );
+    case 'selected':
+      return (
+        <svg
+          className="w-full h-full"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 32 32"
+          fill="currentColor"
+        >
+          <path d="M9.6 0h12.8c5.302 0 9.6 4.298 9.6 9.6v12.8c0 5.302-4.298 9.6-9.6 9.6h-12.8c-5.302 0-9.6-4.298-9.6-9.6v-12.8c0-5.302 4.298-9.6 9.6-9.6z"></path>
+          <path
+            fill="white"
+            stroke="white"
+            d="M24.098 8.676c0.732 0.496 0.922 1.491 0.427 2.222l-8.135 12c-0.266 0.392-0.691 0.646-1.162 0.694s-0.939-0.115-1.278-0.446l-6.265-6.101c-0.633-0.616-0.646-1.629-0.030-2.262s1.629-0.646 2.263-0.030l4.896 4.768 7.063-10.419c0.496-0.731 1.491-0.922 2.222-0.427z"
+          ></path>
+        </svg>
+      );
+    case 'noSelected':
+      return (
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full"
+          viewBox="0 0 32 32"
+        >
+          <path
+            fill="none"
+            stroke="currentColor"
+            strokeLinejoin="miter"
+            strokeLinecap="butt"
+            strokeMiterlimit="4"
+            strokeWidth="1.6"
+            d="M9.6 0.8h12.8c4.86 0 8.8 3.94 8.8 8.8v12.8c0 4.86-3.94 8.8-8.8 8.8h-12.8c-4.86 0-8.8-3.94-8.8-8.8v-12.8c0-4.86 3.94-8.8 8.8-8.8z"
           ></path>
         </svg>
       );

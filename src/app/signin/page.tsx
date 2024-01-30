@@ -30,11 +30,7 @@ export default function Page () {
     <>
       <Section className="py-[153px]">
         <Container>
-          <Breadcrumbs 
-            homeElement={<span>Головна</span>}
-            separator={<SpriteSVG name="expand_right" />}
-            capitalizeLinks 
-          />
+          <Breadcrumbs homeElement={<span>Головна</span>} capitalizeLinks />
           <FormHeading 
             heading="Увійти в акаунт"
             additionalText="Увійдіть, щоб мати можливість додавати товари до обраного та бачити свої замовлення."
