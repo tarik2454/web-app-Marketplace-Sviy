@@ -16,13 +16,11 @@ type Props = {
 export default function BurgerMenu({ display, closeButtonClick }: Props) {
   const [displayCategories, setDisplayCategories] = useState('hidden');
 
-  console.log(display);
-
   useEffect(() => {
-    if (displayCategories || display !== 'hidden') {
-      document.body.style.overflow = 'hidden';
-    } else {
+    if (displayCategories || display === 'hidden') {
       document.body.style.overflow = 'auto';
+    } else {
+      document.body.style.overflow = 'hidden';
     }
   }, [display, displayCategories]);
 

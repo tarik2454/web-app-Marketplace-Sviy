@@ -28,7 +28,7 @@ export default function Catalog({ displayCategories }: CatalogProps) {
         !isSmallScreen ? 'overflow-y-auto' : ''
       } ${stylesCatalog}`}
     >
-      <div className="md:hidden py-6 border-b-2">
+      <div className="xl:hidden py-6 border-b-2">
         <Container>
           <p className="text-stone-900 text-xl">{selectedCategory}</p>
         </Container>
