@@ -1,5 +1,8 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { ReactNode } from 'react';
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
+
+import ReactModal from 'react-modal';
 
 interface ModalProps {
   isOpen: boolean;
@@ -8,31 +11,31 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
-  const modalStyle = {
-    display: isOpen ? 'block' : 'none',
-  };
-
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
   return (
-    <>
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 "
-          onClick={onClose}
-        ></div>
-      )}
-      <div
-        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white z-10 rounded-[20px] px-4 pt-5 pb-10 sm:max-w-[343px] sm:max-h-[340px]"
-        style={modalStyle}
-      >
+    <ReactModal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      shouldCloseOnOverlayClick={true}
+      className="fixed inset-0 flex items-center justify-center"
+      overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+    >
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-[20px] z-100 sm:px-4 sm:pt-[72px] sm:pb-10 md:px-[97.50px] md:pt-20 md:pb-16">
         <button
           onClick={onClose}
           className="absolute top-5 right-4 text-600 hover:text-gray-800"
         >
-          &#10005;
+          <SpriteSVG name="close-button" />
         </button>
         {children}
       </div>
-    </>
+    </ReactModal>
   );
 };
 

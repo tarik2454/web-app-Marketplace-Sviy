@@ -69,17 +69,17 @@ export default function AboutUs() {
             />
 
             <Image
-              className=" z-10 absolute top-[170px] right-3 md:hidden"
+              className=" z-1 absolute top-[170px] right-3 md:hidden"
               src={magnifier_phone}
               alt="magnifier"
             />
             <Image
-              className="hidden md:inline z-10 absolute top-[85px] right-[95px] xl:hidden"
+              className="hidden md:inline z-1 absolute top-[85px] right-[95px] xl:hidden"
               src={magnifier_tablet}
               alt="magnifier"
             />
             <Image
-              className="hidden xl:inline z-10 absolute top-[120px] right-[150px]"
+              className="hidden xl:inline z-1 absolute top-[120px] right-[150px]"
               src={magnifier_desktop}
               alt="magnifier"
             />
