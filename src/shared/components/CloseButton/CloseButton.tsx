@@ -20,10 +20,7 @@ export default function CloseButton({
   };
 
   return (
-    <button
-      onClick={handleClick}
-      className="block p-2 absolute top-5 right-4 z-50"
-    >
+    <button className="flex p-2" onClick={handleClick}>
       <SpriteSVG name="close-button" />
     </button>
   );

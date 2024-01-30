@@ -31,9 +31,6 @@ export default function CatalogItem({
   );
 
   const isSmallScreen = useMediaQuery({ query: '(max-width: 767.9px)' });
-  const isTabletScreen = useMediaQuery({
-    query: '(min-width: 768px) and (max-width: 1439.9px)',
-  });
 
   const handleMouseEnter = (categoryTitle: string) => {
     setHovered(true);
@@ -50,7 +47,7 @@ export default function CatalogItem({
 
   return (
     <li
-      className={`w-[302px] bg-neutral-50 md:bg-white `}
+      className={`w-full md:w-[302px] bg-neutral-50 md:bg-white `}
       onMouseEnter={() => handleMouseEnter(object.category)}
       onMouseLeave={handleMouseLeave}
     >
@@ -66,7 +63,7 @@ export default function CatalogItem({
 
       {isHovered && object.subCategories && (
         <ul
-          className={`h-full w-[302px] bg-neutral-50 absolute top-0 z-10 ${
+          className={`w-full md:w-[302px] h-full bg-neutral-50 absolute top-0 z-10 ${
             isHovered && isSmallScreen
               ? 'left-0 overflow-y-hidden'
               : 'left-[310px] overflow-y-visible'
@@ -91,7 +88,7 @@ export default function CatalogItem({
 
               {hoveredSubCategory === subCategory.title && !isSmallScreen && (
                 <ul
-                  className={`w-[302px] md:w-[640px] xl:w-[302px] h-full md:bg-neutral-50 absolute top-0 left-[310px] md:-left-[310px] xl:left-[310px] z-20`}
+                  className={`w-full md:w-[640px] xl:w-[302px] h-full md:bg-neutral-50 absolute top-0 left-[310px] md:-left-[310px] xl:left-[310px] z-20`}
                 >
                   {subCategory.items.map((item, index) => (
                     <li
@@ -105,18 +102,6 @@ export default function CatalogItem({
                   ))}
                 </ul>
               )}
-
-              {/* {hoveredSubCategory === subCategory.title && isTabletScreen && (
-                <ul className="w-full absolute top-0 left-[-302px]">
-                  {subCategory.items.map((item, index) => (
-                    <li key={index} className="flex bg-neutral-50 md:bg-white">
-                      <Link href="#" className={stylesLink}>
-                        <p className="text-black leading-3">{item}</p>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )} */}
             </li>
           ))}
         </ul>

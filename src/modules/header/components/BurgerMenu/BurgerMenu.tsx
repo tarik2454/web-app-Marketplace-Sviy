@@ -17,12 +17,12 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
   const [displayCategories, setDisplayCategories] = useState('hidden');
 
   useEffect(() => {
-    if (displayCategories || display === 'hidden') {
+    if (display === 'hidden') {
       document.body.style.overflow = 'auto';
     } else {
       document.body.style.overflow = 'hidden';
     }
-  }, [display, displayCategories]);
+  }, [display]);
 
   const closeCatalogClick = () => {
     setDisplayCategories('hidden');
@@ -32,10 +32,12 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
     <div
       className={`${display} md:hidden w-full h-screen pb-5 bg-neutral-50 fixed inset-0 z-10`}
     >
-      <CloseButton
-        closeButtonClick={closeButtonClick}
-        closeCatalogClick={closeCatalogClick}
-      />
+      <div className="absolute top-5 right-4 z-50">
+        <CloseButton
+          closeButtonClick={closeButtonClick}
+          closeCatalogClick={closeCatalogClick}
+        />
+      </div>
 
       <nav>
         <Container>
