@@ -14,7 +14,9 @@ export default function Cart({ closeButtonClick, display }: Props) {
     >
       <div className="flex border-b-2 font-lora text-3xl items-center">
         <h1>Кошик</h1>
-        <CloseButton closeButtonClick={closeButtonClick} />
+        <div className='ml-auto'>
+          <CloseButton closeButtonClick={closeButtonClick} />
+        </div>
       </div>
       <div className="block mt-5 items-start md:flex">
         <CartList />

@@ -34,7 +34,7 @@ export default function Page() {
 
   return (
     <>
-      <Section className="py-[153px]">
+      <Section>
         <ColorSpot />
         <Container>
           <Breadcrumbs homeElement={<span>Головна</span>} capitalizeLinks />
