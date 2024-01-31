@@ -36,11 +36,11 @@ export default function Header() {
     }
 
     setDisplayCategories(prevClass =>
-      prevClass === 'hidden' ? 'visible ' : 'hidden'
+      prevClass === 'hidden' ? 'block ' : 'hidden'
     );
 
     setDisplayBackdrop(prevClass =>
-      prevClass === 'hidden' ? 'visible' : 'hidden'
+      prevClass === 'hidden' ? 'block' : 'hidden'
     );
   }, [displayBackdrop, displayCategories]);
 
@@ -81,6 +81,7 @@ export default function Header() {
               display={displayMenu}
               closeButtonClick={() => setDisplayMenu('hidden')}
             />
+
             <Cart
               closeButtonClick={() => setDisplayCart('hidden')}
               display={displayCart}
@@ -92,25 +93,26 @@ export default function Header() {
             />
 
             <HamburgerButton hamburgerClick={() => setDisplayMenu('block')} />
+
             <div className="mx-auto">
               <Logo />
             </div>
+
             <FunctionalButtons
               searchButtonClick={searchButtonHandler}
               cartButtonClick={() => setDisplayCart('flex')}
             />
           </div>
+
           <SearchProducts display={displaySearchProducts} />
         </Container>
       </header>
 
-      <>
-        <div
-          ref={backdropRef}
-          className={`${displayBackdrop} w-full h-full bg-black bg-opacity-40 fixed top-0 left-0 z-10`}
-        ></div>
-        <Catalog displayCategories={displayCategories} />
-      </>
+      <div
+        ref={backdropRef}
+        className={`${displayBackdrop} w-full h-full bg-black bg-opacity-40 fixed top-0 left-0 z-10`}
+      ></div>
+      <Catalog displayCategories={displayCategories} />
     </>
   );
 }

@@ -9,7 +9,7 @@ import CatalogueButton from '@/shared/components/CatalogueButton/CatalogueButton
 import Container from '@/shared/components/Container/Container';
 
 type Props = {
-  display: String;
+  display: string;
   closeButtonClick: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -18,17 +18,26 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
 
   useEffect(() => {
     if (display === 'hidden') {
-      document.body.style.overflow = 'visible';
+      document.body.style.overflow = 'auto';
     } else {
       document.body.style.overflow = 'hidden';
     }
   }, [display]);
 
+  const closeCatalogClick = () => {
+    setDisplayCategories('hidden');
+  };
+
   return (
     <div
       className={`${display} md:hidden w-full h-screen pb-5 bg-neutral-50 fixed inset-0 z-10`}
     >
-      <CloseButton closeButtonClick={closeButtonClick} />
+      <div className="absolute top-5 right-4 z-50">
+        <CloseButton
+          closeButtonClick={closeButtonClick}
+          closeCatalogClick={closeCatalogClick}
+        />
+      </div>
 
       <nav>
         <Container>
