@@ -7,3 +7,4 @@ export { default as FormInput } from './FormInput/FormInput';
 export { default as FormHeading } from './FormHeading/FormHeading';
 export { default as Breadcrumbs } from './Breadcrumbs/Breadcrumbs';
 export { default as FormCheckbox } from './FormCheckbox/FormCheckbox';
+export { default as ColorSpot } from './ColorSpot/ColorSpot';

@@ -1,5 +1,5 @@
 'use client';
-import { ArrowButton, OrangeButton } from '@/shared/components';
+import { ArrowButton, ColorSpot, OrangeButton } from '@/shared/components';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { BottomListItem, CommonRating, Ellipse, Response } from './components';
 import Section from '@/shared/components/Section/Section';
@@ -55,7 +55,7 @@ const HeroSection = () => {
             <Ellipse settings="bg-[#98CFFC] w-2 h-2 top-[522px] left-[44px] md:w-2.5 md:h-2.5 md:top-[102px] md:left-[446px] xl:w-5 xl:h-5 xl:bg-[#BBDEFB] xl:top-[661px] xl:left-[37px]" />
             <Ellipse settings="bg-[#98CFFC] w-2 h-2 top-[522px] left-[47px] md:h-3.5 md:w-3.5 md:top-[24px] md:left-[676px] xl:w-2 xl:h-2 xl:bg-[#FFCC80] xl:top-[593px] xl:left-[217px]" />
             <Ellipse settings="hidden bg-[#FFCC80] w-5 h-5 top-[649px] right-[27px] xl:block" />
-            <Ellipse settings="bg-[#BBDEFB] w-[368px] h-[368px] -top-[23px] -left-[143px] blur-[150px] -z-[2] md:w-[729px]  md:h-[729px]  md:-top-[434px]  md:-left-[304px] xl:w-[867px]  xl:h-[867px]  xl:-top-[389px]  xl:-left-[388px]" />
+            <ColorSpot />
             <span className="block text-orange-200 w-[65px] h-[15px] absolute top-[72px] left-[169px] md:top-[83px] md:left-[318px] md:w-[105px] md:h-[25px] xl:w-[160px] xl:h-[40px] xl:top-[116px] xl:left-[453px]">
               <SpriteSVG name="h-arrow-top" />
             </span>
