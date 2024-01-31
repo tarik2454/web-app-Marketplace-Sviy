@@ -2,6 +2,7 @@
 
 import {
   Breadcrumbs,
+  ColorSpot,
   FormCheckbox,
   FormHeading,
   FormInput,
@@ -45,6 +46,7 @@ export default function Page() {
   return (
     <>
       <Section className="py-[153px]">
+        <ColorSpot />
         <Container>
           <Breadcrumbs homeElement={<span>Головна</span>} capitalizeLinks />
           <FormHeading
