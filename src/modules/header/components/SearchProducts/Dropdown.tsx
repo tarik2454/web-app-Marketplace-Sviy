@@ -16,7 +16,7 @@ export default function Dropdown (
       <Select 
         classNames={{
           control: () => ("ml-2 font-lato"),
-          option: () => ("px-5 py-2 bg-white font-lato rounded-b-default"),
+          option: () => ("px-5 py-2 bg-neutral-50 font-lato rounded-b-default"),
           menu: () => ("h-fit rounded-b-default bg-white overflow-hidden"),
           dropdownIndicator: () => ("text-[#212121] font-thin"),
         }}
