@@ -1,10 +1,14 @@
 import Link from 'next/link';
 import { SocialNetworks } from '../../../modules/footer';
 
-export default function Contacts() {
+export default function Contacts({
+  stylesContacts,
+}: {
+  stylesContacts?: string;
+}) {
   return (
     <div>
-      <ul className="flex flex-col mb-[27px]">
+      <ul className={'flex' + ' ' + stylesContacts}>
         <li className="py-2.5">
           <Link href="#">Про нас</Link>
         </li>
