@@ -1,5 +1,5 @@
 import { CloseButton } from '@/shared/components';
-import { CartList, FinalPrice } from './components';
+import { CartList, FinalPrice } from '.';
 import { MouseEventHandler } from 'react';
 
 type Props = {

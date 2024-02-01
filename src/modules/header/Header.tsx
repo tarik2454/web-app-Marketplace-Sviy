@@ -1,6 +1,6 @@
 'use client';
 
-import { Cart } from '..';
+import { Cart } from './components';
 import { BurgerMenu } from './components';
 import Logo from '../../shared/components/Logo/Logo';
 import { HamburgerButton, FunctionalButtons, Catalog } from './components';
