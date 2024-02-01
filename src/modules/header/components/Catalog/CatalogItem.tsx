@@ -19,11 +19,13 @@ type CategoryWithSubcategories = {
 type CatalogItemProps = {
   object: CategoryWithSubcategories;
   onCategoryClick: (categoryName: string) => void;
+  setIsThirdList: ((value: string) => void) | undefined;
 };
 
 export default function CatalogItem({
   object,
   onCategoryClick,
+  setIsThirdList,
 }: CatalogItemProps) {
   const [isHovered, setHovered] = useState(false);
   const [hoveredSubCategory, setHoveredSubCategory] = useState<string | null>(
@@ -56,7 +58,7 @@ export default function CatalogItem({
         className={stylesLink}
         onClick={() => onCategoryClick(object.category)}
       >
-        <p className="text-black leading-3">{object.category}</p>
+        <p className="text-black">{object.category}</p>
         <SpriteSVG name="catalog-arrow" />
         {<div className={stylesLining}></div>}
       </Link>
@@ -76,32 +78,33 @@ export default function CatalogItem({
               onMouseLeave={handleMouseLeave}
               key={index}
             >
-              <Link
-                href="#"
-                className={stylesLink}
-                onClick={() => onCategoryClick(subCategory.title)}
-              >
+              <Link href="#" className={stylesLink}>
                 <p className="text-black">{subCategory.title}</p>
                 <SpriteSVG name="catalog-arrow" />
                 <div className={stylesLining}></div>
               </Link>
 
-              {hoveredSubCategory === subCategory.title && !isSmallScreen && (
-                <ul
-                  className={`w-full md:w-[640px] xl:w-[302px] h-full md:bg-neutral-50 absolute top-0 left-[310px] md:-left-[310px] xl:left-[310px] z-20`}
-                >
-                  {subCategory.items.map((item, index) => (
-                    <li
-                      key={index}
-                      className="flex w-[302px] bg-neutral-50 md:bg-white"
+              {hoveredSubCategory === subCategory.title &&
+                !isSmallScreen &&
+                setIsThirdList && (
+                  <>
+                    {setIsThirdList('pointer-events-none')}
+                    <ul
+                      className={`w-full md:w-[638px] xl:w-[302px] h-full md:bg-neutral-50 absolute top-0 left-[310px] md:-left-[310px] xl:left-[310px] z-50 pointer-events-auto`}
                     >
-                      <Link href="#" className={stylesLink}>
-                        <p className="text-black">{item}</p>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
+                      {subCategory.items.map((item, index) => (
+                        <li
+                          key={index}
+                          className="flex w-[302px] bg-neutral-50 md:bg-white"
+                        >
+                          <Link href="#" className={stylesLink}>
+                            <p className="text-black">{item}</p>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
             </li>
           ))}
         </ul>
