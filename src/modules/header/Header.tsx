@@ -89,7 +89,7 @@ export default function Header() {
 
             <CatalogButton
               catalogueClick={() => toggleCatalogVisibility()}
-              isClicked={displayCategories !== 'hidden'}
+              isClicked={displayCategories === 'block'}
             />
 
             <HamburgerButton hamburgerClick={() => setDisplayMenu('block')} />
@@ -112,7 +112,11 @@ export default function Header() {
         ref={backdropRef}
         className={`${displayBackdrop} w-full h-full bg-black bg-opacity-40 fixed top-0 left-0 z-10`}
       ></div>
-      <Catalog displayCategories={displayCategories} />
+
+      <Catalog
+        displayCategories={displayCategories}
+        closeCatalogClick={closeCatalog}
+      />
     </>
   );
 }
