@@ -14,6 +14,18 @@ export default function CartList() {
       heading: 'Lorem ipsum dolor sit amet consectetur.',
       price: '150 ₴',
     },
+    {
+      heading: 'Lorem ipsum dolor sit amet consectetur.',
+      price: '150 ₴',
+    },
+    {
+      heading: 'Lorem ipsum dolor sit amet consectetur.',
+      price: '150 ₴',
+    },
+    {
+      heading: 'Lorem ipsum dolor sit amet consectetur.',
+      price: '150 ₴',
+    },
   ];
 
   return (

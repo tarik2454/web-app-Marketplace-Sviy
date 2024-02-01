@@ -45,7 +45,7 @@ export default function Page() {
 
   return (
     <>
-      <Section>
+      <Section className='py-[80px] md:pt-[104px] xl:py-[164px]'>
         <ColorSpot />
         <Container>
           <Breadcrumbs homeElement={<span>Головна</span>} capitalizeLinks />
