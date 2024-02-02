@@ -1,17 +1,23 @@
-"use client"
+'use client';
 
-import { Breadcrumbs, FormHeading, FormInput, OrangeButton } from "@/shared/components";
+import {
+  Breadcrumbs,
+  ColorSpot,
+  FormHeading,
+  FormInput,
+  OrangeButton,
+} from '@/shared/components';
 import * as Yup from 'yup';
-import { useFormik } from "formik";
-import Section from "@/shared/components/Section/Section";
-import Container from "@/shared/components/Container/Container";
-import { SpriteSVG } from "@/shared/img/SpriteSVG";
+import { useFormik } from 'formik';
+import Section from '@/shared/components/Section/Section';
+import Container from '@/shared/components/Container/Container';
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
-export default function Page () {
+export default function Page() {
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
     validationSchema: Yup.object().shape({
       email: Yup.string()
@@ -24,41 +30,43 @@ export default function Page () {
     onSubmit: async values => {
       console.log(values);
     },
-  })
+  });
 
   return (
     <>
-      <Section className="py-[153px]">
+      <Section className='py-[80px] md:pt-[104px] xl:py-[164px]'>
+        <ColorSpot />
         <Container>
-          <Breadcrumbs 
-            homeElement={<span>Головна</span>}
-            separator={<SpriteSVG name="expand_right" />}
-            capitalizeLinks 
-          />
-          <FormHeading 
+          <Breadcrumbs homeElement={<span>Головна</span>} capitalizeLinks />
+          <FormHeading
             heading="Увійти в акаунт"
             additionalText="Увійдіть, щоб мати можливість додавати товари до обраного та бачити свої замовлення."
           />
-          <form className="flex flex-col max-w-[400px] mx-auto gap-5" onSubmit={formik.handleSubmit}>
+          <form
+            className="flex flex-col max-w-[400px] mx-auto gap-5"
+            onSubmit={formik.handleSubmit}
+          >
             <FormInput
               formik={formik}
-              id="email" 
-              label={"Електронна пошта"} 
+              id="email"
+              label={'Електронна пошта'}
               inputType="email"
             />
 
             <FormInput
               formik={formik}
-              id="password" 
-              label={"Пароль"} 
+              id="password"
+              label={'Пароль'}
               inputType="password"
             />
             <div className="w-28 mt-10 mx-auto">
-              <OrangeButton onClick={() => {}} type="submit">Увійти</OrangeButton>
+              <OrangeButton onClick={() => {}} type="submit">
+                Увійти
+              </OrangeButton>
             </div>
           </form>
         </Container>
       </Section>
     </>
-  )
+  );
 }

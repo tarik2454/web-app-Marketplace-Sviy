@@ -18,7 +18,7 @@ export default function Footer() {
             <Logo />
           </div>
           <div className="pb-7">
-            <Contacts />
+            <Contacts stylesContacts="flex flex-row" />
           </div>
         </div>
         <div className="text-center pb-4 sm:text-sm sm:font-normal sm:leading-snug md:text-base md:leading-relaxed">

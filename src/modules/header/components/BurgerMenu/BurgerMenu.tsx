@@ -9,7 +9,7 @@ import CatalogueButton from '@/shared/components/CatalogueButton/CatalogueButton
 import Container from '@/shared/components/Container/Container';
 
 type Props = {
-  display: String;
+  display: string;
   closeButtonClick: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -18,20 +18,29 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
 
   useEffect(() => {
     if (display === 'hidden') {
-      document.body.style.overflow = 'visible';
+      document.body.style.overflow = 'auto';
     } else {
       document.body.style.overflow = 'hidden';
     }
   }, [display]);
 
+  const closeCatalogClick = () => {
+    setDisplayCategories('hidden');
+  };
+
   return (
     <div
-      className={`${display} md:hidden w-full h-screen pb-5 bg-neutral-50 fixed inset-0 z-10`}
+      className={`${display} md:hidden w-full h-screen py-5 bg-neutral-50 fixed inset-0 z-10`}
     >
-      <CloseButton closeButtonClick={closeButtonClick} />
+      <Container>
+        <div className="flex justify-end mb-5">
+          <CloseButton
+            closeButtonClick={closeButtonClick}
+            closeCatalogClick={closeCatalogClick}
+          />
+        </div>
 
-      <nav>
-        <Container>
+        <nav>
           <Cabinet />
 
           <div className="w-full max-w-[375px] py-5 border-y-2 absolute top-[158px] left-[50%] -translate-x-2/4">
@@ -42,15 +51,14 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
             </div>
           </div>
 
-          <div className="h-screen overflow-y-auto ">
-            <Contacts />
-          </div>
-        </Container>
-      </nav>
+          <Contacts stylesContacts="flex-col mb-[27px]" />
+        </nav>
+      </Container>
 
       <Categories
         displayCategories={displayCategories}
-        closeCategoriesClick={() => setDisplayCategories('hidden')}
+        closeButtonClick={closeButtonClick}
+        closeCatalogClick={closeCatalogClick}
       />
     </div>
   );
