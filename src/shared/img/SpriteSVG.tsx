@@ -662,7 +662,6 @@ export const SpriteSVG = ({ name }: { name: string }) => {
           ></path>
         </svg>
       );
-
     default:
       return 'SVG not found';
   }
