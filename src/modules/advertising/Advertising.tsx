@@ -4,8 +4,8 @@ import Image from 'next/image';
 import Container from '@/shared/components/Container/Container';
 import Section from '@/shared/components/Section/Section';
 
-import batch_cooking_default from '@/shared/img/Advertising/batch_cooking.png';
-import delicious_food_default from '@/shared/img/Advertising/delicious_food.png';
+import batch_cooking_default from './image/batch_cooking.png';
+import delicious_food_default from './image/delicious_food.png';
 
 interface AdvertisingProps {
   image1?: string;

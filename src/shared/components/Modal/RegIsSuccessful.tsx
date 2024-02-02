@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import ArrowButton from '@/shared/components/ArrowButton/ArrowButton';
 import OrangeButton from '@/shared/components/OrangeButton/OrangeButton';
-import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import { SpriteSVG } from './icon/SpriteSVG';
 import Modal from '@/shared/components/Modal/Modal';
 
 export default function RegIsSuccesful() {
@@ -12,9 +12,8 @@ export default function RegIsSuccesful() {
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
   return (
-    <div className="flex justify-center">
-      {' '}
-      <OrangeButton onClick={openModal}>Ckick</OrangeButton>
+    <div>
+      {/* <OrangeButton onClick={openModal}>Ckick</OrangeButton> */}
       <Modal isOpen={modalOpen} onClose={closeModal}>
         <h2 className="text-center text-stone-900 text-xl font-normal font-['Lato'] leading-loose">
           Реєстрація пройшла успішно
@@ -23,7 +22,7 @@ export default function RegIsSuccesful() {
           <SpriteSVG name="check-mark" />
         </div>
 
-        <div className="flex justify-between items-start gap-3 ">
+        <div className="flex justify-center items-start gap-3 ">
           <Link href="/">
             <OrangeButton onClick={() => {}}>
               <span className="text-nowrap">До каталогу</span>

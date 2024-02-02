@@ -4,12 +4,12 @@ import SectionTitle from '@/shared/components/SectionTitle/SectionTitle';
 import Section from '@/shared/components/Section/Section';
 import Container from '@/shared/components/Container/Container';
 
-import map_phone from '@/shared/img/AboutUs/map/map_phone.png';
-import map_tablet from '@/shared/img/AboutUs/map/map_tablet.png';
-import map_desktop from '@/shared/img/AboutUs/map/map_desktop.png';
-import magnifier_phone from '@/shared/img/AboutUs/magnifier/magnifier_phone.png';
-import magnifier_tablet from '@/shared/img/AboutUs/magnifier/magnifier_tablet.png';
-import magnifier_desktop from '@/shared/img/AboutUs/magnifier/magnifier_desktop.png';
+import map_phone from './image/map/map_phone.png';
+import map_tablet from './image/map/map_tablet.png';
+import map_desktop from './image/map/map_desktop.png';
+import magnifier_phone from './image/magnifier/magnifier_phone.png';
+import magnifier_tablet from './image/magnifier/magnifier_tablet.png';
+import magnifier_desktop from './image/magnifier/magnifier_desktop.png';
 
 export default function AboutUs() {
   return (
