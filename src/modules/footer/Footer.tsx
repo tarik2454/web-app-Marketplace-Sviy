@@ -6,6 +6,8 @@ import Container from '@/shared/components/Container/Container';
 import { Contacts } from '.';
 import Copyright from '@/shared/components/Contacts/Copyright';
 import RegIsSuccesful from '@/shared/components/Modal/RegIsSuccessful';
+import EmailConfirmation from '@/shared/components/Modal/EmailConfirmation';
+import PasswordChanged from '@/shared/components/Modal/PasswordChanged';
 
 export default function Footer() {
   return (
@@ -23,6 +25,8 @@ export default function Footer() {
           <Copyright />
         </div>
         <RegIsSuccesful />
+        <EmailConfirmation />
+        <PasswordChanged />
       </Container>
     </footer>
   );

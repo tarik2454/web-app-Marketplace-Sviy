@@ -12,14 +12,14 @@ export default function RegIsSuccesful() {
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
   return (
-    <div>
+    <div className="flex justify-center">
       {' '}
       <OrangeButton onClick={openModal}>Ckick</OrangeButton>
       <Modal isOpen={modalOpen} onClose={closeModal}>
         <h2 className="text-center text-stone-900 text-xl font-normal font-['Lato'] leading-loose">
           Реєстрація пройшла успішно
         </h2>
-        <div className="flex justify-center py-10">
+        <div className=" flex justify-center py-10">
           <SpriteSVG name="check-mark" />
         </div>
 
