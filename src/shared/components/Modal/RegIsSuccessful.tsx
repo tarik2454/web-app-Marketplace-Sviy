@@ -13,7 +13,6 @@ export default function RegIsSuccesful() {
   const closeModal = () => setModalOpen(false);
   return (
     <div>
-      {/* <OrangeButton onClick={openModal}>Ckick</OrangeButton> */}
       <Modal isOpen={modalOpen} onClose={closeModal}>
         <h2 className="text-center text-stone-900 text-xl font-normal font-['Lato'] leading-loose">
           Реєстрація пройшла успішно
