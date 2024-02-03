@@ -4,8 +4,6 @@ import Link from 'next/link';
 import ArrowButton from '@/shared/components/ArrowButton/ArrowButton';
 import Modal from '@/shared/components/Modal/Modal';
 
-// import OrangeButton from '@/shared/components/OrangeButton/OrangeButton';
-
 export default function EmailConfirmation({ email = 'g***@gmail.com' }) {
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -13,7 +11,6 @@ export default function EmailConfirmation({ email = 'g***@gmail.com' }) {
   const closeModal = () => setModalOpen(false);
   return (
     <>
-      {/* <OrangeButton onClick={openModal}>Ckick</OrangeButton> */}
       <Modal isOpen={modalOpen} onClose={closeModal}>
         <h2 className="text-center text-blue-700 text-xl font-normal font-['Lato'] leading-loose pb-6">
           Перевірте ваш email
