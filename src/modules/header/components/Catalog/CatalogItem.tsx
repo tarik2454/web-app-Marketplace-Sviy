@@ -19,7 +19,7 @@ type CategoryWithSubcategories = {
 type CatalogItemProps = {
   object: CategoryWithSubcategories;
   onCategoryClick: (categoryName: string) => void;
-  setIsThirdList: ((value: string) => void) | undefined;
+  setIsThirdList?: (value: string) => void;
 };
 
 export default function CatalogItem({
@@ -33,6 +33,7 @@ export default function CatalogItem({
   );
 
   const isSmallScreen = useMediaQuery({ query: '(max-width: 767.9px)' });
+  const isDescktopScreen = useMediaQuery({ query: '(min-width: 1440px)' });
 
   const handleMouseEnter = (categoryTitle: string) => {
     setHovered(true);
@@ -42,6 +43,9 @@ export default function CatalogItem({
   const handleMouseLeave = () => {
     setHovered(false);
     setHoveredSubCategory(null);
+    if (setIsThirdList) {
+      setIsThirdList('');
+    }
   };
 
   const stylesLink = `flex justify-between items-center w-full px-4 md:px-5 py-2.5 hover:bg-blue-200 focus:bg-blue-200 transition-all relative`;
@@ -88,14 +92,21 @@ export default function CatalogItem({
                 !isSmallScreen &&
                 setIsThirdList && (
                   <>
-                    {setIsThirdList('pointer-events-none')}
+                    {isDescktopScreen
+                      ? setIsThirdList('')
+                      : setIsThirdList('pointer-events-none')}
+
                     <ul
-                      className={`w-full md:w-[638px] xl:w-[302px] h-full md:bg-neutral-50 absolute top-0 left-[310px] md:-left-[310px] xl:left-[310px] z-50 pointer-events-auto`}
+                      className={`w-full md:w-[638px] xl:w-[302px] h-full md:bg-neutral-50 absolute top-0 left-[310px] md:-left-[310px] xl:left-[310px] z-50 pointer-events-auto `}
                     >
                       {subCategory.items.map((item, index) => (
                         <li
                           key={index}
                           className="flex w-[302px] bg-neutral-50 md:bg-white"
+                          onMouseEnter={() =>
+                            handleMouseEnter(subCategory.title)
+                          }
+                          onMouseLeave={handleMouseLeave}
                         >
                           <Link href="#" className={stylesLink}>
                             <p className="text-black">{item}</p>
