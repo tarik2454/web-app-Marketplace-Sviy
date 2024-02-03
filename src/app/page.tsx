@@ -1,5 +1,5 @@
 import ProductsWeek from '@/modules/productsWeek/ProductsWeek';
-import AboutUs from '@/modules/aboutUs/AboutUs';
+import { AboutUs } from '@/modules';
 import Advertising from '@/modules/advertising/Advertising';
 import { HeroSection } from '@/modules';
 import Novelties from '@/modules/novelties/Novelties';
