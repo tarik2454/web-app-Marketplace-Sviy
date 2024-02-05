@@ -4,8 +4,9 @@ import Image from 'next/image';
 
 import cardImg from '@/shared/img/salo.jpeg';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import ButtonArrowLeft from '../CardButtons/ButtonArrowrRight';
 import ButtonToСart from '../CardButtons/ButtonToСart';
+import ButtonArrowRight from '../CardButtons/ButtonArrowrRight';
+import { ArrowButton } from '..';
 
 type ProductType = {
   id?: number;
@@ -48,7 +49,7 @@ export default function Card({ product }: { product: ProductType }) {
 
       <div className="absolute right-[-0.5px] bottom-0 z-auto ">
         <SpriteSVG name="card-part" />
-        <ButtonArrowLeft />
+        <ButtonArrowRight />
       </div>
     </div>
   );
