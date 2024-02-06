@@ -51,7 +51,7 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
             </div>
           </div>
 
-          <Contacts stylesContacts="flex-col mb-[27px]" />
+          <Contacts stylesContactsUl={'flex-col'} />
         </nav>
       </Container>
 
