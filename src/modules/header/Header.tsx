@@ -8,6 +8,7 @@ import Container from '@/shared/components/Container/Container';
 import { SearchProducts } from './components';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import CatalogButton from './components/Catalog/CatalogButton';
+import ScreenSize from '@/shared/hooks/useMediaQuery';
 
 export default function Header() {
   const [displayMenu, setDisplayMenu] = useState('hidden');
@@ -17,6 +18,8 @@ export default function Header() {
   const [displayBackdrop, setDisplayBackdrop] = useState('hidden');
 
   const backdropRef = useRef<HTMLDivElement | null>(null);
+
+  const { isMobileScreen, isTabletScreen, isDesktopScreen } = ScreenSize();
 
   const searchButtonHandler = () => {
     if (displaySearchProducts === 'hidden') {
@@ -95,7 +98,13 @@ export default function Header() {
             <HamburgerButton hamburgerClick={() => setDisplayMenu('block')} />
 
             <div className="mx-auto">
-              <Logo />
+              {isMobileScreen ? (
+                <Logo logo="logoHeaderMobile" />
+              ) : isTabletScreen ? (
+                <Logo logo="logoTablet" />
+              ) : (
+                <Logo logo="logoHeaderDesktop" />
+              )}
             </div>
 
             <FunctionalButtons
@@ -120,3 +129,5 @@ export default function Header() {
     </>
   );
 }
+
+Header.ssr = false;

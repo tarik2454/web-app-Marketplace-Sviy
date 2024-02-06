@@ -4,18 +4,25 @@ import Logo from '@/shared/components/Logo/Logo';
 import Container from '@/shared/components/Container/Container';
 
 import { Contacts } from '.';
+import ScreenSize from '@/shared/hooks/useMediaQuery';
 // import RegIsSuccesful from '@/shared/components/Modal/RegIsSuccessful';
 // import EmailConfirmation from '@/shared/components/Modal/EmailConfirmation';
 
 export default function Footer() {
+  const { isMobileScreen, isTabletScreen } = ScreenSize();
+
   return (
     <footer className="bg-blue-200">
       <Container>
         <div className="pt-5 pb-[25px] md:pt-[32px] md:pb-5 xl:pb-6">
           <div className="flex justify-between ">
-            <div className="w-[140px] h-[52px] md:w-[130px] md-h-[45px] xl:w-[150px] xl:h-[52px]">
-              <Logo />
-            </div>
+            {isMobileScreen ? (
+              <Logo logo="logoFooterMobile" />
+            ) : isTabletScreen ? (
+              <Logo logo="logoTablet" />
+            ) : (
+              <Logo logo="logoFooterDesktop" />
+            )}
 
             <Contacts
               stylesContactsWrapper={'mb-7'}
