@@ -6,9 +6,7 @@ export default function Catalogue () {
     <>
       <Section>
         <Container>
-          <div>
-            
-          </div>
+          <div></div>
         </Container>
       </Section>
     </>
