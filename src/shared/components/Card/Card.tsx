@@ -4,8 +4,8 @@ import Image from 'next/image';
 
 import cardImg from '@/shared/img/salo.jpeg';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import ButtonArrowrRight from '../CardButtons/ButtonArrowrRight';
 import ButtonToСart from '../CardButtons/ButtonToСart';
-import ButtonArrowRight from '../CardButtons/ButtonArrowrRight';
 import { ArrowButton } from '..';
 
 type ProductType = {
@@ -31,11 +31,11 @@ export default function Card({ product }: { product: ProductType }) {
         alt="Card image"
       />
 
-      <button className="flex justify-center items-center p-2 bg-white rounded-circle absolute top-2 right-2 group-hover:top-[11px] group-hover:animate-jump transition-all">
+      <button className="flex justify-center items-center p-2 bg-white rounded-circle absolute top-2 right-2 group-hover:top-[11px] group-hover:animate-jump group-focus:top-[11px] group-focus:animate-jump transition-all">
         <SpriteSVG name="heart" />
       </button>
 
-      <div className="p-[18px] group-hover:pb-[12px] group-hover:animate-jump transition-all">
+      <div className="p-[18px] group-hover:pb-[12px] group-hover:animate-jump group-focus:pb-[12px] group-focus:animate-jump transition-all">
         <div className="mb-4">{name}</div>
         <div className="text-neutral-400 mb-[18px] text-xs leading-[19.2px]">
           {information}
@@ -47,9 +47,10 @@ export default function Card({ product }: { product: ProductType }) {
         <ButtonToСart />
       </div>
 
-      <div className="absolute right-[-0.5px] bottom-0 z-auto ">
+      <div className="absolute right-[-0.5px] bottom-0 z-auto">
         <SpriteSVG name="card-part" />
-        <ButtonArrowRight />
+
+        <ButtonArrowrRight />
       </div>
     </div>
   );

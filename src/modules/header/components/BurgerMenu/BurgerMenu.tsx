@@ -30,7 +30,7 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
 
   return (
     <div
-      className={`${display} md:hidden w-full h-screen py-5 bg-neutral-50 fixed inset-0 z-10`}
+      className={`${display} md:hidden w-full py-5 bg-neutral-50 fixed inset-0 z-10`}
     >
       <Container>
         <div className="flex justify-end mb-5">

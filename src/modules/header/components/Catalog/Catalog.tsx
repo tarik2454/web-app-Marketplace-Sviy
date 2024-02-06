@@ -25,7 +25,7 @@ export default function Catalog({
     setSelectedCategory(categoryName);
   };
 
-  const stylesCatalog = `w-full md:w-[704px] xl:w-[1280px] h-full my-0 mx-auto bg-neutral-50 md:rounded-br-default md:rounded-bl-default shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] absolute top-0 md:top-[113px] left-[50%] z-20 -translate-x-2/4`;
+  const stylesCatalog = `w-full md:w-[704px] xl:w-[1280px] h-full md:h-auto my-0 mx-auto bg-neutral-50 md:rounded-br-default md:rounded-bl-default shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] absolute top-0 md:top-[113px] left-[50%] z-20 -translate-x-2/4`;
 
   return (
     <div className={`${displayCategories} ${stylesCatalog}`}>
@@ -54,8 +54,8 @@ export default function Catalog({
             </div>
           </Container>
         </div>
-        {/* h-[88vh] md:h-[80vh] xl:h-[88vh] */}
-        <div className="h-full mb-5 overflow-y-auto">
+
+        <div className="h-screen md:h-full overflow-y-auto">
           <nav className="max-w-[375px] my-0 mx-auto md:mx-0 py-5 md:w-full md:px-8 md:py-4">
             <ul className={`relative ${isThirdList}`}>
               {categoriesData.map((category, index) => (
