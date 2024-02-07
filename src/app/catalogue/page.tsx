@@ -3,6 +3,7 @@ import { Breadcrumbs, ColorSpot } from "@/shared/components";
 import Container from "@/shared/components/Container/Container";
 import Section from "@/shared/components/Section/Section";
 import SectionTitle from "@/shared/components/SectionTitle/SectionTitle";
+import { SpriteSVG } from "@/shared/img/SpriteSVG";
 
 export default function Catalogue () {
   return (
@@ -13,9 +14,16 @@ export default function Catalogue () {
           <Breadcrumbs homeElement={<span>Головна</span>} />
           <SectionTitle name="Каталог" />
           <div className="flex mt-10">
-            <button className="w-[164px] p-[10px] bg-white border-2 rounded-default">Фільтр</button>
-            <button className="w-[164px] ml-auto p-[10px] bg-white border-2 rounded-default">Сортування</button>
+            <button className="flex items-center gap-2 py-[10px] pl-[10px] pr-[80px] mr-auto bg-white border-2 rounded-default">
+              <SpriteSVG name="filter" />
+              <p>Фільтр</p>
+            </button>
+            <button className="flex items-center gap-[33px] py-[10px] px-[10px] bg-white border-2 rounded-default">
+              <p>Сортування</p>
+              <SpriteSVG name="arrow-to-bottom" />
+            </button>
           </div>
+          <h3 className="mt-5">Всього: 10</h3>
           <Filter />
         </Container>
       </Section>
