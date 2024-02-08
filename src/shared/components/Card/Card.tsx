@@ -6,7 +6,6 @@ import cardImg from '@/shared/img/salo.jpeg';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import ButtonArrowrRight from '../CardButtons/ButtonArrowrRight';
 import ButtonToСart from '../CardButtons/ButtonToСart';
-import { ArrowButton } from '..';
 
 type ProductType = {
   id?: number;
