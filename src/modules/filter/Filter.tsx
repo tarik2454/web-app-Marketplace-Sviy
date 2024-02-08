@@ -49,7 +49,6 @@ export default function Filter () {
         id={"categories"}
         dropdownName={"Категорії"}
       />
-
       <PriceButtons />
     </div>
   )

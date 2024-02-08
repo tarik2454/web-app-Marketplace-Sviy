@@ -15,7 +15,7 @@ export default function PriceButtons () {
           type="" 
           placeholder="До" 
         />
-        <OrangeButton cssSettings="px-[20px] py-[12px]" onClick={() => {}}>Ок</OrangeButton>
+        <OrangeButton cssSettings="!px-5 !py-3" onClick={() => {}}>Ок</OrangeButton>
       </div>
     </div>
   )

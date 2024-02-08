@@ -1,8 +1,10 @@
-import { Filter } from "@/modules";
+import { Filter, SortingMenu } from "@/modules";
 import { Breadcrumbs, ColorSpot } from "@/shared/components";
+import Card from "@/shared/components/Card/Card";
 import Container from "@/shared/components/Container/Container";
 import Section from "@/shared/components/Section/Section";
 import SectionTitle from "@/shared/components/SectionTitle/SectionTitle";
+import productsData from "@/shared/data/products-data";
 import { SpriteSVG } from "@/shared/img/SpriteSVG";
 
 export default function Catalogue () {
@@ -24,7 +26,23 @@ export default function Catalogue () {
             </button>
           </div>
           <h3 className="mt-5">Всього: 10</h3>
+
+          <ul className="mt-5">
+            {productsData.slice(0, 6).map((product, index) => {
+              return (
+                <li key={`${product.id}-${index}`}>
+                  <Card 
+                    product={product}
+                  />
+                </li>
+              )
+            })}
+          </ul>
+
+          <button className="block mx-auto mt-9 p-1 text-xl text-blue-700">Дивитися більше</button>
+
           <Filter />
+          <SortingMenu />
         </Container>
       </Section>
     </>

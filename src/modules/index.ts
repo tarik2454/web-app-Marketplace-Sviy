@@ -5,3 +5,4 @@ export { default as HeroSection } from './HeroSection/HeroSection';
 export { default as Categories } from './header/components/Catalog/Catalog';
 export { default as Advertising } from './advertising/Advertising';
 export { default as Filter } from "./filter/Filter";
+export { default as SortingMenu } from "./sortingMenu/SortingMenu";
