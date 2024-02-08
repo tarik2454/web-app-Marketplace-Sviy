@@ -9,6 +9,21 @@ export default function SortingMenu () {
         <h1 className="mr-auto text-2xl">Сортування</h1>
         <CloseButton />
       </div>
+
+      <ul className="mt-6 bg-neutral-50 rounded-default">
+        <li className="p-[10px]">
+          <button className="w-full text-left">Новинки</button>
+        </li>
+        <li className="p-[10px]">
+          <button className="w-full text-left">Від дорогих до дешевих</button>
+        </li>
+        <li className="p-[10px]">
+          <button className="w-full text-left">Від дешевих до дорогих</button>
+        </li>
+        <li className="p-[10px]">
+          <button className="w-full text-left">За рейтингом</button>
+        </li>
+      </ul>
     </div>
   )
 }
