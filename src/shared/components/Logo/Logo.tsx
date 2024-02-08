@@ -42,7 +42,7 @@ export default function Logo({ logo }: LogoProps) {
 
   return (
     <Link href="/">
-      {src && <Image src={src} width={130} height={45} alt="Logo" />}
+      {src && <Image src={src} width={0} height={0} alt="Logo" />}
     </Link>
   );
 }

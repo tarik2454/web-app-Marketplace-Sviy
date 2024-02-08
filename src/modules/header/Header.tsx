@@ -19,7 +19,7 @@ export default function Header() {
 
   const backdropRef = useRef<HTMLDivElement | null>(null);
 
-  const { isMobileScreen, isTabletScreen, isDesktopScreen } = ScreenSize();
+  const { isMobileScreen, isTabletScreen } = ScreenSize();
 
   const searchButtonHandler = () => {
     if (displaySearchProducts === 'hidden') {
@@ -61,6 +61,7 @@ export default function Header() {
     };
 
     const handleEscapeClick = (event: KeyboardEvent): void => {
+      console.log(event);
       if (event.code === 'Escape') {
         closeCatalog();
       }
@@ -120,12 +121,12 @@ export default function Header() {
       <div
         ref={backdropRef}
         className={`${displayBackdrop} w-full h-full bg-black bg-opacity-40 fixed top-0 left-0 z-10`}
-      ></div>
-
-      <Catalog
-        displayCategories={displayCategories}
-        closeCatalogClick={closeCatalog}
-      />
+      >
+        <Catalog
+          displayCategories={displayCategories}
+          closeCatalogClick={closeCatalog}
+        />
+      </div>
     </>
   );
 }
