@@ -7,7 +7,7 @@ export default function ButtonAllAds({ children }: { children?: ReactNode }) {
 
   return (
     <div
-      className={`flex gap-3 xl:gap-5 items-center absolute ${smTopValue} ${mdTopValue} ${xlTopValue} right-0`}
+      className={`flex gap-3 xl:gap-5 items-center absolute z-0 ${smTopValue} ${mdTopValue} ${xlTopValue} right-0`}
     >
       <button className="text-blue-700 text-sm md:text-xl leading-[22.4px] md:leading-8">
         Всі оголошення
