@@ -1,7 +1,10 @@
-import ProductsWeek from '@/modules/productsWeek/ProductsWeek';
-import Advertising from '@/modules/advertising/Advertising';
-import { AboutUs, HeroSection } from '@/modules';
-import Novelties from '@/modules/novelties/Novelties';
+import {
+  AboutUs,
+  HeroSection,
+  ProductsWeek,
+  Advertising,
+  Novelties,
+} from '@/modules';
 
 export default function Home() {
   return (
