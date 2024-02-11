@@ -2,8 +2,14 @@
 
 import { CloseButton } from "@/shared/components";
 import { Dropdown, OptionsButtons, PriceButtons } from "./components";
+import { MouseEventHandler } from "react";
 
-export default function Filter () {
+type Props = {
+  display: string,
+  closeButtonClick: MouseEventHandler<HTMLButtonElement>,
+}
+
+export default function Filter ({ display, closeButtonClick }: Props) {
   const options = [
     { value: "за районом", label: "За районом" },
     { value: "галицький", label: "Галицький" },
@@ -14,10 +20,10 @@ export default function Filter () {
   ];
 
   return (
-    <div className="hidden fixed h-screen w-full left-0 top-0 px-4 py-6 bg-white z-[60] overflow-auto">
+    <div className={`${display} fixed h-screen w-full left-0 top-0 px-4 py-6 bg-white z-[60] overflow-auto`}>
       <div className="flex items-center text-2xl pb-[10px] border-b-2">
         <h1 className="mr-auto">Фільтр</h1>
-        <CloseButton />
+        <CloseButton closeButtonClick={closeButtonClick} />
       </div>
 
       <OptionsButtons />
