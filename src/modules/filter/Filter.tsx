@@ -20,7 +20,7 @@ export default function Filter ({ display, closeButtonClick }: Props) {
   ];
 
   return (
-    <div className={`${display} fixed h-screen w-full left-0 top-0 px-4 py-6 bg-white z-[60] overflow-auto`}>
+    <div className={`${display} fixed h-screen w-full left-0 top-0 px-4 py-6 bg-white z-[60] overflow-auto md:w-auto md:left-auto md:right-0`}>
       <div className="flex items-center text-2xl pb-[10px] border-b-2">
         <h1 className="mr-auto">Фільтр</h1>
         <CloseButton closeButtonClick={closeButtonClick} />
