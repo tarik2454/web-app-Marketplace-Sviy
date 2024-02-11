@@ -1,6 +1,4 @@
-import Container from '@/shared/components/Container/Container';
-import Section from '@/shared/components/Section/Section';
-import SectionTitle from '@/shared/components/SectionTitle/SectionTitle';
+import { Container, Section, SectionTitle } from '@/shared/components';
 import LookedAtBeforeList from './components/LookedAtBeforeList';
 
 export default function LookedAtBefore() {

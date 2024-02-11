@@ -8,3 +8,8 @@ export { default as FormHeading } from './FormHeading/FormHeading';
 export { default as Breadcrumbs } from './Breadcrumbs/Breadcrumbs';
 export { default as FormCheckbox } from './FormCheckbox/FormCheckbox';
 export { default as ColorSpot } from './ColorSpot/ColorSpot';
+export { default as Container } from './Container/Container';
+export { default as ButtonAllAds } from './ButtonAllAds/ButtonAllAds';
+export { default as Section } from './Section/Section';
+export { default as SectionTitle } from './SectionTitle/SectionTitle';
+export { default as Card } from './Card/Card';
