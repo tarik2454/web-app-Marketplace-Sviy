@@ -1,9 +1,9 @@
-import LookedAtBefore from '@/modules/lookedAtBefore/LookedAtBefore';
-import SellerProducts from '@/modules/sellerProducts/SellerProducts';
+import { LookedAtBefore, SellerProducts, TabMenu } from '@/modules';
 
 export default function ProductCard() {
   return (
     <div className="pt-[113px]">
+      <TabMenu />
       <SellerProducts />
       <LookedAtBefore />
     </div>
