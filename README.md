@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Це файл з вимогами до коду та менеджменту файлів.
 
-## Getting Started
+##modules
 
-First, run the development server:
+Модулі - готові шматки сайту. Папки модулю називаємо з маленької літери і кемелкейсом(exampleName). У папці модулю ми можемо створювати папку components, в котрій будуть лежати компоненти, котрі використовуются тільки в цьому модулі, а також папку image, в котрій будуть зберігатися картинки, котрі використовуються тільки в даному модулі.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+##shared
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Папка shared зберігає в собі компоненти(називаємо з великої літери та кемлкейсом(ExampleName)), котрі перевикористовуються на всьому сайті. Папка компоненту має в собі містити лише один файл - сам компонент. Також в папці shared є папки data, hooks, img. Логіка та ж сама, зберігаємо все те, що може і буде перевикористане.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+##styles
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+В папці styles зберігається один єдиний файл - globals.css. Цю папку змінювати не треба, адже використовуємо tailwind.
 
-## Learn More
+##assets
 
-To learn more about Next.js, take a look at the following resources:
+Папка assets - наразі використовується лише для зберігання шрифтів.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#app
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+В папці app будуть зберігатися сторінки для нашого вебсайту. Папку сторінки називаємо через дефіс(page-name). В файлах сторінки не має бути написано ніякої логіки, всю логіку ми залишаємо у modules та shared.

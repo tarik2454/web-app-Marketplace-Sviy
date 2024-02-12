@@ -40,18 +40,18 @@ export default function Catalogue () {
             </div>
             <h3 className="mt-5 md:mt-0 md:mr-auto">Всього: 10</h3>
           </div>
-
+          
           <ul className="grid gap-4 mt-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-            {productsData.slice(0, showPosts).map((product, index) => {
-              return (
-                <li key={`${product.id}-${index}`}>
-                  <Card 
-                    product={product}
-                  />
-                </li>
-              )
-            })}
-          </ul>
+              {productsData.slice(0, showPosts).map((product, index) => {
+                return (
+                  <li key={`${product.id}-${index}`}>
+                    <Card 
+                      product={product}
+                    />
+                  </li>
+                )
+              })}
+            </ul>
 
           <button
             onClick={() => setShowPosts(showPosts + 6)} 
@@ -92,11 +92,12 @@ export default function Catalogue () {
               </svg>
             </button>
           </div>
-
+            
           <Filter 
             display={filterDisplay}
             closeButtonClick={() => setFilterDisplay("hidden")}
           />
+
           <SortingMenu
             display={sortingMenuDisplay} 
             closeButtonClick={() => setSortingMenuDisplay("hidden")} 
