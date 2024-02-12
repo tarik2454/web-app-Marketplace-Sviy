@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import ArrowButton from '@/shared/components/ArrowButton/ArrowButton';
 import OrangeButton from '@/shared/components/OrangeButton/OrangeButton';
-import { SpriteSVG } from './icon/SpriteSVG';
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import Modal from '@/shared/components/Modal/Modal';
 
 export default function RegIsSuccesful() {
@@ -13,7 +13,11 @@ export default function RegIsSuccesful() {
   const closeModal = () => setModalOpen(false);
   return (
     <div>
-      <Modal isOpen={modalOpen} onClose={closeModal}>
+      <Modal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        buttonText="Зареєструватися"
+      >
         <h2 className="text-center text-stone-900 text-xl font-normal font-['Lato'] leading-loose">
           Реєстрація пройшла успішно
         </h2>

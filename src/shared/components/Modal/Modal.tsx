@@ -2,13 +2,19 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { OrangeButton } from '..';
 
-interface ModalProps {
+type ModalProps = {
   isOpen: boolean;
+  buttonText?: string;
   onClose: () => void;
   children?: ReactNode;
-}
+};
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  children,
+  buttonText,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(isOpen);
 
   useEffect(() => {
@@ -43,8 +49,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
   return (
     <>
-      <OrangeButton onClick={openModal}>Click</OrangeButton>
-      {/* <button onClick={openModal}>Open</button> */}
+      {/* <OrangeButton onClick={openModal}>Click</OrangeButton> */}
+      <button onClick={openModal}>{buttonText}</button>
       {isModalOpen && (
         <div
           className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"

@@ -6,26 +6,30 @@ import {
   FormHeading,
   FormInput,
   OrangeButton,
+  FormCheckbox,
 } from '@/shared/components';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import Section from '@/shared/components/Section/Section';
 import Container from '@/shared/components/Container/Container';
-import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import Link from 'next/link';
 
 export default function Page() {
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
+      rememberMe: false,
     },
     validationSchema: Yup.object().shape({
       email: Yup.string()
-        .email('Email is not correct')
-        .required('Email is required'),
+        .email('Дані введені некоректно')
+        .required("Обов'язкова наявність електронної пошти"),
       password: Yup.string()
-        .min(8, 'Password should be of minimum 8 characters length')
-        .required('Password is required'),
+        .min(8, 'Пароль повинен мати довжину не менше 8 символів')
+        .required('Потрібен пароль'),
+      rememberMe: Yup.boolean(),
     }),
     onSubmit: async values => {
       console.log(values);
@@ -34,7 +38,7 @@ export default function Page() {
 
   return (
     <>
-      <Section className='py-[80px] md:pt-[104px] xl:py-[164px]'>
+      <Section className="py-[80px] md:pt-[104px] xl:py-[164px]">
         <ColorSpot />
         <Container>
           <Breadcrumbs homeElement={<span>Головна</span>} capitalizeLinks />
@@ -59,12 +63,33 @@ export default function Page() {
               label={'Пароль'}
               inputType="password"
             />
-            <div className="w-28 mt-10 mx-auto">
+            <div className="flex justify-between">
+              <FormCheckbox
+                formik={formik}
+                id="rememberMe"
+                label="Запам’ятати мене"
+              />
+              <Link href="" className="text-blue-900">
+                Нагадати пароль
+              </Link>
+            </div>
+
+            <div className="w-28 mt-10 mx-auto pb-6">
               <OrangeButton onClick={() => {}} type="submit">
                 Увійти
               </OrangeButton>
             </div>
           </form>
+          <p className="text-center pb-3">Або увійдіть за допомогою:</p>
+          <div className="flex justify-center pb-3">
+            <SpriteSVG name="icon_google" />
+          </div>
+          <div className="flex justify-center">
+            <p className="pr-6">Немає профілю?</p>
+            <Link href="/signup" className="text-blue-90">
+              Зареєструйся
+            </Link>
+          </div>
         </Container>
       </Section>
     </>

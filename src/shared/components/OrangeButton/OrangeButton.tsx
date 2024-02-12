@@ -3,7 +3,7 @@ type Props = {
   cssSettings?: string;
   children: React.ReactNode;
   type?: 'button' | 'submit' | 'reset';
-  onClick: (...args: any[]) => any;
+  onClick?: (...args: any[]) => any;
 };
 
 const OrangeButton = ({
