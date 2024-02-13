@@ -16,7 +16,7 @@ export default function RegIsSuccesful() {
       <Modal
         isOpen={modalOpen}
         onClose={closeModal}
-        buttonText="Зареєструватися"
+        // buttonText="Зареєструватися"
       >
         <h2 className="text-center text-stone-900 text-xl font-normal font-['Lato'] leading-loose">
           Реєстрація пройшла успішно

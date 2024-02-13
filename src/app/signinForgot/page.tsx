@@ -6,34 +6,40 @@ import {
   FormHeading,
   FormInput,
   OrangeButton,
-  FormCheckbox,
 } from '@/shared/components';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import { useState } from 'react';
 import Section from '@/shared/components/Section/Section';
 import Container from '@/shared/components/Container/Container';
 import Link from 'next/link';
+import EmailConfirmation from '@/shared/components/ModalEmailConfirm/EmailConfirmation';
 
 export default function Page() {
+  const [email, setEmail] = useState('');
+  const [showModal, setShowModal] = useState(true);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const handleSubmit = async (values: { email: string }) => {
+    console.log(values.email);
+    setEmail(values.email);
+    setShowModal(true);
+  };
+
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: '',
-      rememberMe: false,
     },
     validationSchema: Yup.object().shape({
       email: Yup.string()
         .email('Дані введені некоректно')
         .required("Обов'язкова наявність електронної пошти"),
-      password: Yup.string()
-        .min(8, 'Пароль повинен мати довжину не менше 8 символів')
-        .required('Потрібен пароль'),
-      rememberMe: Yup.boolean(),
     }),
-    onSubmit: async values => {
-      console.log(values);
-    },
+    onSubmit: handleSubmit,
   });
 
   return (
@@ -43,8 +49,8 @@ export default function Page() {
         <Container>
           <Breadcrumbs homeElement={<span>Головна</span>} capitalizeLinks />
           <FormHeading
-            heading="Увійти в акаунт"
-            additionalText="Увійдіть, щоб мати можливість додавати товари до обраного та бачити свої замовлення."
+            heading="Забули свій пароль"
+            additionalText="Нічого страшного! Заповніть свою електронну адресу, і ми надішлемо вам"
           />
           <form
             className="flex flex-col max-w-[400px] mx-auto gap-5"
@@ -57,30 +63,22 @@ export default function Page() {
               inputType="email"
             />
 
-            <FormInput
-              formik={formik}
-              id="password"
-              label={'Пароль'}
-              inputType="password"
-            />
-            <div className="flex justify-between">
-              <FormCheckbox
-                formik={formik}
-                id="rememberMe"
-                label="Запам’ятати мене"
-              />
-              <Link href="/signinForgot" className="text-blue-900">
-                Нагадати пароль
-              </Link>
-            </div>
-
-            <div className="w-28 mt-10 mx-auto pb-6">
-              <OrangeButton onClick={() => {}} type="submit">
-                Увійти
+            <div className="w-28 mt-10 mx-auto pb-7">
+              <OrangeButton
+                onClick={() => {
+                  setShowModal(true);
+                }}
+                type="submit"
+              >
+                Надіслати
               </OrangeButton>
             </div>
+            <Link href="" className="text-center pb-8 text-blue-900">
+              Я згадав свій пароль
+            </Link>
           </form>
-          <p className="text-center pb-3">Або увійдіть за допомогою:</p>
+          {showModal && <EmailConfirmation email={email} />}
+          <p className="text-center pb-3 ">Або увійдіть за допомогою:</p>
           <div className="flex justify-center pb-3">
             <SpriteSVG name="icon_google" />
           </div>

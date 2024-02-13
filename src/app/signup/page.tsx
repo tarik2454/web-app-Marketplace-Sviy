@@ -20,6 +20,7 @@ import { useState } from 'react';
 
 export default function Page() {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       login: '',
@@ -44,7 +45,7 @@ export default function Page() {
       rememberMe: Yup.boolean(),
     }),
     onSubmit: async values => {
-      console.log(values);
+      // console.log(values);
       setIsFormSubmitted(true);
     },
   });
@@ -92,7 +93,7 @@ export default function Page() {
               id="rememberMe"
               label="Запам’ятати мене"
             />
-            <p className="text-[#656565] font-lato text-sm">
+            <p className="text-[#656565] font-lato text-sm md:pb-[34px]">
               Реєструючись ви погоджуєтесь з Правилами використання сайту та
               Політикою конфіденційності
             </p>
@@ -100,13 +101,13 @@ export default function Page() {
               <OrangeButton
                 onClick={() => {}}
                 type="submit"
-                cssSettings="mt-10 mx-auto "
+                cssSettings="mx-auto"
               >
                 <RegIsSuccesful />
               </OrangeButton>
             )}
             {!isFormSubmitted && (
-              <OrangeButton type="submit" cssSettings="mt-10 mx-auto">
+              <OrangeButton type="submit" cssSettings=" mx-auto">
                 Зареєструватися
               </OrangeButton>
             )}
