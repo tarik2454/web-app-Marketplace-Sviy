@@ -9,6 +9,7 @@ export default function Cabinet() {
       <div>
         <div className="flex gap-4">
           <p>Вхід</p>
+
           <p>|</p>
           <p>Реєстрація</p>
         </div>

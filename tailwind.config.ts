@@ -12,8 +12,10 @@ const config: Config = {
     extend: {
       colors: {
         blue: {
+          90: '#386A93',
           200: '#BBDEFB',
           700: '#1565C0',
+          900: '#1565C0',
         },
         neutral: {
           50: '#FAFAFA',
