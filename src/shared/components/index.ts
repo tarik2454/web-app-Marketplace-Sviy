@@ -13,3 +13,6 @@ export { default as ButtonAllAds } from './ButtonAllAds/ButtonAllAds';
 export { default as Section } from './Section/Section';
 export { default as SectionTitle } from './SectionTitle/SectionTitle';
 export { default as Card } from './Card/Card';
+export { default as Pagination } from './Pagination/Pagination';
+export { default as FilterControlButtons } from './FilterControlButtons/FilterControlButtons';
+export { default as Dropdown } from './Dropdown/Dropdown';

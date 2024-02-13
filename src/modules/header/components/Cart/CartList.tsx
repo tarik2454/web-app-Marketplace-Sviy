@@ -29,7 +29,7 @@ export default function CartList() {
   ];
 
   return (
-    <div className="w-full mt-5 mb-1 shadow-sm rounded-default xl:max-w-[760px]">
+    <div className="w-full mt-5 mb-1 shadow-sm rounded-default md:overflow-auto md:h-full xl:max-w-[760px]">
       {cartItems.map((cartItem, counter) => (
         <div className="flex p-2 gap-4 mb-4" key={counter}>
           <div className="min-w-20 h-20 bg-neutral-400 rounded-default"></div>

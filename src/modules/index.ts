@@ -11,3 +11,4 @@ export { default as Novelties } from './novelties/Novelties';
 export { default as ProductsWeek } from './productsWeek/ProductsWeek';
 export { default as SellerProducts } from './sellerProducts/SellerProducts';
 export { default as TabMenu } from './tabMenu/TabMenu';
+export { default as CatalogueProducts } from "./catalogueProducts/CatalogueProducts";

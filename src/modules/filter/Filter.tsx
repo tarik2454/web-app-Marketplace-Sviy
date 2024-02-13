@@ -1,8 +1,8 @@
 "use client"
 
-import { CloseButton } from "@/shared/components";
-import { Dropdown, OptionsButtons, PriceButtons } from "./components";
-import { MouseEventHandler } from "react";
+import { CloseButton, Dropdown } from "@/shared/components";
+import { OptionsButtons, PriceButtons } from "./components";
+import { MouseEventHandler, useState } from "react";
 
 type Props = {
   display: string,
@@ -20,11 +20,13 @@ export default function Filter ({ display, closeButtonClick }: Props) {
   ];
 
   return (
-    <div className={`${display} fixed h-screen w-full left-0 top-0 px-4 py-6 bg-white z-[60] overflow-auto md:w-auto md:left-auto md:right-0`}>
-      <div className="flex items-center text-2xl pb-[10px] border-b-2">
+    <div className={`${display} fixed h-screen w-full left-0 top-0 px-4 py-6 bg-white z-[60] overflow-auto md:w-fit md:left-auto md:right-0 xl:relative xl:block xl:rounded-default xl:z-0 xl:inset-0 xl:overflow-visible xl:h-fit xl:min-w-fit`}>
+      <div className="flex items-center text-2xl pb-[10px] border-b-2 xl:hidden">
         <h1 className="mr-auto">Фільтр</h1>
         <CloseButton closeButtonClick={closeButtonClick} />
       </div>
+
+      <h1 className="text-2xl hidden xl:block">Фільтр</h1>
 
       <OptionsButtons />
 
@@ -42,7 +44,7 @@ export default function Filter ({ display, closeButtonClick }: Props) {
         dropdownName={"Категорії"}
       />
 
-      <Dropdown 
+      <Dropdown
         options={options}
         placeholder={"Всі оголошення"}
         id={"categories"}

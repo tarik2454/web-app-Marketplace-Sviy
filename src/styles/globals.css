@@ -201,7 +201,7 @@ input:-webkit-autofill:active {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #FFFFFF;
+  background: transparent;
 }
  
 ::-webkit-scrollbar-thumb {
