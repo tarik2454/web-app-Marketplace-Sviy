@@ -4,12 +4,25 @@ import { useState } from "react";
 import productsData from "@/shared/data/products-data";
 import { Card, FilterControlButtons, Pagination } from "@/shared/components";
 import { Filter, SortingMenu } from "..";
+import ScreenSize from "@/shared/hooks/useMediaQuery";
 
 export default function CatalogueProducts () {
   const [sortingMenuDisplay, setSortingMenuDisplay] = useState("hidden");
   const [filterDisplay, setFilterDisplay] = useState("hidden");
 
-  const [showProducts, setShowProducts] = useState(6);
+  const { isMobileScreen, isTabletScreen } = ScreenSize();
+
+  const [showProducts, setShowProducts] = useState(isMobileScreen ? 6 : isTabletScreen ? 8 : 9);
+
+  const moreProductsClickHandler = () => {
+    isMobileScreen ? (
+      setShowProducts(showProducts + 6)
+    ) : isTabletScreen ? (
+      setShowProducts(showProducts + 8)
+    ) : (
+      setShowProducts(showProducts + 9)
+    )
+  }
 
   return (
     <div className="flex gap-6">
@@ -35,7 +48,7 @@ export default function CatalogueProducts () {
           })}
         </ul>
         <Pagination 
-          moreProductsClick={() => setShowProducts(showProducts + 6)} 
+          moreProductsClick={moreProductsClickHandler} 
         />
       </div>
       <SortingMenu
