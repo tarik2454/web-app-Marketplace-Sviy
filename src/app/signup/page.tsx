@@ -19,7 +19,12 @@ import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegIsSuccessful'
 import { useState } from 'react';
 
 export default function Page() {
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  // const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsButtonClicked(true);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -46,7 +51,7 @@ export default function Page() {
     }),
     onSubmit: async values => {
       // console.log(values);
-      setIsFormSubmitted(true);
+      // setIsFormSubmitted(true);
     },
   });
 
@@ -97,7 +102,15 @@ export default function Page() {
               Реєструючись ви погоджуєтесь з Правилами використання сайту та
               Політикою конфіденційності
             </p>
-            {isFormSubmitted && (
+            <OrangeButton
+              onClick={handleClick}
+              type="submit"
+              cssSettings="mx-auto"
+            >
+              Зареєструватися
+              {isButtonClicked && <RegIsSuccesful />}
+            </OrangeButton>
+            {/* {isFormSubmitted && (
               <OrangeButton
                 onClick={() => {}}
                 type="submit"
@@ -110,7 +123,8 @@ export default function Page() {
               <OrangeButton type="submit" cssSettings=" mx-auto">
                 Зареєструватися
               </OrangeButton>
-            )}
+            )} */}
+            <RegIsSuccesful />
           </form>
           <p className="text-center pb-3">Або увійдіть за допомогою:</p>
           <div className="flex justify-center pb-3">

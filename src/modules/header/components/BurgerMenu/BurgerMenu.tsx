@@ -9,8 +9,8 @@ import CatalogueButton from '@/shared/components/CatalogueButton/CatalogueButton
 import Container from '@/shared/components/Container/Container';
 
 type Props = {
-  display: string;
-  closeButtonClick: MouseEventHandler<HTMLButtonElement>;
+  display: string,
+  closeButtonClick: MouseEventHandler<HTMLButtonElement>,
 };
 
 export default function BurgerMenu({ display, closeButtonClick }: Props) {
