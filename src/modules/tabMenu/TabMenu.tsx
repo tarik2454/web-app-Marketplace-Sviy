@@ -1,30 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { Container, Section, SectionTitle } from '@/shared/components';
 import tabMenuData from './data/tab-menu-data';
-import descriptionData from './data/description-data';
+import { DescriptionList, Reviews, ServicesList } from './Components';
 
 export default function TabMenu() {
-  const [activeTab, setActiveTab] = useState<string>('Опис');
+  const [activeTab, setActiveTab] = useState(0);
 
-  const handleTabClick = (tab: string) => {
-    setActiveTab(tab);
+  const handleTabClick = (index: SetStateAction<number>) => {
+    setActiveTab(index);
   };
 
+  const after = `after:content-[''] after:none after:w-full after:h-[1px] after:bg-gray-600`;
+
   return (
-    <Section className="w-full">
+    <Section>
       <Container>
         <SectionTitle name="Tab Menu" />
         <div>
           <ul className="flex gap-[2px] mb-12">
             {tabMenuData.map((item, index) => (
-              <li className="min-w-[193px]  text-center bg-white " key={index}>
+              <li key={index} className={`text-center bg-white relative`}>
                 <button
-                  className={`text-xl w-full h-full px-[61px] py-2 ${
-                    activeTab === item.title ? 'active' : ''
+                  className={`text-xl w-full h-full px-[26px] py-1.5 transition-all ${after} ${
+                    activeTab === index ? 'bg-neutral-50 after:block' : ''
                   }`}
-                  onClick={() => handleTabClick(item.title)}
+                  onClick={() => handleTabClick(index)}
                 >
                   {item.title}
                 </button>
@@ -32,33 +34,11 @@ export default function TabMenu() {
             ))}
           </ul>
 
-          <ul className="flex">
-            {activeTab === 'Опис' && (
-              <li className="">
-                <div>
-                  <div>
-                    {descriptionData.map((item, index) => (
-                      <p key={index}>{item.description}</p>
-                    ))}
-                  </div>
-                </div>
-              </li>
-            )}
-            {activeTab === 'Відгуки' && (
-              <li className="">
-                <div>
-                  <p>Содержимое вкладки Best Sellers...</p>
-                </div>
-              </li>
-            )}
-            {activeTab === 'Оплата та доставка' && (
-              <li className="">
-                <div>
-                  <p>Содержимое вкладки Top Rated...</p>
-                </div>
-              </li>
-            )}
-          </ul>
+          <div>
+            {activeTab === 0 && <DescriptionList />}
+            {activeTab === 1 && <Reviews />}
+            {activeTab === 2 && <ServicesList />}
+          </div>
         </div>
       </Container>
     </Section>
