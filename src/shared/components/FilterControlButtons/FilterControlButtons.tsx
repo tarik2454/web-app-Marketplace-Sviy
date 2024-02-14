@@ -32,6 +32,7 @@ export default function FilterControlButtons ({ filterButtonClick, sortingMenuBu
         </button>
 
         <Dropdown
+          onChange={() => {}}
           options={options}
           placeholder="Новинки"
           id="novelties"
