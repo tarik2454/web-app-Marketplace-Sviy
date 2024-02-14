@@ -1,6 +1,6 @@
-const tabData = [
+const reviewsData = [
   {
-    id: 0,
+    id: 1,
     userName: 'Вікторія',
     rating: 5,
     description:
@@ -8,7 +8,7 @@ const tabData = [
     data: '10.11.2023',
   },
   {
-    id: 1,
+    id: 2,
     userName: 'Не Вікторія',
     rating: 3,
     description:
@@ -16,7 +16,7 @@ const tabData = [
     data: '10.11.2023',
   },
   {
-    id: 2,
+    id: 3,
     userName: 'Анонім',
     rating: 4,
     description:
@@ -24,7 +24,7 @@ const tabData = [
     data: '10.11.2023',
   },
   {
-    id: 3,
+    id: 4,
     userName: 'Вікторія',
     rating: 1,
     description:
@@ -32,7 +32,7 @@ const tabData = [
     data: '10.11.2023',
   },
   {
-    id: 4,
+    id: 5,
     userName: 'Не Вікторія',
     rating: 5,
     description:
@@ -40,7 +40,7 @@ const tabData = [
     data: '10.11.2023',
   },
   {
-    id: 5,
+    id: 6,
     userName: 'Анонім',
     rating: 3,
     description:
@@ -48,3 +48,5 @@ const tabData = [
     data: '10.11.2023',
   },
 ];
+
+export default reviewsData;

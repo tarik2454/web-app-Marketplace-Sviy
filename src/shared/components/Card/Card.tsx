@@ -23,8 +23,8 @@ export default function Card({ product }: { product: ProductType }) {
         className="h-[216px] rounded-tl-default rounded-tr-default group-hover:h-[222px] group-hover:animate-jump transition-all"
         src={cardImg}
         sizes="100vw"
-        width={343}
-        height={216}
+        width={0}
+        height={0}
         alt="Card image"
       />
 
