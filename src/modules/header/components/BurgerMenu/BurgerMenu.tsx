@@ -1,7 +1,7 @@
 'use client';
 
 import { Cabinet } from '.';
-import { CatalogButton, CloseButton } from '@/shared/components/index';
+import { CatalogButton, CatalogueButton, CloseButton } from '@/shared/components/index';
 import { Categories } from '@/modules';
 import { MouseEventHandler, useEffect, useState } from 'react';
 import { Contacts } from '@/modules/footer';
@@ -44,7 +44,7 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
 
           <div className="w-full max-w-[375px] py-5 border-y-2 absolute top-[158px] left-[50%] -translate-x-2/4">
             <div className="px-4 py-2.5 bg-white">
-              
+              <CatalogueButton catalogueClick={() => setDisplayCategories('block')} />
             </div>
           </div>
 
