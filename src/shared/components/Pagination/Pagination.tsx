@@ -29,7 +29,7 @@ export default function Pagination<T extends PaginationItem>({
   const handleLoadMore = () => {
     // Увеличиваем количество отображаемых элементов
     setDisplayedItems(prevDisplayedItems => prevDisplayedItems + itemsPerPage);
-    // Если достигли конца текущей страницы, переходим на следующую страницу
+    // Если достигли конца текущей страницы, переходим на следующую страницу.
     if ((currentPage + 1) * itemsPerPage === displayedItems) {
       setCurrentPage(currentPage + 1);
     }
