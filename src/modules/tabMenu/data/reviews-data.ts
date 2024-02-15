@@ -17,7 +17,7 @@ const reviewsData = [
   },
   {
     id: 3,
-    userName: 'Анонім',
+    userName: 'Анон',
     rating: 4,
     description:
       'Lorem ipsum dolor sit amet consectetur. Tellus gravida sed quis augue quam. Dignissim dignissim eu felis risus eu. Netus neque pellentesque aliquet facilisis. Quam sollicitudin tristique volutpat posuere sapien eget.',

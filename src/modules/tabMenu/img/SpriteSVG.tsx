@@ -1,4 +1,4 @@
-export const Sprite = ({ name }: { name: string }) => {
+export const SpriteSVG = ({ name }: { name: string }) => {
   switch (name) {
     case 'star':
       return (

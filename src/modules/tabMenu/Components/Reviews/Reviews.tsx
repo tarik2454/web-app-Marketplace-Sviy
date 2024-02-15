@@ -1,23 +1,16 @@
 import { Pagination } from '@/shared/components';
 import reviewsData from '../../data/reviews-data';
-import { Sprite } from '../../img/Sprite';
+import { SpriteSVG } from '../../img/SpriteSVG';
 import { Key } from 'react';
-import React, { useState } from 'react'; // Import useState hook
 
 export default function Reviews() {
-  // Define itemOffset state variable and setItemOffset function to update it
-  const [itemOffset, setItemOffset] = useState(0);
-
-  // Define itemsPerPage variable
-  const itemsPerPage = 3;
-
   const renderItem = (
     item: {
       id?: number;
-      userName: any;
-      rating: any;
-      description: any;
-      data: any;
+      userName: string;
+      rating: number;
+      description: string;
+      data: string;
     },
     index: Key | null | undefined
   ) => (
@@ -30,7 +23,7 @@ export default function Reviews() {
         <ul className="flex">
           {[...Array(item.rating)].map((_, index) => (
             <li key={index}>
-              <Sprite name="star" />
+              <SpriteSVG name="star" />
             </li>
           ))}
         </ul>
@@ -42,24 +35,13 @@ export default function Reviews() {
     </li>
   );
 
-  const getCurrentItems = () => {
-    const startOffset = itemOffset * itemsPerPage;
-    const endOffset = startOffset + itemsPerPage;
-    return reviewsData.slice(startOffset, endOffset);
-  };
-
   return (
     <div>
-      <ul className="mb-11">
-        {/* Map only the current items */}
-        {getCurrentItems().map((item, index) => renderItem(item, index))}
-      </ul>
-
       <Pagination
-        itemsPerPage={itemsPerPage} // Pass itemsPerPage as a prop
-        content={reviewsData}
+        itemsPerPage={3}
+        array={reviewsData}
         renderItem={renderItem}
-        setItemOffset={setItemOffset} // Pass the function to update itemOffset
+        styleMarginBottom={'mb-11'}
       />
     </div>
   );
