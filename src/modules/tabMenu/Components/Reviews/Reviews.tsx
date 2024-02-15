@@ -1,11 +1,11 @@
 import { Pagination } from '@/shared/components';
 import reviewsData from '../../data/reviews-data';
-import { SpriteSVG } from '../../img/SpriteSVG';
+import { Sprite } from '../../img/Sprite';
 
 export default function Reviews() {
   return (
     <div>
-      <ul className="mb-11">
+      {/* <ul className="mb-11">
         {reviewsData.map((item, index) => (
           <li
             key={index}
@@ -16,7 +16,7 @@ export default function Reviews() {
               <ul className="flex">
                 {[...Array(item.rating)].map((_, index) => (
                   <li key={index}>
-                    <SpriteSVG name="star" />
+                    <Sprite name="star" />
                   </li>
                 ))}
               </ul>
@@ -27,9 +27,9 @@ export default function Reviews() {
             <time dateTime={item.data}>{item.data}</time>
           </li>
         ))}
-      </ul>
+      </ul> */}
 
-      <Pagination />
+      <Pagination itemsPerPage={3} content={reviewsData} />
     </div>
   );
 }

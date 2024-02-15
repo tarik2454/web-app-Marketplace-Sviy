@@ -88,6 +88,7 @@ body {
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.14);
 }
 
+/* Swiper */
 .swiper-wrapper {
   margin-bottom: 20px;
 }
@@ -172,6 +173,11 @@ body {
 
 .swiper-pagination-bullet-active {
   background-color: #ff9800 !important;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
 }
 
 @font-face {
