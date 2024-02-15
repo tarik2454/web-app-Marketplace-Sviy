@@ -1,12 +1,8 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    // "allowJs": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -23,11 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
-    "allowJs": true
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -36,7 +29,5 @@
     ".next/types/**/*.ts",
     "src/shared/img/SpriteSVG.jsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
