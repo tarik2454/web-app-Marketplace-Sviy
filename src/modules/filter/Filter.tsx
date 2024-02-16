@@ -2,7 +2,7 @@
 
 import { CloseButton, Dropdown, OrangeButton } from "@/shared/components";
 import { FilterOptions, OptionsButtons, PriceButtons } from "./components";
-import { ChangeEvent, MouseEventHandler, useState } from "react";
+import { ChangeEvent, MouseEventHandler, useEffect, useState } from "react";
 
 import categoriesData from "../header/components/Catalog/data/categories-data";
 
@@ -41,15 +41,12 @@ export default function Filter ({ display, closeButtonClick }: Props) {
     switch (option) {
       case "inStockAdd":
         setFilterOptions(prevState => ({ ...prevState, inStock: true }));
-        setFilterOptionsDisplay("flex");
         break;
       case "priceAdd": 
         setFilterOptions(prevState => ({ ...prevState, price: { min: temporaryMin, max: temporaryMax } }));
-        setFilterOptionsDisplay("flex");
         break;
       case "salesPromotionAdd":
         setFilterOptions(prevState => ({ ...prevState, salesPromotion: true }));
-        setFilterOptionsDisplay("flex");
         break;
       case "inStockDelete":
         setFilterOptions(prevState => ({ ...prevState, inStock: false }))
@@ -73,11 +70,24 @@ export default function Filter ({ display, closeButtonClick }: Props) {
             max: "",
           },
         });
-        setFilterOptionsDisplay("hidden");
-        break
+        break;
     }
-    console.log(filterOptions);
   }
+
+  useEffect(() => {
+    if (
+      filterOptions.area 
+      || 
+      filterOptions.inStock 
+      || 
+      filterOptions.price.max && filterOptions.price.min 
+      || filterOptions.salesPromotion
+      ) {
+      setFilterOptionsDisplay("flex")
+    } else {
+      setFilterOptionsDisplay("hidden")
+    }
+  }, [filterOptions])
 
   return (
     <div className={`${display} fixed h-screen w-full left-0 top-0 px-4 py-6 bg-white z-[60] overflow-auto md:w-fit md:left-auto md:right-0 xl:relative xl:block xl:rounded-default xl:z-0 xl:inset-0 xl:overflow-visible xl:h-fit xl:min-w-fit`}>
@@ -145,7 +155,6 @@ export default function Filter ({ display, closeButtonClick }: Props) {
         dropdownName={"Шукати в..."}
         onChange={(area: any) => {
           setFilterOptions((prevState) => ({ ...prevState, area: area.label }));
-          setFilterOptionsDisplay("flex");
         }}
       />
 
