@@ -114,7 +114,7 @@ export default function Filter ({ display, closeButtonClick }: Props) {
       />
 
       <Dropdown 
-        options={categoriesData.map((category) => ({ value: category.id, label: category.category }))}
+        options={categoriesData.map((category) => ({ value: String(category.id), label: category.category }))}
         placeholder={"Категорії"}
         id={"categories"}
         dropdownName={"Категорії"}

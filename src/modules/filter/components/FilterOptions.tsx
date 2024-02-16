@@ -2,6 +2,16 @@ import { OrangeButton } from "@/shared/components"
 import { MouseEventHandler } from "react"
 import { FilterOptionButton } from "."
 
+type FilterOptions = {
+  inStock: boolean,
+  area: string,
+  salesPromotion: boolean,
+  price: {
+    min: string,
+    max: string,
+  },
+}
+
 type Props = {
   filterOptionsDisplay: string,
   deleteAllOptionsClick: MouseEventHandler<HTMLButtonElement>,
@@ -9,7 +19,7 @@ type Props = {
   areaClick: MouseEventHandler<HTMLButtonElement>,
   priceClick: MouseEventHandler<HTMLButtonElement>,
   salesPromotionClick: MouseEventHandler<HTMLButtonElement>,
-  filterOptions: any,
+  filterOptions: FilterOptions,
 }
 
 export default function FilterOptions (
