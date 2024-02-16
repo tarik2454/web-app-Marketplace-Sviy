@@ -1,7 +1,12 @@
 'use client';
 
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import React, { MouseEventHandler, ReactNode, useState } from 'react';
+import React, {
+  MouseEventHandler,
+  ReactNode,
+  useEffect,
+  useState,
+} from 'react';
 import ReactPaginate from 'react-paginate';
 
 interface PaginationItem {
@@ -10,7 +15,6 @@ interface PaginationItem {
 
 type PropsPagination<T> = {
   itemsPerPage: number;
-  moreProductsClick?: MouseEventHandler<HTMLButtonElement>;
   array: T[];
   renderItem: (item: T, index: number) => ReactNode;
   styleMarginBottom?: string;
@@ -18,7 +22,6 @@ type PropsPagination<T> = {
 
 export default function Pagination<T extends PaginationItem>({
   itemsPerPage,
-  moreProductsClick,
   array,
   renderItem,
   styleMarginBottom,
@@ -29,11 +32,20 @@ export default function Pagination<T extends PaginationItem>({
   const handleLoadMore = () => {
     // Увеличиваем количество отображаемых элементов
     setDisplayedItems(prevDisplayedItems => prevDisplayedItems + itemsPerPage);
+
     // Если достигли конца текущей страницы, переходим на следующую страницу.
     if ((currentPage + 1) * itemsPerPage === displayedItems) {
       setCurrentPage(currentPage + 1);
+
+      // Устанавливаем текущую страницу, основываясь на количестве отображаемых элементов
+      // setCurrentPage(Math.ceil(displayedItems / itemsPerPage));
     }
   };
+
+  useEffect(() => {
+    // Устанавливаем текущую страницу, основываясь на количестве отображаемых элементов
+    setCurrentPage(Math.ceil(displayedItems / itemsPerPage));
+  }, [displayedItems, itemsPerPage]);
 
   const handlePageClick = (selectedPage: { selected: number }) => {
     setCurrentPage(selectedPage.selected);
@@ -68,7 +80,7 @@ export default function Pagination<T extends PaginationItem>({
         nextLabel={<SpriteSVG name="pagination-rigth" />}
         nextClassName="flex p-[9px]"
         onPageChange={handlePageClick}
-        activeClassName="text-blue-900"
+        activeClassName="text-blue-900 text-red-500 text-xl"
         pageRangeDisplayed={3}
         marginPagesDisplayed={1}
         pageCount={Math.ceil(array.length / itemsPerPage)}
