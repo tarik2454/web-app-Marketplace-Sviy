@@ -4,20 +4,15 @@ import { CloseButton, Dropdown } from "@/shared/components";
 import { OptionsButtons, PriceButtons } from "./components";
 import { MouseEventHandler, useState } from "react";
 
+import categoriesData from "../header/components/Catalog/data/categories-data";
+
 type Props = {
   display: string,
   closeButtonClick: MouseEventHandler<HTMLButtonElement>,
 }
 
 export default function Filter ({ display, closeButtonClick }: Props) {
-  const options = [
-    { value: "за районом", label: "За районом" },
-    { value: "галицький", label: "Галицький" },
-    { value: "залізничний", label: "Залізничний" },
-    { value: "франківський", label: "Франківський" },
-    { value: "сихівський", label: "Сихівський" },
-    { value: "личаківський", label: "Личаківський" },
-  ];
+  const [firstSubcategories, setFirstSubcategories] = useState<Array<any>>();
 
   return (
     <div className={`${display} fixed h-screen w-full left-0 top-0 px-4 py-6 bg-white z-[60] overflow-auto md:w-fit md:left-auto md:right-0 xl:relative xl:block xl:rounded-default xl:z-0 xl:inset-0 xl:overflow-visible xl:h-fit xl:min-w-fit`}>
@@ -31,32 +26,26 @@ export default function Filter ({ display, closeButtonClick }: Props) {
       <OptionsButtons />
 
       <Dropdown 
-        options={options}
+        options={categoriesData.map((category) => ({ value: category.id, label: category.category }))}
         placeholder={"Всі оголошення"}
         id={"categories"}
         dropdownName={"Категорії"}
-      />
+        onChange={(category: any) => {
+          const specificCategory = categoriesData.find((specific) => specific.category === category.label);
+          console.log(specificCategory)
 
-      <Dropdown 
-        options={options}
-        placeholder={"Всі оголошення"}
-        id={"categories"}
-        dropdownName={"Категорії"}
+          setFirstSubcategories(specificCategory?.subCategories?.map((subcategory: any) => ({ value: subcategory.title, label: subcategory.title })));
+        }}
       />
-
-      <Dropdown
-        options={options}
-        placeholder={"Всі оголошення"}
-        id={"categories"}
-        dropdownName={"Категорії"}
-      />
-
-      <Dropdown 
-        options={options}
-        placeholder={"Всі оголошення"}
-        id={"categories"}
-        dropdownName={"Категорії"}
-      />
+      {firstSubcategories && (
+        <Dropdown 
+          options={firstSubcategories} 
+          placeholder={"Всі оголошення"}
+          id={"categories"}
+          dropdownName={"Категорії"}
+          onChange={() => {}}
+        />
+      )}
       <PriceButtons />
     </div>
   )

@@ -96,7 +96,7 @@ export default function Page() {
               id="rememberMe"
               label="Запам’ятати мене"
             />
-            <p className="text-[#656565] font-lato text-sm md:pb-[34px]">
+            <p className="text-gray-600 font-lato text-sm md:pb-[34px]">
               Реєструючись ви погоджуєтесь з Правилами використання сайту та
               Політикою конфіденційності
             </p>

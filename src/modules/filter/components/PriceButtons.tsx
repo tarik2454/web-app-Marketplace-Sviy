@@ -6,12 +6,12 @@ export default function PriceButtons () {
       <span>Ціна</span>
       <div className="flex gap-5 xl:gap-1">
         <input 
-          className="max-w-[100px] px-4 py-3 border-2 rounded-default placeholder:text-black" 
+          className="max-w-[100px] px-4 py-3 border-2 rounded-default outline-none placeholder:text-black" 
           type="" 
           placeholder="Від" 
         />
         <input 
-          className="max-w-[100px] px-4 py-3 border-2 rounded-default placeholder:text-black" 
+          className="max-w-[100px] px-4 py-3 border-2 rounded-default outline-none placeholder:text-black" 
           type="" 
           placeholder="До" 
         />

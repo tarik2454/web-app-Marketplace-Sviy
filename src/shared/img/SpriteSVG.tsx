@@ -847,6 +847,27 @@ export const SpriteSVG = ({ name }: { name: string }) => {
           </g>
         </svg>
       );
+    case 'pagination-rigth':
+      return (
+        <svg width="8.121" height="13.414" fill="none">
+          <path
+            fill="#9E9E9E"
+            fillRule="evenodd"
+            d="m0 1.414 6 6 .707-.707L6 6l-6 6 1.414 1.414 6.707-6.707L1.414 0 0 1.414Z"
+          />
+        </svg>
+      );
+
+    case 'pagination-left':
+      return (
+        <svg width="8.121" height="13.414" fill="none">
+          <path
+            fill="#9E9E9E"
+            fillRule="evenodd"
+            d="m8.121 1.414-6 6-.707-.707L2.121 6l6 6-1.414 1.414L0 6.707 6.707 0l1.414 1.414Z"
+          />
+        </svg>
+      );
     default:
       return 'SVG not found';
   }
