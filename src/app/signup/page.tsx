@@ -8,22 +8,23 @@ import {
   FormInput,
   OrangeButton,
 } from '@/shared/components';
-import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import { useState } from 'react';
+import * as Yup from 'yup';
+import Link from 'next/link';
 import Section from '@/shared/components/Section/Section';
 import Container from '@/shared/components/Container/Container';
-import { SpriteSVG } from '@/shared/img/SpriteSVG';
-
-import Link from 'next/link';
-import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegIsSuccessful';
-import { useState } from 'react';
+import Modal from '@/shared/components/Modal/Modal';
+import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
 
 export default function Page() {
-  // const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  const handleClick = () => {
-    setIsButtonClicked(true);
+  const handleSubmit = async () => {
+    setShowModal(true);
+    setIsFormSubmitted(true);
   };
 
   const formik = useFormik({
@@ -49,10 +50,7 @@ export default function Page() {
         .required('Потрібен пароль'),
       rememberMe: Yup.boolean(),
     }),
-    onSubmit: async values => {
-      // console.log(values);
-      // setIsFormSubmitted(true);
-    },
+    onSubmit: handleSubmit,
   });
 
   return (
@@ -103,29 +101,18 @@ export default function Page() {
               Політикою конфіденційності
             </p>
             <OrangeButton
-              onClick={handleClick}
+              onClick={() => setShowModal(true)}
               type="submit"
-              cssSettings="mx-auto"
+              cssSettings=" mx-auto"
             >
-              Зареєструватися
-              {isButtonClicked && <RegIsSuccesful />}
+              Зареєструйся
             </OrangeButton>
-            {/* {isFormSubmitted && (
-              <OrangeButton
-                onClick={() => {}}
-                type="submit"
-                cssSettings="mx-auto"
-              >
-                <RegIsSuccesful />
-              </OrangeButton>
-            )}
-            {!isFormSubmitted && (
-              <OrangeButton type="submit" cssSettings=" mx-auto">
-                Зареєструватися
-              </OrangeButton>
-            )} */}
-            <RegIsSuccesful />
           </form>
+          {isFormSubmitted && showModal && (
+            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+              <RegIsSuccesful />
+            </Modal>
+          )}
           <p className="text-center pb-3">Або увійдіть за допомогою:</p>
           <div className="flex justify-center pb-3">
             <SpriteSVG name="icon_google" />

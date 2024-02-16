@@ -69,7 +69,7 @@ export default function Page() {
                 id="rememberMe"
                 label="Запам’ятати мене"
               />
-              <Link href="/signinForgot" className="text-blue-900">
+              <Link href="/signin-forgot" className="text-blue-900">
                 Нагадати пароль
               </Link>
             </div>
@@ -80,6 +80,7 @@ export default function Page() {
               </OrangeButton>
             </div>
           </form>
+
           <p className="text-center pb-3">Або увійдіть за допомогою:</p>
           <div className="flex justify-center pb-3">
             <SpriteSVG name="icon_google" />

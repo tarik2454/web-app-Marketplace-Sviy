@@ -14,20 +14,16 @@ import { useState } from 'react';
 import Section from '@/shared/components/Section/Section';
 import Container from '@/shared/components/Container/Container';
 import Link from 'next/link';
-import EmailConfirmation from '@/shared/components/ModalEmailConfirm/EmailConfirmation';
+import Modal from '@/shared/components/Modal/Modal';
+import EmailConfirmation from '@/shared/components/ModalEmailConfirm/EmailConfirm';
 
 export default function Page() {
-  const [email, setEmail] = useState('');
-  const [showModal, setShowModal] = useState(true);
-
-  const openModal = () => {
-    setShowModal(true);
-  };
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async (values: { email: string }) => {
-    console.log(values.email);
-    setEmail(values.email);
     setShowModal(true);
+    setIsFormSubmitted(true);
   };
 
   const formik = useFormik({
@@ -63,21 +59,20 @@ export default function Page() {
               inputType="email"
             />
 
-            <div className="w-28 mt-10 mx-auto pb-7">
-              <OrangeButton
-                onClick={() => {
-                  setShowModal(true);
-                }}
-                type="submit"
-              >
+            <div className="flex justify-center w-28 mt-10 mx-auto pb-7">
+              <OrangeButton onClick={() => setShowModal(true)} type="submit">
                 Надіслати
               </OrangeButton>
             </div>
-            <Link href="" className="text-center pb-8 text-blue-900">
+            <Link href="/signin" className="text-center pb-8 text-blue-900">
               Я згадав свій пароль
             </Link>
           </form>
-          {showModal && <EmailConfirmation email={email} />}
+          {isFormSubmitted && showModal && (
+            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+              <EmailConfirmation email={formik.values.email} />
+            </Modal>
+          )}
           <p className="text-center pb-3 ">Або увійдіть за допомогою:</p>
           <div className="flex justify-center pb-3">
             <SpriteSVG name="icon_google" />
