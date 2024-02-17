@@ -18,7 +18,7 @@ import Container from '@/shared/components/Container/Container';
 import Modal from '@/shared/components/Modal/Modal';
 import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
 
-export default function Page() {
+export default function Signup() {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 

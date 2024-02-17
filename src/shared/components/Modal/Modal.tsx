@@ -1,6 +1,5 @@
 import React, { useState, useEffect, ReactNode } from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import { OrangeButton } from '..';
 
 type ModalProps = {
   isOpen: boolean;
@@ -16,15 +15,19 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         onClose();
       }
     };
-
-    if (isOpen) {
+    // Додано умовну перевірку для document.body
+    if (isOpen && document.body) {
       document.body.style.overflow = 'hidden';
       document.addEventListener('keydown', handleKeyDown);
     }
-    if (!isOpen) {
-      document.body.style.overflow = 'auto';
-      document.removeEventListener('keydown', handleKeyDown);
-    }
+
+    return () => {
+      // Очистка події keydown
+      if (document.body) {
+        document.body.style.overflow = 'auto';
+        document.removeEventListener('keydown', handleKeyDown);
+      }
+    };
   }, [isOpen, onClose]);
 
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {

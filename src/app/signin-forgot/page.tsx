@@ -17,7 +17,7 @@ import Link from 'next/link';
 import Modal from '@/shared/components/Modal/Modal';
 import EmailConfirmation from '@/shared/components/ModalEmailConfirm/EmailConfirm';
 
-export default function Page() {
+export default function SigninForgot() {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 

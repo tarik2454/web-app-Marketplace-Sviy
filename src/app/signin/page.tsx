@@ -15,7 +15,9 @@ import Section from '@/shared/components/Section/Section';
 import Container from '@/shared/components/Container/Container';
 import Link from 'next/link';
 
-export default function Page() {
+export default function Signin() {
+  const handleSubmit = async () => {};
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -31,9 +33,7 @@ export default function Page() {
         .required('Потрібен пароль'),
       rememberMe: Yup.boolean(),
     }),
-    onSubmit: async values => {
-      console.log(values);
-    },
+    onSubmit: handleSubmit,
   });
 
   return (
