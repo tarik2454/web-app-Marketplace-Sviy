@@ -12,3 +12,5 @@ export { default as ProductsWeek } from './productsWeek/ProductsWeek';
 export { default as SellerProducts } from './sellerProducts/SellerProducts';
 export { default as TabMenu } from './tabMenu/TabMenu';
 export { default as CatalogueProducts } from "./catalogueProducts/CatalogueProducts";
+export { default as SigninForm } from "./signinForm/SigninForm";
+export { default as SignupForm } from "./signupForm/SignupForm";

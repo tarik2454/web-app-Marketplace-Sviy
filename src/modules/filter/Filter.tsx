@@ -71,6 +71,8 @@ export default function Filter ({ display, closeButtonClick }: Props) {
           },
         });
         break;
+      default: 
+        console.log("Add an option");
     }
   }
 
