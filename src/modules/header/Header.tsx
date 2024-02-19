@@ -61,7 +61,6 @@ export default function Header() {
     };
 
     const handleEscapeClick = (event: KeyboardEvent): void => {
-      console.log(event);
       if (event.code === 'Escape') {
         closeCatalog();
       }

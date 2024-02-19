@@ -1,0 +1,3 @@
+.customInput input:focus + .prevIcon {
+    color: #1565C0;
+}

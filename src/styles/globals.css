@@ -6,6 +6,14 @@ html {
   box-sizing: border-box;
 }
 
+html, body {
+  min-height: 100%;
+}
+
+main {
+  height: calc(100% - 175px); /* 175px it's footer height */
+}
+
 *,
 *::after,
 *::before {

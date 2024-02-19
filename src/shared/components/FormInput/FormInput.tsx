@@ -2,16 +2,19 @@
 
 import { SpriteSVG } from "@/shared/img/SpriteSVG";
 import { FormikProps } from "formik";
-import { ChangeEventHandler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import styles from "@/styles/FormInput.module.css";
 
 type Props = {
   id: string,
-  label: string,
-  inputType: "password" | "text" | "email",
+  label?: string,
+  inputType: "password" | "text" | "email" | "number",
   formik: FormikProps<any>,
+  placeholder?: string,
+  inputIcon?: string
 };
 
-export default function FormInput ({ label, inputType, id, formik }: Props ) {
+export default function FormInput ({ label, inputType, id, formik, placeholder, inputIcon }: Props ) {
   const [inputTypePass, setInputTypePass] = useState(inputType);
   const error = formik.touched[id] && formik.errors[id];
 
@@ -26,17 +29,19 @@ export default function FormInput ({ label, inputType, id, formik }: Props ) {
   }
 
   return (
-    <div className="relative h-auto flex flex-col w-full">
-      <label htmlFor={label} className="ml-4">{ label }</label>
-      <div className={`flex px-4 py-3 gap-2 ${borderColor} border-2 bg-white rounded-default`}>
+    <div className={`relative h-auto flex flex-col w-full ${styles.customInput}`}>
+      <label htmlFor={id} className="ml-4">{ label }</label>
+      <div className={`flex flex-row-reverse px-4 py-3 gap-2 ${borderColor} border-2 bg-white rounded-default`}>
         <input 
           onChange={formik.handleChange} 
           type={inputTypePass} 
           id={id}
+          placeholder={placeholder}
           value={formik.values.id} 
           className="w-full h-6 outline-none" 
         />
-        {inputType === "password" && 
+        {inputIcon && <span className={`${styles.prevIcon} text-gray-400`}><SpriteSVG name={inputIcon}/></span>}
+        {inputType === 'password' &&
           (
             <button onClick={eyeButtonHandler} type="button">
               <SpriteSVG name={inputTypePass === "password" ? "eye" : "eye-off"} />
