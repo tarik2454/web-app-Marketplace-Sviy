@@ -17,6 +17,7 @@ type Props = {
 export default function FormInput ({ label, inputType, id, formik, placeholder, inputIcon }: Props ) {
   const [inputTypePass, setInputTypePass] = useState(inputType);
   const error = formik.touched[id] && formik.errors[id];
+  console.log(error);
 
   const [borderColor, setBorderColor] = useState(error ? "border-red-700" : "border-blue-200");
 
@@ -31,7 +32,7 @@ export default function FormInput ({ label, inputType, id, formik, placeholder, 
   return (
     <div className={`relative h-auto flex flex-col w-full ${styles.customInput}`}>
       <label htmlFor={id} className="ml-4">{ label }</label>
-      <div className={`flex flex-row-reverse px-4 py-3 gap-2 ${borderColor} border-2 bg-white rounded-default`}>
+      <div className={`flex flex-row-reverse px-4 py-3 gap-2 relative ${borderColor} border-2 bg-white rounded-default`}>
         <input 
           onChange={formik.handleChange} 
           type={inputTypePass} 
@@ -51,7 +52,7 @@ export default function FormInput ({ label, inputType, id, formik, placeholder, 
       </div>
         {error && 
           (
-            <p className="absolute top-20 right-0 text-red-700">{ String(error) }</p>
+            <p className="absolute -bottom-7 right-0 text-red-700">{ String(error) }</p>
           )
         }
     </div>
