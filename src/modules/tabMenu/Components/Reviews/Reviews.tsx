@@ -5,19 +5,7 @@ import { Key } from 'react';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 
 export default function Reviews() {
-  const { isMobileScreen, isTabletScreen, isDesktopScreen } = ScreenSize();
-
-  // для перебора условий для размеров экранов пользуйтесь тернарником а не условными операторами
-  // типо так:
-  // {
-  //   isMobileScreen ? (
-  //     <Logo logo="logoHeaderMobile" />
-  //   ) : isTabletScreen ? (
-  //     <Logo logo="logoTablet" />
-  //   ) : (
-  //     <Logo logo="logoHeaderDesktop" />
-  //   );
-  // }
+  const { isOnMobile, isOnTablet, isOnDesktop } = ScreenSize();
 
   const renderItem = (
     item: {
@@ -47,16 +35,14 @@ export default function Reviews() {
           </ul>
         </div>
 
-        {isDesktopScreen && <p className="max-w-[628px]">{item.description}</p>}
+        {isOnDesktop && <p className="max-w-[628px]">{item.description}</p>}
 
         <time className="w-[302px] text-right" dateTime={item.data}>
           {item.data}
         </time>
       </div>
 
-      {isMobileScreen || isTabletScreen ? (
-        <p className="">{item.description}</p>
-      ) : null}
+      {isOnMobile || isOnTablet ? <p className="">{item.description}</p> : null}
     </li>
   );
 
