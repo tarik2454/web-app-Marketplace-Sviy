@@ -10,16 +10,16 @@ export default function CatalogueProducts() {
   const [sortingMenuDisplay, setSortingMenuDisplay] = useState('hidden');
   const [filterDisplay, setFilterDisplay] = useState('hidden');
 
-  const { isMobileScreen, isTabletScreen } = ScreenSize();
+  const { isOnMobile, isOnTablet } = ScreenSize();
 
   const [showProducts, setShowProducts] = useState(
-    isMobileScreen ? 6 : isTabletScreen ? 8 : 9
+    isOnMobile ? 6 : isOnTablet ? 8 : 9
   );
 
   const moreProductsClickHandler = () => {
-    isMobileScreen
+    isOnMobile
       ? setShowProducts(showProducts + 6)
-      : isTabletScreen
+      : isOnTablet
       ? setShowProducts(showProducts + 8)
       : setShowProducts(showProducts + 9);
   };
