@@ -60,12 +60,6 @@ const config: Config = {
           '50%': { transform: 'translateY(1.7px)' },
           '100%': { transform: 'translateY(1.8px)' },
         },
-        // rotateAndTranslate: {
-        //   '0%': { transform: 'rotate(30deg)' },
-        //   '8%': { transform: 'translateY(2px) rotate(60deg)' },
-        //   '19%': { transform: 'translateY(0.1px) rotate(60deg)' },
-        //   '100%': { transform: 'translateY(2px) rotate(60deg)' },
-        // },
       },
       animation: {
         jump: 'jump 2s cubic-bezier(0.42, 0, 0.58, 1) 1',

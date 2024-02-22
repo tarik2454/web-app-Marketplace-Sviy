@@ -17,7 +17,7 @@ export default function Slider() {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   return (
-    <div className="flex flex-row-reverse">
+    <div className="flex flex-row-reverse justify-start gap-5">
       <Swiper
         modules={[FreeMode, Navigation, Pagination, Thumbs]}
         navigation={true}
@@ -66,14 +66,6 @@ export default function Slider() {
             src="https://swiperjs.com/demos/images/nature-5.jpg"
           />
         </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            width={0}
-            height={0}
-            alt="Img"
-            src="https://swiperjs.com/demos/images/nature-6.jpg"
-          />
-        </SwiperSlide>
       </Swiper>
 
       <Swiper
@@ -83,20 +75,20 @@ export default function Slider() {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper"
+        className="mySwiper3"
       >
         <SwiperSlide>
           <Image
-            width={0}
-            height={0}
+            width={84}
+            height={90}
             alt="Img"
             src="https://swiperjs.com/demos/images/nature-1.jpg"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            width={0}
-            height={0}
+            width={84}
+            height={90}
             alt="Img"
             src="https://swiperjs.com/demos/images/nature-2.jpg"
           />
@@ -123,14 +115,6 @@ export default function Slider() {
             height={0}
             alt="Img"
             src="https://swiperjs.com/demos/images/nature-5.jpg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            width={0}
-            height={0}
-            alt="Img"
-            src="https://swiperjs.com/demos/images/nature-6.jpg"
           />
         </SwiperSlide>
       </Swiper>
