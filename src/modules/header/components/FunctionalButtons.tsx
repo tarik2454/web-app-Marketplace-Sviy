@@ -1,6 +1,7 @@
 import { SpriteSVG } from "@/shared/img/SpriteSVG"
 import { Counter } from "."
 import { MouseEventHandler } from "react"
+import Link from "next/link"
 
 type Props = {
   searchButtonClick: MouseEventHandler<HTMLButtonElement>,
@@ -13,9 +14,9 @@ export default function FunctionalButtons ({ searchButtonClick, cartButtonClick 
       <button onClick={searchButtonClick} className="w-8 text-blue-700 hover:text-neutral-800 active:text-neutral-400">
         <SpriteSVG name="search" />
       </button>
-      <button className="hidden w-8 md:block text-blue-700 hover:text-neutral-800 active:text-neutral-400">
+      <Link href={"/signin"} className="hidden w-8 md:flex text-blue-700 hover:text-neutral-800 active:text-neutral-400 items-center content-center">
         <SpriteSVG name="user" />
-      </button>
+      </Link>
       <button className="hidden w-8 relative md:block text-blue-700 hover:text-neutral-800 active:text-neutral-400">
         <Counter />
         <SpriteSVG name="favorite-header" />
