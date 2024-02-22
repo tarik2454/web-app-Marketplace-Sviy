@@ -27,6 +27,7 @@ export default function Slider({ data }: { data: ProductDataType[] }) {
         navigation={{ nextEl: '.myslider-next', prevEl: '.myslider-prev' }}
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000 }}
+        className="mySwiper"
         breakpoints={{
           // when window width is >= 320px
           320: {
@@ -59,10 +60,10 @@ export default function Slider({ data }: { data: ProductDataType[] }) {
 
       <ButtonAllAds>
         <div className="hidden gap-3 md:flex">
-          <button className="myslider-prev swiper-button-prev">
+          <button className="mySwiper-prev">
             <SpriteSVG name="slider-prev" />
           </button>
-          <button className="myslider-next swiper-button-next">
+          <button className="mySwiper-next">
             <SpriteSVG name="slider-next" />
           </button>
         </div>
