@@ -6,7 +6,7 @@ export default function SidebarNavigation () {
   return (
     <ul className="bg-white rounded-[20px] shadow-md">
       <li className="group active">
-        <div className={'rounded-tl-[20px] rounded-tr-[20px]' + ` ${liClass}`}>
+        <div className={'rounded-t-[20px]' + ` ${liClass}`}>
           <SpriteSVG name="user"/>
           Профіль
         </div>
@@ -42,7 +42,7 @@ export default function SidebarNavigation () {
         </div>
       </li>
       <li className="group">
-        <div className={'rounded-tl-[20px] rounded-tr-[20px]' + ` ${liClass}`}>
+        <div className={'rounded-b-lg' + ` ${liClass}`}>
           <SpriteSVG name="exit" />
           Вийти
         </div>

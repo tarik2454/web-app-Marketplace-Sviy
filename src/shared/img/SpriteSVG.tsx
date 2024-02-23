@@ -677,8 +677,6 @@ export const SpriteSVG = ({ name }: { name: string }) => {
             fill="#FFFFFF"
             fillOpacity="1.000000"
             fillRule="evenodd"
-            fillOpacity="1.000000"
-            fillRule="evenodd"
           />
         </svg>
       );

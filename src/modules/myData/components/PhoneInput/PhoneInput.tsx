@@ -20,7 +20,6 @@ export default function PhoneInput ({ formik, fieldName, id, label, index, field
   const errors = Array.isArray(formik.errors[fieldName]) ? formik.errors[fieldName][index] : formik.errors[fieldName];
   const touched = Array.isArray(formik.touched[fieldName]) ? formik.touched[fieldName][index] : formik.touched[fieldName];
   const error = touched && errors;
-  console.log(formik.values);
   const [borderColor, setBorderColor] = useState(error ? "border-red-700" : "border-blue-200");
 
   useEffect(() => {
