@@ -8,4 +8,5 @@ export const linksTitles: TlinksTitles[] = [
   { link: 'signup', title: 'Реєстрація' },
   { link: 'cheng-pass', title: 'Відновлення паролю' },
   { link: 'catalogue', title: 'Каталог' },
+  { link: 'my-data', title: 'Профіль' }
 ];
