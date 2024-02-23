@@ -26,14 +26,14 @@ export default function FormPersonalData () {
       address: Yup.string()
         .min(2, "Адреса повинна бути не менше 2 символів")
         .required("Потрібна адреса"),
-      phoneNumbers: Yup.array().of(Yup.string().required('Вайбер обов`язковий')),
+      phoneNumbers: Yup.array().of(Yup.string().required('Вайбер обов\'язковий')),
       telegram: Yup.string()
         .min(2, "Посилання має бути не менше 10 символів")
         .required("Телеграм обов`язковий"),
       viber: Yup.string()
         .required('Вайбер обов`язковий'),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log('values', values);
     }
   });
@@ -74,7 +74,7 @@ export default function FormPersonalData () {
                   <div key={index} className="flex relative">
                     <Field formik={formik}
                            fieldName="phoneNumbers"
-                           name={`phoneNumbers${index}`}
+                           name={`phoneNumbers[${index}]`}
                            id={`phoneNumbers${index}`}
                            index={index}
                            label={index === 0 ? 'Телефон' : ''}
