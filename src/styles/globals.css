@@ -89,24 +89,24 @@ body {
 }
 
 /* Swiper */
-.swiper-wrapper {
+/* mySwiper1 */
+.mySwiper .swiper-wrapper {
   margin-bottom: 20px;
 }
 
 @media screen and (min-width: 768px) {
-  .swiper-wrapper {
+  .mySwiper .swiper-wrapper {
     margin-bottom: 46px;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .swiper-wrapper {
+  .mySwiper .swiper-wrapper {
     margin-bottom: 40px;
   }
 }
 
-/* Swiper button */
-.mySwiper-prev {
+.mySwiper .mySwiper-prev {
   display: inline-flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -122,12 +122,12 @@ body {
   position: relative !important;
 }
 
-.mySwiper-prev svg {
+.mySwiper .mySwiper-prev svg {
   width: 24px !important;
   height: 24px !important;
 }
 
-.mySwiper-next {
+.mySwiper .mySwiper-next {
   display: inline-flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -143,23 +143,25 @@ body {
   position: relative !important;
 }
 
-.mySwiper-next svg {
+.mySwiper .mySwiper-next svg {
   width: 24px !important;
   height: 24px !important;
 }
 
-.mySwiper-prev:after {
+.mySwiper .mySwiper-prev:after {
   display: none;
 }
 
-.mySwiper-next:after {
+.mySwiper .mySwiper-next:after {
   display: none;
 }
+
+/* mySwiper2 */
 
 /* Pagination */
-.pagination {
+/* .pagination {
   display: flex;
-}
+} */
 
 .swiper-pagination {
   display: flex;
