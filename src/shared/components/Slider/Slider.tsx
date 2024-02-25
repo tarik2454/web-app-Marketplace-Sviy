@@ -24,7 +24,7 @@ export default function Slider({ data }: { data: ProductDataType[] }) {
     <>
       <Swiper
         modules={[Navigation, Pagination, A11y, Autoplay]}
-        navigation={{ nextEl: '.mySwiper-next', prevEl: 'mySwiper-prev' }}
+        navigation={{ nextEl: '.mySwiper-next', prevEl: '.mySwiper-prev' }}
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000 }}
         className="mySwiper"

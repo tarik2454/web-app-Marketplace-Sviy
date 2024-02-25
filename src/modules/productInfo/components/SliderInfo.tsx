@@ -19,12 +19,11 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
-import '../../productInfo/style.css';
 
 export default function SliderInfo() {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
-  const { isOnMobile, isOnTablet, isOnDesktop } = ScreenSize();
+  const { isOnDesktop } = ScreenSize();
 
   return (
     <div className="md:flex md:flex-row-reverse md:justify-start md:gap-6">
@@ -35,11 +34,10 @@ export default function SliderInfo() {
       <div className="flex flex-col">
         <Swiper
           modules={[Navigation, Pagination, Thumbs]}
-          cssMode={true}
           navigation={{ nextEl: '.mySwiper2-next', prevEl: '.mySwiper2-prev' }}
           pagination={{ clickable: true }}
           spaceBetween={10}
-          thumbs={thumbsSwiper ? { swiper: thumbsSwiper } : undefined}
+          thumbs={{ swiper: thumbsSwiper }}
           className="mySwiper2"
         >
           <div className="swiper-wrapper">
@@ -71,7 +69,7 @@ export default function SliderInfo() {
         </Swiper>
       </div>
 
-      {isOnMobile || isOnTablet ? null : (
+      {isOnDesktop && (
         <Swiper
           onSwiper={setThumbsSwiper}
           spaceBetween={10}
