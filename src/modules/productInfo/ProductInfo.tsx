@@ -1,15 +1,14 @@
-import Slider from './components/Slider';
 import ProductDetails from './components/ProductDetails';
 import { Container, Section } from '@/shared/components';
+import SliderInfo from './components/SliderInfo';
 
 export default function ProductInfo() {
   return (
     <Section>
       <Container>
-        <div className="flex">
-          <div className="w-[628px]">
-            <Slider />
-          </div>
+        <div className="flex flex-col md:flex-row md:gap-4">
+          <SliderInfo />
+
           <ProductDetails />
         </div>
       </Container>
