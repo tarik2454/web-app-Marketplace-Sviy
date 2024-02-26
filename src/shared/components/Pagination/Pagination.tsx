@@ -38,26 +38,39 @@ export default function Pagination<T extends PaginationItem>({
   //   setDisplayedItems(nextPageEndIndex);
   // };
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + displayedItems;
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(startIndex + itemsPerPage);
   const currentItems = array.slice(startIndex, endIndex);
 
   const handleLoadMore = () => {
     // Увеличиваем количество отображаемых элементов
     setDisplayedItems(prevDisplayedItems => prevDisplayedItems + itemsPerPage);
+    setEndIndex(prevState => prevState + itemsPerPage);
+    console.log({
+      "start": startIndex,
+      "end": endIndex,
+      "current items": currentItems,
+      "displayed items": displayedItems,
+    })
 
     // Если достигли конца текущей страницы, переходим на следующую страницу.
-    if ((currentPage + 1) * itemsPerPage === displayedItems) {
-      setCurrentPage(currentPage + 1);
+    setCurrentPage(currentPage + 1);
 
       // Устанавливаем текущую страницу, основываясь на количестве отображаемых элементов
       // setCurrentPage(Math.ceil(displayedItems / itemsPerPage));
-    }
   };
 
   const handlePageClick = (selectedPage: { selected: number }) => {
     setCurrentPage(selectedPage.selected);
     setDisplayedItems(itemsPerPage);
+    setStartIndex(selectedPage.selected * itemsPerPage);
+    setEndIndex(selectedPage.selected * itemsPerPage + itemsPerPage);
+
+    console.log({
+      "start": startIndex,
+      "end": endIndex,
+      "current items": currentItems,
+    })
   };
 
   return (
