@@ -24,20 +24,6 @@ export default function Pagination<T extends PaginationItem>({
   const [currentPage, setCurrentPage] = useState(0);
   const [displayedItems, setDisplayedItems] = useState(itemsPerPage);
 
-  // const handleLoadMore = () => {
-  //   const nextPage = currentPage + 1; // Вычисляем номер следующей страницы
-  //   const nextPageEndIndex = nextPage * itemsPerPage; // Вычисляем индекс конца следующей страницы
-
-  //   // Если индекс конца следующей страницы больше или равен длине массива, значит достигнут конец данных и мы не должны увеличивать currentPage и displayedItems в этом случае
-  //   if (nextPageEndIndex >= array.length) {
-  //     return;
-  //   }
-
-  //   // Обновляем currentPage и displayedItems
-  //   setCurrentPage(nextPage);
-  //   setDisplayedItems(nextPageEndIndex);
-  // };
-
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(startIndex + itemsPerPage);
   const currentItems = array.slice(startIndex, endIndex);
@@ -52,12 +38,8 @@ export default function Pagination<T extends PaginationItem>({
       "current items": currentItems,
       "displayed items": displayedItems,
     })
-
-    // Если достигли конца текущей страницы, переходим на следующую страницу.
+    
     setCurrentPage(currentPage + 1);
-
-      // Устанавливаем текущую страницу, основываясь на количестве отображаемых элементов
-      // setCurrentPage(Math.ceil(displayedItems / itemsPerPage));
   };
 
   const handlePageClick = (selectedPage: { selected: number }) => {
