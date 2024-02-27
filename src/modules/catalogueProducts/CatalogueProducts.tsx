@@ -24,17 +24,37 @@ export default function CatalogueProducts() {
       : setShowProducts(showProducts + 9);
   };
 
+  const openHandler = (type: string) => {
+    if (type === "filter") {
+      setFilterDisplay("block");
+      document.body.style.overflow = "hidden";
+    } else if (type === "sortingMenu") {
+      setSortingMenuDisplay("block");
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  const closeHandler = (type: string) => {
+    if (type === "filter") {
+      setFilterDisplay("hidden");
+      document.body.style.overflow = "auto";
+    } else if (type === "sortingMenu") {
+      setSortingMenuDisplay("hidden");
+      document.body.style.overflow = "auto";
+    }
+  }
+
   return (
     <div className="flex gap-6">
       <Filter
         display={filterDisplay}
-        closeButtonClick={() => setFilterDisplay('hidden')}
+        closeButtonClick={() => closeHandler("filter")}
       />
 
       <div className="block">
         <FilterControlButtons
-          filterButtonClick={() => setFilterDisplay('block')}
-          sortingMenuButtonClick={() => setSortingMenuDisplay('block')}
+          filterButtonClick={() => openHandler("filter")}
+          sortingMenuButtonClick={() => openHandler("sortingMenu")}
         />
         <ul className="grid gap-4 mt-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {productsData.slice(0, showProducts).map((product, index) => {
@@ -48,7 +68,7 @@ export default function CatalogueProducts() {
       </div>
       <SortingMenu
         display={sortingMenuDisplay}
-        closeButtonClick={() => setSortingMenuDisplay('hidden')}
+        closeButtonClick={() => closeHandler("sortingMenu")}
       />
     </div>
   );
