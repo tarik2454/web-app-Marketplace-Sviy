@@ -7,29 +7,21 @@ import * as Yup from 'yup';
 export default function FormLoginPassword () {
   const formik = useFormik({
     initialValues: {
-      name: '',
-      lastName: '',
-      address: '',
-      phoneNumbers: [''],
-      telegram: '',
-      viber: ''
+      currentEmail: '',
+      newEmail: '',
+      password: '',
+      newPassword: '',
     },
     validationSchema: Yup.object().shape({
-      name: Yup.string()
-        .min(2, "Ім'я повинно бути не менше 2 символів")
-        .required("Потрібно ім'я"),
-      lastName: Yup.string()
-        .min(2, "Прізвище повинно бути не менше 2 символів")
-        .required("Потрібно прізвище"),
-      address: Yup.string()
-        .min(2, "Адреса повинна бути не менше 2 символів")
-        .required("Потрібна адреса"),
-      phoneNumbers: Yup.array().of(Yup.string().required('Вайбер обов`язковий')),
-      telegram: Yup.string()
-        .min(2, "Посилання має бути не менше 10 символів")
-        .required("Телеграм обов`язковий"),
-      viber: Yup.string()
-        .required('Вайбер обов`язковий'),
+      currentEmail: Yup.string()
+        .min(10, "Email повинен бути не менше 10 символів")
+        .required("Потрібен email"),
+      newEmail: Yup.string()
+        .min(10, "Email повинен бути не менше 10 символів")
+        .required("Потрібен email"),
+      password: Yup.string().required('Password is required'),
+      repeatPassword: Yup.string()
+        .oneOf([Yup.ref('newPassword')], 'Паролі повинні співпадати')
     }),
     onSubmit: (values) => {
       console.log('values', values);
@@ -40,30 +32,46 @@ export default function FormLoginPassword () {
     <div>
       <h3 className="text-2xl mb-7">Логін та пароль</h3>
       <form
-        className="flex flex-col gap-7"
+        className="flex flex-col gap-7 w-full items-start"
         onSubmit={formik.handleSubmit}>
         <FormInput
           formik={formik}
           id="currentEmail"
           label={'Поточний логін'}
-          inputType="text"
+          inputType="email"
         />
         <FormInput
           formik={formik}
           id="newEmail"
           label={'Новий логін'}
-          inputType="text"
+          inputType="email"
         />
         <BlueBorderButton onClick={() => {}} smallButton type='button'>
           Змінити електронну адресу
         </BlueBorderButton>
 
-        <div className='flex mt-10 justify-between'>
-          <BlueBorderButton onClick={() => {
-          }} type='button'>
-            Видалити профіль
-          </BlueBorderButton>
-        </div>
+        <FormInput
+          formik={formik}
+          id="password"
+          label={'Поточний пароль'}
+          inputType="password"
+        />
+        <FormInput
+          formik={formik}
+          id="newPassword"
+          label={'Новий пароль'}
+          inputType="password"
+        />
+        <FormInput
+          formik={formik}
+          id="repeatPassword"
+          label={'Повторіть пароль'}
+          inputType="password"
+        />
+
+        <BlueBorderButton onClick={() => {}} smallButton type='submit'>
+          Змінити пароль
+        </BlueBorderButton>
       </form>
     </div>
   )

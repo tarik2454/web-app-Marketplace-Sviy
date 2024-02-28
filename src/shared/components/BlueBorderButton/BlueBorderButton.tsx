@@ -18,7 +18,7 @@ const BlueBorderButton = ({
     <button
       type={type}
       className={
-        `flex justify-center items-center text-blue-900 border-solid border-2 border-blue-900 px-[32px] rounded-[20px] md:py-3 md:tex-[16px] md:leading-[1.6] hover:bg-blue-900 hover:text-white active:bg-blue-900 transition-all ${cssSettings} ${smallButton ? 'py-[8px] xl:py-[7px] md:py-1' : 'md:py-2 py-[10px] xl:py-[16px]'}`
+        `flex justify-center items-center text-blue-900 border-solid border-2 border-blue-900 px-[15px] md:px-[32px] text-sm md:text-base rounded-[20px] md:py-3 md:leading-[1.6] hover:bg-blue-900 hover:text-white active:bg-blue-900 transition-all ${cssSettings} ${smallButton ? 'py-[8px] xl:py-[7px] md:py-1' : 'md:py-2 py-[10px] xl:py-[16px]'}`
       }
       onClick={onClick}
     >
