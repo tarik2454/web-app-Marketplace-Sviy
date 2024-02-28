@@ -17,7 +17,6 @@ type Props = {
 export default function FormInput ({ label, inputType, id, formik, placeholder, inputIcon }: Props ) {
   const [inputTypePass, setInputTypePass] = useState(inputType);
   const error = formik.touched[id] && formik.errors[id];
-  console.log(error);
 
   const [borderColor, setBorderColor] = useState(error ? "border-red-700" : "border-blue-200");
 

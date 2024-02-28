@@ -14,21 +14,21 @@ export default function Page() {
 
   return (
     <>
-      <Section className='py-[80px] md:pt-[104px] xl:py-[164px]'>
+      <Section className='pt-[120px] md:pt-[140px] pb-[80px] xl:py-[164px]'>
         <ColorSpot />
         <Container>
           <Breadcrumbs homeElement={<span>Головна</span>} capitalizeLinks />
           <h2 className="text-4xl py-12">Мої дані</h2>
-          <div className="flex items-start gap-8">
-            <div  className="basis-1/3 max-w-[302px]">
+          <div className="flex flex-col items-start gap-8 md:flex-row">
+            <div  className="w-full md:basis-2/3 lg:basis-1/3 md:max-w-[302px]">
               <SidebarNavigation/>
             </div>
-            <div className="flex w-full justify-between flex-wrap">
-              <div className="basis-2/3 max-w-[411px]">
+            <div className="flex w-full justify-between flex-wrap gap-6">
+              <div className="w-full xl:basis-2/3 xl:max-w-[411px]">
                 <FormPersonalData />
               </div>
-              <div className="basis-2/3 max-w-[411px]">
-                <FormLoginPassword />
+              <div className="w-full xl:basis-2/3 xl:max-w-[411px]">
+                {/*<FormLoginPassword />*/}
               </div>
             </div>
           </div>
