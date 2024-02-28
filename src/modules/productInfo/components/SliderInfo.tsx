@@ -6,13 +6,9 @@ import { Swiper as SwiperType } from 'swiper';
 import Image from 'next/image';
 import { useState } from 'react';
 
+import dataImg from '../data/data-img';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import { SpriteSVG } from '../img/SpriteSVG';
-import salo1 from '../img/1.jpeg';
-import salo2 from '../img/2.jpeg';
-import salo3 from '../img/3.jpeg';
-import salo4 from '../img/4.jpeg';
-import salo5 from '../img/5.jpeg';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -41,21 +37,17 @@ export default function SliderInfo() {
           className="mySwiper2"
         >
           <div className="swiper-wrapper">
-            <SwiperSlide>
-              <Image width={0} height={0} alt="Img" src={salo1} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image width={0} height={0} alt="Img" src={salo2} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image width={0} height={0} alt="Img" src={salo3} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image width={0} height={0} alt="Img" src={salo4} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image width={0} height={0} alt="Img" src={salo5} />
-            </SwiperSlide>
+            {dataImg.map((item, index) => (
+              <SwiperSlide key={index}>
+                <Image
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  alt="Img"
+                  src={item}
+                />
+              </SwiperSlide>
+            ))}
           </div>
 
           <div className="hidden xl:flex gap-[399px] absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4 z-10">
@@ -80,21 +72,17 @@ export default function SliderInfo() {
           className="mySwiper3"
         >
           <div className="swiper-wrapper">
-            <SwiperSlide>
-              <Image width={0} height={0} alt="Img" src={salo1} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image width={0} height={0} alt="Img" src={salo2} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image width={0} height={0} alt="Img" src={salo3} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image width={0} height={0} alt="Img" src={salo4} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image width={0} height={0} alt="Img" src={salo5} />
-            </SwiperSlide>
+            {dataImg.map((item, index) => (
+              <SwiperSlide key={index}>
+                <Image
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  alt="Img"
+                  src={item}
+                />
+              </SwiperSlide>
+            ))}
           </div>
         </Swiper>
       )}

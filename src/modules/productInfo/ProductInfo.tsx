@@ -6,7 +6,7 @@ export default function ProductInfo() {
   return (
     <Section>
       <Container>
-        <div className="flex flex-col md:flex-row md:gap-4">
+        <div className="flex flex-col md:flex-row md:gap-4 xl:gap-6">
           <SliderInfo />
 
           <ProductDetails />
