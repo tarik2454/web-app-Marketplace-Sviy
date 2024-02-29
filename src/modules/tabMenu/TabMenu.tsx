@@ -22,7 +22,8 @@ export default function TabMenu() {
             {tabMenuData.map((item, index) => (
               <li key={index} className={`text-center bg-white relative`}>
                 <button
-                  className={`text-sm md:text-xl leading-[1.4] md:leading-[1.6] w-full h-full px-5 md:px-6 py-[6px] text-gray-600 transition-all ${after} 
+                  className={`text-sm md:text-xl leading-[1.4] md:leading-[1.6] w-full h-full px-5 md:px-6 py-[6px] text-gray-600 transition-all 
+                  ${after} 
                   ${
                     activeTab === index
                       ? 'text-gray-900 bg-neutral-50 after:block'
