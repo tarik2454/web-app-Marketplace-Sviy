@@ -14,3 +14,5 @@ export { default as TabMenu } from './tabMenu/TabMenu';
 export { default as CatalogueProducts } from "./catalogueProducts/CatalogueProducts";
 export { default as SigninForm } from "./signinForm/SigninForm";
 export { default as SignupForm } from "./signupForm/SignupForm";
+export { default as NotFound } from "./notFound/NotFound";
+export { default as SellerData } from "./sellerData/SellerData";

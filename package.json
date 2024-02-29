@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-input-mask": "^3.0.5",
     "formik": "^2.4.5",
     "next": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-input-mask": "^2.0.4",
     "react-modal": "^3.16.1",
     "react-paginate": "^8.2.0",
     "react-responsive": "^9.0.2",

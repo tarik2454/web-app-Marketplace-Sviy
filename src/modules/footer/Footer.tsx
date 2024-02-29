@@ -9,16 +9,16 @@ import ScreenSize from '@/shared/hooks/useMediaQuery';
 // import EmailConfirmation from '@/shared/components/Modal/EmailConfirmation';
 
 export default function Footer() {
-  const { isMobileScreen, isTabletScreen } = ScreenSize();
+  const { isOnMobile, isOnTablet } = ScreenSize();
 
   return (
     <footer className="bg-blue-200">
       <Container>
         <div className="pt-5 pb-[25px] md:pt-[32px] md:pb-5 xl:pb-6">
           <div className="flex justify-between ">
-            {isMobileScreen ? (
+            {isOnMobile ? (
               <Logo logo="logoFooterMobile" />
-            ) : isTabletScreen ? (
+            ) : isOnTablet ? (
               <Logo logo="logoTablet" />
             ) : (
               <Logo logo="logoFooterDesktop" />

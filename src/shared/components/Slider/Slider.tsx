@@ -24,9 +24,10 @@ export default function Slider({ data }: { data: ProductDataType[] }) {
     <>
       <Swiper
         modules={[Navigation, Pagination, A11y, Autoplay]}
-        navigation={{ nextEl: '.myslider-next', prevEl: '.myslider-prev' }}
+        navigation={{ nextEl: '.mySwiper-next', prevEl: '.mySwiper-prev' }}
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000 }}
+        className="mySwiper"
         breakpoints={{
           // when window width is >= 320px
           320: {
@@ -49,7 +50,7 @@ export default function Slider({ data }: { data: ProductDataType[] }) {
           {data.slice(0, 6).map((product, index) => (
             <SwiperSlide
               key={`${product.id}-${index}`}
-              className="swiper-slide"
+              className="swiper-slide1"
             >
               <Card product={product} />
             </SwiperSlide>
@@ -59,10 +60,10 @@ export default function Slider({ data }: { data: ProductDataType[] }) {
 
       <ButtonAllAds>
         <div className="hidden gap-3 md:flex">
-          <button className="myslider-prev swiper-button-prev">
+          <button className="mySwiper-prev">
             <SpriteSVG name="slider-prev" />
           </button>
-          <button className="myslider-next swiper-button-next">
+          <button className="mySwiper-next">
             <SpriteSVG name="slider-next" />
           </button>
         </div>

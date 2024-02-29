@@ -1,12 +1,7 @@
 'use client';
 
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import React, {
-  MouseEventHandler,
-  ReactNode,
-  useEffect,
-  useState,
-} from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
 interface PaginationItem {
@@ -17,52 +12,52 @@ type PropsPagination<T> = {
   itemsPerPage: number;
   array: T[];
   renderItem: (item: T, index: number) => ReactNode;
-  styleMarginBottom?: string;
+  styleUl: string;
 };
 
 export default function Pagination<T extends PaginationItem>({
   itemsPerPage,
   array,
   renderItem,
-  styleMarginBottom,
+  styleUl,
 }: PropsPagination<T>) {
   const [currentPage, setCurrentPage] = useState(0);
   const [displayedItems, setDisplayedItems] = useState(itemsPerPage);
 
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(startIndex + itemsPerPage);
+  const currentItems = array.slice(startIndex, endIndex);
+
   const handleLoadMore = () => {
     // Увеличиваем количество отображаемых элементов
     setDisplayedItems(prevDisplayedItems => prevDisplayedItems + itemsPerPage);
-
-    // Если достигли конца текущей страницы, переходим на следующую страницу.
-    if ((currentPage + 1) * itemsPerPage === displayedItems) {
-      setCurrentPage(currentPage + 1);
-
-      // Устанавливаем текущую страницу, основываясь на количестве отображаемых элементов
-      // setCurrentPage(Math.ceil(displayedItems / itemsPerPage));
-    }
+    setEndIndex(prevState => prevState + itemsPerPage);
+    console.log({
+      "start": startIndex,
+      "end": endIndex,
+      "current items": currentItems,
+      "displayed items": displayedItems,
+    })
+    
+    setCurrentPage(currentPage + 1);
   };
-
-  useEffect(() => {
-    // Устанавливаем текущую страницу, основываясь на количестве отображаемых элементов
-    setCurrentPage(Math.ceil(displayedItems / itemsPerPage));
-  }, [displayedItems, itemsPerPage]);
 
   const handlePageClick = (selectedPage: { selected: number }) => {
     setCurrentPage(selectedPage.selected);
     setDisplayedItems(itemsPerPage);
+    setStartIndex(selectedPage.selected * itemsPerPage);
+    setEndIndex(selectedPage.selected * itemsPerPage + itemsPerPage);
+
+    console.log({
+      "start": startIndex,
+      "end": endIndex,
+      "current items": currentItems,
+    })
   };
-
-  // const startIndex = currentPage * itemsPerPage;
-  // const endIndex = startIndex + itemsPerPage;
-  // const currentItems = array.slice(startIndex, endIndex);
-
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + displayedItems;
-  const currentItems = array.slice(startIndex, endIndex);
 
   return (
     <div>
-      <ul className={styleMarginBottom}>
+      <ul className={styleUl}>
         {currentItems.map((item, index) => renderItem(item, index))}
       </ul>
 
@@ -73,14 +68,13 @@ export default function Pagination<T extends PaginationItem>({
         Дивитись більше
       </button>
 
-      {/* Пагинация */}
       <ReactPaginate
         className="flex justify-center items-center gap-5"
         breakLabel="..."
         nextLabel={<SpriteSVG name="pagination-rigth" />}
         nextClassName="flex p-[9px]"
         onPageChange={handlePageClick}
-        activeClassName="text-blue-900 text-red-500 text-xl"
+        activeClassName="text-blue-900"
         pageRangeDisplayed={3}
         marginPagesDisplayed={1}
         pageCount={Math.ceil(array.length / itemsPerPage)}

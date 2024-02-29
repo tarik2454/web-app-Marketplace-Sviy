@@ -19,7 +19,7 @@ export default function Header() {
 
   const backdropRef = useRef<HTMLDivElement | null>(null);
 
-  const { isMobileScreen, isTabletScreen } = ScreenSize();
+  const { isOnMobile, isOnTablet } = ScreenSize();
 
   const searchButtonHandler = () => {
     if (displaySearchProducts === 'hidden') {
@@ -61,7 +61,6 @@ export default function Header() {
     };
 
     const handleEscapeClick = (event: KeyboardEvent): void => {
-      console.log(event);
       if (event.code === 'Escape') {
         closeCatalog();
       }
@@ -99,9 +98,9 @@ export default function Header() {
             <HamburgerButton hamburgerClick={() => setDisplayMenu('block')} />
 
             <div className="mx-auto">
-              {isMobileScreen ? (
+              {isOnMobile ? (
                 <Logo logo="logoHeaderMobile" />
-              ) : isTabletScreen ? (
+              ) : isOnTablet ? (
                 <Logo logo="logoTablet" />
               ) : (
                 <Logo logo="logoHeaderDesktop" />

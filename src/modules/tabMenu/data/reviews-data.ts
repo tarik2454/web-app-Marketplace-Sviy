@@ -4,7 +4,7 @@ const reviewsData = [
     userName: 'Вікторія',
     rating: 5,
     description:
-      'Lorem ipsum dolor sit amet consectetur. Tellus gravida sed quis augue quam. Dignissim dignissim eu felis risus eu. Netus neque pellentesque aliquet facilisis. Quam sollicitudin tristique volutpat posuere sapien eget.',
+      'Lorem ipsum dolor sit amet consectetur. Tellus gravida sed quis augue quam. Dignissim dignissim eu felis risus eu. Netus neque pellentesque aliquet facilisis. Quam sollicitudin tristique volutpat posuere sapien eget. Lorem ipsum dolor sit amet consectetur. Tellus gravida sed quis augue quam. Dignissim dignissim eu felis risus eu. Netus neque pellentesque aliquet facilisis. Quam sollicitudin tristique volutpat posuere sapien eget.',
     data: '10.11.2023',
   },
   {
@@ -20,7 +20,7 @@ const reviewsData = [
     userName: 'Анон',
     rating: 4,
     description:
-      'Lorem ipsum dolor sit amet consectetur. Tellus gravida sed quis augue quam. Dignissim dignissim eu felis risus eu. Netus neque pellentesque aliquet facilisis. Quam sollicitudin tristique volutpat posuere sapien eget.',
+      'Lorem ipsum dolor sit amet consectetur. Tellus gravida sed quis augue quam. Dignissim dignissim eu felis risus eu. Netus neque pellentesque aliquet facilisis. Quam sollicitudin tristique volutpat posuere sapien eget. Netus neque pellentesque aliquet facilisis. Quam sollicitudin tristique volutpat posuere sapien eget.',
     data: '10.11.2023',
   },
   {
