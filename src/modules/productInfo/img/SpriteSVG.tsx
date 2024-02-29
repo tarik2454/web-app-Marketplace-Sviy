@@ -4,7 +4,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
       return (
         <svg width="24" height="24" fill="none">
           <path
-            fill="#212121"
+            fill={'currentColor'}
             fillRule="evenodd"
             d="m8.293 6.707 6 6L15 12l-.707-.707-6 6 1.414 1.414L16.414 12 9.707 5.293 8.293 6.707Z"
           />
@@ -15,7 +15,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
       return (
         <svg width="24" height="24" fill="none">
           <path
-            fill="#212121"
+            fill={'currentColor'}
             fillRule="evenodd"
             d="m15.707 6.707-6 6L9 12l.707-.707 6 6-1.414 1.414L7.586 12l6.707-6.707 1.414 1.414Z"
           />
@@ -84,7 +84,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
           </defs>
           <path fill="none" d="M0 0h18v18H0z" />
           <g clipPath="url(#a)">
-            <path stroke="#656565" strokeWidth="2" d="M1.2 9h15.599" />
+            <path stroke={'currentColor'} strokeWidth="2" d="M1.2 9h15.599" />
           </g>
         </svg>
       );
@@ -100,7 +100,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
           <path fill="none" d="M0 0h18v18H0z" />
           <g clipPath="url(#a)">
             <path
-              stroke="#656565"
+              stroke={'currentColor'}
               strokeLinejoin="round"
               strokeWidth="2"
               d="M9 3.375v11.25M14.625 9H3.375"

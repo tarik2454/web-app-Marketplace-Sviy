@@ -15,6 +15,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
+import ButtonAddFavorite from './ProductDetails/ButtonAddFavorite';
 
 export default function SliderInfo() {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
@@ -23,11 +24,12 @@ export default function SliderInfo() {
 
   return (
     <div className="md:flex md:flex-row-reverse md:justify-start md:gap-6">
-      <button className="p-[8px] bg-white rounded-circle absolute top-4 right-4 z-10">
-        <SpriteSVG name="heart" />
-      </button>
+      <div className="flex flex-col relative">
+        {(!isOnDesktop && (
+          <ButtonAddFavorite stylesWrapper="top-4 right-4" />
+        )) ||
+          null}
 
-      <div className="flex flex-col">
         <Swiper
           modules={[Navigation, Pagination, Thumbs]}
           navigation={{ nextEl: '.mySwiper2-next', prevEl: '.mySwiper2-prev' }}
