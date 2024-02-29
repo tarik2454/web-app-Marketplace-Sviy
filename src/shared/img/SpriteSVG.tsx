@@ -692,7 +692,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
         >
           <g
             id="emojione-v1:left-check-mark"
-            clip-path="url(#clip0_1708_11739)"
+            clipPath="url(#clip0_1708_11739)"
           >
             <path
               id="Vector"
@@ -755,7 +755,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
               width="68.000000"
               height="68.000000"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
               <feFlood flood-opacity="0" result="BackgroundImageFix" />
               <feColorMatrix
@@ -791,7 +791,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
                 height="22.000000"
                 transform="translate(21.000000 21.000000)"
                 fill="white"
-                fill-opacity="0"
+                fillOpacity="0"
               />
             </clipPath>
           </defs>
@@ -803,7 +803,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
               height="44.000000"
               transform="translate(10.000000 10.000000)"
               fill="#FFFFFF"
-              fill-opacity="1.000000"
+              fillOpacity="1.000000"
             />
             <rect
               id="Google"
@@ -812,36 +812,36 @@ export const SpriteSVG = ({ name }: { name: string }) => {
               height="22.000000"
               transform="translate(21.000000 21.000000)"
               fill="#FFFFFF"
-              fill-opacity="1.000000"
+              fillOpacity="1.000000"
             />
-            <g clip-path="url(#clip17_959)">
+            <g clipPath="url(#clip17_959)">
               <path
                 id="Vector"
                 d="M42.9883 32.2051C42.9883 31.3047 42.9131 30.6465 42.751 29.9648L32.2188 29.9648L32.2188 34.0332L38.4014 34.0332C38.2764 35.0449 37.6035 36.5664 36.1074 37.5898L36.0869 37.7266L39.417 40.2461L39.6475 40.2695C41.7666 38.3574 42.9883 35.543 42.9883 32.2051Z"
                 fill="#3792DE"
-                fill-opacity="1.000000"
-                fill-rule="nonzero"
+                fillOpacity="1.000000"
+                fillRule="nonzero"
               />
               <path
                 id="Vector"
                 d="M32.2188 42.9238C35.2471 42.9238 37.79 41.9492 39.6475 40.2676L36.1074 37.5879C35.1602 38.2344 33.8887 38.6836 32.2188 38.6836C29.252 38.6836 26.7344 36.7715 25.8369 34.1289L25.7051 34.1406L22.2422 36.7578L22.1973 36.8809C24.042 40.4629 27.8311 42.9238 32.2188 42.9238Z"
                 fill="#34A853"
-                fill-opacity="1.000000"
-                fill-rule="nonzero"
+                fillOpacity="1.000000"
+                fillRule="nonzero"
               />
               <path
                 id="Vector"
                 d="M25.8369 34.1309C25.6006 33.4492 25.4629 32.7168 25.4629 31.9629C25.4629 31.207 25.6006 30.4766 25.8242 29.7949L25.8184 29.6484L22.3125 26.9883L22.1973 27.041C21.4375 28.5273 21.001 30.1973 21.001 31.9629C21.001 33.7285 21.4375 35.3965 22.1973 36.8828L25.8369 34.1309Z"
                 fill="#FF9800"
-                fill-opacity="1.000000"
-                fill-rule="nonzero"
+                fillOpacity="1.000000"
+                fillRule="nonzero"
               />
               <path
                 id="Vector"
                 d="M32.2188 25.2383C34.3252 25.2383 35.7461 26.127 36.5566 26.8711L39.7227 23.8496C37.7783 22.084 35.2471 21 32.2188 21C27.8311 21 24.042 23.4609 22.1973 27.041L25.8242 29.7949C26.7344 27.1504 29.252 25.2383 32.2188 25.2383Z"
                 fill="#EB4335"
-                fill-opacity="1.000000"
-                fill-rule="nonzero"
+                fillOpacity="1.000000"
+                fillRule="nonzero"
               />
             </g>
           </g>

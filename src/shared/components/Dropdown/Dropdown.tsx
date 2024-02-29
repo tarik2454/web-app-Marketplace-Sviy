@@ -2,8 +2,13 @@
 
 import Select from 'react-select'
 
+type Option = {
+  value: string,
+  label: string,
+}
+
 type Props = {
-  options: Array<any>,
+  options: Array<Option>,
   placeholder: string,
   id: string,
   dropdownName?: string,
@@ -11,7 +16,7 @@ type Props = {
   onChange: any,
 }; 
 
-export default function Dropdown ({ options, placeholder, id, dropdownName, className,onChange }: Props) {
+export default function Dropdown ({ options, placeholder, id, dropdownName, className, onChange }: Props) {
   return (
     <div className={className ? `${className}` : "flex flex-col gap-4 mt-8"}>
       <label htmlFor={id}>{dropdownName}</label>

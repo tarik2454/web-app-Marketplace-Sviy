@@ -4,9 +4,11 @@ import { MouseEventHandler } from 'react';
 export default function CloseButton({
   closeButtonClick,
   closeCatalogClick,
+  closeForm, // close  form
 }: {
   closeButtonClick?: MouseEventHandler<HTMLButtonElement>;
   closeCatalogClick?: MouseEventHandler<HTMLButtonElement>;
+  closeForm?: MouseEventHandler<HTMLButtonElement>;
 }) {
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -16,6 +18,10 @@ export default function CloseButton({
     }
     if (closeCatalogClick) {
       closeCatalogClick(event);
+    }
+    if (closeForm) {
+      // close form
+      closeForm(event);
     }
   };
 
