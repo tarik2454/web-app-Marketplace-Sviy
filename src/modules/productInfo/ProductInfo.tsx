@@ -1,7 +1,6 @@
 import ProductDetails from './components/ProductDetails/ProductDetails';
 import { Container, Section } from '@/shared/components';
 import SliderInfo from './components/SliderInfo';
-import { SpriteSVG } from './img/SpriteSVG';
 
 export default function ProductInfo() {
   return (
