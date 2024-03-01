@@ -22,29 +22,25 @@ export default function Pagination<T extends PaginationItem>({
   styleUl,
 }: PropsPagination<T>) {
   const [currentPage, setCurrentPage] = useState(0);
-  const [displayedItems, setDisplayedItems] = useState(itemsPerPage);
 
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(startIndex + itemsPerPage);
   const currentItems = array.slice(startIndex, endIndex);
 
   const handleLoadMore = () => {
-    // Увеличиваем количество отображаемых элементов
-    setDisplayedItems(prevDisplayedItems => prevDisplayedItems + itemsPerPage);
-    setEndIndex(prevState => prevState + itemsPerPage);
+    if (endIndex < array.length) {
+      setEndIndex(endIndex + itemsPerPage);
+      setCurrentPage(currentPage + 1);
+    }
     console.log({
       "start": startIndex,
       "end": endIndex,
       "current items": currentItems,
-      "displayed items": displayedItems,
     })
-    
-    setCurrentPage(currentPage + 1);
   };
 
   const handlePageClick = (selectedPage: { selected: number }) => {
     setCurrentPage(selectedPage.selected);
-    setDisplayedItems(itemsPerPage);
     setStartIndex(selectedPage.selected * itemsPerPage);
     setEndIndex(selectedPage.selected * itemsPerPage + itemsPerPage);
 
