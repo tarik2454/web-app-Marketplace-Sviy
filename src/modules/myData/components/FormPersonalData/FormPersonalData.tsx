@@ -67,40 +67,40 @@ export default function FormPersonalData () {
             placeholder={'Адреса'}
             inputType="text"
           />
-          <FieldArray name="phoneNumbers">
-            {({ push, remove }) => (
-              <div className="flex flex-col gap-10">
-                {formik.values.phoneNumbers.map((number, index: number) => (
-                  <div key={index} className="flex relative">
-                    <Field formik={formik}
-                           fieldName="phoneNumbers"
-                           name={`phoneNumbers[${index}]`}
-                           id={`phoneNumbers${index}`}
-                           index={index}
-                           label={index === 0 ? 'Телефон' : ''}
-                           component={PhoneInput} />
+          {/*<FieldArray name="phoneNumbers">*/}
+          {/*  {({ push, remove }) => (*/}
+          {/*    <div className="flex flex-col gap-10">*/}
+          {/*      {formik.values.phoneNumbers.map((number, index: number) => (*/}
+          {/*        <div key={index} className="flex relative">*/}
+          {/*          <Field formik={formik}*/}
+          {/*                 fieldName="phoneNumbers"*/}
+          {/*                 name={`phoneNumbers[${index}]`}*/}
+          {/*                 id={`phoneNumbers${index}`}*/}
+          {/*                 index={index}*/}
+          {/*                 label={index === 0 ? 'Телефон' : ''}*/}
+          {/*                 component={PhoneInput} />*/}
 
-                    {index === 0 ? null :
-                      <button type='button'
-                              onClick={() => remove(index)}
-                              className="flex items-center w-[18px] h-[18px] absolute -right-6 inset-y-2/4 top-4">
-                        <SpriteSVG name='cross' />
-                      </button>
-                    }
-                  </div>
-                ))}
-                <button type='button'
-                        onClick={() => push('')}
-                        className="flex items-center disabled:text-gray-400 text-blue-700"
-                        disabled={formik.values.phoneNumbers.length > 3}>
-                  Додати ще телефон
-                  <span className="w-[18px] h-[18px]">
-                      <SpriteSVG name="expand_right" />
-                    </span>
-                </button>
-              </div>
-            )}
-          </FieldArray>
+          {/*          {index === 0 ? null :*/}
+          {/*            <button type='button'*/}
+          {/*                    onClick={() => remove(index)}*/}
+          {/*                    className="flex items-center w-[18px] h-[18px] absolute -right-6 inset-y-2/4 top-4">*/}
+          {/*              <SpriteSVG name='cross' />*/}
+          {/*            </button>*/}
+          {/*          }*/}
+          {/*        </div>*/}
+          {/*      ))}*/}
+          {/*      <button type='button'*/}
+          {/*              onClick={() => push('')}*/}
+          {/*              className="flex items-center disabled:text-gray-400 text-blue-700"*/}
+          {/*              disabled={formik.values.phoneNumbers.length > 3}>*/}
+          {/*        Додати ще телефон*/}
+          {/*        <span className="w-[18px] h-[18px]">*/}
+          {/*            <SpriteSVG name="expand_right" />*/}
+          {/*          </span>*/}
+          {/*      </button>*/}
+          {/*    </div>*/}
+          {/*  )}*/}
+          {/*</FieldArray>*/}
 
           <span>Соціальні мережі</span>
 

@@ -3,7 +3,7 @@
 import { SetStateAction, useState } from 'react';
 import { Container, Section, SectionTitle } from '@/shared/components';
 import tabMenuData from './data/tab-menu-data';
-import { DescriptionList, Reviews, ServicesList } from './Components';
+import { DescriptionList, Reviews, ServicesList } from './components';
 
 export default function TabMenu() {
   const [activeTab, setActiveTab] = useState(0);
