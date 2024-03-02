@@ -6,10 +6,15 @@ import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { useFormik } from 'formik';
 import Link from 'next/link';
-import { useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import * as Yup from 'yup';
 
-export default function SignupForm() {
+type Props = {
+  signupType: 'page' | 'burger';
+  signinClick?: MouseEventHandler<HTMLButtonElement>;
+};
+
+export default function SignupForm({ signupType, signinClick }: Props) {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -102,9 +107,15 @@ export default function SignupForm() {
       </div>
       <div className="flex justify-center pb-7">
         <p className="pr-6">Маєте профіль?</p>
-        <Link href="/signin" className="text-blue-90">
-          Увійти
-        </Link>
+        {signupType === 'page' ? (
+          <Link href="/signin" className="text-blue-90">
+            Увійти
+          </Link>
+        ) : (
+          <button className="text-blue-90" onClick={signinClick}>
+            Увійти
+          </button>
+        )}
       </div>
     </div>
   );

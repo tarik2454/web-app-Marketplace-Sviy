@@ -14,7 +14,7 @@ export default function Page() {
             heading="Увійти в акаунт"
             additionalText="Увійдіть, щоб мати можливість додавати товари до обраного та бачити свої замовлення."
           />
-          <SigninForm />
+          <SigninForm signinType="page" />
         </Container>
       </Section>
     </>

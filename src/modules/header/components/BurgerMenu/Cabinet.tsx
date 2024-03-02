@@ -7,9 +7,6 @@ type Props = {
 };
 
 export default function Cabinet({ signinClick, signupClick }: Props) {
-  const [showSigninForm, setShowSigninForm] = useState(false);
-  const [showSignupForm, setShowSignupForm] = useState(false);
-
   return (
     <div className="flex gap-4 mb-[124px]">
       <div className="p-4 bg-blue-200 border-2 rounded-circle border-transparent">

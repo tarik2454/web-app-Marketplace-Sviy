@@ -5,8 +5,19 @@ import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { useFormik } from 'formik';
 import Link from 'next/link';
 import * as Yup from 'yup';
+import { MouseEventHandler } from 'react';
 
-export default function SigninForm() {
+type Props = {
+  signinType: 'page' | 'burger';
+  signupClick?: MouseEventHandler<HTMLButtonElement>;
+  signinForgotClick?: MouseEventHandler<HTMLButtonElement>;
+};
+
+export default function SigninForm({
+  signinType,
+  signupClick,
+  signinForgotClick,
+}: Props) {
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -52,9 +63,15 @@ export default function SigninForm() {
             id="rememberMe"
             label="Запам’ятати мене"
           />
-          <Link href="/signin-forgot" className="text-blue-900">
-            Нагадати пароль
-          </Link>
+          {signinType === 'page' ? (
+            <Link href="/signin-forgot" className="text-blue-900">
+              Нагадати пароль
+            </Link>
+          ) : (
+            <button className="text-blue-90" onClick={signinForgotClick}>
+              Нагадати пароль
+            </button>
+          )}
         </div>
 
         <div className="w-28 mt-10 mx-auto pb-6">
@@ -70,9 +87,15 @@ export default function SigninForm() {
       </div>
       <div className="flex justify-center">
         <p className="pr-6">Немає профілю?</p>
-        <Link href="/signup" className="text-blue-90">
-          Зареєструйся
-        </Link>
+        {signinType === 'page' ? (
+          <Link href="/signup" className="text-blue-90">
+            Зареєструйся
+          </Link>
+        ) : (
+          <button className="text-blue-90" onClick={signupClick}>
+            Зареєструйся
+          </button>
+        )}
       </div>
     </div>
   );

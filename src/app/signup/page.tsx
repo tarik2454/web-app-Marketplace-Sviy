@@ -14,7 +14,7 @@ export default function Page() {
         <Container>
           <Breadcrumbs homeElement={<span>Головна</span>} capitalizeLinks />
           <FormHeading heading="Реєстрація нового користувача" />
-          <SignupForm />
+          <SignupForm signupType="page" />
         </Container>
       </Section>
     </>

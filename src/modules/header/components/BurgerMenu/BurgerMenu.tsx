@@ -7,6 +7,7 @@ import {
   CloseButton,
 } from '@/shared/components/index';
 import { Categories, SigninForm, SignupForm } from '@/modules';
+import SigninForgotForm from '@/modules/signinForgotForm/SigninForgotForm';
 import { MouseEventHandler, useEffect, useState } from 'react';
 import { Contacts } from '@/modules/footer';
 import Container from '@/shared/components/Container/Container';
@@ -21,6 +22,7 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
   const [displayCategories, setDisplayCategories] = useState('hidden');
   const [signinFormDisplay, setSigninFormDisplay] = useState('hidden');
   const [signupFormDisplay, setSignupFormDisplay] = useState('hidden');
+  const [signinForgotDisplay, setSigninForgotDisplay] = useState('hidden');
 
   useEffect(() => {
     if (display === 'hidden') {
@@ -37,11 +39,12 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
   const closeForm = () => {
     setSigninFormDisplay('hidden');
     setSignupFormDisplay('hidden');
+    setSigninForgotDisplay('hidden');
   };
 
   return (
     <div
-      className={`${display} md:hidden w-full py-5 bg-neutral-50 fixed inset-0 z-10`}
+      className={`${display} md:hidden w-full py-5 bg-neutral-50 fixed inset-0 z-10 overflow-y-auto`}
     >
       <Container>
         <div className="flex justify-end mb-5">
@@ -83,10 +86,14 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
           heading="Увійти в акаунт"
           additionalText="Увійдіть, щоб мати можливість додавати товари до обраного та бачити свої замовлення."
         />
-        <SigninForm />
+        <SigninForm
+          signinType="burger"
+          signupClick={() => setSignupFormDisplay('Block')}
+          signinForgotClick={() => setSigninForgotDisplay('block')}
+        />
       </div>
       <div
-        className={`${signupFormDisplay} absolute top-0  bg-white w-full h-screen pt-[84px] pr-[16px] pl-[16px] overflow-y-auto`}
+        className={`${signupFormDisplay} absolute top-0  bg-white w-full h-screen pt-[84px] pr-[16px] pl-[16px] `}
       >
         <div className="absolute top-5 right-4">
           <CloseButton closeForm={closeForm} />
@@ -96,7 +103,15 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
           heading="Реєстрація нового користувача"
           additionalText=""
         />
-        <SignupForm />
+        <SignupForm
+          signupType="burger"
+          signinClick={() => setSigninFormDisplay('block')}
+        />
+      </div>
+      <div
+        className={`${signinForgotDisplay} absolute top-0  bg-white w-full h-screen pt-[84px] pr-[16px] pl-[16px] `}
+      >
+        <SigninForgotForm />
       </div>
     </div>
   );
