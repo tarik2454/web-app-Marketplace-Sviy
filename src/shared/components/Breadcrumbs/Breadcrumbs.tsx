@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import React, { ReactNode } from 'react';
 import { TlinksTitles, linksTitles } from './breadcrumbs_links_titles';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import { Container } from '..';
 
 type TBreadCrumbProps = {
   homeElement: ReactNode;
@@ -41,37 +42,39 @@ const Breadcrumbs = ({
   );
 
   return (
-    <ul className={`flex items-center mb-10 ${containerClasses}`}>
-      <li className={`${linkClasses}`}>
-        <Link href={'/'} className="hover:underline">
-          {homeElement}
-        </Link>
-      </li>
-      {pathNames.length > 0 && separator}
-      {items.map(({ link, title }, index) => {
-        const isLastItem = pathNames.length !== index + 1;
-        const href = `/${pathNames.slice(0, index + 1).join('/')}`;
-        //   const itemLink = capitalizeLinks
-        //     ? link[0].toUpperCase() + link.slice(1, link.length)
-        //     : link;
-        return (
-          <React.Fragment key={index}>
-            <li className={`${linkClasses}`}>
-              {isLastItem ? (
-                <Link href={href} className="hover:underline">
-                  {title}
-                </Link>
-              ) : (
-                <span className={`text-[#1565C0] ${activeClasses}`}>
-                  {title}
-                </span>
-              )}
-            </li>
-            {isLastItem && separator}
-          </React.Fragment>
-        );
-      })}
-    </ul>
+    <Container>
+      <ul className={`flex items-center mb-10 ${containerClasses}`}>
+        <li className={`${linkClasses}`}>
+          <Link href={'/'} className="hover:underline">
+            {homeElement}
+          </Link>
+        </li>
+        {pathNames.length > 0 && separator}
+        {items.map(({ link, title }, index) => {
+          const isLastItem = pathNames.length !== index + 1;
+          const href = `/${pathNames.slice(0, index + 1).join('/')}`;
+          //   const itemLink = capitalizeLinks
+          //     ? link[0].toUpperCase() + link.slice(1, link.length)
+          //     : link;
+          return (
+            <React.Fragment key={index}>
+              <li className={`${linkClasses}`}>
+                {isLastItem ? (
+                  <Link href={href} className="hover:underline">
+                    {title}
+                  </Link>
+                ) : (
+                  <span className={`text-[#1565C0] ${activeClasses}`}>
+                    {title}
+                  </span>
+                )}
+              </li>
+              {isLastItem && separator}
+            </React.Fragment>
+          );
+        })}
+      </ul>
+    </Container>
   );
 };
 
