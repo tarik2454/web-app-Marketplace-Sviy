@@ -5,7 +5,7 @@ import { useState } from 'react';
 import dataProduct from '../../data/data-product';
 import { ArrowButton, OrangeButton } from '@/shared/components';
 import { SpriteSVG } from '../../img/SpriteSVG';
-import { ButtonAddFavorite, ButtonCounter, Price } from '.';
+import { ButtonAddFavorite, ButtonCounter, ModalSeller, Price } from '.';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 
 export default function ProductDetails() {
@@ -20,6 +20,15 @@ export default function ProductDetails() {
     location,
   } = dataProduct;
   const [isCounter, setIsCounter] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const { isOnDesktop } = ScreenSize();
 
@@ -80,7 +89,10 @@ export default function ProductDetails() {
         <OrangeButton cssSettings="px-8 py-3 md:py-[10px] xl:py-3 text-base md:text-sm xl:text-base font-normal md:leading-[1.4] text-white">
           В кошик
         </OrangeButton>
-        <ArrowButton cssSettings="items-center pl-[18px] pr-2 py-3 md:py-[6px] xl:py-3 text-base md:text-sm xl:text-base md:leading-[1.4]">
+        <ArrowButton
+          cssSettings="items-center pl-[18px] pr-2 py-3 md:py-[6px] xl:py-3 text-base md:text-sm xl:text-base md:leading-[1.4]"
+          onClick={openModal}
+        >
           Контакти продавця
         </ArrowButton>
       </div>
@@ -93,6 +105,8 @@ export default function ProductDetails() {
         <SpriteSVG name="location" />
         <p className="md:text-sm leading-[1.4] text-gray-900">{location}</p>
       </div>
+
+      <ModalSeller isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 }
