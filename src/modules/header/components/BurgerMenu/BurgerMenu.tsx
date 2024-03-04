@@ -57,7 +57,7 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
         <nav>
           <Cabinet
             signinClick={() => setSigninFormDisplay('block')}
-            signupClick={() => setSignupFormDisplay('Block')}
+            signupClick={() => setSignupFormDisplay('block')}
           />
           <div className="w-full max-w-[375px] py-5 border-y-2 absolute top-[158px] left-[50%] -translate-x-2/4">
             <div className="px-4 py-2.5 bg-white">
@@ -88,7 +88,7 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
         />
         <SigninForm
           signinType="burger"
-          signupClick={() => setSignupFormDisplay('Block')}
+          signupClick={() => setSignupFormDisplay('block')}
           signinForgotClick={() => setSigninForgotDisplay('block')}
         />
       </div>
@@ -111,7 +111,19 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
       <div
         className={`${signinForgotDisplay} absolute top-0  bg-white w-full h-screen pt-[84px] pr-[16px] pl-[16px] `}
       >
-        <SigninForgotForm />
+        <div className="absolute top-5 right-4">
+          <CloseButton closeForm={closeForm} />
+        </div>
+
+        <FormHeading
+          heading="Забули свій пароль"
+          additionalText="Нічого страшного! Заповніть свою електронну адресу, і ми надішлемо вам"
+        />
+        <SigninForgotForm
+          signinForgotType="burger"
+          signinClick={() => setSigninFormDisplay('block')}
+          signupClick={() => setSignupFormDisplay('block')}
+        />
       </div>
     </div>
   );

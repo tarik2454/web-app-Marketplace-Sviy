@@ -3,12 +3,22 @@ import { FormInput, OrangeButton } from '@/shared/components';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import { useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import Link from 'next/link';
 import Modal from '@/shared/components/Modal/Modal';
 import EmailConfirmation from '@/shared/components/ModalEmailConfirm/EmailConfirm';
 
-export default function SigninForgotForm() {
+type Props = {
+  signinForgotType: 'page' | 'burger';
+  signinClick?: MouseEventHandler<HTMLButtonElement>;
+  signupClick?: MouseEventHandler<HTMLButtonElement>;
+};
+
+export default function SigninForgotForm({
+  signinForgotType,
+  signinClick,
+  signupClick,
+}: Props) {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -47,9 +57,15 @@ export default function SigninForgotForm() {
             Надіслати
           </OrangeButton>
         </div>
-        <Link href="/signin" className="text-center pb-8 text-blue-900">
-          Я згадав свій пароль
-        </Link>
+        {signinForgotType === 'page' ? (
+          <Link href="/signin" className="text-center pb-8 text-blue-900">
+            Я згадав свій пароль
+          </Link>
+        ) : (
+          <button className="text-blue-90 pb-8" onClick={signinClick}>
+            Я згадав свій пароль
+          </button>
+        )}
       </form>
       {isFormSubmitted && showModal && (
         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
@@ -62,9 +78,15 @@ export default function SigninForgotForm() {
       </div>
       <div className="flex justify-center">
         <p className="pr-6">Немає профілю?</p>
-        <Link href="/signup" className="text-blue-90">
-          Зареєструйся
-        </Link>
+        {signinForgotType === 'page' ? (
+          <Link href="/signup" className="text-blue-90">
+            Зареєструйся
+          </Link>
+        ) : (
+          <button className="text-blue-90" onClick={signupClick}>
+            Зареєструйся
+          </button>
+        )}
       </div>
     </>
   );

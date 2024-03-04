@@ -17,7 +17,7 @@ export default function Page() {
             heading="Забули свій пароль"
             additionalText="Нічого страшного! Заповніть свою електронну адресу, і ми надішлемо вам"
           />
-          <SigninForgot />
+          <SigninForgot signinForgotType="page" />
         </Container>
       </Section>
     </>
