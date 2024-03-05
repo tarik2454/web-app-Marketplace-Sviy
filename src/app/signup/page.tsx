@@ -1,7 +1,4 @@
-'use client';
-
 import { Breadcrumbs, ColorSpot, FormHeading } from '@/shared/components';
-
 import Section from '@/shared/components/Section/Section';
 import Container from '@/shared/components/Container/Container';
 import { SignupForm } from '@/modules';
@@ -13,7 +10,10 @@ export default function Page() {
         <ColorSpot />
         <Container>
           <Breadcrumbs homeElement={<span>Головна</span>} capitalizeLinks />
-          <FormHeading heading="Реєстрація нового користувача" />
+          <FormHeading
+            heading="Реєстрація нового користувача"
+            additionalText=""
+          />
           <SignupForm signupType="page" />
         </Container>
       </Section>

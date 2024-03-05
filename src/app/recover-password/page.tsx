@@ -14,7 +14,7 @@ export default function Page() {
             heading="Встановити новий пароль"
             additionalText="Для підтвердження вашої особи, введіть код, який був висланий на вашу електронну пошту."
           />
-          <RecoverPasswordForm />
+          <RecoverPasswordForm recoverPassword="page" />
         </Container>
       </Section>
     </>

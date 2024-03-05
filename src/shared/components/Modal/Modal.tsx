@@ -1,13 +1,18 @@
-import React, { useState, useEffect, ReactNode } from 'react';
+import React, {
+  useState,
+  useEffect,
+  ReactNode,
+  MouseEventHandler,
+} from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
-type ModalProps = {
+type Props = {
   isOpen: boolean;
   onClose: () => void;
   children?: ReactNode;
 };
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+export default function Modal({ isOpen, onClose, children }: Props) {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       console.log('Key pressed:', event.key);
@@ -56,6 +61,4 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       )}
     </>
   );
-};
-
-export default Modal;
+}

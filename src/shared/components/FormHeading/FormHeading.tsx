@@ -19,7 +19,7 @@ export default function FormHeading({
   } else {
     return (
       <div className="max-w-[400px] block mx-auto mb-10">
-        <h1 className="text-neutral-800 text-2xl text-center font-normal font-lato leading-10">
+        <h1 className="text-neutral-800 text-2xl text-center font-normal font-lato leading-10 sm:text-xl">
           {heading}
         </h1>
       </div>

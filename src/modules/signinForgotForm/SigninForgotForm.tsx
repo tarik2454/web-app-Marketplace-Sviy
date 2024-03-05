@@ -12,12 +12,14 @@ type Props = {
   signinForgotType: 'page' | 'burger';
   signinClick?: MouseEventHandler<HTMLButtonElement>;
   signupClick?: MouseEventHandler<HTMLButtonElement>;
+  recoverPassClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export default function SigninForgotForm({
   signinForgotType,
   signinClick,
   signupClick,
+  recoverPassClick,
 }: Props) {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -69,7 +71,10 @@ export default function SigninForgotForm({
       </form>
       {isFormSubmitted && showModal && (
         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-          <EmailConfirmation email={formik.values.email} />
+          <EmailConfirmation
+            email={formik.values.email}
+            recoverPassClick={recoverPassClick}
+          />
         </Modal>
       )}
       <p className="text-center pb-3 ">Або увійдіть за допомогою:</p>

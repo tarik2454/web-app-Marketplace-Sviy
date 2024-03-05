@@ -1,12 +1,20 @@
 'use client';
 import { FormInput, OrangeButton } from '@/shared/components';
 import { useFormik } from 'formik';
-import { useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import * as Yup from 'yup';
 import Modal from '@/shared/components/Modal/Modal';
 import PasswordChanged from '@/shared/components/ModalPassChanged/PassChanged';
 
-export default function RecoverPasswordForm() {
+type Props = {
+  recoverPassword: 'page' | 'burger';
+  signinClick?: MouseEventHandler<HTMLButtonElement>;
+};
+
+export default function RecoverPasswordForm({
+  recoverPassword,
+  signinClick,
+}: Props) {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -70,7 +78,7 @@ export default function RecoverPasswordForm() {
       </form>
       {isFormSubmitted && showModal && (
         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-          <PasswordChanged />
+          <PasswordChanged signinClick={signinClick} />
         </Modal>
       )}
     </>
