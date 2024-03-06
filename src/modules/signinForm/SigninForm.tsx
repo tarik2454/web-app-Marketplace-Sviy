@@ -88,7 +88,7 @@ export default function SigninForm({
       <div className="flex justify-center pb-3">
         <SpriteSVG name="icon_google" />
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center pb-7">
         <p className="pr-6">Немає профілю?</p>
         {signinType === 'page' ? (
           <Link href="/signup" className="text-blue-90">

@@ -97,7 +97,7 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
         closeCatalogClick={closeCatalogClick}
       />
       <div
-        className={`${signinFormDisplay} absolute top-0  bg-white w-full h-screen pt-[109px] pr-[16px] pl-[16px]`}
+        className={`${signinFormDisplay} absolute top-0  bg-white w-full h-screen pt-[109px] pr-[16px] pl-[16px] overflow-y-auto`}
       >
         <div className="absolute top-5 right-4">
           <CloseButton closeForm={closeForm} />
