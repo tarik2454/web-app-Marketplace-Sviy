@@ -11,7 +11,7 @@ export default function FormHeading({
         <h1 className="text-neutral-800 text-2xl text-center font-normal font-lato leading-10 sm:text-xl">
           {heading}
         </h1>
-        <p className="text-center text-neutral-800 text-sm font-normal font-lato leading-snug">
+        <p className="text-center text-neutral-800 text-sm font-normal font-lato leading-snug sm:text-sm">
           {additionalText}
         </p>
       </div>

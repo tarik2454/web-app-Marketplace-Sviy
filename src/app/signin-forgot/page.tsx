@@ -4,7 +4,7 @@ import { Breadcrumbs, ColorSpot, FormHeading } from '@/shared/components';
 
 import Section from '@/shared/components/Section/Section';
 import Container from '@/shared/components/Container/Container';
-import SigninForgot from '@/modules/signinForgotForm/SigninForgotForm';
+import SigninForgotForm from '@/modules/signinForgotForm/SigninForgotForm';
 
 export default function Page() {
   return (
@@ -17,7 +17,7 @@ export default function Page() {
             heading="Забули свій пароль"
             additionalText="Нічого страшного! Заповніть свою електронну адресу, і ми надішлемо вам"
           />
-          <SigninForgot signinForgotType="page" />
+          <SigninForgotForm signinForgotType="page" />
         </Container>
       </Section>
     </>

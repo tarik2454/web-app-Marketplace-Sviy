@@ -20,7 +20,7 @@ const FormCheckbox = ({ formik, id, label, className }: Props) => {
         checked={formik.values[id]}
         className="hidden"
       />
-      <label htmlFor={id} className="flex items-center gap-2">
+      <label htmlFor={id} className="flex items-center gap-2 ">
         <span
           className={`block w-5 h-5 ${
             formik.values[id] ? 'text-blue-700' : 'text-neutral-400'

@@ -68,7 +68,10 @@ export default function SigninForm({
               Нагадати пароль
             </Link>
           ) : (
-            <button className="text-blue-90" onClick={signinForgotClick}>
+            <button
+              className="text-blue-90 text-sm"
+              onClick={signinForgotClick}
+            >
               Нагадати пароль
             </button>
           )}
@@ -81,7 +84,7 @@ export default function SigninForm({
         </div>
       </form>
 
-      <p className="text-center pb-3">Або увійдіть за допомогою:</p>
+      <p className="text-center pb-3 sm:text-sm">Або увійдіть за допомогою:</p>
       <div className="flex justify-center pb-3">
         <SpriteSVG name="icon_google" />
       </div>
@@ -92,7 +95,7 @@ export default function SigninForm({
             Зареєструйся
           </Link>
         ) : (
-          <button className="text-blue-90" onClick={signupClick}>
+          <button className="text-blue-90 text-sm" onClick={signupClick}>
             Зареєструйся
           </button>
         )}

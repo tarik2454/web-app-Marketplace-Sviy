@@ -3,7 +3,7 @@ import { FormInput, OrangeButton } from '@/shared/components';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Modal from '@/shared/components/Modal/Modal';
 import EmailConfirmation from '@/shared/components/ModalEmailConfirm/EmailConfirm';
@@ -23,6 +23,24 @@ export default function SigninForgotForm({
 }: Props) {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [emailConfirmType, setEmailConfirmType] = useState('page'); // Значення за замовчуванням
+
+  useEffect(() => {
+    function handleResize() {
+      // Визначення розміру екрану
+      const isMobile = window.innerWidth < 768; // Припустимо, що мобільний розмір екрану менше 768px
+      setEmailConfirmType(isMobile ? 'burger' : 'page'); // Якщо екран мобільний, то встановити 'burger', в іншому випадку - 'page'
+    }
+
+    // Встановлення розміру екрану при завантаженні сторінки
+    handleResize();
+
+    // Додавання прослуховувача подій на зміну розміру вікна
+    window.addEventListener('resize', handleResize);
+
+    // Прибирання прослуховувача подій при виході з компонента
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Пустий масив залежностей, щоб функція викликалася лише при монтуванні компонента
 
   const handleSubmit = async (values: { email: string }) => {
     setShowModal(true);
@@ -69,14 +87,17 @@ export default function SigninForgotForm({
           </button>
         )}
       </form>
+
       {isFormSubmitted && showModal && (
         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
           <EmailConfirmation
             email={formik.values.email}
+            emailConfirmType={emailConfirmType}
             recoverPassClick={recoverPassClick}
           />
         </Modal>
       )}
+
       <p className="text-center pb-3 ">Або увійдіть за допомогою:</p>
       <div className="flex justify-center pb-3">
         <SpriteSVG name="icon_google" />

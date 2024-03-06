@@ -83,6 +83,7 @@ export default function SignupForm({ signupType, signinClick }: Props) {
           formik={formik}
           id="rememberMe"
           label="Запам’ятати мене"
+          className="text-sm"
         />
         <p className="text-gray-500 font-lato text-sm md:pb-[34px]">
           Реєструючись ви погоджуєтесь з Правилами використання сайту та
@@ -101,7 +102,7 @@ export default function SignupForm({ signupType, signinClick }: Props) {
           <RegIsSuccesful />
         </Modal>
       )}
-      <p className="text-center pb-3">Або увійдіть за допомогою:</p>
+      <p className="text-center pb-3 sm:text-sm">Або увійдіть за допомогою:</p>
       <div className="flex justify-center pb-3">
         <SpriteSVG name="icon_google" />
       </div>
@@ -112,7 +113,7 @@ export default function SignupForm({ signupType, signinClick }: Props) {
             Увійти
           </Link>
         ) : (
-          <button className="text-blue-90" onClick={signinClick}>
+          <button className="text-blue-90 text-sm" onClick={signinClick}>
             Увійти
           </button>
         )}

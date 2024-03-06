@@ -64,6 +64,7 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
 
   const recoverPassClick = () => {
     setRecoverPassDisplay('block');
+    setSigninForgotDisplay('hidden');
   };
 
   return (

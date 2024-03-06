@@ -1,17 +1,17 @@
 'use client';
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler } from 'react';
 import Link from 'next/link';
 import ArrowButton from '@/shared/components/ArrowButton/ArrowButton';
 
 type Props = {
   email: string;
-  emailConfirm?: 'page' | 'burger';
+  emailConfirmType?: string;
   recoverPassClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export default function EmailConfirmation({
   email,
-  emailConfirm,
+  emailConfirmType,
   recoverPassClick,
 }: Props) {
   return (
@@ -22,14 +22,14 @@ export default function EmailConfirmation({
       <div className="flex justify-center pb-10">
         <span className="text-center text-neutral-800 text-base font-normal font-['Lato'] leading-relaxed text-nowrap">
           перейдіть за посиланням, яке ми вам <br />
-          вислали на адресу
+          вислали на адресу&nbsp;
           <span className="text-blue-700 text-base font-normal font-['Lato'] leading-relaxed">
             {email}
           </span>
         </span>
       </div>
       <div className="flex justify-center">
-        {emailConfirm === 'page' ? (
+        {emailConfirmType === 'page' ? (
           <Link href="/recover-password">
             <ArrowButton onClick={() => {}}>
               <span className="text-nowrap">Встановити новий пароль</span>
