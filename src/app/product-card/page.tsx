@@ -1,6 +1,6 @@
 import { LookedAtBefore, SellerProducts, TabMenu } from '@/modules';
 import ProductInfo from '@/modules/productInfo/ProductInfo';
-import { Breadcrumbs, Container } from '@/shared/components';
+import { Breadcrumbs } from '@/shared/components';
 
 export default function ProductCard() {
   return (
