@@ -1,5 +1,10 @@
 'use client';
-import { FormInput, OrangeButton } from '@/shared/components';
+import {
+  FormInput,
+  OrangeButton,
+  Section,
+  FormHeading,
+} from '@/shared/components';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
@@ -28,10 +33,9 @@ export default function SigninForgotForm({
   useEffect(() => {
     function handleResize() {
       // Визначення розміру екрану
-      const isMobile = window.innerWidth < 768; // Припустимо, що мобільний розмір екрану менше 768px
+      const isMobile = window.innerWidth < 768; // Розмір екрану менше 768px
       setEmailConfirmType(isMobile ? 'burger' : 'page'); // Якщо екран мобільний, то встановити 'burger', в іншому випадку - 'page'
     }
-
     // Встановлення розміру екрану при завантаженні сторінки
     handleResize();
 
@@ -60,7 +64,11 @@ export default function SigninForgotForm({
   });
 
   return (
-    <>
+    <Section className="py-[80px] md:pt-[104px] xl:py-[164px]">
+      <FormHeading
+        heading="Забули свій пароль"
+        additionalText="Нічого страшного! Заповніть свою електронну адресу, і ми надішлемо вам"
+      />
       <form
         className="flex flex-col max-w-[400px] mx-auto gap-5"
         onSubmit={formik.handleSubmit}
@@ -114,6 +122,6 @@ export default function SigninForgotForm({
           </button>
         )}
       </div>
-    </>
+    </Section>
   );
 }

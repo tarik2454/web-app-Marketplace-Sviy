@@ -41,7 +41,7 @@ export default function FormInput({
     <div
       className={`relative h-auto flex flex-col w-full ${styles.customInput}`}
     >
-      <label htmlFor={id} className="ml-4 text-sm">
+      <label htmlFor={id} className="ml-4 md:text-base sm:text-sm">
         {label}
       </label>
       <div

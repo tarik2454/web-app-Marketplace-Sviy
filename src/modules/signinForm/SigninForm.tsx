@@ -1,6 +1,12 @@
 'use client';
 
-import { FormCheckbox, FormInput, OrangeButton } from '@/shared/components';
+import {
+  FormCheckbox,
+  FormInput,
+  OrangeButton,
+  FormHeading,
+  Section,
+} from '@/shared/components';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { useFormik } from 'formik';
 import Link from 'next/link';
@@ -38,8 +44,16 @@ export default function SigninForm({
     },
   });
 
+  const handleCheckboxChange = () => {
+    formik.setFieldValue('rememberMe', !formik.values.rememberMe);
+  };
+
   return (
-    <div>
+    <Section className="py-[80px] md:pt-[104px] xl:py-[164px]">
+      <FormHeading
+        heading="Увійти в акаунт"
+        additionalText="Увійдіть, щоб мати можливість додавати товари до обраного та бачити свої замовлення."
+      />
       <form
         className="flex flex-col max-w-[400px] mx-auto gap-5"
         onSubmit={formik.handleSubmit}
@@ -84,7 +98,9 @@ export default function SigninForm({
         </div>
       </form>
 
-      <p className="text-center pb-3 sm:text-sm">Або увійдіть за допомогою:</p>
+      <p className="text-center pb-3 md:text-base sm:text-sm">
+        Або увійдіть за допомогою:
+      </p>
       <div className="flex justify-center pb-3">
         <SpriteSVG name="icon_google" />
       </div>
@@ -100,6 +116,6 @@ export default function SigninForm({
           </button>
         )}
       </div>
-    </div>
+    </Section>
   );
 }

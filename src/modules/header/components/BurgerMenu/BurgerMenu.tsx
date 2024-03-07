@@ -96,44 +96,35 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
         closeButtonClick={closeButtonClick}
         closeCatalogClick={closeCatalogClick}
       />
+
       <div
-        className={`${signinFormDisplay} absolute top-0  bg-white w-full h-screen pt-[109px] pr-[16px] pl-[16px] overflow-y-auto`}
+        className={`${signinFormDisplay} absolute top-0  bg-white w-full h-screen pr-[16px] pl-[16px] overflow-y-auto`}
       >
         <div className="absolute top-5 right-4">
           <CloseButton closeForm={closeForm} />
         </div>
-
-        <FormHeading
-          heading="Увійти в акаунт"
-          additionalText="Увійдіть, щоб мати можливість додавати товари до обраного та бачити свої замовлення."
-        />
         <SigninForm
           signinType="burger"
           signupClick={signupClick}
           signinForgotClick={signinForgotClick}
         />
       </div>
+
       <div
-        className={`${signupFormDisplay} absolute top-0  bg-white w-full h-screen pt-[84px] pr-[16px] pl-[16px] overflow-y-auto`}
+        className={`${signupFormDisplay} absolute top-0  bg-white w-full h-screen  pr-[16px] pl-[16px] overflow-y-auto`}
       >
         <div className="absolute top-5 right-4">
           <CloseButton closeForm={closeForm} />
         </div>
-
-        <FormHeading heading="Реєстрація нового користувача" />
         <SignupForm signupType="burger" signinClick={signinClick} />
       </div>
+
       <div
-        className={`${signinForgotDisplay} absolute top-0  bg-white w-full h-screen pt-[84px] pr-[16px] pl-[16px] `}
+        className={`${signinForgotDisplay} absolute top-0  bg-white w-full h-screen  pr-[16px] pl-[16px] `}
       >
         <div className="absolute top-5 right-4">
           <CloseButton closeForm={closeForm} />
         </div>
-
-        <FormHeading
-          heading="Забули свій пароль"
-          additionalText="Нічого страшного! Заповніть свою електронну адресу, і ми надішлемо вам"
-        />
         <SigninForgotForm
           signinForgotType="burger"
           signinClick={signinClick}
@@ -141,16 +132,13 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
           recoverPassClick={recoverPassClick}
         />
       </div>
+
       <div
-        className={`${recoverPassDisplay} absolute top-0  bg-white w-full h-screen pt-[84px] pr-[16px] pl-[16px] `}
+        className={`${recoverPassDisplay} absolute top-0  bg-white w-full h-screen  pr-[16px] pl-[16px] `}
       >
         <div className="absolute top-5 right-4">
           <CloseButton closeForm={closeForm} />
         </div>
-        <FormHeading
-          heading="Встановити новий пароль"
-          additionalText="Для підтвердження вашої особи, введіть код, який був висланий на вашу електронну пошту."
-        />
         <RecoverPasswordForm
           recoverPassword="burger"
           signinClick={signinClick}

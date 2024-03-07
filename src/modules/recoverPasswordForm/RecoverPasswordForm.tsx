@@ -1,5 +1,10 @@
 'use client';
-import { FormInput, OrangeButton } from '@/shared/components';
+import {
+  FormInput,
+  OrangeButton,
+  FormHeading,
+  Section,
+} from '@/shared/components';
 import { useFormik } from 'formik';
 import { MouseEventHandler, useState, useEffect } from 'react';
 import * as Yup from 'yup';
@@ -56,7 +61,11 @@ export default function RecoverPasswordForm({
   });
 
   return (
-    <>
+    <Section className="py-[80px] md:pt-[104px] xl:py-[164px]">
+      <FormHeading
+        heading="Встановити новий пароль"
+        additionalText="Для підтвердження вашої особи, введіть код, який був висланий на вашу електронну пошту."
+      />
       <form
         className="flex flex-col justify-center max-w-[400px] mx-auto"
         onSubmit={formik.handleSubmit}
@@ -102,6 +111,6 @@ export default function RecoverPasswordForm({
           />
         </Modal>
       )}
-    </>
+    </Section>
   );
 }

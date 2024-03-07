@@ -1,12 +1,18 @@
 'use client';
 
-import { FormCheckbox, FormInput, OrangeButton } from '@/shared/components';
-import Modal from '@/shared/components/Modal/Modal';
-import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
+import {
+  FormCheckbox,
+  FormInput,
+  OrangeButton,
+  Section,
+  FormHeading,
+} from '@/shared/components';
+import { MouseEventHandler, useState } from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { useFormik } from 'formik';
+import Modal from '@/shared/components/Modal/Modal';
+import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
 import Link from 'next/link';
-import { MouseEventHandler, useState } from 'react';
 import * as Yup from 'yup';
 
 type Props = {
@@ -50,7 +56,8 @@ export default function SignupForm({ signupType, signinClick }: Props) {
   });
 
   return (
-    <div>
+    <Section className="py-[80px] md:pt-[104px] xl:py-[164px]">
+      <FormHeading heading="Реєстрація нового користувача" additionalText="" />
       <form
         className="flex flex-col max-w-[400px] mx-auto mb-6 gap-5"
         onSubmit={formik.handleSubmit}
@@ -83,7 +90,7 @@ export default function SignupForm({ signupType, signinClick }: Props) {
           formik={formik}
           id="rememberMe"
           label="Запам’ятати мене"
-          className="text-sm"
+          // className="sm:text-sm"
         />
         <p className="text-gray-500 font-lato text-sm md:pb-[34px]">
           Реєструючись ви погоджуєтесь з Правилами використання сайту та
@@ -118,6 +125,6 @@ export default function SignupForm({ signupType, signinClick }: Props) {
           </button>
         )}
       </div>
-    </div>
+    </Section>
   );
 }
