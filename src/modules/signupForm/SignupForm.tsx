@@ -90,19 +90,21 @@ export default function SignupForm({ signupType, signinClick }: Props) {
           formik={formik}
           id="rememberMe"
           label="Запам’ятати мене"
-          // className="sm:text-sm"
+          className="md:text-base sm:text-sm"
         />
         <p className="text-gray-500 font-lato text-sm md:pb-[34px]">
           Реєструючись ви погоджуєтесь з Правилами використання сайту та
           Політикою конфіденційності
         </p>
-        <OrangeButton
-          onClick={() => setShowModal(true)}
-          type="submit"
-          cssSettings=" mx-auto"
-        >
-          Зареєструйся
-        </OrangeButton>
+        <div className="text-white md:text-base sm:text-sm">
+          <OrangeButton
+            onClick={() => setShowModal(true)}
+            type="submit"
+            cssSettings=" mx-auto"
+          >
+            Зареєструватися
+          </OrangeButton>
+        </div>
       </form>
       {isFormSubmitted && showModal && (
         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
@@ -113,10 +115,10 @@ export default function SignupForm({ signupType, signinClick }: Props) {
       <div className="flex justify-center pb-3">
         <SpriteSVG name="icon_google" />
       </div>
-      <div className="flex justify-center pb-7">
+      <div className="flex justify-center pb-7 items-baseline">
         <p className="pr-6">Маєте профіль?</p>
         {signupType === 'page' ? (
-          <Link href="/signin" className="text-blue-90">
+          <Link href="/signin" className="text-blue-90 text-sm">
             Увійти
           </Link>
         ) : (

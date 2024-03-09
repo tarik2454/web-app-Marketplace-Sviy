@@ -92,12 +92,12 @@ export default function RecoverPasswordForm({
           />
         </div>
 
-        <p className="text-xs leading-none text-blue-900">
+        <p className="text-xs text-blue-900">
           Пароль повинен мати мінімум 8 символів. Для надійності пароля додайте
           великі, малі літери та цифри.
         </p>
 
-        <div className="w-28 mt-10 mx-auto pb-6 flex justify-center">
+        <div className="w-28 mt-10 mx-auto pb-6 flex justify-center text-white md:text-base sm:text-sm">
           <OrangeButton onClick={() => {}} type="submit">
             Підтвердити
           </OrangeButton>

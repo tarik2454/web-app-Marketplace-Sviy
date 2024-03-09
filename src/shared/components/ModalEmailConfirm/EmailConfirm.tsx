@@ -16,11 +16,11 @@ export default function EmailConfirmation({
 }: Props) {
   return (
     <>
-      <h2 className="text-center text-blue-700 text-xl font-normal font-['Lato'] leading-loose pb-6">
+      <h2 className="text-center text-blue-700 text-xl font-normal font-['Lato'] leading-loose pb-6 md:text-2xl">
         Перевірте ваш email
       </h2>
       <div className="flex justify-center pb-10">
-        <span className="text-center text-neutral-800 text-base font-normal font-['Lato'] leading-relaxed text-nowrap">
+        <span className="text-center text-neutral-800 text-base font-normal font-['Lato'] leading-relaxed text-nowrap xl:text-xl">
           перейдіть за посиланням, яке ми вам <br />
           вислали на адресу&nbsp;
           <span className="text-blue-700 text-base font-normal font-['Lato'] leading-relaxed">

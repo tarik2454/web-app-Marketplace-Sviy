@@ -7,7 +7,11 @@ export default function Page() {
     <>
       <ColorSpot />
       <Container>
-        <Breadcrumbs homeElement={<span>Головна</span>} capitalizeLinks />
+        <Breadcrumbs
+          containerClasses={'pt-[21px] md:pt-10 mb-0 md-mb-0'}
+          homeElement={<span>Головна</span>}
+          capitalizeLinks
+        />
         <SignupForm signupType="page" />
       </Container>
     </>

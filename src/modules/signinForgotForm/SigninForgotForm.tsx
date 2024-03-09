@@ -80,17 +80,20 @@ export default function SigninForgotForm({
           inputType="email"
         />
 
-        <div className="flex justify-center w-28 mt-10 mx-auto pb-7">
+        <div className="flex justify-center w-28 mt-10 mx-auto pb-7 text-white md:text-base sm:text-sm">
           <OrangeButton onClick={() => setShowModal(true)} type="submit">
             Надіслати
           </OrangeButton>
         </div>
         {signinForgotType === 'page' ? (
-          <Link href="/signin" className="text-center pb-8 text-blue-900">
+          <Link
+            href="/signin"
+            className="text-center pb-8 text-blue-900 text-sm"
+          >
             Я згадав свій пароль
           </Link>
         ) : (
-          <button className="text-blue-90 pb-8" onClick={signinClick}>
+          <button className="text-blue-90 pb-8 text-sm" onClick={signinClick}>
             Я згадав свій пароль
           </button>
         )}
@@ -106,18 +109,18 @@ export default function SigninForgotForm({
         </Modal>
       )}
 
-      <p className="text-center pb-3 ">Або увійдіть за допомогою:</p>
+      <p className="text-center pb-3 text-sm">Або увійдіть за допомогою:</p>
       <div className="flex justify-center pb-3">
         <SpriteSVG name="icon_google" />
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center items-baseline">
         <p className="pr-6">Немає профілю?</p>
         {signinForgotType === 'page' ? (
-          <Link href="/signup" className="text-blue-90">
+          <Link href="/signup" className="text-blue-90 text-sm">
             Зареєструйся
           </Link>
         ) : (
-          <button className="text-blue-90" onClick={signupClick}>
+          <button className="text-blue-90 text-sm" onClick={signupClick}>
             Зареєструйся
           </button>
         )}

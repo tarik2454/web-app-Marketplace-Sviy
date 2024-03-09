@@ -44,9 +44,9 @@ export default function SigninForm({
     },
   });
 
-  const handleCheckboxChange = () => {
-    formik.setFieldValue('rememberMe', !formik.values.rememberMe);
-  };
+  // const handleCheckboxChange = () => {
+  //   formik.setFieldValue('rememberMe', !formik.values.rememberMe);
+  // };
 
   return (
     <Section className="py-[80px] md:pt-[104px] xl:py-[164px]">
@@ -71,14 +71,15 @@ export default function SigninForm({
           label={'Пароль'}
           inputType="password"
         />
-        <div className="flex justify-between">
+        <div className="flex  justify-between items-center">
           <FormCheckbox
             formik={formik}
             id="rememberMe"
             label="Запам’ятати мене"
+            className="md:text-base sm:text-sm"
           />
           {signinType === 'page' ? (
-            <Link href="/signin-forgot" className="text-blue-900">
+            <Link href="/signin-forgot" className="text-blue-900 text-sm">
               Нагадати пароль
             </Link>
           ) : (
@@ -91,23 +92,21 @@ export default function SigninForm({
           )}
         </div>
 
-        <div className="w-28 mt-10 mx-auto pb-6">
+        <div className="w-28 mt-10 mx-auto pb-6 text-white md:text-base sm:text-sm">
           <OrangeButton onClick={() => {}} type="submit">
             Увійти
           </OrangeButton>
         </div>
       </form>
 
-      <p className="text-center pb-3 md:text-base sm:text-sm">
-        Або увійдіть за допомогою:
-      </p>
+      <p className="text-center pb-3 text-sm">Або увійдіть за допомогою:</p>
       <div className="flex justify-center pb-3">
         <SpriteSVG name="icon_google" />
       </div>
-      <div className="flex justify-center pb-7">
-        <p className="pr-6">Немає профілю?</p>
+      <div className="flex justify-center items-baseline pb-7">
+        <p className="pr-6 ">Немає профілю?</p>
         {signinType === 'page' ? (
-          <Link href="/signup" className="text-blue-90">
+          <Link href="/signup" className="text-blue-90 text-sm">
             Зареєструйся
           </Link>
         ) : (
