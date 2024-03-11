@@ -23,7 +23,7 @@ const config: Config = {
         neutral: {
           50: '#FAFAFA',
           400: '#9E9E9E',
-          600: '#656565',
+          500: '#656565',
           800: '#212121',
         },
         amber: {

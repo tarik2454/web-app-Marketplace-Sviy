@@ -1,12 +1,29 @@
-"use client"
+'use client';
 
-import { FormCheckbox, FormInput, OrangeButton } from "@/shared/components";
-import { SpriteSVG } from "@/shared/img/SpriteSVG";
-import { useFormik } from "formik";
-import Link from "next/link";
+import {
+  FormCheckbox,
+  FormInput,
+  OrangeButton,
+  FormHeading,
+  Section,
+} from '@/shared/components';
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import { useFormik } from 'formik';
+import Link from 'next/link';
 import * as Yup from 'yup';
+import { MouseEventHandler } from 'react';
 
-export default function SigninForm () {
+type Props = {
+  signinType: 'page' | 'burger';
+  signupClick?: MouseEventHandler<HTMLButtonElement>;
+  signinForgotClick?: MouseEventHandler<HTMLButtonElement>;
+};
+
+export default function SigninForm({
+  signinType,
+  signupClick,
+  signinForgotClick,
+}: Props) {
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -27,8 +44,16 @@ export default function SigninForm () {
     },
   });
 
+  // const handleCheckboxChange = () => {
+  //   formik.setFieldValue('rememberMe', !formik.values.rememberMe);
+  // };
+
   return (
-    <div>
+    <Section className="py-[80px] md:pt-[104px] xl:py-[164px]">
+      <FormHeading
+        heading="Увійти в акаунт"
+        additionalText="Увійдіть, щоб мати можливість додавати товари до обраного та бачити свої замовлення."
+      />
       <form
         className="flex flex-col max-w-[400px] mx-auto gap-5"
         onSubmit={formik.handleSubmit}
@@ -46,34 +71,50 @@ export default function SigninForm () {
           label={'Пароль'}
           inputType="password"
         />
-        <div className="flex justify-between">
+        <div className="flex  justify-between items-center">
           <FormCheckbox
             formik={formik}
             id="rememberMe"
             label="Запам’ятати мене"
+            className="md:text-base sm:text-sm"
           />
-          <Link href="/signin-forgot" className="text-blue-900">
-            Нагадати пароль
-          </Link>
+          {signinType === 'page' ? (
+            <Link href="/signin-forgot" className="text-blue-900 text-sm">
+              Нагадати пароль
+            </Link>
+          ) : (
+            <button
+              className="text-blue-90 text-sm"
+              onClick={signinForgotClick}
+            >
+              Нагадати пароль
+            </button>
+          )}
         </div>
 
-        <div className="w-28 mt-10 mx-auto pb-6">
+        <div className="w-28 mt-10 mx-auto pb-6 text-white md:text-base sm:text-sm">
           <OrangeButton onClick={() => {}} type="submit">
             Увійти
           </OrangeButton>
         </div>
       </form>
 
-      <p className="text-center pb-3">Або увійдіть за допомогою:</p>
+      <p className="text-center pb-3 text-sm">Або увійдіть за допомогою:</p>
       <div className="flex justify-center pb-3">
         <SpriteSVG name="icon_google" />
       </div>
-      <div className="flex justify-center">
-        <p className="pr-6">Немає профілю?</p>
-        <Link href="/signup" className="text-blue-90">
-          Зареєструйся
-        </Link>
+      <div className="flex justify-center items-baseline pb-7">
+        <p className="pr-6 ">Немає профілю?</p>
+        {signinType === 'page' ? (
+          <Link href="/signup" className="text-blue-90 text-sm">
+            Зареєструйся
+          </Link>
+        ) : (
+          <button className="text-blue-90 text-sm" onClick={signupClick}>
+            Зареєструйся
+          </button>
+        )}
       </div>
-    </div>
-  )
+    </Section>
+  );
 }

@@ -7,18 +7,21 @@ import { SpriteSVG } from '@/shared/img/SpriteSVG';
 export default function RegIsSuccesful() {
   return (
     <>
-      <h2 className="text-center text-stone-900 text-xl font-normal font-['Lato'] leading-loose">
+      <h2 className="text-center text-stone-900 text-xl font-normal font-['Lato'] leading-loose md:text-2xl">
         Реєстрація пройшла успішно
       </h2>
       <div className=" flex justify-center py-10">
         <SpriteSVG name="check-mark" />
       </div>
       <div className="flex justify-center items-start gap-3 ">
-        <Link href="/">
-          <OrangeButton onClick={() => {}}>
-            <span className="text-nowrap">До каталогу</span>
-          </OrangeButton>
-        </Link>
+        <div className="text-white">
+          <Link href="/">
+            <OrangeButton onClick={() => {}}>
+              <span className="text-nowrap">До каталогу</span>
+            </OrangeButton>
+          </Link>
+        </div>
+
         <Link href="/">
           <ArrowButton onClick={() => {}}>
             <span className="text-nowrap">До профілю</span>

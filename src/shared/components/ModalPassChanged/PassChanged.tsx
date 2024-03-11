@@ -1,8 +1,17 @@
 'use client';
 import Link from 'next/link';
 import ArrowButton from '@/shared/components/ArrowButton/ArrowButton';
+import { MouseEventHandler } from 'react';
 
-export default function PasswordChanged() {
+type Props = {
+  passChangedType?: string;
+  signinClick?: MouseEventHandler<HTMLButtonElement>;
+};
+
+export default function PasswordChanged({
+  signinClick,
+  passChangedType,
+}: Props) {
   return (
     <div>
       <h2 className="text-center text-blue-700 text-2xl font-normal font-['Lato'] leading-[38.40px] pb-6">
@@ -14,11 +23,17 @@ export default function PasswordChanged() {
         </span>
       </div>
       <div className="flex justify-center">
-        <Link href="/signin">
-          <ArrowButton onClick={() => {}}>
+        {passChangedType === 'page' ? (
+          <Link href="/signin">
+            <ArrowButton onClick={() => {}}>
+              <span>Увійти</span>
+            </ArrowButton>
+          </Link>
+        ) : (
+          <ArrowButton onClick={signinClick}>
             <span>Увійти</span>
           </ArrowButton>
-        </Link>
+        )}
       </div>
     </div>
   );
