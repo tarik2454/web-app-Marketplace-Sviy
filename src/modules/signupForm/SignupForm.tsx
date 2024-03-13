@@ -56,7 +56,7 @@ export default function SignupForm({ signupType, signinClick }: Props) {
   });
 
   return (
-    <Section className="py-[80px] md:pt-[104px] xl:py-[164px]">
+    <Section className="py-[80px] md:pt-[38px] xl:py-[98px]">
       <FormHeading heading="Реєстрація нового користувача" additionalText="" />
       <form
         className="flex flex-col max-w-[400px] mx-auto mb-6 gap-5"
