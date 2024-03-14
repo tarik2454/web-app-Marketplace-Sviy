@@ -1,4 +1,5 @@
 import { OrangeButton } from "@/shared/components";
+import Link from 'next/link';
 
 export default function FinalPrice () {
   return (
@@ -13,7 +14,7 @@ export default function FinalPrice () {
         <p className="ml-auto">450 ₴</p>
       </div>
       <div className="block md:hidden xl:block">
-        <OrangeButton onClick={() => {}}>Оформити замовлення</OrangeButton>
+        <OrangeButton onClick={() => {}}><Link href="/orderDetails">Оформити замовлення</Link></OrangeButton>
       </div>
       <div className="hidden md:block xl:hidden">
         <OrangeButton onClick={() => {}}>Оформити</OrangeButton>
