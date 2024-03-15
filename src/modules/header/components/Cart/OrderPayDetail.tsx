@@ -1,10 +1,9 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Image from "next/image";
 import userIcon from './img/userIcon.png';
 import { Field, ErrorMessage } from 'formik';
 
-// "outline-[#C60000]"
 const OrderPayDetail = ({customer}:any) => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [errorClassRadio, setErrorClassRadio] = useState('');
