@@ -85,10 +85,10 @@ export default function Header() {
               closeButtonClick={() => setDisplayMenu('hidden')}
             />
 
-            <Cart
+            {/* <Cart
               closeButtonClick={() => setDisplayCart('hidden')}
               display={displayCart}
-            />
+            /> */}
 
             <CatalogButton
               catalogueClick={() => toggleCatalogVisibility()}
