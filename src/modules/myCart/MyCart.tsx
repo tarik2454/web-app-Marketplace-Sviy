@@ -33,26 +33,28 @@ export default function MyCart() {
         Ваші контактні дані
       </h3>
       <form
-        className="flex flex-col max-w-[400px] mx-4 gap-5 md:max-w-[344px]"
+        className="flex flex-col min-w-[343px] mx-4 gap-5 "
         onSubmit={formik.handleSubmit}
       >
-        <FormInput
-          formik={formik}
-          id="fullName"
-          inputType="text"
-          inputIcon="user"
-        />
-        <FormInput
-          formik={formik}
-          id="location"
-          inputType="text"
-          inputIcon="location"
-        />
-        <div className="inline-flex items-center justify-start px-4 py-1.5 bg-white border rounded-2xl border-blue-700">
-          <p className="text-xs text-gray-900 md:text-base">
-            Зверніть увагу, товари, які замовлені у різних продавців, буде
-            доставлено окремими замовленнями.
-          </p>
+        <div className="flex flex-col gap-5 md:max-w-[344px]">
+          <FormInput
+            formik={formik}
+            id="fullName"
+            inputType="text"
+            inputIcon="user"
+          />
+          <FormInput
+            formik={formik}
+            id="location"
+            inputType="text"
+            inputIcon="location"
+          />
+          <div className="inline-flex items-center justify-start px-4 py-1.5 bg-white border rounded-2xl border-blue-700">
+            <p className="text-xs text-gray-900 md:text-base">
+              Зверніть увагу, товари, які замовлені у різних продавців, буде
+              доставлено окремими замовленнями.
+            </p>
+          </div>
         </div>
         <div className="md:w-full">
           <CartList />
