@@ -16,4 +16,4 @@ export { default as SigninForm } from './signinForm/SigninForm';
 export { default as SignupForm } from './signupForm/SignupForm';
 export { default as NotFound } from './notFound/NotFound';
 export { default as SellerData } from './sellerData/SellerData';
-export { default as MyCart } from './myCart/myCart';
+export { default as MyCart } from './myCart/MyCart';

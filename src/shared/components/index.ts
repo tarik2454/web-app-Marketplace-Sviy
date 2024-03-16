@@ -16,5 +16,6 @@ export { default as Card } from './Card/Card';
 export { default as Pagination } from './Pagination/Pagination';
 export { default as FilterControlButtons } from './FilterControlButtons/FilterControlButtons';
 export { default as Dropdown } from './Dropdown/Dropdown';
-export { default as CatalogueButton } from "./CatalogueButton/CatalogueButton";
-export { default as PageWrapper } from "./PageWrapper/PageWrapper";
+export { default as CatalogueButton } from './CatalogueButton/CatalogueButton';
+export { default as PageWrapper } from './PageWrapper/PageWrapper';
+export { default as FinalPrice } from './Cart/FinalPrice';
