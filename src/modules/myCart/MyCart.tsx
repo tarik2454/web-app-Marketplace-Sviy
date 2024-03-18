@@ -25,18 +25,18 @@ export default function MyCart() {
   });
 
   return (
-    <Section className="relative pt-[3px] md:px-4">
-      <h2 className="px-4 pb-10 text-2xl leading-10 text-gray-900 md:pb-8">
+    <Section className="relative pt-[3px] md:px-4 xl:px-[80px] xl:pt-[58px]">
+      <h2 className="px-4 pb-10 text-2xl leading-10 text-gray-900 md:pb-8 xl:text-4xl ">
         Оформлення замовлення
       </h2>
-      <h3 className="px-4 pb-5 text-xl leading-loose text-gray-900">
+      <h3 className="px-4 pb-5 text-xl leading-loose text-gray-900 xl:text-2xl">
         Ваші контактні дані
       </h3>
       <form
         className="flex flex-col min-w-[343px] mx-4 gap-5 "
         onSubmit={formik.handleSubmit}
       >
-        <div className="flex flex-col gap-5 md:max-w-[344px]">
+        <div className="flex flex-col gap-5 md:w-[49%] xl:w-[65%]">
           <FormInput
             formik={formik}
             id="fullName"
@@ -59,7 +59,7 @@ export default function MyCart() {
         <div className="md:w-full">
           <CartList />
         </div>
-        <div className=" md:absolute md:top-[16%] md:right-8">
+        <div className=" md:absolute md:top-[16%] md:right-8 xl:top-[23%] xl:right-[100px]">
           <FinalPrice itemsQuantity={4} totalPrice={470} />
         </div>
       </form>
