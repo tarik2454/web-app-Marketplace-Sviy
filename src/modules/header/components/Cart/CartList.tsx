@@ -32,11 +32,7 @@ export default function CartList() {
             Сума: 150 ₴{' '}
           </p>
         </div>
-        <Image
-          className="mb-6 xl:w-[813px] md:w-[672px] sm:w-[311px] h-[2px] px-4"
-          src={Line}
-          alt="line"
-        />
+        <div className="bg-gray-600 b-6 xl:w-[813px] md:w-[672px] sm:w-[311px] h-[2px] px-4"></div>
         <Order cartItems={cartItems} />
       </div>
     </div>
