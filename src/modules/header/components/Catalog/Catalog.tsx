@@ -25,11 +25,11 @@ export default function Catalog({
     setSelectedCategory(categoryName);
   };
 
-  const stylesCatalog = `w-full md:w-[704px] xl:w-[1280px] h-full md:h-auto my-0 mx-auto bg-neutral-50 md:rounded-br-default md:rounded-bl-default shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] absolute top-0 md:top-[113px] left-[50%] z-20 -translate-x-2/4`;
+  const stylesCatalog = `w-full md:w-[704px] xl:w-[1280px] h-full md:h-[80vh] my-0 mx-auto bg-neutral-50 md:rounded-br-default md:rounded-bl-default shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] absolute top-0 md:top-[113px] left-[50%] z-20 -translate-x-2/4`;
 
   return (
     <div className={`${displayCategories} ${stylesCatalog}`}>
-      <div className="">
+      <div className="h-full md:h-[80vh] overflow-y-auto">
         <div className="xl:hidden py-5 border-b-2">
           <Container>
             <div
@@ -55,20 +55,18 @@ export default function Catalog({
           </Container>
         </div>
 
-        <div className="h-screen md:h-full overflow-y-auto">
-          <nav className="max-w-[375px] my-0 mx-auto md:mx-0 py-5 md:w-full md:px-8 md:py-4">
-            <ul className={`relative ${isThirdList}`}>
-              {categoriesData.map((category, index) => (
-                <CatalogItem
-                  object={category}
-                  key={index}
-                  onCategoryClick={handleCategoryClick}
-                  setIsThirdList={setIsThirdList}
-                />
-              ))}
-            </ul>
-          </nav>
-        </div>
+        <nav className="max-w-[375px] my-0 mx-auto md:mx-0 py-5 md:w-full md:px-8 md:py-4">
+          <ul className={`relative ${isThirdList}`}>
+            {categoriesData.map((category, index) => (
+              <CatalogItem
+                object={category}
+                key={index}
+                onCategoryClick={handleCategoryClick}
+                setIsThirdList={setIsThirdList}
+              />
+            ))}
+          </ul>
+        </nav>
       </div>
     </div>
   );
