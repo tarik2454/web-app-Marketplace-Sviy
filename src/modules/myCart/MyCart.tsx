@@ -40,12 +40,14 @@ export default function MyCart() {
             id="name"
             inputType="text"
             inputIcon="user"
+            inputLink="Змінити"
           />
           <FormInput
             formik={formik}
             id="location"
             inputType="text"
             inputIcon="location"
+            inputLink="Змінити"
           />
           <div className="inline-flex items-center justify-start px-4 py-1.5 bg-white border rounded-2xl border-blue-700">
             <p className="text-xs text-gray-900 md:text-base">
@@ -54,10 +56,10 @@ export default function MyCart() {
             </p>
           </div>
         </div>
-        <div className="md:w-full">
+        <div className="w-full">
           <CartList />
         </div>
-        <div className=" md:absolute md:top-[16%] md:right-8 xl:top-[23%] xl:right-[100px]">
+        <div className=" md:absolute md:top-[17%] md:right-8 xl:top-[23%] xl:right-[100px]">
           <FinalPrice itemsQuantity={4} totalPrice={470} />
         </div>
       </form>
