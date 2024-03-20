@@ -10,14 +10,12 @@ import * as Yup from 'yup';
 export default function MyCart() {
   const formik = useFormik({
     initialValues: {
-      fullName: '',
+      name: '',
       location: '',
     },
     validationSchema: Yup.object().shape({
-      fullName: Yup.string().label("Введіть ім'я").required("Введіть ім'я"),
-      location: Yup.string()
-        .min(4, 'Виберіть місто')
-        .required('Виберіть ваше місто'),
+      name: Yup.string().required("Введіть ім'я"),
+      location: Yup.string().required('Виберіть ваше місто'),
     }),
     onSubmit: async values => {
       console.log(values);
@@ -39,7 +37,7 @@ export default function MyCart() {
         <div className="flex flex-col gap-5 md:w-[49%] xl:w-[65%]">
           <FormInput
             formik={formik}
-            id="fullName"
+            id="name"
             inputType="text"
             inputIcon="user"
           />
