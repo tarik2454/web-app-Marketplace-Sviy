@@ -4,4 +4,4 @@ export { default as Counter } from './Counter';
 export { default as Catalog } from './Catalog/Catalog';
 export { default as BurgerMenu } from './BurgerMenu/BurgerMenu';
 export { default as SearchProducts } from './SearchProducts/SearchProducts';
-export { default as Cart } from '../../../shared/components/Cart/Cart';
+// export { default as Cart } from '../../../shared/components/Cart/Cart';
