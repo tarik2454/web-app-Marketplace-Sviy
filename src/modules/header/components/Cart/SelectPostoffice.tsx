@@ -18,7 +18,7 @@ type SelectPostofficeProps = {
     values: any;
 }
 
-const select = (props: any) => {
+const SelectItems = (props: any) => {
     const [field, state, {setValue}] = useField(props.field.name);
 
     const onChange = ({value}:{
@@ -77,7 +77,7 @@ const SelectPostoffice = ({postOfficeShow, byAddress, onclick, postOfficeView, f
                     <Field className={`placeholder:text-gray-900 text-base text-gray-900 font-lato min-w-[813px] md:w-[668px] rounded-[20px] focus:outline-blue-200 py-3 px-4 border-[1px] ${errorClassInputCity}`} type="text" name="city" placeholder="Вкажіть місто"/>
                     <ErrorMessage name="city">{msg => <><p className='text-[#C60000]'>{msg}</p>{setErrorClassInputCity("border-[#C60000]")}</>}</ErrorMessage>
                     <div>
-                        <Field component={select} values={values} options={options} name="postOfficeApiSelect" errorClassInputSelect={errorClassInputSelect}/> 
+                        <Field component={SelectItems} values={values} options={options} name="postOfficeApiSelect" errorClassInputSelect={errorClassInputSelect}/> 
                     </div>
                     <ErrorMessage name="postOfficeApiSelect">{msg =><><p className='text-[#C60000]'>{msg}</p>{setErrorClassInputSelect("border-[#C60000]")}</>}</ErrorMessage>
                 </div>
