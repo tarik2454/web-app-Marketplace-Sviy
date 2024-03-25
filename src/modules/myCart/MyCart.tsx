@@ -1,6 +1,6 @@
 'use client';
 
-import CartList from '@/shared/components/Cart/CartList';
+import CartList from '@/modules/header/components/Cart/CartList';
 
 import { Section, FormHeading, FormInput } from '@/shared/components';
 import { FinalPrice } from '@/shared/components';
@@ -56,10 +56,10 @@ export default function MyCart() {
             </p>
           </div>
         </div>
-        <div className="w-full">
+        <div className="">
           <CartList />
         </div>
-        <div className=" md:absolute md:top-[17%] md:right-8 xl:top-[23%] xl:right-[100px]">
+        <div className=" md:absolute md:top-[12%] md:right-8 xl:top-[15%] xl:right-[90px]">
           <FinalPrice itemsQuantity={4} totalPrice={470} />
         </div>
       </form>
