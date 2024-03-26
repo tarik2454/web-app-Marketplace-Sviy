@@ -4,6 +4,7 @@ import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { FormikProps } from 'formik';
 import { useEffect, useState } from 'react';
 import styles from '@/styles/FormInput.module.css';
+import Link from 'next/link';
 
 type Props = {
   id: string;
@@ -12,6 +13,7 @@ type Props = {
   formik: FormikProps<any>;
   placeholder?: string;
   inputIcon?: string;
+  inputLink?: string;
 };
 
 export default function FormInput({
@@ -21,6 +23,7 @@ export default function FormInput({
   formik,
   placeholder,
   inputIcon,
+  inputLink,
 }: Props) {
   const [inputTypePass, setInputTypePass] = useState(inputType);
   const error = formik.touched[id] && formik.errors[id];
@@ -45,7 +48,7 @@ export default function FormInput({
         {label}
       </label>
       <div
-        className={`flex flex-row-reverse px-4 py-3 gap-2 relative ${borderColor} border-2 bg-white rounded-default`}
+        className={`flex px-4 py-3 gap-2 relative ${borderColor} border-2 bg-white rounded-default`}
       >
         <input
           onChange={formik.handleChange}
@@ -53,10 +56,10 @@ export default function FormInput({
           id={id}
           placeholder={placeholder}
           value={formik.values.id}
-          className="w-full h-6 outline-none"
+          className="w-full h-6 outline-none flex-grow order-2"
         />
         {inputIcon && (
-          <span className={`${styles.prevIcon} text-gray-400`}>
+          <span className={`${styles.prevIcon} text-gray-400 order-1`}>
             <SpriteSVG name={inputIcon} />
           </span>
         )}
@@ -66,6 +69,11 @@ export default function FormInput({
               name={inputTypePass === 'password' ? 'eye' : 'eye-off'}
             />
           </button>
+        )}
+        {inputLink && (
+          <Link href="" className="text-base text-blue-700 order-3">
+            {inputLink}
+          </Link>
         )}
       </div>
       {error && (

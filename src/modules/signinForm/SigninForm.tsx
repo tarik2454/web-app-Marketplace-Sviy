@@ -44,10 +44,6 @@ export default function SigninForm({
     },
   });
 
-  // const handleCheckboxChange = () => {
-  //   formik.setFieldValue('rememberMe', !formik.values.rememberMe);
-  // };
-
   return (
     <Section className="py-[80px] md:pt-[38px] xl:py-[98px]">
       <FormHeading

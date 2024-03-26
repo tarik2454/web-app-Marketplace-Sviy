@@ -9,5 +9,6 @@ export const linksTitles: TlinksTitles[] = [
   { link: 'cheng-pass', title: 'Відновлення паролю' },
   { link: 'catalogue', title: 'Каталог' },
   { link: 'my-data', title: 'Профіль' },
-  { link: 'catalogue-seller', title: 'Каталог продавця' }
+  { link: 'catalogue-seller', title: 'Каталог продавця' },
+  { link: 'cart', title: 'Кошик' },
 ];

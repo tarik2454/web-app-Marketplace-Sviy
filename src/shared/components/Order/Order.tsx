@@ -16,11 +16,11 @@ const Order: React.FC<OrderProps> = ({ cartItems }) => {
     <>
       {cartItems.map((cartItem, counter) => (
         <div
-          className="flex p-2 xl:gap-4 md:gap-4 sm:gap-4 mb-4 w-[813px] md-[672px]"
+          className="flex p-2 xl:gap-4 md:gap-4 sm:gap-4 mb-4 w-[783px] md-[672px]"
           key={counter}
         >
           <div className="min-w-[136px] sm:min-w-[82px] h-[100px] sm:h-[82px] bg-neutral-400 rounded-default"></div>
-          <div className="xl:w-[672px] md:w-[536px] sm: w-[213px]">
+          <div className="xl:w-[642px] md:w-[536px] sm: w-[213px]">
             <div className="flex justify-between">
               <p className="xl:max-w-60 sm:max-w-[181px] text-base sm:text-sm">
                 {cartItem.heading}
@@ -30,7 +30,7 @@ const Order: React.FC<OrderProps> = ({ cartItems }) => {
               </button>
             </div>
             <div className="xl:w-653 md:w-[712px] xl:flex">
-              <div className="w-auto flex-row xl:justify-between sm:justify-normal items-end flex xl:gap-12 md:gap-0 sm:gap-[40px]">
+              <div className="w-auto flex-row xl:justify-between sm:justify-normal items-end flex xl:gap-8 md:gap-0 sm:gap-[40px]">
                 <div className="sm:mt-[22px] ml-4">
                   <AmountButtons />
                 </div>

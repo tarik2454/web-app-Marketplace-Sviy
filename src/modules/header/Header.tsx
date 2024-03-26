@@ -1,6 +1,6 @@
 'use client';
 
-import { Cart } from './components';
+// import { Cart } from './components';
 import { BurgerMenu } from './components';
 import Logo from '../../shared/components/Logo/Logo';
 import { HamburgerButton, FunctionalButtons, Catalog } from './components';
@@ -85,10 +85,10 @@ export default function Header() {
               closeButtonClick={() => setDisplayMenu('hidden')}
             />
 
-            <Cart
+            {/* <Cart
               closeButtonClick={() => setDisplayCart('hidden')}
               display={displayCart}
-            />
+            /> */}
 
             <CatalogButton
               catalogueClick={() => toggleCatalogVisibility()}
