@@ -1,5 +1,5 @@
 import { Breadcrumbs, ColorSpot, PageWrapper } from '@/shared/components';
-import { SigninForm } from '@/modules';
+import { MyCart } from '@/modules';
 
 export default function Page() {
   return (
@@ -11,7 +11,7 @@ export default function Page() {
           homeElement={<span>Головна</span>}
           capitalizeLinks
         />
-        <SigninForm signinType="page" />
+        <MyCart />
       </PageWrapper>
     </>
   );

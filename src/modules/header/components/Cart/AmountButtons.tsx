@@ -12,9 +12,6 @@ export default function AmountButtons() {
           <SpriteSVG name="plus" />
         </button>
       </div>
-      <button className="ml-auto md:ml-0">
-        <SpriteSVG name="trash" />
-      </button>
     </div>
   );
 }

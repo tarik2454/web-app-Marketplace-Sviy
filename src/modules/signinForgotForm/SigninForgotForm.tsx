@@ -64,7 +64,7 @@ export default function SigninForgotForm({
   });
 
   return (
-    <Section className="py-[80px] md:pt-[104px] xl:py-[164px]">
+    <Section className="py-[80px] md:pt-[38px] xl:py-[98px]">
       <FormHeading
         heading="Забули свій пароль"
         additionalText="Нічого страшного! Заповніть свою електронну адресу, і ми надішлемо вам"

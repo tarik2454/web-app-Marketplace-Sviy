@@ -61,7 +61,7 @@ export default function RecoverPasswordForm({
   });
 
   return (
-    <Section className="py-[80px] md:pt-[104px] xl:py-[164px]">
+    <Section className="py-[80px] md:pt-[38px] xl:py-[98px]">
       <FormHeading
         heading="Встановити новий пароль"
         additionalText="Для підтвердження вашої особи, введіть код, який був висланий на вашу електронну пошту."
@@ -92,7 +92,7 @@ export default function RecoverPasswordForm({
           />
         </div>
 
-        <p className="text-xs text-blue-900">
+        <p className="text-xs text-blue-900 pt-4">
           Пароль повинен мати мінімум 8 символів. Для надійності пароля додайте
           великі, малі літери та цифри.
         </p>

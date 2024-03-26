@@ -44,12 +44,8 @@ export default function SigninForm({
     },
   });
 
-  // const handleCheckboxChange = () => {
-  //   formik.setFieldValue('rememberMe', !formik.values.rememberMe);
-  // };
-
   return (
-    <Section className="py-[80px] md:pt-[104px] xl:py-[164px]">
+    <Section className="py-[80px] md:pt-[38px] xl:py-[98px]">
       <FormHeading
         heading="Увійти в акаунт"
         additionalText="Увійдіть, щоб мати можливість додавати товари до обраного та бачити свої замовлення."
@@ -71,7 +67,7 @@ export default function SigninForm({
           label={'Пароль'}
           inputType="password"
         />
-        <div className="flex  justify-between items-center">
+        <div className="flex  justify-between items-center pt-2">
           <FormCheckbox
             formik={formik}
             id="rememberMe"
