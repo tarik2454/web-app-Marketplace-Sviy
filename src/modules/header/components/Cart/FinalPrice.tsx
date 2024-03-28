@@ -1,4 +1,6 @@
-import { OrangeButton } from '@/shared/components';
+import { OrangeButton } from "@/shared/components";
+import Link from 'next/link';
+
 
 type Props = {
   totalPrice: number;
@@ -23,9 +25,8 @@ export default function FinalPrice({ totalPrice, itemsQuantity }: Props) {
           за тарифами перевізників{' '}
         </p>
       </div>
-      <div className="flex pt-8 pb-6 border-t-2 md:pb-10">
-        <p>До сплати</p>
-        <p className="ml-auto xl:text-xl">{totalPrice} ₴</p>
+      <div className="block md:hidden xl:block">
+        <OrangeButton onClick={() => {}}><Link href="/orderDetails">Оформити замовлення</Link></OrangeButton>
       </div>
       <div className="block text-white">
         <OrangeButton onClick={() => {}} type="submit">
