@@ -1,10 +1,9 @@
-import { OrangeButton } from "@/shared/components";
+import { OrangeButton } from '@/shared/components';
 import Link from 'next/link';
 
-
 type Props = {
-  totalPrice: number;
-  itemsQuantity: number;
+  totalPrice?: number;
+  itemsQuantity?: number;
 };
 
 export default function FinalPrice({ totalPrice, itemsQuantity }: Props) {
@@ -26,7 +25,9 @@ export default function FinalPrice({ totalPrice, itemsQuantity }: Props) {
         </p>
       </div>
       <div className="block md:hidden xl:block">
-        <OrangeButton onClick={() => {}}><Link href="/orderDetails">Оформити замовлення</Link></OrangeButton>
+        <OrangeButton onClick={() => {}}>
+          <Link href="/orderDetails">Оформити замовлення</Link>
+        </OrangeButton>
       </div>
       <div className="block text-white">
         <OrangeButton onClick={() => {}} type="submit">
