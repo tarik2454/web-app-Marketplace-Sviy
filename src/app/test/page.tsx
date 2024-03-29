@@ -17,6 +17,7 @@ export default function Page() {
           <Link href="/signin">- signin</Link>
           <Link href="/signin-forgot">- signin-forgot</Link>
           <Link href="/signup">- signup</Link>
+          <Link href="/not-found">- not-found</Link>
         </div>
       </Container>
     </div>
