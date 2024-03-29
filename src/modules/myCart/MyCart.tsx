@@ -56,9 +56,7 @@ export default function MyCart() {
             </p>
           </div>
         </div>
-        <div className="">
-          <CartList />
-        </div>
+
         <div className=" md:absolute md:top-[12%] md:right-8 xl:top-[15%] xl:right-[90px]">
           <FinalPrice itemsQuantity={4} totalPrice={470} />
         </div>
