@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('../assets/fonts/Lora/Lora-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('../assets/fonts/Lora/Lora-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -249,27 +270,6 @@ body {
   background-color: #ff9800 !important;
 }
 
-@font-face {
-  font-family: 'Lato';
-  src: url('../assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lora';
-  src: url('../assets/fonts/Lora/Lora-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lora';
-  src: url('../assets/fonts/Lora/Lora-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -277,9 +277,9 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   ::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
@@ -295,10 +295,12 @@ input:-webkit-autofill:active {
   }
 }
 
-
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.customInput input:focus + .prevIcon {
+  color: #1565c0;
 }
