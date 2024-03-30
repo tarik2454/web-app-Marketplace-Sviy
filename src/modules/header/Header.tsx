@@ -1,7 +1,6 @@
 'use client';
 
-// import { Cart } from './components';
-import { BurgerMenu } from './components';
+import { BurgerMenu, Cart } from './components';
 import Logo from '../../shared/components/Logo/Logo';
 import { HamburgerButton, FunctionalButtons, Catalog } from './components';
 import Container from '@/shared/components/Container/Container';
@@ -9,60 +8,65 @@ import { SearchProducts } from './components';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import CatalogButton from './components/Catalog/CatalogButton';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
+import Modal from '@/shared/components/Modal/Modal';
 
 export default function Header() {
   const [displayMenu, setDisplayMenu] = useState('hidden');
-  const [displaySearchProducts, setDisplaySearchProducts] = useState('hidden');
   const [displayCart, setDisplayCart] = useState('hidden');
   const [displayCategories, setDisplayCategories] = useState('hidden');
-  const [displayBackdrop, setDisplayBackdrop] = useState('hidden');
 
-  const backdropRef = useRef<HTMLDivElement | null>(null);
+  const [showCatalog, setShowCatalog] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   const { isOnMobile, isOnTablet } = ScreenSize();
 
-  const searchButtonHandler = () => {
-    if (displaySearchProducts === 'hidden') {
-      setDisplaySearchProducts('block');
-      document.body.style.overflow = 'hidden';
-    } else {
-      setDisplaySearchProducts('hidden');
-      document.body.style.overflow = 'auto';
-    }
-  };
+  const backdropCatalogRef = useRef<HTMLDivElement | null>(null);
+  const backdropSearchRef = useRef<HTMLDivElement | null>(null);
 
   const toggleCatalogVisibility = useCallback(() => {
-    if (displayCategories && displayBackdrop === 'hidden') {
-      document.body.style.overflow = 'hidden';
-    } else {
+    if (showCatalog) {
+      setShowCatalog(false);
       document.body.style.overflow = 'auto';
+    } else {
+      setShowCatalog(true);
+      setShowSearch(false);
+      setDisplayCategories('block');
+      document.body.style.overflow = 'hidden';
     }
+  }, [showCatalog]);
 
-    setDisplayCategories(prevClass =>
-      prevClass === 'hidden' ? 'block ' : 'hidden'
-    );
+  const toggleSearchVisibility = useCallback(() => {
+    if (showSearch) {
+      setShowSearch(false);
+      document.body.style.overflow = 'auto';
+    } else {
+      setShowSearch(true);
+      setShowCatalog(false);
 
-    setDisplayBackdrop(prevClass =>
-      prevClass === 'hidden' ? 'block' : 'hidden'
-    );
-  }, [displayBackdrop, displayCategories]);
+      document.body.style.overflow = 'hidden';
+    }
+  }, [showSearch]);
 
-  const closeCatalog = () => {
-    setDisplayCategories('hidden');
-    setDisplayBackdrop('hidden');
+  const closeBackdrop = () => {
+    setShowCatalog(false);
+    setShowSearch(false);
+
     document.body.style.overflow = 'auto';
   };
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent): void => {
-      if (backdropRef.current === (event.target as Node)) {
-        toggleCatalogVisibility();
+      if (
+        backdropCatalogRef.current === event.target ||
+        backdropSearchRef.current === event.target
+      ) {
+        closeBackdrop();
       }
     };
 
     const handleEscapeClick = (event: KeyboardEvent): void => {
       if (event.code === 'Escape') {
-        closeCatalog();
+        closeBackdrop();
       }
     };
 
@@ -73,30 +77,32 @@ export default function Header() {
       window.removeEventListener('click', handleOutsideClick);
       window.removeEventListener('keydown', handleEscapeClick);
     };
-  }, [toggleCatalogVisibility]);
+  }, []);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <>
-      <header className="w-full py-[30px] bg-neutral-50 shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] fixed top-0 left-0 z-50">
+      <header className="w-full py-[22.5px] md:py-[30px] bg-neutral-50 shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] fixed top-0 left-0 z-50">
         <Container>
           <div className="flex items-center gap-auto ">
             <BurgerMenu
               display={displayMenu}
               closeButtonClick={() => setDisplayMenu('hidden')}
             />
-
-            {/* <Cart
-              closeButtonClick={() => setDisplayCart('hidden')}
-              display={displayCart}
-            /> */}
-
             <CatalogButton
-              catalogueClick={() => toggleCatalogVisibility()}
-              isClicked={displayCategories === 'block'}
+              catalogueClick={toggleCatalogVisibility}
+              isClicked={showCatalog}
             />
-
             <HamburgerButton hamburgerClick={() => setDisplayMenu('block')} />
-
             <div className="mx-auto">
               {isOnMobile ? (
                 <Logo logo="logoHeaderMobile" />
@@ -106,28 +112,42 @@ export default function Header() {
                 <Logo logo="logoHeaderDesktop" />
               )}
             </div>
-
             <FunctionalButtons
-              searchButtonClick={searchButtonHandler}
-              cartButtonClick={() => setDisplayCart('flex')}
+              searchButtonClick={toggleSearchVisibility}
+              cartButtonClick={() => setDisplayCart('block')}
             />
           </div>
-
-          <SearchProducts display={displaySearchProducts} />
         </Container>
       </header>
 
-      <div
-        ref={backdropRef}
-        className={`${displayBackdrop} w-full h-full bg-black bg-opacity-40 fixed top-0 left-0 z-10`}
-      >
-        <Catalog
-          displayCategories={displayCategories}
-          closeCatalogClick={closeCatalog}
-        />
-      </div>
+      {showCatalog && (
+        <div
+          className="w-full h-full bg-black bg-opacity-40 fixed top-0 left-0 z-10"
+          ref={backdropCatalogRef}
+        >
+          <Catalog
+            displayCategories={displayCategories}
+            closeCatalogClick={closeBackdrop}
+          />
+        </div>
+      )}
+
+      {showSearch && (
+        <div
+          className="w-full h-full bg-black bg-opacity-40 fixed top-0 left-0 z-10"
+          ref={backdropSearchRef}
+        >
+          <SearchProducts />
+        </div>
+      )}
+
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <div>sdfgdfsgfdgsdfgsdfgsdfgdsf</div>
+        {/* <Cart
+          closeButtonClick={() => setDisplayCart('hidden')}
+          display={displayCart}
+        /> */}
+      </Modal>
     </>
   );
 }
-
-Header.ssr = false;
