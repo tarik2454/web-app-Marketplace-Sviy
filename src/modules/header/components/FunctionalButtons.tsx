@@ -35,9 +35,9 @@ export default function FunctionalButtons({
         className="relative w-8 text-blue-700 hover:text-neutral-800 active:text-neutral-400"
       >
         <Counter />
-        <Link href="/cart">
+        <div>
           <SpriteSVG name="cart" />
-        </Link>
+        </div>
       </button>
     </div>
   );

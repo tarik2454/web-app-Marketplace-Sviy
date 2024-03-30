@@ -109,7 +109,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
               color-interpolation-filters="sRGB"
               filterUnits="userSpaceOnUse"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 result="hardAlpha"
@@ -943,7 +943,7 @@ export const SpriteSVG = ({ name }: { name: string }) => {
               filterUnits="userSpaceOnUse"
               colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
