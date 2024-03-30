@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import SelectPostoffice from './SelectPostoffice';
 
 
-const Delivery = ({values}:any) => {
+const Delivery = ({values, touched, error}:any) => {
   const [showNovaposhta, setShowNovaposhta] = useState("hidden");
   const [showUkrposhta, setShowUkrposhta] = useState("hidden");
   const [showByAddress, setShowByAddress] = useState("hidden");
@@ -50,27 +50,27 @@ const Delivery = ({values}:any) => {
   }
 
   useEffect(() => {
-    if(values.deliveryPicked) setErrorClassRadio("border-blue-200");
-  }, [values.deliveryPicked])
+    error.deliveryPicked && touched.deliveryPicked ? setErrorClassRadio("border-[#C60000] border-[1px]") : setErrorClassRadio("border-blue-200");
+  }, [touched, error])
   
   return (
-    <div className='flex-col ml-[92px]'>
-      <h3 className='font-lora text-2xl mt-10 mb-8'>Доставка</h3>
-      <div className={`bg-white pl-3 pr-3 pt-6 pb-6 rounded-[20px] min-w-[845px] md:max-w-[700px] ${errorClassRadio}`}>
+    <div className='xl:ml-0 md:ml-0 sm:ml-2.5'>
+      <h3 className='font-lora text-2xl mb-8'>Доставка</h3>
+      <div className={`bg-white pl-3 pr-3 pt-6 pb-6 rounded-[20px] xl:min-w-[845px] md:w-[700px] sm:w-[343px] ${errorClassRadio}`}>
         <div className='flex justify-between items-start'>
-            <div className='mb-5 flex items-center gap-2'>
-                <Field className='border-gray-600 w-6 h-6'id="byYourself" type="radio" name="deliveryPicked" value="Самовивіз" onClick={() => handleByYourself()}/>
-                <label htmlFor='byYourself' className='text-base text-gray-900 font-lato'> Самовивіз</label>
+            <div className='mb-5 flex items-center'>
+                <Field className='border-gray-600 w-6 h-6 block absolute'id="byYourself" type="radio" name="deliveryPicked" value="Самовивіз" onClick={() => handleByYourself()}/>
+                <label htmlFor='byYourself' className='xl:text-base md:text-base text-gray-900 font-lato pl-9 sm:text-sm'> Самовивіз</label>
             </div>
-            <p className='text-base text-gray-900 font-lato'>Безкоштовно</p>
+            <p className='xl:text-base md:text-base text-gray-900 font-lato text-end sm:text-xs'>Безкоштовно</p>
         </div>
         <div>
             <div className='flex justify-between items-start'>
-                <div className='mb-5 flex items-center gap-2'>
-                  <Field className='border-gray-600 w-6 h-6' id="novaposhta" type="radio" name="deliveryPicked" value="Доставка на Нову Пошту" onClick={() => handleShowNovaposhta()}/>
-                    <label htmlFor='novaposhta' className='text-base text-gray-900 font-lato'> Доставка на Нову Пошту </label>
+                <div className='mb-5 flex items-center'>
+                  <Field className='border-gray-600 w-6 h-6 block absolute' id="novaposhta" type="radio" name="deliveryPicked" value="Доставка на Нову Пошту" onClick={() => handleShowNovaposhta()}/>
+                  <label htmlFor='novaposhta' className='xl:text-base md:text-base text-gray-900 font-lato pl-9 sm:text-sm'> Доставка на Нову Пошту </label>
                 </div>
-                <p className='text-base text-gray-900 font-lato'>За тарифами перевізника</p>
+                <p className='xl:text-base md:text-base text-gray-900 font-lato text-end xl:text-nowrap md:text-nowrap sm:text-wrap sm:text-xs'>За тарифами перевізника</p>
             </div>
             <SelectPostoffice
                postOfficeView={postOfficeView} 
@@ -84,15 +84,17 @@ const Delivery = ({values}:any) => {
                exitAddress="exitAddress1"
                floorAddress="floorAddress1"
                values={values}
+               touched={touched}
+               error={error}
              />
         </div>
         <div>
             <div className='flex justify-between items-start'>
-                <div className='mb-5 flex items-center gap-2'>
-                    <Field className='border-gray-600 w-6 h-6' id="ukrposhta" type="radio" name="deliveryPicked" value="Доставка на Укрпошту" onClick={() => handleShowUkrposhta()}/>
-                    <label htmlFor='ukrposhta' className='text-base text-gray-900 font-lato'> Доставка на Укрпошту </label>
+                <div className='flex items-center'>
+                    <Field className='border-gray-600 w-6 h-6 block absolute' id="ukrposhta" type="radio" name="deliveryPicked" value="Доставка на Укрпошту" onClick={() => handleShowUkrposhta()}/>
+                    <label htmlFor='ukrposhta' className='xl:text-base md:text-base text-gray-900 font-lato pl-9 sm:text-sm'> Доставка на Укрпошту </label>
                 </div>
-                <p className='text-base text-gray-900 font-lato'>За тарифами перевізника</p>
+                <p className='xl:text-base md:text-base text-gray-900 font-lato text-end xl:text-nowrap md:text-nowrap sm:text-wrap sm:text-xs'>За тарифами перевізника</p>
             </div>
             <SelectPostoffice 
               postOfficeView={postOfficeView}
@@ -106,10 +108,12 @@ const Delivery = ({values}:any) => {
               exitAddress="exitAddress2"
               floorAddress="floorAddress2"
               values={values}
+              touched={touched}
+              error={error}
             />
         </div>
       </div>
-      <ErrorMessage name="deliveryPicked">{msg => <><p className='text-[#C60000]'>{msg}</p>{setErrorClassRadio("border-[#C60000] border-[1px]")}</>}</ErrorMessage>
+      <ErrorMessage name="deliveryPicked" render={msg => <p className='text-[#C60000]'>{msg} </p> } />
     </div>
   )
 }
