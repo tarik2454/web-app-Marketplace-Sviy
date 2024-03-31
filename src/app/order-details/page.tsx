@@ -1,4 +1,4 @@
-import { MyCart } from '@/modules';
+import { OrderCheckout } from '@/modules';
 
 import FormLogic from '@/modules/delivery/FormLogic';
 import { ColorSpot, OrderCount, PageWrapper } from '@/shared/components';
@@ -7,7 +7,7 @@ function OrderDetails() {
   return (
     <PageWrapper>
       <ColorSpot />
-      <MyCart />
+      <OrderCheckout />
       <OrderCount />
       <FormLogic />
     </PageWrapper>

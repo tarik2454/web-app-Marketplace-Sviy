@@ -1,18 +1,11 @@
 'use client';
 
-import CartList from '@/modules/header/components/Cart/CartList';
-
-import {
-  Section,
-  FormHeading,
-  FormInput,
-  Container,
-} from '@/shared/components';
+import { Section, FormInput, Container } from '@/shared/components';
 import { FinalPrice } from '@/shared/components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-export default function MyCart() {
+export default function OrderChecout() {
   const formik = useFormik({
     initialValues: {
       name: '',

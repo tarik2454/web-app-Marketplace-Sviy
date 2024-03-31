@@ -18,5 +18,5 @@ export { default as FilterControlButtons } from './FilterControlButtons/FilterCo
 export { default as Dropdown } from './Dropdown/Dropdown';
 export { default as CatalogueButton } from './CatalogueButton/CatalogueButton';
 export { default as PageWrapper } from './PageWrapper/PageWrapper';
-export { default as FinalPrice } from '../../modules/header/components/Cart/FinalPrice';
+export { default as FinalPrice } from '../../modules/finalPrice/FinalPrice';
 export { default as OrderCount } from '../../shared/components/OrderCount/OrderCount';
