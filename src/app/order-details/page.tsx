@@ -1,7 +1,7 @@
 import { MyCart } from '@/modules';
+
 import FormLogic from '@/modules/delivery/FormLogic';
 import { ColorSpot, OrderCount, PageWrapper } from '@/shared/components';
-import React from 'react';
 
 function OrderDetails() {
   return (
