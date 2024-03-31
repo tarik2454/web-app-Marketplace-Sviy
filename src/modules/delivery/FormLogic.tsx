@@ -2,8 +2,9 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import Delivery from '@/modules/header/components/Cart/Delivery';
-import OrderPayDetail from '@/modules/header/components/Cart/OrderPayDetail'
+import Delivery from '@/modules/delivery/Delivery';
+import { Container } from '@/shared/components';
+import OrderPayDetail from '@/modules/delivery/OrderPayDetail'
 
 const FormLogic = () => {
     const orderSchema = yup.object().shape({
@@ -43,6 +44,7 @@ const FormLogic = () => {
       });
     
     return (
+      <Container>
         <Formik 
         initialValues={{
         deliveryPicked: '',
@@ -62,16 +64,15 @@ const FormLogic = () => {
     onSubmit={async (values) => {
         await new Promise((r) => setTimeout(r, 500));
         alert(JSON.stringify(values, null, 2));
-        console.log(values.deliveryByAddressPicked)
     }}
     >
-    {({values}) => (
+    {({values, touched, errors}) => (
     <Form>
-        <Delivery values={values}/>
-        <OrderPayDetail values={values.picked} customer={values.customer}/>
-        <button type="submit">button</button>
+        <Delivery values={values} touched={touched} error={errors}/>
+        <OrderPayDetail customer={values.customer} touched={touched} error={errors}/>
     </Form>)}
-</Formik>
+  </Formik>
+</Container>
   )
 }
 
