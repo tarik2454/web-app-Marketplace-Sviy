@@ -1,4 +1,4 @@
-import { OrangeButton } from '@/shared/components';
+import { OrangeButton, Container } from '@/shared/components';
 import Link from 'next/link';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 
 export default function FinalPrice({ totalPrice, itemsQuantity }: Props) {
   return (
-    <div className="min-w-[344px] py-5 px-4 shadow rounded-2xl xl:min-w-[411px]">
+    <div className="bg-white min-w-[344px] py-5 px-4 shadow rounded-2xl xl:min-w-[411px]">
       <h2 className="text-xl text-gray-900 font-lora pb-5 md:text-2xl md:pb-8 xl:text-3xl">
         Разом
       </h2>
@@ -24,11 +24,15 @@ export default function FinalPrice({ totalPrice, itemsQuantity }: Props) {
           за тарифами перевізників{' '}
         </p>
       </div>
-      <div className="block md:hidden xl:block">
-        <OrangeButton onClick={() => {}}>
-          <Link href="/orderDetails">Оформити замовлення</Link>
-        </OrangeButton>
+      <div className="flex pt-8 pb-6 border-t-2 md:pb-10">
+        <p>До сплати</p>
+        <p className="ml-auto xl:text-xl">{totalPrice} ₴</p>
       </div>
+      {/* <div className="block md:hidden xl:block">
+        <OrangeButton onClick={() => {}}>
+          <Link href="/order-details">Оформити замовлення</Link>
+        </OrangeButton>
+      </div> */}
       <div className="block text-white">
         <OrangeButton onClick={() => {}} type="submit">
           Замовлення підтверджую
