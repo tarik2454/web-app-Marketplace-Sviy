@@ -16,11 +16,11 @@ const Order: React.FC<OrderProps> = ({ cartItems }) => {
     <>
       {cartItems.map((cartItem, counter) => (
         <div
-          className="flex p-2 xl:gap-4 md:gap-4 sm:gap-4 mb-4 w-[783px] md-[672px]"
+          className="flex pt-2 xl:gap-6 md:gap-2 sm:gap-4 mb-4 xl:w-[783px] md:w-[672px] sm:max-w-[373px]"
           key={counter}
         >
-          <div className="min-w-[136px] sm:min-w-[82px] h-[100px] sm:h-[82px] bg-neutral-400 rounded-default"></div>
-          <div className="xl:w-[642px] md:w-[536px] sm: w-[213px]">
+          <div className="xl:min-w-[136px] md:min-w-[136px] min-w-[82px] xl:h-[100px] md:h-[100px]  sm:h-[82px] bg-neutral-400 rounded-default"></div>
+          <div className="xl:w-[673px] md:w-[536px] sm:w-[213px]">
             <div className="flex justify-between">
               <p className="xl:max-w-60 sm:max-w-[181px] text-base sm:text-sm">
                 {cartItem.heading}
@@ -29,18 +29,19 @@ const Order: React.FC<OrderProps> = ({ cartItems }) => {
                 <SpriteSVG name="trash" />
               </button>
             </div>
-            <div className="xl:w-653 md:w-[712px] xl:flex">
-              <div className="w-auto flex-row xl:justify-between sm:justify-normal items-end flex xl:gap-8 md:gap-0 sm:gap-[40px]">
-                <div className="sm:mt-[22px] ml-4">
+            {/* xl:w-653px md:w-[712px] sm:w-[213px] */}
+            <div className="flex">
+              <div className="w-auto flex-row xl:justify-between sm:justify-normal items-end flex xl:gap-6 md:gap-0 gap-10">
+                <div className="sm:mt-[22px] ml-4 xl:w-[113px] md:w-[113px] w-[104px]">
                   <AmountButtons />
                 </div>
-                <div className="flex-col justify-center sm:hidden w-[222px] xl:flex md:flex my-2 xl:text-center pb-0">
+                <div className="flex-col justify-center hidden w-[222px] xl:flex md:flex my-2 xl:text-center pb-0">
                   <p className="w-[46px] text-base mx-[90px]">Ціна</p>
                   <p className="w-[115px] h-[27px] mx-[53px] text-xl mb-0 flex justify-center">
                     {cartItem.price}
                   </p>
                 </div>
-                <div className="xl:w-[222px] md:w-[193px] sm:w-[42px] flex flex-col justify-start xl:items-end md:items-end sm:items-baseline">
+                <div className="xl:w-[222px] md:w-[153px] sm:w-[42px] flex flex-col justify-start xl:items-end md:items-end sm:items-baseline">
                   <p className="xl:block md:block sm:hidden text-base">Сума</p>
                   <p className="xl:text-2xl md:text-2xl sm:text-base">
                     {cartItem.price}
