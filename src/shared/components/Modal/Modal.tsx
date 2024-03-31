@@ -24,7 +24,7 @@ const Modal: React.FC<ModalProps> = ({
         onClose();
       }
     };
-    // Додано умовну перевірку для document.body
+
     if (isOpen && document.body) {
       document.body.style.overflow = 'hidden';
       document.addEventListener('keydown', handleKeyDown);

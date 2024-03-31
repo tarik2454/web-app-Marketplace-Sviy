@@ -12,7 +12,7 @@ import Modal from '@/shared/components/Modal/Modal';
 
 export default function Header() {
   const [displayMenu, setDisplayMenu] = useState('hidden');
-  const [displayCart, setDisplayCart] = useState('hidden');
+
   const [displayCategories, setDisplayCategories] = useState('hidden');
 
   const [showCatalog, setShowCatalog] = useState(false);
@@ -79,16 +79,6 @@ export default function Header() {
     };
   }, []);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // const openModal = () => {
-  //   setIsModalOpen(true);
-  // };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <>
       <header className="w-full py-[22.5px] md:py-[30px] bg-neutral-50 shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] fixed top-0 left-0 z-50">
@@ -112,10 +102,7 @@ export default function Header() {
                 <Logo logo="logoHeaderDesktop" />
               )}
             </div>
-            <FunctionalButtons
-              searchButtonClick={toggleSearchVisibility}
-              cartButtonClick={() => setDisplayCart('block')}
-            />
+            <FunctionalButtons searchButtonClick={toggleSearchVisibility} />
           </div>
         </Container>
       </header>
@@ -140,14 +127,6 @@ export default function Header() {
           <SearchProducts />
         </div>
       )}
-
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <div>sdfgdfsgfdgsdfgsdfgsdfgdsf</div>
-        {/* <Cart
-          closeButtonClick={() => setDisplayCart('hidden')}
-          display={displayCart}
-        /> */}
-      </Modal>
     </>
   );
 }
