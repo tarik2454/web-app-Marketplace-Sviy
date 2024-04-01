@@ -1,6 +1,6 @@
 import { Pagination } from '@/shared/components';
-import reviewsData from '../../data/reviews-data';
-import { SpriteSVG } from '../../img/SpriteSVG';
+import reviewsData from '../data/reviews-data';
+import { SpriteSVG } from '../img/SpriteSVG';
 import { Key } from 'react';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 

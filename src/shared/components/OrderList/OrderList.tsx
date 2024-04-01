@@ -2,16 +2,16 @@ import { AmountButtons } from '@/modules/header/components/Cart';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import React from 'react';
 
-interface CartItem {
+type OrderListProps = {
   heading: string;
   price: string;
-}
+};
 
-interface OrderProps {
-  cartItems: CartItem[];
-}
-
-const Order: React.FC<OrderProps> = ({ cartItems }) => {
+export default function OrderList({
+  cartItems,
+}: {
+  cartItems: OrderListProps[];
+}) {
   return (
     <>
       {cartItems.map((cartItem, counter) => (
@@ -54,6 +54,4 @@ const Order: React.FC<OrderProps> = ({ cartItems }) => {
       ))}
     </>
   );
-};
-
-export default Order;
+}

@@ -6,7 +6,7 @@ type Props = {
   itemsQuantity?: number;
 };
 
-export default function FinalPrice({ totalPrice, itemsQuantity }: Props) {
+export default function OrderFinalPrice({ totalPrice, itemsQuantity }: Props) {
   return (
     <div className="bg-white min-w-[344px] py-5 px-4 shadow rounded-2xl xl:min-w-[411px]">
       <h2 className="text-xl text-gray-900 font-lora pb-5 md:text-2xl md:pb-8 xl:text-3xl">

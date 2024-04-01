@@ -1,15 +1,16 @@
-import { OrderCheckout } from '@/modules';
+import { Order } from '@/modules';
 
-import FormLogic from '@/modules/delivery/FormLogic';
-import { ColorSpot, OrderCount, PageWrapper } from '@/shared/components';
+import { Breadcrumbs, ColorSpot, PageWrapper } from '@/shared/components';
 
 function OrderDetails() {
   return (
     <PageWrapper>
       <ColorSpot />
-      <OrderCheckout />
-      <OrderCount />
-      <FormLogic />
+      <Breadcrumbs
+        containerClasses={'pt-[21px] md:pt-10 mb-0 md-mb-0'}
+        homeElement={<span>Головна</span>}
+      />
+      <Order />
     </PageWrapper>
   );
 }

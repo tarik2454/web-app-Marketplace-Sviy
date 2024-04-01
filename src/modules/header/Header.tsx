@@ -8,13 +8,10 @@ import { SearchProducts } from './components';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import CatalogButton from './components/Catalog/CatalogButton';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
-import Modal from '@/shared/components/Modal/Modal';
 
 export default function Header() {
   const [displayMenu, setDisplayMenu] = useState('hidden');
-
   const [displayCategories, setDisplayCategories] = useState('hidden');
-
   const [showCatalog, setShowCatalog] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
