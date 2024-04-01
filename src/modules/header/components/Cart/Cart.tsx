@@ -1,6 +1,4 @@
-import { CloseButton, FinalPrice } from '@/shared/components';
-
-import { MouseEventHandler } from 'react';
+import { OrderFinalPrice } from '@/shared/components';
 import { CartList } from '.';
 
 export default function Cart() {
@@ -15,7 +13,7 @@ export default function Cart() {
 
       <div className="flex">
         <CartList />
-        <FinalPrice />
+        <OrderFinalPrice itemsQuantity={4} totalPrice={470} />
       </div>
     </div>
   );

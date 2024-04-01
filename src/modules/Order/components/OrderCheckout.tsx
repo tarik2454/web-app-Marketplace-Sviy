@@ -1,6 +1,6 @@
 'use client';
 
-import { FormInput, OrderFinalPrice } from '@/shared/components';
+import { FormInput } from '@/shared/components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
