@@ -1,7 +1,7 @@
 'use client';
 
 import { SetStateAction, useState } from 'react';
-import { Container, Section, SectionTitle } from '@/shared/components';
+import { Container, Section } from '@/shared/components';
 import tabMenuData from './data/tab-menu-data';
 import { DescriptionList, Reviews, ServicesList } from './components';
 

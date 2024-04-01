@@ -1,21 +1,7 @@
-import Order from '@/shared/components/Order/Order';
+import { Container, OrderList } from '@/shared/components';
+import orderedProducts from '../data/ordered-products';
 
-export default function CartList() {
-  const cartItems = [
-    {
-      heading: 'Вареники з картоплею',
-      price: '150 ₴',
-    },
-    {
-      heading: 'Вареники з картоплею',
-      price: '150 ₴',
-    },
-    {
-      heading: 'Вареники з картоплею',
-      price: '150 ₴',
-    },
-  ];
-
+export default function OrderListHeader() {
   return (
     <div className="shadow-sm rounded-default md:max-w-[704px] xl:max-w-[845px] sm:max-w-[343px] font-lato bg-white font-normal px-4 py-5 mb-10">
       <h3 className="w-[246px] h-[38px] xl:text-[32px] md:text-2xl mb-6 sm:text-xl">
@@ -30,7 +16,7 @@ export default function CartList() {
         </p>
       </div>
       <div className="bg-gray-600 mb-5 w-full h-[2px] px-4"></div>
-      <Order cartItems={cartItems} />
+      <OrderList cartItems={orderedProducts} />
     </div>
   );
 }
