@@ -19,7 +19,7 @@ export default function OrderList({
           className="flex pt-2 xl:gap-6 md:gap-2 sm:gap-4 mb-4 xl:w-[783px] md:w-[672px] sm:max-w-[373px]"
           key={counter}
         >
-          <div className="xl:min-w-[136px] md:min-w-[136px] min-w-[82px] xl:h-[100px] md:h-[100px]  sm:h-[82px] bg-neutral-400 rounded-default"></div>
+          <div className="h-[82px] min-w-[82px] bg-neutral-400 rounded-default md:h-[100px] md:min-w-[136px] xl:min-w-[136px] xl:h-[100px]"></div>
           <div className="xl:w-[673px] md:w-[536px] sm:w-[213px]">
             <div className="flex justify-between">
               <p className="xl:max-w-60 sm:max-w-[181px] text-base sm:text-sm">
@@ -29,7 +29,6 @@ export default function OrderList({
                 <SpriteSVG name="trash" />
               </button>
             </div>
-            {/* xl:w-653px md:w-[712px] sm:w-[213px] */}
             <div className="flex">
               <div className="w-auto flex-row xl:justify-between sm:justify-normal items-end flex xl:gap-6 md:gap-0 gap-10">
                 <div className="sm:mt-[22px] ml-4 xl:w-[113px] md:w-[113px] w-[104px]">

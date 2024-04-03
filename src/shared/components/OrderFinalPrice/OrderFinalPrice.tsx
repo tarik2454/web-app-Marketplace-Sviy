@@ -1,5 +1,4 @@
 import { OrangeButton, Container } from '@/shared/components';
-import Link from 'next/link';
 
 type Props = {
   totalPrice?: number;
@@ -8,7 +7,7 @@ type Props = {
 
 export default function OrderFinalPrice({ totalPrice, itemsQuantity }: Props) {
   return (
-    <div className="bg-white min-w-[344px] py-5 px-4 shadow rounded-2xl xl:min-w-[411px]">
+    <div className="bg-white py-5 px-4 shadow rounded-2xl xl:py-10 xl:h-fit">
       <h2 className="text-xl text-gray-900 font-lora pb-5 md:text-2xl md:pb-8 xl:text-3xl">
         Разом
       </h2>

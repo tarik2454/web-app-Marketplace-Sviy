@@ -7,7 +7,7 @@ function OrderDetails() {
     <PageWrapper>
       <ColorSpot />
       <Breadcrumbs
-        containerClasses={'pt-[21px] md:pt-10 mb-0 md-mb-0'}
+        containerClasses={'pt-5 mb-0 md:pt-10'}
         homeElement={<span>Головна</span>}
       />
       <Order />

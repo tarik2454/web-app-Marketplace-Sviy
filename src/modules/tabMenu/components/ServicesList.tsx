@@ -1,8 +1,8 @@
 export default function ServicesList() {
   return (
-    <div className="flex flex-col md:flex-row gap-6 md:gap-[107px] xl:gap-6">
+    <div className="flex flex-col gap-6 md:gap-[107px] md:flex-row xl:gap-6">
       <div className="flex flex-col md:w-[343px] xl:w-[628px]">
-        <p className="mb-6 xl:mb-5 text-xl xl:text-2xl text-blue-90">Оплата</p>
+        <p className="mb-6 text-xl text-blue-90 xl:mb-5  xl:text-2xl">Оплата</p>
         <ul className="flex flex-col gap-4">
           <li className="text-xl md:text-base xl:text-xl">
             Оплата під час отримання товару
@@ -14,7 +14,7 @@ export default function ServicesList() {
       </div>
 
       <div className="flex flex-col xl:w-[628px]">
-        <p className="mb-6 xl:mb-5 text-xl xl:text-2xl text-blue-90">
+        <p className="mb-6 text-xl text-blue-90 xl:mb-5 xl:text-2xl">
           Доставка
         </p>
         <ul className="flex flex-col gap-4">

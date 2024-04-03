@@ -3,7 +3,7 @@ import { Field, ErrorMessage } from 'formik';
 import React, { useState, useEffect } from 'react';
 import SelectPostoffice from './SelectPostoffice';
 
-const Delivery = ({ values, touched, error }: any) => {
+export default function Delivery({ values, touched, error }: any) {
   const [showNovaposhta, setShowNovaposhta] = useState('hidden');
   const [showUkrposhta, setShowUkrposhta] = useState('hidden');
   const [showByAddress, setShowByAddress] = useState('hidden');
@@ -54,10 +54,10 @@ const Delivery = ({ values, touched, error }: any) => {
   }, [touched, error]);
 
   return (
-    <div className="xl:ml-0 md:ml-0 sm:ml-2.5">
-      <h3 className="font-lora text-2xl mb-8">Доставка</h3>
+    <div className="mb-10 ">
+      <h3 className="mb-5 font-lora text-2xl md:mb-6">Доставка</h3>
       <div
-        className={`bg-white pl-3 pr-3 pt-6 pb-6 rounded-[20px] xl:min-w-[845px] md:w-[700px] sm:w-[343px] ${errorClassRadio}`}
+        className={`bg-white pl-3 pr-3 pt-6 pb-6 rounded-[20px] ${errorClassRadio}`}
       >
         <div className="flex justify-between items-start">
           <div className="mb-5 flex items-center">
@@ -165,6 +165,4 @@ const Delivery = ({ values, touched, error }: any) => {
       />
     </div>
   );
-};
-
-export default Delivery;
+}

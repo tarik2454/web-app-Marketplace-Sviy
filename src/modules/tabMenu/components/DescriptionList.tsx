@@ -6,7 +6,7 @@ export default function DescriptionList() {
       {descriptionData.map((item, index) => (
         <li
           key={index}
-          className="text-sm md:text-base leading-[1.4] md:leading-[1.6]"
+          className="text-sm leading-[1.4] md:text-base md:leading-[1.6]"
         >
           <div>{item.description}</div>
           <div>{item.composition}</div>
