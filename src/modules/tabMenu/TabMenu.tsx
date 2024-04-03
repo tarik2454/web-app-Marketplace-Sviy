@@ -12,17 +12,17 @@ export default function TabMenu() {
     setActiveTab(index);
   };
 
-  const after = `after:content-[''] after:none after:w-full after:h-[1px] after:bg-gray-600`;
-
   return (
     <Section>
       <Container>
         <div>
-          <ul className="flex gap-[2px] mb-6 md:mb-10 xl:mb-12">
+          <ul className="flex gap-[2px] mb-6 xl:mb-12 md:mb-10">
             {tabMenuData.map((item, index) => (
               <li key={index} className={`text-center bg-white relative`}>
                 <button
-                  className={`text-sm md:text-xl leading-[1.4] md:leading-[1.6] w-full h-full px-5 md:px-6 py-[6px] text-gray-600 transition-all ${after} ${
+                  className={`w-full h-full px-5 py-[6px] text-sm leading-[1.4] text-gray-600 transition-all md:px-6 md:text-xl md:leading-[1.6]
+                  after:content-[''] after:none after:w-full after:h-[1px] after:bg-gray-600 
+                  ${
                     activeTab === index
                       ? 'text-gray-900 bg-neutral-50 after:block'
                       : ''

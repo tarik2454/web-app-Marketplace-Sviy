@@ -5,6 +5,7 @@ import React, { ReactNode } from 'react';
 import { TlinksTitles, linksTitles } from './breadcrumbs_links_titles';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { Container } from '..';
+import { twMerge } from 'tailwind-merge';
 
 type TBreadCrumbProps = {
   homeElement: ReactNode;
@@ -43,7 +44,7 @@ const Breadcrumbs = ({
 
   return (
     <Container>
-      <ul className={`flex items-center mb-10 ${containerClasses}`}>
+      <ul className={twMerge(`flex items-center mb-10`, containerClasses)}>
         <li className={`${linkClasses}`}>
           <Link href={'/'} className="hover:underline">
             {homeElement}

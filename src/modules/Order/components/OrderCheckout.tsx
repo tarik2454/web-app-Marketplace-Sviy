@@ -20,18 +20,15 @@ export default function OrderChecout() {
   });
 
   return (
-    <>
-      <h2 className="pb-10 text-2xl leading-10 text-gray-900 md:pb-8 xl:text-4xl ">
-        Оформлення замовлення
-      </h2>
-      <h3 className="pb-5 text-xl leading-loose text-gray-900 xl:text-2xl">
+    <div className="mb-10 md:mb-0">
+      <h3 className="mb-5 text-xl text-gray-900 xl:mb-6 xl:text-2xl">
         Ваші контактні дані
       </h3>
       <form
-        className="flex flex-col min-w-[343px] gap-5 "
+        className="flex flex-col gap-4 xl:mb-10"
         onSubmit={formik.handleSubmit}
       >
-        <div className="flex flex-col gap-5 md:w-[49%] xl:w-[66%]">
+        <div className="flex flex-col gap-5 xl:gap-6">
           <FormInput
             formik={formik}
             id="name"
@@ -54,6 +51,6 @@ export default function OrderChecout() {
           </div>
         </div>
       </form>
-    </>
+    </div>
   );
 }

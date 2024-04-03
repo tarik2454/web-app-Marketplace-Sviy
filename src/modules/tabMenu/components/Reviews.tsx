@@ -19,11 +19,11 @@ export default function Reviews() {
   ) => (
     <li
       key={index}
-      className="flex flex-wrap justify-between mt-[30px] [&:nth-child(1)]:mt-0 pb-4 md:pb-8 xl:pb-12 md:pr-[8px] border-b-[1px] border-[rgb(220, 220, 220)]"
+      className="flex flex-wrap justify-between mt-[30px] pb-4 border-b-[1px] border-[rgb(220, 220, 220)] [&:nth-child(1)]:mt-0 md:pb-8 md:pr-[8px] xl:pb-12"
     >
-      <div className="flex md:gap-5 xl:gap-6 justify-between xl:justify-stretch items-end xl:items-start w-full mb-3 md:mb-5 xl:mb-0">
+      <div className="flex justify-between items-end w-full mb-3 md:gap-5 md:mb-5 xl:justify-stretch xl:items-start xl:gap-6 xl:mb-0 ">
         <div className="flex flex-col">
-          <h3 className="mb-3 md:mb-5 text-base md:text-xl xl:w-[302px]">
+          <h3 className="mb-3 text-base md:mb-5 md:text-xl xl:w-[302px]">
             {item.userName}
           </h3>
 
