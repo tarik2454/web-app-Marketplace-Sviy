@@ -18,7 +18,7 @@ export default function OrderList({
   return (
     <ul className={twMerge(`max-w-full`, stylesUlWrapper)}>
       {cartItems.map((cartItem, counter) => (
-        <div
+        <li
           className="flex pt-2 xl:gap-6 md:gap-2 sm:gap-4 mb-4 xl:w-[783px] md:w-[672px] sm:max-w-[373px]"
           key={counter}
         >
@@ -52,7 +52,7 @@ export default function OrderList({
               </div>
             </div>
           </div>
-        </div>
+        </li>
       ))}
     </ul>
   );
