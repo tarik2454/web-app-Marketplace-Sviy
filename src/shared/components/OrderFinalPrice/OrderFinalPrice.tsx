@@ -1,4 +1,6 @@
-import { OrangeButton, Container } from '@/shared/components';
+import { OrangeButton } from '@/shared/components';
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 type Props = {
   totalPrice?: number;
@@ -6,6 +8,11 @@ type Props = {
 };
 
 export default function OrderFinalPrice({ totalPrice, itemsQuantity }: Props) {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleButtonClick = () => {};
+
   return (
     <div className="bg-white py-5 px-4 shadow rounded-2xl xl:py-10 xl:h-fit">
       <h2 className="text-xl text-gray-900 font-lora pb-5 md:text-2xl md:pb-8 xl:text-3xl">
@@ -33,7 +40,7 @@ export default function OrderFinalPrice({ totalPrice, itemsQuantity }: Props) {
         </OrangeButton>
       </div> */}
       <div className="block text-white">
-        <OrangeButton onClick={() => {}} type="submit">
+        <OrangeButton onClick={handleButtonClick} type="submit">
           Замовлення підтверджую
         </OrangeButton>
       </div>
