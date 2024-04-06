@@ -1,17 +1,35 @@
 import { OrangeButton } from '@/shared/components';
-import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 type Props = {
   totalPrice?: number;
   itemsQuantity?: number;
+  closeModal?: () => void;
 };
 
-export default function OrderFinalPrice({ totalPrice, itemsQuantity }: Props) {
-  const pathname = usePathname();
+export default function OrderFinalPrice({
+  totalPrice,
+  itemsQuantity,
+  closeModal,
+}: Props) {
   const router = useRouter();
+  const pathname = usePathname();
 
-  const handleButtonClick = () => {};
+  console.log(router);
+  console.log(pathname);
+
+  const handleButtonClick = () => {
+    if (pathname === '/order-details') {
+      if (closeModal) {
+        closeModal();
+      }
+      return;
+    }
+    router.push('/order-details');
+    if (closeModal) {
+      closeModal();
+    }
+  };
 
   return (
     <div className="bg-white py-5 px-4 shadow rounded-2xl xl:py-10 xl:h-fit">
