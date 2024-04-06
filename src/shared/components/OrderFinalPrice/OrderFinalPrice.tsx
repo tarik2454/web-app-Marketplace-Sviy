@@ -1,6 +1,5 @@
 import { OrangeButton } from '@/shared/components';
-import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 type Props = {
   totalPrice?: number;
@@ -14,12 +13,18 @@ export default function OrderFinalPrice({
   closeModal,
 }: Props) {
   const router = useRouter();
+  const pathname = usePathname();
+
+  console.log(router);
+  console.log(pathname);
 
   const handleButtonClick = () => {
-    router.push('/order-details');
-    if (closeModal) {
+    if (pathname === '/order-details') {
       closeModal();
+      return;
     }
+    router.push('/order-details');
+    closeModal();
   };
 
   return (
