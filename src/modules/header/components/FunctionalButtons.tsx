@@ -57,7 +57,7 @@ export default function FunctionalButtons({ searchButtonClick }: Props) {
         isOpen={isModalOpen}
         onClose={closeModal}
       >
-        <Cart />
+        <Cart closeModal={closeModal} />
       </Modal>
     </>
   );

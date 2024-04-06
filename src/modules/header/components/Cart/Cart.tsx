@@ -2,7 +2,11 @@ import { OrderFinalPrice, OrderList } from '@/shared/components';
 
 import orderedProductsData from '../../../../shared/data/ordered-products-data';
 
-export default function Cart() {
+type Props = {
+  closeModal: () => void;
+};
+
+export default function Cart({ closeModal }: Props) {
   return (
     <div>
       <p
@@ -19,7 +23,11 @@ export default function Cart() {
           stylesUlWrapper={'md:bg-red-400'}
           cartItems={orderedProductsData}
         />
-        <OrderFinalPrice itemsQuantity={4} totalPrice={470} />
+        <OrderFinalPrice
+          closeModal={closeModal}
+          itemsQuantity={4}
+          totalPrice={470}
+        />
       </div>
     </div>
   );

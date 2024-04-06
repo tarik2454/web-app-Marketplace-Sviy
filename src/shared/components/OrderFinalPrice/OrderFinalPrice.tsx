@@ -5,13 +5,22 @@ import { usePathname } from 'next/navigation';
 type Props = {
   totalPrice?: number;
   itemsQuantity?: number;
+  closeModal: () => void;
 };
 
-export default function OrderFinalPrice({ totalPrice, itemsQuantity }: Props) {
-  const pathname = usePathname();
+export default function OrderFinalPrice({
+  totalPrice,
+  itemsQuantity,
+  closeModal,
+}: Props) {
   const router = useRouter();
 
-  const handleButtonClick = () => {};
+  const handleButtonClick = () => {
+    router.push('/order-details');
+    if (closeModal) {
+      closeModal();
+    }
+  };
 
   return (
     <div className="bg-white py-5 px-4 shadow rounded-2xl xl:py-10 xl:h-fit">
