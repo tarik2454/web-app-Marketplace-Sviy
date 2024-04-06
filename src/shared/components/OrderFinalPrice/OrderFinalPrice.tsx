@@ -4,7 +4,7 @@ import { usePathname, useRouter } from 'next/navigation';
 type Props = {
   totalPrice?: number;
   itemsQuantity?: number;
-  closeModal: () => void;
+  closeModal?: () => void;
 };
 
 export default function OrderFinalPrice({
@@ -20,11 +20,15 @@ export default function OrderFinalPrice({
 
   const handleButtonClick = () => {
     if (pathname === '/order-details') {
-      closeModal();
+      if (closeModal) {
+        closeModal();
+      }
       return;
     }
     router.push('/order-details');
-    closeModal();
+    if (closeModal) {
+      closeModal();
+    }
   };
 
   return (
