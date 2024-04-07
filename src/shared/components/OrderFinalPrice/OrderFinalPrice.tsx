@@ -1,11 +1,18 @@
+'use client'
 import { OrangeButton, Container } from '@/shared/components';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   totalPrice?: number;
   itemsQuantity?: number;
+  children?: string;
+  onclick?: () => void;
 };
 
-export default function OrderFinalPrice({ totalPrice, itemsQuantity }: Props) {
+export default function OrderFinalPrice({ totalPrice, itemsQuantity, children, onclick }: Props) {
+ const router = useRouter();
+ const childForCart = "Оформити замовлення";
+ const clickForCart = () => router.push('/order-details');
   return (
     <div className="bg-white py-5 px-4 shadow rounded-2xl xl:py-10 xl:h-fit">
       <h2 className="text-xl text-gray-900 font-lora pb-5 md:text-2xl md:pb-8 xl:text-3xl">
@@ -30,11 +37,11 @@ export default function OrderFinalPrice({ totalPrice, itemsQuantity }: Props) {
       {/* <div className="block md:hidden xl:block">
         <OrangeButton onClick={() => {}}>
           <Link href="/order-details">Оформити замовлення</Link>
+          Замовлення підтверджую
         </OrangeButton>
       </div> */}
       <div className="block text-white">
-        <OrangeButton onClick={() => {}} type="submit">
-          Замовлення підтверджую
+        <OrangeButton onClick={onclick || clickForCart} type="submit" children={children || childForCart}>
         </OrangeButton>
       </div>
     </div>
