@@ -1,11 +1,14 @@
 import { AmountButtons } from '@/modules/header/components/Cart';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import Image from 'next/image';
+import OrderImage from '@/shared/img/salo.jpeg';
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type OrderListProps = {
   heading: string;
   price: string;
+  // image: string;
 };
 
 export default function OrderList({
@@ -18,41 +21,37 @@ export default function OrderList({
   return (
     <ul className={twMerge(`max-w-full`, stylesUlWrapper)}>
       {cartItems.map((cartItem, counter) => (
-        <li
-          className="flex pt-2 xl:gap-6 md:gap-2 sm:gap-4 mb-4 xl:w-[783px] md:w-[672px] sm:max-w-[373px]"
-          key={counter}
-        >
-          <div className="h-[82px] min-w-[82px] bg-neutral-400 rounded-default md:h-[100px] md:min-w-[136px] xl:min-w-[136px] xl:h-[100px]"></div>
-          <div className="xl:w-[673px] md:w-[536px] sm:w-[213px]">
-            <div className="flex justify-between">
-              <p className="xl:max-w-60 sm:max-w-[181px] text-base sm:text-sm">
+        <div className="flex pt-2 gap-4 xl:gap-6 md:gap-2 mb-4" key={counter}>
+          <div className="max-w-[136px] max-h-[100px] rounded-default overflow-hidden">
+            <Image
+              className="w-full object-contain"
+              width={0}
+              height={0}
+              sizes="100vh"
+              src={OrderImage}
+              alt="Order photo"
+            />
+          </div>
+          <ul className="grid grid-cols-2 md:grid-cols-3 gap-0 xl:gap-16">
+            <li className="flex-col">
+              <p className="text-sm leading-[1.4] md:leading-[1.6] md:text-base mb-[22px] md:mb-10">
                 {cartItem.heading}
               </p>
-              <button className="ml-auto md:ml-0">
+              <AmountButtons />
+            </li>
+            <li className="hidden flex-col md:flex my-2 text-center pt-6">
+              <p className="text-center">Ціна</p>
+              <p className="text-xl text-center">{cartItem.price}</p>
+            </li>
+            <li className="flex flex-col items-end">
+              <button className="mb-8 md:mb-3">
                 <SpriteSVG name="trash" />
               </button>
-            </div>
-            <div className="flex">
-              <div className="w-auto flex-row xl:justify-between sm:justify-normal items-end flex xl:gap-6 md:gap-0 gap-10">
-                <div className="sm:mt-[22px] ml-4 xl:w-[113px] md:w-[113px] w-[104px]">
-                  <AmountButtons />
-                </div>
-                <div className="flex-col justify-center hidden w-[222px] xl:flex md:flex my-2 xl:text-center pb-0">
-                  <p className="w-[46px] text-base mx-[90px]">Ціна</p>
-                  <p className="w-[115px] h-[27px] mx-[53px] text-xl mb-0 flex justify-center">
-                    {cartItem.price}
-                  </p>
-                </div>
-                <div className="xl:w-[222px] md:w-[153px] sm:w-[42px] flex flex-col justify-start xl:items-end md:items-end sm:items-baseline">
-                  <p className="xl:block md:block sm:hidden text-base">Сума</p>
-                  <p className="xl:text-2xl md:text-2xl sm:text-base">
-                    {cartItem.price}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
+              <p className="hidden md:block">Сума</p>
+              <p className="text-sm md:text-2xl">{cartItem.price}</p>
+            </li>
+          </ul>
+        </div>
       ))}
     </ul>
   );
