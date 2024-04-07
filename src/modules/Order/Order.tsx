@@ -51,7 +51,6 @@ export default function Order() {
                 <OrderListHeader />
                 <FormLogic />
               </div>
-
               <div className="h-full sticky top-[137px] right-0">
                 <OrderFinalPrice itemsQuantity={4} totalPrice={470} />
               </div>
