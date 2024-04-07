@@ -18,15 +18,14 @@ export default function OrderList({
   cartItems: OrderListProps[];
   stylesUlWrapper?: string;
 }) {
-  // border-b-[1px] border-gray-600
   return (
     <ul className={twMerge(`max-w-full`, stylesUlWrapper)}>
       {cartItems.map((cartItem, counter) => (
         <li
-          className="flex pt-2 gap-4 mb-4 border-b-[1px] border-gray-600 md:gap-2 md:pb-6 xl:gap-6 "
+          className="flex pt-2 gap-4 mb-4 border-b-0 border-gray-600 pb-0 last:border-b-0 last:pb-0 md:border-b-[1px] md:gap-6 md:pb-6"
           key={counter}
         >
-          <div className="max-w-[136px] max-h-[100px] rounded-default overflow-hidden">
+          <div className="max-w-[82px] rounded-default overflow-hidden max-h-[82px] md:max-w-[136px] md:max-h-[100px]">
             <Image
               className="w-full"
               width={0}
@@ -36,14 +35,14 @@ export default function OrderList({
               alt="Order photo"
             />
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-0 xl:gap-16">
+          <div className="grid grid-cols-2 gap-0 md:grid-cols-3 xl:gap-16">
             <div className="flex-col">
-              <p className="text-sm leading-[1.4] md:leading-[1.6] md:text-base mb-[22px] md:mb-10">
+              <p className="text-sm leading-[1.4] mb-[22px] sm:whitespace-nowrap md:leading-[1.6] md:mb-10 md:text-base whitespace-normal">
                 {cartItem.heading}
               </p>
               <AmountButtons />
             </div>
-            <div className="hidden flex-col md:flex my-2 text-center pt-6">
+            <div className="hidden flex-col my-2 text-center pt-6 md:flex">
               <p className="text-center">Ціна</p>
               <p className="text-xl text-center">{cartItem.price}</p>
             </div>
