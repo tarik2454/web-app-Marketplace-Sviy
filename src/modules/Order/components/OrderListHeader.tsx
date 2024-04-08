@@ -1,5 +1,5 @@
 import { OrderList } from '@/shared/components';
-import orderedProducts from '../data/ordered-products';
+import orderedProducts from '../../../shared/data/ordered-products-data';
 
 export default function OrderListHeader() {
   return (

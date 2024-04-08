@@ -11,7 +11,7 @@ export default function Page() {
           <Link href="/catalogue">- catalogue</Link>
           <Link href="/catalogue-seller">- catalogue-seller</Link>
           <Link href="/my-data">- my-data</Link>
-          <Link href="/order-details">- orderDetails</Link>
+          <Link href="/order-details">- order-details</Link>
           <Link href="/product-card">- product-card</Link>
           <Link href="/recover-password">- recover-password</Link>
           <Link href="/signin">- signin</Link>

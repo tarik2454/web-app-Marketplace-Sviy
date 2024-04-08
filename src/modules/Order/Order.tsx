@@ -27,6 +27,7 @@ export default function Order() {
           className={'md:mb-[64px] xl:mb-[88px]'}
           name={'Оформлення замовлення'}
         />
+
         <Formik
         initialValues={{
           name: '',

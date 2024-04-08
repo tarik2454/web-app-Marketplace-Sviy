@@ -3,6 +3,7 @@ import { Cart, Counter } from '.';
 import { MouseEventHandler, useState } from 'react';
 import Link from 'next/link';
 import Modal from '@/shared/components/Modal/Modal';
+import ModalCart from './Cart/ModalCart';
 
 type Props = {
   searchButtonClick: MouseEventHandler<HTMLButtonElement>;
@@ -49,16 +50,7 @@ export default function FunctionalButtons({ searchButtonClick }: Props) {
         </button>
       </div>
 
-      <Modal
-        stylesWrapper={`flex flex-col max-w-[375px] h-screen overflow-y-auto px-4 py-6 rounded-none bg-neutral-50 
-        md:max-w-[704px] md:h-3/4 md:m-auto md:rounded-default
-        xl:max-w-[1280px]`}
-        stylesCloseButton="top-[30.5px] right-4 md:right-10"
-        isOpen={isModalOpen}
-        onClose={closeModal}
-      >
-        <Cart />
-      </Modal>
+      <ModalCart isModalOpen={isModalOpen} closeModal={closeModal} />
     </>
   );
 }
