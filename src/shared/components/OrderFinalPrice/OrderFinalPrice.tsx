@@ -1,3 +1,5 @@
+'use client'
+
 import { OrangeButton } from '@/shared/components';
 import { usePathname, useRouter } from 'next/navigation';
 
