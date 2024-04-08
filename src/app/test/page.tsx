@@ -7,7 +7,6 @@ export default function Page() {
       <Container>
         <div className="flex flex-col">
           <Link href="/">- main</Link>
-          <Link href="/cart">- cart</Link>
           <Link href="/catalogue">- catalogue</Link>
           <Link href="/catalogue-seller">- catalogue-seller</Link>
           <Link href="/my-data">- my-data</Link>
