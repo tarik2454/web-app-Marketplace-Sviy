@@ -29,82 +29,71 @@ export default function Order() {
         />
 
         <Formik
-        initialValues={{
-          name: '',
-          location: '',
-          deliveryPicked: '',
-          city: '',
-          postOfficeApiSelect: '',
-          deliveryByAddressPicked: false,
-          address: '',
-          homeAddress: '',
-          apartmentAddress: '',
-          exitAddress: '',
-          floorAddress: '',
-          picked: '',
-          customer: 'Поліна Ващук',
-          comment: '',
-          product: "Вареники з картоплею, 3шт, 470грн",
-        }}
-        validationSchema={orderSchema}
-        onSubmit={async values => {
-          await new Promise(r => setTimeout(r, 500));
-          alert(JSON.stringify(values, null, 2));
-        }}
-      >
-         {formik => {
-            const {
-              values,
-              handleChange,
-              touched,
-              errors
-            } = formik;
+          initialValues={{
+            name: '',
+            location: '',
+            deliveryPicked: '',
+            city: '',
+            postOfficeApiSelect: '',
+            deliveryByAddressPicked: false,
+            address: '',
+            homeAddress: '',
+            apartmentAddress: '',
+            exitAddress: '',
+            floorAddress: '',
+            picked: '',
+            customer: 'Поліна Ващук',
+            comment: '',
+            product: 'Вареники з картоплею, 3шт, 470грн',
+          }}
+          validationSchema={orderSchema}
+          onSubmit={async values => {
+            await new Promise(r => setTimeout(r, 500));
+            alert(JSON.stringify(values, null, 2));
+          }}
+        >
+          {formik => {
+            const { values, handleChange, touched, errors } = formik;
             return (
               <Form>
-              {(isOnMobile && (
-                <>
-                  <OrderCheckout formik={formik}/>
-                  <OrderListHeader />
-                  <div className="mb-10">
-                    <Delivery formik={formik} />
-                    <OrderPayDetail
-                      formik={formik}
-                    />
-                  </div>
-                  <OrderFinalPrice itemsQuantity={4} totalPrice={470} />
-                </>
-              )) ||
-                (isOnTablet && (
+                {(isOnMobile && (
                   <>
-                    <div className="grid grid-cols-2 gap-4 md:mb-[52px]">
-                      <OrderCheckout formik={formik}/>
-                      <OrderFinalPrice itemsQuantity={4} totalPrice={470} />
-                    </div>
+                    <OrderCheckout formik={formik} />
                     <OrderListHeader />
-                    <Delivery formik={formik}/>
-                    <OrderPayDetail formik={formik}/>
+                    <div className="mb-10">
+                      <Delivery formik={formik} />
+                      <OrderPayDetail formik={formik} />
+                    </div>
+                    <OrderFinalPrice itemsQuantity={4} totalPrice={470} />
                   </>
-                )) || (
-                  <div className="xl:flex xl:gap-6">
-                    <div className="xl:max-w-[845px]">
-                      <OrderCheckout formik={formik}/>
+                )) ||
+                  (isOnTablet && (
+                    <>
+                      <div className="grid grid-cols-2 gap-4 md:mb-[52px]">
+                        <OrderCheckout formik={formik} />
+                        <OrderFinalPrice itemsQuantity={4} totalPrice={470} />
+                      </div>
                       <OrderListHeader />
                       <Delivery formik={formik} />
-                      <OrderPayDetail formik={formik}/>
+                      <OrderPayDetail formik={formik} />
+                    </>
+                  )) || (
+                    <div className="xl:flex xl:gap-6">
+                      <div className="xl:max-w-[845px]">
+                        <OrderCheckout formik={formik} />
+                        <OrderListHeader />
+                        <Delivery formik={formik} />
+                        <OrderPayDetail formik={formik} />
+                      </div>
+                      <div className="h-full sticky top-[137px] right-0">
+                        <OrderFinalPrice itemsQuantity={4} totalPrice={470} />
+                      </div>
                     </div>
-                    <div className="h-full sticky top-[137px] right-0">
-                      <OrderFinalPrice
-                        itemsQuantity={4}
-                        totalPrice={470}
-                        children="Замовлення підтверджую"
-                        />
-                    </div>
-                  </div>
-                )}
+                  )}
               </Form>
-              );
+            );
           }}
-      </Formik>
+        </Formik>
       </Container>
     </Section>
   );
