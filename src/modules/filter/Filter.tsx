@@ -4,7 +4,7 @@ import { CloseButton, Dropdown, OrangeButton } from '@/shared/components';
 import { FilterOptions, OptionsButtons, PriceButtons } from './components';
 import { ChangeEvent, MouseEventHandler, useEffect, useState } from 'react';
 
-import categoriesData from '../header/components/Catalog/data/categories-data';
+import categoriesData from '../header/data/categories-data';
 
 type Props = {
   display: string;

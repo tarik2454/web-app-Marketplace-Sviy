@@ -16,6 +16,10 @@ export default function Page() {
           <Link href="/signin">- signin</Link>
           <Link href="/signin-forgot">- signin-forgot</Link>
           <Link href="/signup">- signup</Link>
+          <Link href="/about-us">- about-us</Link>
+          <Link href="/contacts">- contacts</Link>
+          <Link href="/delivery">- delivery</Link>
+          <Link href="/questions-answers">- questions-answers</Link>
           <Link href="/not-found">- not-found</Link>
         </div>
       </Container>

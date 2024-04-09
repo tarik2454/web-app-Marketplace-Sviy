@@ -2,24 +2,16 @@ import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { Cart, Counter } from '.';
 import { MouseEventHandler, useState } from 'react';
 import Link from 'next/link';
-import Modal from '@/shared/components/Modal/Modal';
-import ModalCart from './Cart/ModalCart';
 
 type Props = {
   searchButtonClick: MouseEventHandler<HTMLButtonElement>;
+  openModal: () => void;
 };
 
-export default function FunctionalButtons({ searchButtonClick }: Props) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
+export default function FunctionalButtons({
+  searchButtonClick,
+  openModal,
+}: Props) {
   return (
     <>
       <div className="flex gap-4 md:gap-8">
@@ -49,8 +41,6 @@ export default function FunctionalButtons({ searchButtonClick }: Props) {
           </div>
         </button>
       </div>
-
-      <ModalCart isModalOpen={isModalOpen} closeModal={closeModal} />
     </>
   );
 }

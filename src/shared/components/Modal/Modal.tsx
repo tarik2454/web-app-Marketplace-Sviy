@@ -1,10 +1,13 @@
 import React, { useEffect, ReactNode } from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { twMerge } from 'tailwind-merge';
+import { boolean } from 'yup';
 
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  showCatalog: boolean;
+  showSearch: boolean;
   children?: ReactNode;
   stylesWrapper?: string;
   stylesCloseButton?: string;
@@ -13,6 +16,8 @@ type ModalProps = {
 const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
+  showCatalog,
+  showSearch,
   children,
   stylesWrapper,
   stylesCloseButton,
@@ -25,16 +30,16 @@ const Modal: React.FC<ModalProps> = ({
       }
     };
 
-    if (isOpen && document.body) {
+    if (isOpen) {
       document.body.style.overflow = 'hidden';
       document.addEventListener('keydown', handleKeyDown);
     }
 
-    if (!isOpen) {
+    if (!isOpen && !showCatalog && !showSearch) {
       document.body.style.overflow = 'auto';
       document.removeEventListener('keydown', handleKeyDown);
     }
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, showCatalog, showSearch]);
 
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
