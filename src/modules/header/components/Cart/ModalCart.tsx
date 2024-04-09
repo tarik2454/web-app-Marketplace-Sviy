@@ -4,9 +4,16 @@ import Cart from './Cart';
 type ModalCartProps = {
   isModalOpen: boolean;
   closeModal: () => void;
+  showCatalog: boolean;
+  showSearch: boolean;
 };
 
-export default function ModalCart({ isModalOpen, closeModal }: ModalCartProps) {
+export default function ModalCart({
+  isModalOpen,
+  closeModal,
+  showCatalog,
+  showSearch,
+}: ModalCartProps) {
   return (
     <Modal
       stylesWrapper={`max-w-[375px] h-screen px-5 py-6 bg-neutral-50 overflow-y-auto rounded-none 
@@ -15,6 +22,8 @@ export default function ModalCart({ isModalOpen, closeModal }: ModalCartProps) {
       stylesCloseButton="top-[30.5px] right-4 md:top-[25px] md:right-4 xl:top-[32px] xl:right-[32px]"
       isOpen={isModalOpen}
       onClose={closeModal}
+      showCatalog={showCatalog}
+      showSearch={showSearch}
     >
       <Cart closeModal={closeModal} />
     </Modal>

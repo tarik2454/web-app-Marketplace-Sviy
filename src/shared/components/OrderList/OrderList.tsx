@@ -1,3 +1,5 @@
+'use client';
+
 import { AmountButtons } from '@/modules/header/components/Cart';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import Image from 'next/image';

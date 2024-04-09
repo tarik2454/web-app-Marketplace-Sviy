@@ -85,7 +85,7 @@ export default function Order() {
                         <Delivery formik={formik} />
                         <OrderPayDetail formik={formik} />
                       </div>
-                      <div className="h-full sticky top-[137px] right-0">
+                      <div className="h-full w-full sticky top-[137px] right-0">
                         <OrderFinalPrice itemsQuantity={4} totalPrice={470} />
                       </div>
                     </div>

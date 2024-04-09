@@ -7,11 +7,7 @@ export default function Page() {
     <>
       <PageWrapper>
         <ColorSpot />
-        <Breadcrumbs
-          containerClasses={'pt-[21px] md:pt-10 mb-0 md-mb-0'}
-          homeElement={<span>Головна</span>}
-          capitalizeLinks
-        />
+        <Breadcrumbs homeElement={<span>Головна</span>} capitalizeLinks />
         <SigninForgotForm signinForgotType="page" />
       </PageWrapper>
     </>
