@@ -4,9 +4,9 @@ import ScreenSize from '@/shared/hooks/useMediaQuery';
 
 import dataContactSeller from '../../data/data-modal-seller';
 
-import Modal from '@/shared/components/Modal/Modal';
 import { Container } from '@/shared/components';
 import ModalContent from './ModalContent';
+import Modal from '@/shared/components/Modal/Modal';
 
 interface ModalSellerProps {
   isOpen: boolean;

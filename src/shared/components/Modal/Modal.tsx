@@ -6,8 +6,8 @@ import { boolean } from 'yup';
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  showCatalog: boolean;
-  showSearch: boolean;
+  showCatalog?: boolean;
+  showSearch?: boolean;
   children?: ReactNode;
   stylesWrapper?: string;
   stylesCloseButton?: string;
