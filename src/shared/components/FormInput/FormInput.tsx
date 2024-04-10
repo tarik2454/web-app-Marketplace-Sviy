@@ -5,9 +5,10 @@ import { FormikProps } from 'formik';
 import { useEffect, useState } from 'react';
 import styles from '@/styles/FormInput.module.css';
 import Link from 'next/link';
+import { v4 as uuidv4 } from 'uuid';
 
 type Props = {
-  id: string;
+  name: string;
   label?: string;
   inputType: 'password' | 'text' | 'email' | 'number';
   formik: FormikProps<any>;
@@ -17,16 +18,17 @@ type Props = {
 };
 
 export default function FormInput({
+  name,
   label,
   inputType,
-  id,
   formik,
   placeholder,
   inputIcon,
   inputLink,
 }: Props) {
   const [inputTypePass, setInputTypePass] = useState(inputType);
-  const error = formik.touched[id] && formik.errors[id];
+
+  const error = formik.touched[name] && formik.errors[name];
 
   const [borderColor, setBorderColor] = useState(
     error ? 'border-red-700' : 'border-blue-200'
@@ -44,7 +46,7 @@ export default function FormInput({
     <div
       className={`relative h-auto flex flex-col w-full ${styles.customInput}`}
     >
-      <label htmlFor={id} className="ml-4 md:text-base sm:text-sm">
+      <label htmlFor={name} className="ml-4 md:text-base sm:text-sm">
         {label}
       </label>
       <div
@@ -53,10 +55,11 @@ export default function FormInput({
         <input
           onChange={formik.handleChange}
           type={inputTypePass}
-          id={id}
+          name={name}
           placeholder={placeholder}
           value={formik.values.id}
           className="w-full h-6 outline-none flex-grow order-2"
+          pattern={inputType === 'number' ? '[0-9]*' : undefined}
         />
         {inputIcon && (
           <span className={`${styles.prevIcon} text-gray-400 order-1`}>
@@ -77,7 +80,7 @@ export default function FormInput({
         )}
       </div>
       {error && (
-        <p className="absolute -bottom-7 right-0 text-red-700">
+        <p className="absolute -bottom-6 right-0 text-red-700 text-sm">
           {String(error)}
         </p>
       )}

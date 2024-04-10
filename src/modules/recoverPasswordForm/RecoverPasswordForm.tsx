@@ -27,7 +27,7 @@ export default function RecoverPasswordForm({
   useEffect(() => {
     function handleResize() {
       // Визначення розміру екрану
-      const isMobile = window.innerWidth < 768; // Припустимо, що мобільний розмір екрану менше 768px
+      const isMobile = window.innerWidth < 768; // мобільний розмір екрану менше 768px
       setPassChangedType(isMobile ? 'burger' : 'page'); // Якщо екран мобільний, то встановити 'burger', в іншому випадку - 'page'
     }
 
@@ -52,10 +52,10 @@ export default function RecoverPasswordForm({
       password: '',
     },
     validationSchema: Yup.object().shape({
-      number: Yup.number().required('Потрібен код підтвердження'),
+      number: Yup.number().required('Код підтвердження'),
       password: Yup.string()
         .min(8, 'Пароль повинен мати довжину не менше 8 символів')
-        .required('Потрібен пароль'),
+        .required('Введіть пароль'),
     }),
     onSubmit: handleSubmit,
   });
@@ -73,9 +73,9 @@ export default function RecoverPasswordForm({
         <div className="pb-2">
           <FormInput
             formik={formik}
-            id="number"
+            name="number"
             label={'Код підтвердження'}
-            inputType="text"
+            inputType="number"
           />
         </div>
 
@@ -83,10 +83,10 @@ export default function RecoverPasswordForm({
           Надіслати повторно
         </button>
 
-        <div className="pb-2 d">
+        <div className="pb-2">
           <FormInput
             formik={formik}
-            id="password"
+            name="password"
             label={'Ведіть новий пароль'}
             inputType="password"
           />
