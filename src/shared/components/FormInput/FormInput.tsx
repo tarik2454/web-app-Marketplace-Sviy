@@ -5,7 +5,6 @@ import { FormikProps } from 'formik';
 import { useEffect, useState } from 'react';
 import styles from '@/styles/FormInput.module.css';
 import Link from 'next/link';
-import { v4 as uuidv4 } from 'uuid';
 
 type Props = {
   name: string;
@@ -15,7 +14,7 @@ type Props = {
   placeholder?: string;
   inputIcon?: string;
   inputLink?: string;
-  name?: string;
+  // fieldName?: string;
 };
 
 export default function FormInput({
@@ -26,8 +25,8 @@ export default function FormInput({
   placeholder,
   inputIcon,
   inputLink,
-  name,
-}: Props) {
+}: // fieldName,
+Props) {
   const [inputTypePass, setInputTypePass] = useState(inputType);
   const error = formik.touched[name] && formik.errors[name];
   const [borderColor, setBorderColor] = useState('border-blue-200');
@@ -55,8 +54,7 @@ export default function FormInput({
           type={inputTypePass}
           name={name}
           placeholder={placeholder}
-          value={formik.values.id}
-          name={name}
+          value={formik.values.name}
           className="w-full h-6 outline-none flex-grow order-2"
           pattern={inputType === 'number' ? '[0-9]*' : undefined}
         />
