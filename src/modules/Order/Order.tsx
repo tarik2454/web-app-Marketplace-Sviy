@@ -9,12 +9,18 @@ import {
 import { OrderCheckout, OrderListHeader } from './components';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import { Formik, Form } from 'formik';
-
 import { Delivery, OrderPayDetail } from './components/Delivery';
 import { orderSchema } from './components/Delivery/FormLogic';
+import { useState } from 'react';
+import AfterOrder from './components/AfterOrder/AfterOrder';
+
+// export type AfterOrderProps = {
+//   [key: string]: string | boolean;
+// }
 
 export default function Order() {
   const { isOnMobile, isOnTablet } = ScreenSize();
+  const [afterOrderState, setAfterOrderState] = useState<boolean>(false);
 
   return (
     <Section
@@ -23,11 +29,13 @@ export default function Order() {
       }
     >
       <Container>
+        {!afterOrderState && 
         <SectionTitle
           className={'md:mb-[64px] xl:mb-[88px]'}
           name={'Оформлення замовлення'}
-        />
+        />}
 
+        {!afterOrderState && 
         <Formik
           initialValues={{
             name: '',
@@ -49,7 +57,8 @@ export default function Order() {
           validationSchema={orderSchema}
           onSubmit={async values => {
             await new Promise(r => setTimeout(r, 500));
-            alert(JSON.stringify(values, null, 2));
+            console.log(JSON.stringify(values, null, 2));
+            setAfterOrderState(true);
           }}
         >
           {formik => {
@@ -93,8 +102,10 @@ export default function Order() {
               </Form>
             );
           }}
-        </Formik>
+        </Formik>}
+        {afterOrderState && <AfterOrder/>}
       </Container>
     </Section>
   );
 }
+
