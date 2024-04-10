@@ -27,7 +27,7 @@
 ``type SortingMenuProps = {
   display: string;
   closeButtonClick: () => void;
-};  
+};    
 export default function SortingMenu({ display, closeButtonClick }: SortingMenuProps) {}``
 
 # Розробка фіч або багфіксів
