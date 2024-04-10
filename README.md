@@ -27,8 +27,8 @@
 ``type SortingMenuProps = {
   display: string;
   closeButtonClick: () => void;
-};    
-export default function SortingMenu({ display, closeButtonClick }: SortingMenuProps) {}``
+};``    
+``export default function SortingMenu({ display, closeButtonClick }: SortingMenuProps) {}``
 
 # Розробка фіч або багфіксів
 - кожна фіча або багфікс виконується в  окремій гілці  
