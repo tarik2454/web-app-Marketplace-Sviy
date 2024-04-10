@@ -21,16 +21,22 @@ export default function FunctionalButtons({
         >
           <SpriteSVG name="search" />
         </button>
+
         <Link
           href={'/signin'}
-          className="hidden w-8 md:flex text-blue-700 hover:text-neutral-800 active:text-neutral-400 items-center content-center"
+          className="hidden md:flex text-blue-700 hover:text-neutral-800 active:text-neutral-400 items-center content-center"
         >
           <SpriteSVG name="user" />
         </Link>
-        <button className="hidden w-8 relative md:block text-blue-700 hover:text-neutral-800 active:text-neutral-400">
+
+        <Link
+          href={'/favorites'}
+          className="hidden w-8 relative md:block text-blue-700 hover:text-neutral-800 active:text-neutral-400"
+        >
           <Counter />
           <SpriteSVG name="favorite-header" />
-        </button>
+        </Link>
+
         <button
           onClick={openModal}
           className="relative w-8 text-blue-700 hover:text-neutral-800 active:text-neutral-400"

@@ -12,6 +12,7 @@ export default function Page() {
           <Link href="/my-data">- my-data</Link>
           <Link href="/order-details">- order-details</Link>
           <Link href="/product-card">- product-card</Link>
+          <Link href="/favorites">- favorites</Link>
           <Link href="/recover-password">- recover-password</Link>
           <Link href="/signin">- signin</Link>
           <Link href="/signin-forgot">- signin-forgot</Link>

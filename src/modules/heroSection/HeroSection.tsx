@@ -71,7 +71,9 @@ const HeroSection = () => {
               </p>
             </div>
             <div className="flex flex-col items-start gap-5 xl:flex-row xl:gap-6">
-              <OrangeButton onClick={() => {}}>Обрати товар</OrangeButton>
+              <OrangeButton cssSettings={'text-white'} onClick={() => {}}>
+                Обрати товар
+              </OrangeButton>
               <ArrowButton onClick={() => {}}>Продати товар</ArrowButton>
             </div>
           </div>
