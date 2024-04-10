@@ -1,7 +1,7 @@
 'use client';
 
 import { MouseEventHandler, useState } from 'react';
-import categoriesData from './data/categories-data';
+import categoriesData from '../../data/categories-data';
 import CatalogItem from './CatalogItem';
 import Container from '@/shared/components/Container/Container';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';

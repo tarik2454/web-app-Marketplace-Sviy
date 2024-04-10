@@ -1,4 +1,4 @@
-export const SpriteSVG = ({ name }: { name: string }) => {
+export const SpriteSVG = ({ name, className }: { name: string, className?: string }) => {
   switch (name) {
     case 'arrow-right':
       return (
@@ -756,6 +756,49 @@ export const SpriteSVG = ({ name }: { name: string }) => {
         </svg>
       );
 
+    case "phone":
+        return (
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="18" 
+            height="18"
+            fill="none"
+            className={className}
+            >
+            <path 
+              // stroke="#386A93" 
+              strokeWidth="2" 
+              d="M13.9546 11.3294c-.3904-.3905-1.0237-.3905-1.4141 0l-1.0212 1.0212a.5331.5331 0 0 1-.6155.0998 12.2638 12.2638 0 0 1-5.4844-5.4843.5332.5332 0 0 1 .0999-.6155l1.0212-1.0212c.3904-.3905.3904-1.0237 0-1.4142L3.8923 1.2671a.9119.9119 0 0 0-1.2895 0C.6775 3.1923.4609 6.24 2.0945 8.4183L3.276 9.9938a23.0008 23.0008 0 0 0 4.6001 4.6l1.5755 1.1815c2.1779 1.6336 5.2258 1.417 7.1511-.5082a.9117.9117 0 0 0 0-1.2896l-2.6482-2.6481Z"
+            />
+          </svg>
+        )  
+
+    case "mail":
+          return (
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="20" 
+              height="20" 
+              fill="none"
+              className={className}
+              >
+              <rect 
+                width="16.6667" 
+                height="12.5" 
+                x="1.6665" 
+                y="4.1666" 
+                // stroke="#386A93" 
+                strokeWidth="2" 
+                rx="2"
+              />
+                <path 
+                  fill="currentColor" 
+                  fillRule="evenodd" 
+                  d="m2.1138 5.7722 7.439 3.7194q.2109.1056.447.1056.236 0 .4472-.1056l7.439-3.7194.8943 1.7888-7.4387 3.7195q-.6336.3167-1.3418.3167-.708 0-1.3416-.3167L1.2192 7.561l.8946-1.7888Z"
+                />
+            </svg>
+          )
+
     case 'message':
       return (
         <svg
@@ -878,12 +921,13 @@ export const SpriteSVG = ({ name }: { name: string }) => {
           viewBox="0 0 65 64"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className={className}
         >
           <g id="emojione-v1:left-check-mark" clipPath="url(#clip0_1708_11739)">
             <path
               id="Vector"
               d="M57.2343 5.07967C48.7973 12.3817 41.6593 19.3327 35.1243 28.4017C32.2423 32.4017 29.0373 37.1097 26.9423 41.5547C25.7463 43.9117 23.5903 47.5947 22.8553 51.1357C18.8353 47.3957 14.5173 43.1507 10.0993 39.8257C6.95026 37.4567 -2.11974 42.2867 1.57226 45.0647C8.18927 50.0417 13.6923 56.2407 20.1283 61.4397C22.8203 63.6117 28.7863 58.8947 30.1883 56.9157C34.7903 50.3957 35.4193 42.4257 38.7733 35.3137C43.8943 24.4367 52.9763 15.5017 61.9433 7.74267C67.8843 2.20167 61.7483 1.17967 57.2433 5.07967"
-              fill="#1565C0"
+              // fill="#1565C0"
             />
           </g>
           <defs>

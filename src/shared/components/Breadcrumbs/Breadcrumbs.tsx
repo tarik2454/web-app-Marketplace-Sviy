@@ -44,7 +44,12 @@ const Breadcrumbs = ({
 
   return (
     <Container>
-      <ul className={twMerge(`flex items-center mb-10`, containerClasses)}>
+      <ul
+        className={twMerge(
+          `flex items-center pt-[21px] mb-0 xl:pt-[26px]`,
+          containerClasses
+        )}
+      >
         <li className={`${linkClasses}`}>
           <Link href={'/'} className="hover:underline">
             {homeElement}

@@ -15,6 +15,7 @@ type Props = {
   placeholder?: string;
   inputIcon?: string;
   inputLink?: string;
+  name?: string;
 };
 
 export default function FormInput({
@@ -25,17 +26,14 @@ export default function FormInput({
   placeholder,
   inputIcon,
   inputLink,
+  name,
 }: Props) {
   const [inputTypePass, setInputTypePass] = useState(inputType);
-
   const error = formik.touched[name] && formik.errors[name];
-
-  const [borderColor, setBorderColor] = useState(
-    error ? 'border-red-700' : 'border-blue-200'
-  );
+  const [borderColor, setBorderColor] = useState('border-blue-200');
 
   useEffect(() => {
-    setBorderColor(error ? 'border-red-700' : 'border-blue-200');
+    setBorderColor(error ? 'border-[#C60000]' : 'border-blue-200');
   }, [error]);
 
   const eyeButtonHandler = () => {
@@ -50,7 +48,7 @@ export default function FormInput({
         {label}
       </label>
       <div
-        className={`flex px-4 py-3 gap-2 relative ${borderColor} border-2 bg-white rounded-default`}
+        className={`flex px-4 py-3 gap-2 relative ${borderColor} border-[1px] bg-white rounded-default`}
       >
         <input
           onChange={formik.handleChange}
@@ -58,6 +56,7 @@ export default function FormInput({
           name={name}
           placeholder={placeholder}
           value={formik.values.id}
+          name={name}
           className="w-full h-6 outline-none flex-grow order-2"
           pattern={inputType === 'number' ? '[0-9]*' : undefined}
         />

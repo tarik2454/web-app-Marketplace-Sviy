@@ -15,9 +15,7 @@ type SelectPostofficeProps = {
     exitAddress: string;
     floorAddress: string;
     optionsPoshta?: string[];
-    values: any;
-    touched: any;
-    error: any;
+    formik: any;
 }
 
 const SelectItems = (props: any) => {
@@ -32,7 +30,7 @@ const SelectItems = (props: any) => {
     return (
         <Select 
             classNames={{
-                    control: () => (`py-3 px-4 mt-5 text-nowrap w-full cursor-pointer bg-white border text-start text-base text-gray-900 font-lato xl:min-w-[813px] md:w-[668px] sm:w-[311px] rounded-[20px] ${props.errorClassInputSelect}`),
+                    control: () => (`py-3 px-4 mt-5 text-nowrap w-full cursor-pointer bg-white border text-start text-gray-900 xl:min-w-[813px] md:w-[668px] sm:w-[311px] rounded-[20px] ${props.errorClassInputSelect}`),
                     option: (state) => (state.isSelected ? "font-lato px-5 py-2 bg-blue-100" : "px-5 py-2 bg-white font-lato"),
                     menu: () => ("rounded-b-default bg-neutral-50 overflow-hidden xl:overflow-auto"),
                     dropdownIndicator: () => ("text-[#212121] font-thin"),
@@ -50,18 +48,18 @@ const SelectItems = (props: any) => {
     )
 }
 
-const SelectPostoffice = ({postOfficeShow, byAddress, onclick, postOfficeView, forAddressDelivery, forAddressPoshta, homeAddress, apartmentAddress, exitAddress, floorAddress, values, touched, error}: SelectPostofficeProps) => {
+const SelectPostoffice = ({postOfficeShow, byAddress, onclick, postOfficeView, forAddressDelivery, forAddressPoshta, homeAddress, apartmentAddress, exitAddress, floorAddress, formik}: SelectPostofficeProps) => {
     const [errorClassInputCity, setErrorClassInputCity] = useState('border-blue-200');
     const [errorClassInputSelect, setErrorClassInputSelect] = useState('border-blue-200');
     const [errorClassInputAddress, setErrorClassInputAddress] = useState('border-blue-200');
     const [errorClassInputHome, setErrorClassInputHome] = useState('border-blue-200');
 
     useEffect(() => {
-        error.city && touched.city ? setErrorClassInputCity("border-[#C60000]") : setErrorClassInputCity("border-blue-200");
-        error.postOfficeApiSelect && touched.postOfficeApiSelect ? setErrorClassInputSelect("border-[#C60000]") : setErrorClassInputSelect("border-blue-200");
-        error.address && touched.address ? setErrorClassInputAddress("border-[#C60000]") : setErrorClassInputAddress("border-blue-200");
-        error.homeAddress && touched.homeAddress ? setErrorClassInputHome("border-[#C60000]") : setErrorClassInputHome("border-blue-200");
-      }, [touched, error])
+        formik.errors.city && formik.touched.city ? setErrorClassInputCity("border-[#C60000]") : setErrorClassInputCity("border-blue-200");
+        formik.errors.postOfficeApiSelect && formik.touched.postOfficeApiSelect ? setErrorClassInputSelect("border-[#C60000]") : setErrorClassInputSelect("border-blue-200");
+        formik.errors.address && formik.touched.address ? setErrorClassInputAddress("border-[#C60000]") : setErrorClassInputAddress("border-blue-200");
+        formik.errors.homeAddress && formik.touched.homeAddress ? setErrorClassInputHome("border-[#C60000]") : setErrorClassInputHome("border-blue-200");
+      }, [formik])
 
     const options = [
         {value: "№1 вул.Городецька 5", label: "№1 вул.Городецька 5"},
@@ -76,32 +74,32 @@ const SelectPostoffice = ({postOfficeShow, byAddress, onclick, postOfficeView, f
     return (
     <div className={postOfficeShow}>
                 <div className={postOfficeView}>
-                    <Field className={`placeholder:text-gray-900 text-base text-gray-900 font-lato xl:min-w-[813px] md:w-[668px] sm:w-[311px] rounded-[20px] focus:outline-blue-200 py-3 px-4 border-[1px] mt-5 ${errorClassInputCity}`} type="text" name="city" placeholder="Вкажіть місто"/>
-                    <ErrorMessage name="city" component="p" className='text-[#C60000]'/>
+                    <Field className={`placeholder:text-gray-900 text-gray-900 xl:min-w-[813px] md:w-[668px] sm:w-[311px] rounded-[20px] focus:outline-blue-200 py-3 px-4 border-[1px] mt-5 ${errorClassInputCity}`} type="text" name="city" placeholder="Вкажіть місто"/>
+                    <ErrorMessage name="city" component="p" className='text-[#C60000] text-end'/>
                     <div>
-                        <Field component={SelectItems} values={values} options={options} name="postOfficeApiSelect" errorClassInputSelect={errorClassInputSelect}/> 
+                        <Field component={SelectItems} options={options} name="postOfficeApiSelect" errorClassInputSelect={errorClassInputSelect}/> 
                     </div>
-                    <ErrorMessage name="postOfficeApiSelect" component="p" className='text-[#C60000]'/>
+                    <ErrorMessage name="postOfficeApiSelect" component="p" className='text-[#C60000] text-end'/>
                 </div>
                 <div className='flex justify-between items-start mt-5'>
                 <div className='mb-5 flex items-center gap-2'>
                     <Field className='border-gray-600 ml-2 w-4 h-4'id={forAddressDelivery} type="checkbox" name="deliveryByAddressPicked" onClick={onclick}/>
-                    <label htmlFor={forAddressDelivery} className='text-base text-gray-900 font-lato'> Кур’єр на вашу адресу </label>
+                    <label htmlFor={forAddressDelivery} className='text-gray-900'> Кур’єр на вашу адресу </label>
                 </div>
-                <p className='text-base text-gray-900 font-lato'>За тарифами перевізника</p>
+                <p className='xl:text-base md:text-base text-gray-900 text-end xl:text-nowrap md:text-nowrap sm:text-wrap sm:text-xs'>За тарифами перевізника</p>
                 </div>
                 <div className={byAddress}>
-                    <div className='flex flex-col text-base font-lato'>
+                    <div className='flex flex-col'>
                         <label htmlFor={forAddressPoshta} className='text-gray-600 ml-[32px]'>Адреса доставки</label>
                         <Field id={forAddressPoshta} type="text" name='address' className={`xl:min-w-[813px] md:w-[668px] sm:w-[311px] rounded-[20px] focus:outline-blue-200 py-3 px-4 border-[1px] ${errorClassInputAddress}`}/>
-                        <ErrorMessage name="address" component="p" className='text-[#C60000]'/>
+                        <ErrorMessage name="address" component="p" className='text-[#C60000] text-end'/>
                     </div>
                     
-                    <div className='grid xl:grid-cols-4 xl:grid-rows-1 md:grid-rows-2 md:grid-cols-3 sm:grid-cols-2 sm:grid-rows-2 text-base font-lato gap-auto mt-5 mb-5 '>
+                    <div className='grid xl:grid-cols-4 xl:grid-rows-1 md:grid-rows-2 md:grid-cols-3 sm:grid-cols-2 sm:grid-rows-2 gap-auto mt-5 mb-5 '>
                         <div className='flex flex-col'>
                             <label htmlFor={homeAddress} className='text-gray-600'>Дім</label>
                             <Field id={homeAddress} type="text" name="homeAddress" className={`xl:min-w-[160px] md:w-[140px] sm:w-[140px] rounded-[20px] focus:outline-blue-200 py-3 px-4 border-[1px] ${errorClassInputHome}`}/>
-                            <ErrorMessage name="homeAddress" component="p" className='text-[#C60000]'/>
+                            <ErrorMessage name="homeAddress" component="p" className='text-[#C60000] text-sm'/>
                         </div>
                         <div className='flex flex-col'>
                             <label htmlFor={apartmentAddress} className='text-gray-600'>Квартира</label>
