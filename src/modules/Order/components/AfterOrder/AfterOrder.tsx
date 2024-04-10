@@ -23,7 +23,7 @@ export default function AfterOrder() {
           name="check-mark"
           className="fill-[#038620] xl:w-[47px] xl:h-[44px] md:w-[47px] md:h-[44px] w-[24px] h-[24px]"
         />
-        <h2 className="text-center sm:text-start xl:text-[32px] md:text-[32px] sm:text-xl">
+        <h2 className="xl:text-center md:text-center text-start xl:text-[32px] md:text-[32px] text-xl">
           Дякуємо, Ваше замовлення прийнято!
         </h2>
       </div>
@@ -32,7 +32,7 @@ export default function AfterOrder() {
           <p className="block">№1</p>
           <p className="block">від {date}</p>
         </div>
-        <div className="xl:flex xl:gap-[86px] md:gap-[86px] md:flex md:flex-row sm:flex-col">
+        <div className="xl:flex xl:gap-[86px] md:gap-[86px] md:flex md:flex-row flex-col">
           {(isOnMobile && (
             <>
               <ProductBlock />

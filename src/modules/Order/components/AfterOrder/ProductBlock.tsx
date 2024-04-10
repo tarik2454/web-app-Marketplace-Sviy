@@ -5,7 +5,7 @@ import OrderImage from '@/shared/img/salo.jpeg';
 export default function ProductBlock() {
   return (
     <div>
-        <div className="xl:flex xl:items-center md:justify-center sm:justify-center xl:gap-12 md:gap-8 sm:gap-4 border-b-[1px] border-[#9E9E9E] pb-5 xl:mb-5 md:mb-5 sm:mb-0 md:flex-col sm:flex-col">
+        <div className="xl:flex xl:flex-row xl:items-center md:justify-center justify-center xl:gap-12 md:gap-8 gap-4 border-b-[1px] border-[#9E9E9E] pb-5 mb-5 md:flex-col flex-col">
             <div className="flex gap-3 md:gap-4 items-center">
                 <div className="xl:max-w-[120px] md:max-w-[100px] max-w-[82px] rounded-default overflow-hidden">
                     <Image
@@ -17,9 +17,9 @@ export default function ProductBlock() {
                     alt="Order photo"
                     />
                 </div>
-                <p className="xl:text-xl md:text-base sm:text-sm">Вареники з картоплею</p>
+                <p className="xl:text-xl md:text-base text-sm">Вареники з картоплею</p>
             </div>
-            <div className="flex xl:gap-[85px] md:gap-[55px] sm:gap-[55px]">
+            <div className="flex justify-between xl:gap-[85px] md:gap-[55px]">
                 <div>
                 <p>Ціна</p>
                 <p>150 ₴ х</p>
@@ -30,7 +30,7 @@ export default function ProductBlock() {
                 </div>
                 <div>
                 <p className='text-end'>Сума</p>
-                <p className='xl:text-2xl md:text-xl sm:text-base'>150 ₴</p>
+                <p className='xl:text-2xl md:text-xl text-base'>150 ₴</p>
                 </div>
             </div>
             </div>

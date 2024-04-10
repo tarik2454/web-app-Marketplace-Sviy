@@ -72,12 +72,12 @@ const OrderPayDetail = ({ formik }: any) => {
         <div
           className={`bg-white flex pl-4 pr-4 pt-3 pb-3 items-center justify-between rounded-[20px] border-[1px] xl:min-w-[845px] md:max-w-[700px] sm:max-w-[343px] ${errorClassInput}`}
         >
-          <div className="flex gap-2">
+          <div className="flex gap-2 basis-5/6">
             <span className='text-gray-400'>
               <SpriteSVG name="user"/>
             </span>
             <Field
-              className={`bg-white focus:outline-none max-w-[125px] ${selectInput} `}
+              className={`bg-white focus:outline-none basis-5/6 ${selectInput} `}
               type="text"
               name="customer"
               disabled={isDisabled}
