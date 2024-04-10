@@ -1,24 +1,41 @@
+'use client';
+
 import { useState } from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import { useRouter } from 'next/navigation';
 
 interface SearchInputProps {
-  setShowSearch?: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleSearchVisibility?: () => void;
 }
 
-export default function SearchInput({ setShowSearch }: SearchInputProps) {
+export default function SearchInput({
+  toggleSearchVisibility,
+}: SearchInputProps) {
   const [searchText, setSearchText] = useState('');
 
+  const router = useRouter();
+
   const handleSearchClick = () => {
-    console.log('Search button clicked');
-    setShowSearch && setShowSearch(false);
+    console.log('message');
+    if (toggleSearchVisibility) {
+      toggleSearchVisibility();
+    }
+
+    // route.push(`/search?q=${searchText}`);
+    router.push(`/catalogue`);
   };
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      console.log('Enter key pressed');
-      setShowSearch && setShowSearch(false);
-    }
-  };
+  // const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  //   if (event.key === 'Enter') {
+  //     if (setShowSearch) {
+  //       setShowSearch(false);
+  //     }
+  //     if (toggleSearchVisibility) {
+  //       toggleSearchVisibility();
+  //     }
+  //     router.push(`/catalogue`);
+  //   }
+  // };
 
   return (
     <div className="flex w-full items-center px-3 py-2">
@@ -32,7 +49,7 @@ export default function SearchInput({ setShowSearch }: SearchInputProps) {
         placeholder="Я шукаю"
         value={searchText}
         onChange={event => setSearchText(event.target.value)}
-        onKeyDown={handleKeyPress}
+        // onKeyDown={handleKeyPress}
       />
     </div>
   );

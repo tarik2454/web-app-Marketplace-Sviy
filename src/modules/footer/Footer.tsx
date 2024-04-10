@@ -5,8 +5,6 @@ import Container from '@/shared/components/Container/Container';
 
 import { Contacts } from '.';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
-// import RegIsSuccesful from '@/shared/components/Modal/RegIsSuccessful';
-// import EmailConfirmation from '@/shared/components/Modal/EmailConfirmation';
 
 export default function Footer() {
   const { isOnMobile, isOnTablet } = ScreenSize();
@@ -37,8 +35,6 @@ export default function Footer() {
             @2024 Developed by Dream Team Software Solutions
           </p>
         </div>
-        {/* <RegIsSuccesful />
-        <EmailConfirmation /> */}
       </Container>
     </footer>
   );

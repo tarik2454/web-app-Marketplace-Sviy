@@ -41,7 +41,6 @@ export default function Header() {
     } else {
       setShowSearch(true);
       setShowCatalog(false);
-
       document.body.style.overflow = 'hidden';
     }
   }, [showSearch]);
@@ -49,7 +48,6 @@ export default function Header() {
   const closeBackdrop = () => {
     setShowCatalog(false);
     setShowSearch(false);
-
     document.body.style.overflow = 'auto';
   };
 
@@ -134,7 +132,7 @@ export default function Header() {
           className="w-full h-full bg-black bg-opacity-40 fixed top-0 left-0 z-10"
           ref={backdropSearchRef}
         >
-          <SearchProducts setShowSearch={setShowSearch} />
+          <SearchProducts toggleSearchVisibility={toggleSearchVisibility} />
         </div>
       )}
 

@@ -2,10 +2,12 @@ import Container from '@/shared/components/Container/Container';
 import { SearchArea, SearchCategories, SearchInput } from '.';
 
 type SearchProductsProps = {
-  setShowSearch: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleSearchVisibility?: () => void;
 };
 
-export default function SearchProducts({ setShowSearch }: SearchProductsProps) {
+export default function SearchProducts({
+  toggleSearchVisibility,
+}: SearchProductsProps) {
   return (
     <div className="rounded-b-default bg-neutral-50 absolute z-20 w-full left-0 top-[80px] md:top-[113px]">
       <Container>
@@ -18,7 +20,7 @@ export default function SearchProducts({ setShowSearch }: SearchProductsProps) {
             </div>
           </div>
           <div className="hidden mt-2  py-1 border-2 border-blue-700 rounded-default md:block xl:hidden">
-            <SearchInput setShowSearch={setShowSearch} />
+            <SearchInput toggleSearchVisibility={toggleSearchVisibility} />
           </div>
         </div>
       </Container>
