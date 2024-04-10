@@ -58,7 +58,7 @@ export default function SigninForgotForm({
     validationSchema: Yup.object().shape({
       email: Yup.string()
         .email('Дані введені некоректно')
-        .required("Обов'язкова наявність електронної пошти"),
+        .required('Введіть електронну пошту'),
     }),
     onSubmit: handleSubmit,
   });
@@ -75,7 +75,7 @@ export default function SigninForgotForm({
       >
         <FormInput
           formik={formik}
-          id="email"
+          name="email"
           label={'Електронна пошта'}
           inputType="email"
         />

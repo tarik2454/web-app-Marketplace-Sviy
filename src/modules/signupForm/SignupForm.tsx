@@ -40,16 +40,16 @@ export default function SignupForm({ signupType, signinClick }: Props) {
     validationSchema: Yup.object().shape({
       login: Yup.string()
         .min(2, 'Логін повинен мати довжину не менше 2 символів')
-        .required("Потрібно ім'я"),
+        .required("Введіть ім'я"),
       email: Yup.string()
         .email('Дані введені некоректно')
-        .required("Обов'язкова наявність електронної пошти"),
+        .required('Введіть електронну пошту'),
       password: Yup.string()
         .min(8, 'Пароль повинен мати довжину не менше 8 символів')
-        .required('Потрібен пароль'),
+        .required('Введіть пароль'),
       passwordRepeat: Yup.string()
         .min(8, 'Пароль повинен мати довжину не менше 8 символів')
-        .required('Потрібен пароль'),
+        .required('Введіть пароль'),
       rememberMe: Yup.boolean(),
     }),
     onSubmit: handleSubmit,
@@ -64,31 +64,31 @@ export default function SignupForm({ signupType, signinClick }: Props) {
       >
         <FormInput
           formik={formik}
-          id="login"
+          name="login"
           label={'Ваше ім’я '}
           inputType="text"
         />
         <FormInput
           formik={formik}
-          id="email"
+          name="email"
           label={'Електронна пошта'}
           inputType="email"
         />
         <FormInput
           formik={formik}
-          id="password"
+          name="password"
           label={'Придумайте пароль'}
           inputType="password"
         />
         <FormInput
           formik={formik}
-          id="passwordRepeat"
+          name="passwordRepeat"
           label={'Повторіть пароль'}
           inputType="password"
         />
         <FormCheckbox
           formik={formik}
-          id="rememberMe"
+          name="rememberMe"
           label="Запам’ятати мене"
           className="md:text-base sm:text-sm"
         />

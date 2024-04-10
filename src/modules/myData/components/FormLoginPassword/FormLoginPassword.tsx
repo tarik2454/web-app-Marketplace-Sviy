@@ -4,7 +4,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-export default function FormLoginPassword () {
+export default function FormLoginPassword() {
   const formik = useFormik({
     initialValues: {
       currentEmail: '',
@@ -14,18 +14,20 @@ export default function FormLoginPassword () {
     },
     validationSchema: Yup.object().shape({
       currentEmail: Yup.string()
-        .min(10, "Email повинен бути не менше 10 символів")
-        .required("Потрібен email"),
+        .min(10, 'Email повинен бути не менше 10 символів')
+        .required('Потрібен email'),
       newEmail: Yup.string()
-        .min(10, "Email повинен бути не менше 10 символів")
-        .required("Потрібен email"),
+        .min(10, 'Email повинен бути не менше 10 символів')
+        .required('Потрібен email'),
       password: Yup.string().required('Password is required'),
-      repeatPassword: Yup.string()
-        .oneOf([Yup.ref('newPassword')], 'Паролі повинні співпадати')
+      repeatPassword: Yup.string().oneOf(
+        [Yup.ref('newPassword')],
+        'Паролі повинні співпадати'
+      ),
     }),
-    onSubmit: (values) => {
+    onSubmit: values => {
       console.log('values', values);
-    }
+    },
   });
 
   return (
@@ -33,46 +35,47 @@ export default function FormLoginPassword () {
       <h3 className="text-2xl mb-7">Логін та пароль</h3>
       <form
         className="flex flex-col gap-7 w-full items-start"
-        onSubmit={formik.handleSubmit}>
+        onSubmit={formik.handleSubmit}
+      >
         <FormInput
           formik={formik}
-          id="currentEmail"
+          name="currentEmail"
           label={'Поточний логін'}
           inputType="email"
         />
         <FormInput
           formik={formik}
-          id="newEmail"
+          name="newEmail"
           label={'Новий логін'}
           inputType="email"
         />
-        <BlueBorderButton onClick={() => {}} smallButton type='button'>
+        <BlueBorderButton onClick={() => {}} smallButton type="button">
           Змінити електронну адресу
         </BlueBorderButton>
 
         <FormInput
           formik={formik}
-          id="password"
+          name="password"
           label={'Поточний пароль'}
           inputType="password"
         />
         <FormInput
           formik={formik}
-          id="newPassword"
+          name="newPassword"
           label={'Новий пароль'}
           inputType="password"
         />
         <FormInput
           formik={formik}
-          id="repeatPassword"
+          name="repeatPassword"
           label={'Повторіть пароль'}
           inputType="password"
         />
 
-        <BlueBorderButton onClick={() => {}} smallButton type='submit'>
+        <BlueBorderButton onClick={() => {}} smallButton type="submit">
           Змінити пароль
         </BlueBorderButton>
       </form>
     </div>
-  )
+  );
 }

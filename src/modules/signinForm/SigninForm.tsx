@@ -7,11 +7,13 @@ import {
   FormHeading,
   Section,
 } from '@/shared/components';
+
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { useFormik } from 'formik';
 import Link from 'next/link';
 import * as Yup from 'yup';
 import { MouseEventHandler } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 type Props = {
   signinType: 'page' | 'burger';
@@ -33,10 +35,10 @@ export default function SigninForm({
     validationSchema: Yup.object().shape({
       email: Yup.string()
         .email('Дані введені некоректно')
-        .required("Обов'язкова наявність електронної пошти"),
+        .required('Введіть електронну пошту'),
       password: Yup.string()
         .min(8, 'Пароль повинен мати довжину не менше 8 символів')
-        .required('Потрібен пароль'),
+        .required('Введіть пароль'),
       rememberMe: Yup.boolean(),
     }),
     onSubmit: async values => {
@@ -56,21 +58,20 @@ export default function SigninForm({
       >
         <FormInput
           formik={formik}
-          id="email"
+          name="email"
           label={'Електронна пошта'}
           inputType="email"
         />
-
         <FormInput
           formik={formik}
-          id="password"
+          name="password"
           label={'Пароль'}
           inputType="password"
         />
-        <div className="flex  justify-between items-center pt-2">
+        <div className="flex justify-between items-center pt-2">
           <FormCheckbox
             formik={formik}
-            id="rememberMe"
+            name="rememberMe"
             label="Запам’ятати мене"
             className="md:text-base sm:text-sm"
           />
