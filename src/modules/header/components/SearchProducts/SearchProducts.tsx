@@ -1,7 +1,13 @@
 import Container from '@/shared/components/Container/Container';
 import { SearchArea, SearchCategories, SearchInput } from '.';
 
-export default function SearchProducts() {
+type SearchProductsProps = {
+  toggleSearchVisibility?: () => void;
+};
+
+export default function SearchProducts({
+  toggleSearchVisibility,
+}: SearchProductsProps) {
   return (
     <div className="rounded-b-default bg-neutral-50 absolute z-20 w-full left-0 top-[80px] md:top-[113px]">
       <Container>
@@ -14,7 +20,7 @@ export default function SearchProducts() {
             </div>
           </div>
           <div className="hidden mt-2  py-1 border-2 border-blue-700 rounded-default md:block xl:hidden">
-            <SearchInput />
+            <SearchInput toggleSearchVisibility={toggleSearchVisibility} />
           </div>
         </div>
       </Container>

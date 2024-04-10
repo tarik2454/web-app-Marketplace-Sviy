@@ -1,6 +1,6 @@
 'use client';
 
-import { BurgerMenu, Cart } from './components';
+import { BurgerMenu } from './components';
 import Logo from '../../shared/components/Logo/Logo';
 import { HamburgerButton, FunctionalButtons, Catalog } from './components';
 import Container from '@/shared/components/Container/Container';
@@ -8,12 +8,14 @@ import { SearchProducts } from './components';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import CatalogButton from './components/Catalog/CatalogButton';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
+import ModalCart from './components/Cart/ModalCart';
 
 export default function Header() {
   const [displayMenu, setDisplayMenu] = useState('hidden');
   const [displayCategories, setDisplayCategories] = useState('hidden');
   const [showCatalog, setShowCatalog] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { isOnMobile, isOnTablet } = ScreenSize();
 
@@ -39,7 +41,6 @@ export default function Header() {
     } else {
       setShowSearch(true);
       setShowCatalog(false);
-
       document.body.style.overflow = 'hidden';
     }
   }, [showSearch]);
@@ -47,7 +48,6 @@ export default function Header() {
   const closeBackdrop = () => {
     setShowCatalog(false);
     setShowSearch(false);
-
     document.body.style.overflow = 'auto';
   };
 
@@ -76,6 +76,14 @@ export default function Header() {
     };
   }, []);
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <header className="w-full py-[22.5px] md:py-[30px] bg-neutral-50 shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] fixed top-0 left-0 z-50">
@@ -99,7 +107,10 @@ export default function Header() {
                 <Logo logo="logoHeaderDesktop" />
               )}
             </div>
-            <FunctionalButtons searchButtonClick={toggleSearchVisibility} />
+            <FunctionalButtons
+              openModal={openModal}
+              searchButtonClick={toggleSearchVisibility}
+            />
           </div>
         </Container>
       </header>
@@ -121,9 +132,16 @@ export default function Header() {
           className="w-full h-full bg-black bg-opacity-40 fixed top-0 left-0 z-10"
           ref={backdropSearchRef}
         >
-          <SearchProducts />
+          <SearchProducts toggleSearchVisibility={toggleSearchVisibility} />
         </div>
       )}
+
+      <ModalCart
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        showCatalog={showCatalog}
+        showSearch={showSearch}
+      />
     </>
   );
 }

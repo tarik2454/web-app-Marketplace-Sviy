@@ -3,7 +3,7 @@ import { Field, ErrorMessage } from 'formik';
 import React, { useState, useEffect } from 'react';
 import SelectPostoffice from './SelectPostoffice';
 
-export default function Delivery({ values, touched, error }: any) {
+export default function Delivery({ formik }: any) {
   const [showNovaposhta, setShowNovaposhta] = useState('hidden');
   const [showUkrposhta, setShowUkrposhta] = useState('hidden');
   const [showByAddress, setShowByAddress] = useState('hidden');
@@ -14,8 +14,8 @@ export default function Delivery({ values, touched, error }: any) {
   const handleSetShowByAddress = () => {
     setShowByAddress('block');
     setPostOfficeView('hidden');
-    values.postOfficeApiSelect = '';
-    values.city = '';
+    formik.values.postOfficeApiSelect = '';
+    formik.values.city = '';
   };
 
   const handleByYourself = () => {
@@ -23,9 +23,9 @@ export default function Delivery({ values, touched, error }: any) {
     setShowUkrposhta('hidden');
     setShowByAddress('hidden');
     setPostOfficeView('block');
-    values.deliveryByAddressPicked = false;
-    values.postOfficeApiSelect = '';
-    values.city = '';
+    formik.values.deliveryByAddressPicked = false;
+    formik.values.postOfficeApiSelect = '';
+    formik.values.city = '';
   };
 
   const handleShowNovaposhta = () => {
@@ -33,25 +33,25 @@ export default function Delivery({ values, touched, error }: any) {
     setShowNovaposhta('block');
     setShowUkrposhta('hidden');
     setShowByAddress('hidden');
-    values.deliveryByAddressPicked = false;
-    values.postOfficeApiSelect = '';
-    values.city = '';
+    formik.values.deliveryByAddressPicked = false;
+    formik.values.postOfficeApiSelect = '';
+    formik.values.city = '';
   };
   const handleShowUkrposhta = () => {
     setPostOfficeView('block');
     setShowNovaposhta('hidden');
     setShowUkrposhta('block');
     setShowByAddress('hidden');
-    values.deliveryByAddressPicked = false;
-    values.postOfficeApiSelect = '';
-    values.city = '';
+    formik.values.deliveryByAddressPicked = false;
+    formik.values.postOfficeApiSelect = '';
+    formik.values.city = '';
   };
 
   useEffect(() => {
-    error.deliveryPicked && touched.deliveryPicked
+    formik.errors.deliveryPicked && formik.touched.deliveryPicked
       ? setErrorClassRadio('border-[#C60000] border-[1px]')
       : setErrorClassRadio('border-blue-200');
-  }, [touched, error]);
+  }, [formik]);
 
   return (
     <div className="mb-10 ">
@@ -71,12 +71,12 @@ export default function Delivery({ values, touched, error }: any) {
             />
             <label
               htmlFor="byYourself"
-              className="xl:text-base md:text-base text-gray-900 font-lato pl-9 sm:text-sm"
+              className="xl:text-base md:text-base text-gray-900 pl-9 sm:text-sm"
             >
               Самовивіз
             </label>
           </div>
-          <p className="xl:text-base md:text-base text-gray-900 font-lato text-end sm:text-xs">
+          <p className="xl:text-base md:text-base text-gray-900 text-end sm:text-xs">
             Безкоштовно
           </p>
         </div>
@@ -93,13 +93,13 @@ export default function Delivery({ values, touched, error }: any) {
               />
               <label
                 htmlFor="novaposhta"
-                className="xl:text-base md:text-base text-gray-900 font-lato pl-9 sm:text-sm"
+                className="xl:text-base md:text-base text-gray-900 pl-9 sm:text-sm"
               >
                 {' '}
                 Доставка на Нову Пошту{' '}
               </label>
             </div>
-            <p className="xl:text-base md:text-base text-gray-900 font-lato text-end xl:text-nowrap md:text-nowrap sm:text-wrap sm:text-xs">
+            <p className="xl:text-base md:text-base text-gray-900 text-end xl:text-nowrap md:text-nowrap sm:text-wrap sm:text-xs">
               За тарифами перевізника
             </p>
           </div>
@@ -114,9 +114,7 @@ export default function Delivery({ values, touched, error }: any) {
             apartmentAddress="apartmentAddress1"
             exitAddress="exitAddress1"
             floorAddress="floorAddress1"
-            values={values}
-            touched={touched}
-            error={error}
+            formik={formik}
           />
         </div>
         <div>
@@ -132,13 +130,13 @@ export default function Delivery({ values, touched, error }: any) {
               />
               <label
                 htmlFor="ukrposhta"
-                className="xl:text-base md:text-base text-gray-900 font-lato pl-9 sm:text-sm"
+                className="xl:text-base md:text-base text-gray-900 pl-9 sm:text-sm"
               >
                 {' '}
                 Доставка на Укрпошту{' '}
               </label>
             </div>
-            <p className="xl:text-base md:text-base text-gray-900 font-lato text-end xl:text-nowrap md:text-nowrap sm:text-wrap sm:text-xs">
+            <p className="xl:text-base md:text-base text-gray-900 text-end xl:text-nowrap md:text-nowrap sm:text-wrap sm:text-xs">
               За тарифами перевізника
             </p>
           </div>
@@ -153,15 +151,13 @@ export default function Delivery({ values, touched, error }: any) {
             apartmentAddress="apartmentAddress2"
             exitAddress="exitAddress2"
             floorAddress="floorAddress2"
-            values={values}
-            touched={touched}
-            error={error}
+            formik={formik}
           />
         </div>
       </div>
       <ErrorMessage
         name="deliveryPicked"
-        render={msg => <p className="text-[#C60000]">{msg} </p>}
+        render={msg => <p className="text-[#C60000] text-end text-sm">{msg} </p>}
       />
     </div>
   );

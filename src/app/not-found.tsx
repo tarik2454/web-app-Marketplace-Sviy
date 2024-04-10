@@ -1,15 +1,15 @@
-import { NotFound } from '@/modules'
-import { Breadcrumbs, ColorSpot, PageWrapper } from '@/shared/components'
- 
-export default function Page () {
+import { NotFound } from '@/modules';
+import { Breadcrumbs, ColorSpot, PageWrapper } from '@/shared/components';
+
+export default function Page() {
   return (
     <PageWrapper>
       <ColorSpot />
-      <Breadcrumbs 
+      <Breadcrumbs
+        containerClasses={'pt-5 mb-0 xl:pt-[26px]'}
         homeElement={<span>Головна</span>}
-        containerClasses={'pt-[21px] md:pt-10 mb-0 md-mb-0'}  
       />
       <NotFound />
     </PageWrapper>
-  )
+  );
 }

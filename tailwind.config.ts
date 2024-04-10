@@ -52,6 +52,9 @@ const config: Config = {
         default: '20px',
         circle: '50%',
       },
+      boxShadow: {
+        default: '2px 2px 12px 0px rgba(186, 186, 186, 0.12)',
+      },
       keyframes: {
         jump: {
           '0%': { transform: 'translateY(0)' },
