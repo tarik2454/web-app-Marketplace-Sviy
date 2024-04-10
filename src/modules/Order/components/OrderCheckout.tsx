@@ -31,14 +31,14 @@ export default function OrderChecout() {
         <div className="flex flex-col gap-5 xl:gap-6">
           <FormInput
             formik={formik}
-            id="name"
+            name="name"
             inputType="text"
             inputIcon="user"
             inputLink="Змінити"
           />
           <FormInput
             formik={formik}
-            id="location"
+            name="location"
             inputType="text"
             inputIcon="location"
             inputLink="Змінити"
