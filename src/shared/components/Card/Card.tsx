@@ -5,7 +5,7 @@ import Image from 'next/image';
 import cardImg from '@/shared/img/salo.jpeg';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
-type ProductType = {
+type CardType = {
   id?: number;
   image: string;
   name: string;
@@ -14,7 +14,7 @@ type ProductType = {
   currency: string;
 };
 
-export default function Card({ product }: { product: ProductType }) {
+export default function Card({ product }: { product: CardType }) {
   const { id, image, name, information, price, currency } = product;
 
   return (

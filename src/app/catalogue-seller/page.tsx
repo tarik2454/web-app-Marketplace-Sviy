@@ -13,7 +13,7 @@ export default function Catalogue() {
         delivery="Самовивіз,  кур’єром"
       />
 
-      <CatalogueProducts displayTitle="hidden" />
+      <CatalogueProducts />
     </PageWrapper>
   );
 }
