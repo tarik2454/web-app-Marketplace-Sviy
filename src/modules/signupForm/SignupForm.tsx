@@ -35,7 +35,7 @@ export default function SignupForm({ signupType, signinClick }: Props) {
       email: '',
       password: '',
       passwordRepeat: '',
-      rememberMe: false,
+      chekSignUp: false,
     },
     validationSchema: Yup.object().shape({
       login: Yup.string()
@@ -50,7 +50,7 @@ export default function SignupForm({ signupType, signinClick }: Props) {
       passwordRepeat: Yup.string()
         .min(8, 'Пароль повинен мати довжину не менше 8 символів')
         .required('Введіть пароль'),
-      rememberMe: Yup.boolean(),
+      chekSignUp: Yup.boolean(),
     }),
     onSubmit: handleSubmit,
   });
@@ -88,9 +88,9 @@ export default function SignupForm({ signupType, signinClick }: Props) {
         />
         <FormCheckbox
           formik={formik}
-          name="rememberMe"
+          id="chekSignUp"
           label="Запам’ятати мене"
-          className="md:text-base sm:text-sm"
+          className="text-sm md:text-base"
         />
         <p className="text-gray-500 font-lato text-sm md:pb-[34px]">
           Реєструючись ви погоджуєтесь з Правилами використання сайту та

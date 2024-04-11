@@ -13,7 +13,6 @@ import { useFormik } from 'formik';
 import Link from 'next/link';
 import * as Yup from 'yup';
 import { MouseEventHandler } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 type Props = {
   signinType: 'page' | 'burger';
@@ -30,7 +29,7 @@ export default function SigninForm({
     initialValues: {
       email: '',
       password: '',
-      rememberMe: false,
+      chekSignIn: false,
     },
     validationSchema: Yup.object().shape({
       email: Yup.string()
@@ -39,10 +38,10 @@ export default function SigninForm({
       password: Yup.string()
         .min(8, 'Пароль повинен мати довжину не менше 8 символів')
         .required('Введіть пароль'),
-      rememberMe: Yup.boolean(),
+      chekSignIn: Yup.boolean(),
     }),
     onSubmit: async values => {
-      console.log(values);
+      // console.log(values);
     },
   });
 
@@ -71,9 +70,9 @@ export default function SigninForm({
         <div className="flex justify-between items-center pt-2">
           <FormCheckbox
             formik={formik}
-            name="rememberMe"
+            id="chekSignIn"
             label="Запам’ятати мене"
-            className="md:text-base sm:text-sm"
+            className="text-sm md:text-base"
           />
           {signinType === 'page' ? (
             <Link href="/signin-forgot" className="text-blue-900 text-sm">

@@ -12,10 +12,10 @@ interface AdvertisingProps {
   image2?: string;
 }
 
-const Advertising: React.FC<AdvertisingProps> = ({
+export default function Advertising({
   image1 = batch_cooking_default,
   image2 = delicious_food_default,
-}) => {
+}) {
   return (
     <Section>
       <Container>
@@ -53,6 +53,4 @@ const Advertising: React.FC<AdvertisingProps> = ({
       </Container>
     </Section>
   );
-};
-
-export default Advertising;
+}
