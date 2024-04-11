@@ -111,6 +111,8 @@ export default function Header() {
             <FunctionalButtons
               openModal={openModal}
               toggleSearchVisibility={toggleSearchVisibility}
+              setShowCatalog={setShowCatalog}
+              setShowSearch={setShowSearch}
             />
           </div>
         </Container>

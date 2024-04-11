@@ -1,17 +1,40 @@
-import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import { Counter } from '.';
+'use client';
 
-import Link from 'next/link';
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
+
+import { Counter } from '.';
+import { Dispatch, MouseEventHandler, SetStateAction } from 'react';
+import { useRouter } from 'next/navigation';
 
 type Props = {
-  toggleSearchVisibility?: () => void;
+  toggleSearchVisibility: MouseEventHandler<HTMLButtonElement>;
   openModal: () => void;
+  setShowCatalog: Dispatch<SetStateAction<boolean>>;
+  setShowSearch: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function FunctionalButtons({
   toggleSearchVisibility,
   openModal,
+  setShowCatalog,
+  setShowSearch,
 }: Props) {
+  const router = useRouter();
+  const signinPage = '/signin';
+  const favoritesPage = '/favorites';
+
+  const handleSigninClick = () => {
+    setShowCatalog(false);
+    setShowSearch(false);
+    router.push(signinPage);
+  };
+
+  const handleFavoritesClick = () => {
+    setShowCatalog(false);
+    setShowSearch(false);
+    router.push(favoritesPage);
+  };
+
   return (
     <>
       <div className="flex gap-4 md:gap-8">
@@ -22,20 +45,20 @@ export default function FunctionalButtons({
           <SpriteSVG name="search" />
         </button>
 
-        <Link
-          href={'/signin'}
+        <button
+          onClick={handleSigninClick}
           className="hidden md:flex text-blue-700 hover:text-neutral-800 active:text-neutral-400 items-center content-center"
         >
           <SpriteSVG name="user" />
-        </Link>
+        </button>
 
-        <Link
-          href={'/favorites'}
+        <button
+          onClick={handleFavoritesClick}
           className="hidden w-8 relative md:block text-blue-700 hover:text-neutral-800 active:text-neutral-400"
         >
           <Counter />
           <SpriteSVG name="favorite-header" />
-        </Link>
+        </button>
 
         <button
           onClick={openModal}
