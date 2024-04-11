@@ -89,7 +89,7 @@ export default function OrderFinalPrice({
           )}
         >
           {!isInCart || isOnMobile ? `${itemsQuantity} ` : null}
-          {!isInCart || isOnMobile ? 'товара на суму' : 'Сума'}
+          {!isInCart || isOnMobile ? 'товари на суму' : 'Сума'}
         </p>
         <p
           className={twMerge(
