@@ -3,7 +3,7 @@ import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { twMerge } from 'tailwind-merge';
 import { boolean } from 'yup';
 
-type ModalProps = {
+type Props = {
   isOpen: boolean;
   onClose: () => void;
   showCatalog?: boolean;
@@ -13,7 +13,7 @@ type ModalProps = {
   stylesCloseButton?: string;
 };
 
-const Modal: React.FC<ModalProps> = ({
+export default function Modal({
   isOpen,
   onClose,
   showCatalog,
@@ -21,7 +21,7 @@ const Modal: React.FC<ModalProps> = ({
   children,
   stylesWrapper,
   stylesCloseButton,
-}) => {
+}: Props) {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -74,6 +74,4 @@ const Modal: React.FC<ModalProps> = ({
       )}
     </>
   );
-};
-
-export default Modal;
+}
