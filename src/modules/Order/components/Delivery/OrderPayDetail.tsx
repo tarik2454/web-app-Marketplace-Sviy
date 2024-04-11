@@ -1,9 +1,10 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { Field, ErrorMessage } from 'formik';
+
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
-const OrderPayDetail = ({ formik }: any) => {
+export default function OrderPayDetail({ formik }: any) {
   const [isDisabled, setIsDisabled] = useState(true);
   const [errorClassRadio, setErrorClassRadio] = useState('');
   const [errorClassInput, setErrorClassInput] = useState('border-blue-200');
@@ -18,7 +19,7 @@ const OrderPayDetail = ({ formik }: any) => {
     formik.errors.picked && formik.touched.picked
       ? setErrorClassRadio('border-[#C60000] border-[1px]')
       : setErrorClassRadio('');
-      formik.errors.customer && formik.touched.customer
+    formik.errors.customer && formik.touched.customer
       ? setErrorClassInput('border-[#C60000]')
       : setErrorClassInput('border-blue-200');
   }, [formik.touched, formik.errors]);
@@ -38,10 +39,7 @@ const OrderPayDetail = ({ formik }: any) => {
               name="picked"
               value="Оплата під час отримання товару"
             />
-            <label
-              htmlFor="afterDelivery"
-              className="text-gray-900 pl-9"
-            >
+            <label htmlFor="afterDelivery" className="text-gray-900 pl-9">
               Оплата під час отримання товару{' '}
             </label>
           </div>
@@ -53,18 +51,15 @@ const OrderPayDetail = ({ formik }: any) => {
               name="picked"
               value="Оплата на картку продавця"
             />
-            <label
-              htmlFor="toCard"
-              className="text-gray-900 pl-9"
-            >
+            <label htmlFor="toCard" className="text-gray-900 pl-9">
               Оплата на картку продавця{' '}
             </label>
           </div>
         </div>
-        <ErrorMessage 
-          name="picked" 
-          component="p" 
-          className="text-[#C60000] text-end text-sm" 
+        <ErrorMessage
+          name="picked"
+          component="p"
+          className="text-[#C60000] text-end text-sm"
         />
       </div>
       <div className="mb-10">
@@ -73,8 +68,8 @@ const OrderPayDetail = ({ formik }: any) => {
           className={`bg-white flex pl-4 pr-4 pt-3 pb-3 items-center justify-between rounded-[20px] border-[1px] xl:min-w-[845px] md:max-w-[700px] sm:max-w-[343px] ${errorClassInput}`}
         >
           <div className="flex gap-2 basis-5/6">
-            <span className='text-gray-400'>
-              <SpriteSVG name="user"/>
+            <span className="text-gray-400">
+              <SpriteSVG name="user" />
             </span>
             <Field
               className={`bg-white focus:outline-none basis-5/6 ${selectInput} `}
@@ -110,6 +105,4 @@ const OrderPayDetail = ({ formik }: any) => {
       </div>
     </>
   );
-};
-
-export default OrderPayDetail;
+}

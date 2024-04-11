@@ -1,9 +1,10 @@
 import React from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import InfoBlock from './InfoBlock';
-import ProductBlock from './ProductBlock';
-import ButtonBlock from './ButtonBlock';
+
 import ScreenSize from '@/shared/hooks/useMediaQuery';
+import ProductBlock from './ProductBlock';
+import InfoBlock from './InfoBlock';
+import ButtonBlock from './ButtonBlock';
 
 export default function AfterOrder() {
   const { isOnMobile, isOnTablet } = ScreenSize();
