@@ -7,7 +7,7 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 export default function ButtonBlock() {
     const router: AppRouterInstance = useRouter();
   return (
-    <div className="flex xl:gap-6 md:gap-6 gap-3 xl:items-center md:items-center px-[8px]">
+    <div className="flex xl:gap-6 md:gap-6 gap-3 items-center px-[8px]">
         <div className='max-w-[365px] text-white text-sm xl:text-nowrap md:text-nowrap'>
           <OrangeButton onClick={() => router.push('/catalogue')} cssSettings="max-w-[155px]">До каталогу</OrangeButton>
         </div>

@@ -1,7 +1,6 @@
 'use client';
 
 import { FormInput } from '@/shared/components';
-import { Field } from 'formik';
 
 export default function OrderChecout({ formik }: any) {
   return (
@@ -11,16 +10,14 @@ export default function OrderChecout({ formik }: any) {
       </h3>
       <div className="flex flex-col gap-4 xl:mb-10">
         <div className="flex flex-col gap-5 xl:gap-6">
-          <Field
-            component={FormInput}
+          <FormInput
             formik={formik}
             name="name"
             inputType="text"
             inputIcon="user"
             inputLink="Змінити"
           />
-          <Field
-            component={FormInput}
+          <FormInput
             formik={formik}
             name="location"
             inputType="text"

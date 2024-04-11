@@ -54,7 +54,7 @@ Props) {
           type={inputTypePass}
           name={name}
           placeholder={placeholder}
-          value={formik.values.name}
+          value={formik.values[name]}
           className="w-full h-6 outline-none flex-grow order-2"
           pattern={inputType === 'number' ? '[0-9]*' : undefined}
         />
@@ -77,7 +77,7 @@ Props) {
         )}
       </div>
       {error && (
-        <p className="absolute -bottom-6 right-0 text-red-700 text-sm">
+        <p className="text-[#C60000] text-end text-sm">
           {String(error)}
         </p>
       )}
