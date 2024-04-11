@@ -4,14 +4,17 @@ import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { BottomListItem, CommonRating, Ellipse, Response } from './components';
 import Section from '@/shared/components/Section/Section';
 import Image from 'next/image';
-import bg_hero from '../../shared/img/heroSection/bg_photo.png';
-import bg_hero_tablet from '../../shared/img/heroSection/bg_photo_tablet.png';
-import av_alina from '../../shared/img/heroSection/response/alina.jpg';
-import av_tamara from '../../shared/img/heroSection/response/tamara.jpg';
-import av_matvij from '../../shared/img/heroSection/response/matvij.jpg';
+import bg_hero from './image/bg_photo.png';
+import bg_hero_tablet from './image/bg_photo_tablet.png';
+import av_alina from './image/response/alina.jpg';
+import av_tamara from './image/response/tamara.jpg';
+import av_matvij from './image/response/matvij.jpg';
 import Container from '@/shared/components/Container/Container';
+import { useRouter } from 'next/navigation';
 
 const HeroSection = () => {
+  const router = useRouter();
+
   return (
     <Section className="pt-[113px]">
       <Container>
@@ -71,7 +74,12 @@ const HeroSection = () => {
               </p>
             </div>
             <div className="flex flex-col items-start gap-5 xl:flex-row xl:gap-6">
-              <OrangeButton cssSettings={'text-white'} onClick={() => {}}>
+              <OrangeButton
+                cssSettings={'text-white'}
+                onClick={() => {
+                  router.push('/catalogue');
+                }}
+              >
                 Обрати товар
               </OrangeButton>
               <ArrowButton onClick={() => {}}>Продати товар</ArrowButton>

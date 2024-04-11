@@ -35,6 +35,7 @@ export default function Header() {
   }, [showCatalog]);
 
   const toggleSearchVisibility = useCallback(() => {
+    console.log('toggleSearchVisibility');
     if (showSearch) {
       setShowSearch(false);
       document.body.style.overflow = 'auto';

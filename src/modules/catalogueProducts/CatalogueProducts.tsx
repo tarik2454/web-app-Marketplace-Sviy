@@ -2,15 +2,16 @@
 
 import { useState } from 'react';
 import productsData from '@/shared/data/products-data';
-import { Card, Container, FilterControlButtons, Pagination, Section, SectionTitle } from '@/shared/components';
+import {
+  Card,
+  Container,
+  FilterControlButtons,
+  Section,
+} from '@/shared/components';
 import { Filter, SortingMenu } from '..';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 
-type Props = {
-  displayTitle: "block" | "hidden",
-}
-
-export default function CatalogueProducts({ displayTitle }: Props) {
+export default function CatalogueProducts() {
   const [sortingMenuDisplay, setSortingMenuDisplay] = useState('hidden');
   const [filterDisplay, setFilterDisplay] = useState('hidden');
 
@@ -29,43 +30,40 @@ export default function CatalogueProducts({ displayTitle }: Props) {
   };
 
   const openHandler = (type: string) => {
-    if (type === "filter") {
-      setFilterDisplay("block");
-      document.body.style.overflow = "hidden";
-    } else if (type === "sortingMenu") {
-      setSortingMenuDisplay("block");
-      document.body.style.overflow = "hidden";
+    if (type === 'filter') {
+      setFilterDisplay('block');
+      document.body.style.overflow = 'hidden';
+    } else if (type === 'sortingMenu') {
+      setSortingMenuDisplay('block');
+      document.body.style.overflow = 'hidden';
     }
-  }
+  };
 
   const closeHandler = (type: string) => {
-    if (type === "filter") {
-      setFilterDisplay("hidden");
-      document.body.style.overflow = "auto";
-    } else if (type === "sortingMenu") {
-      setSortingMenuDisplay("hidden");
-      document.body.style.overflow = "auto";
+    if (type === 'filter') {
+      setFilterDisplay('hidden');
+      document.body.style.overflow = 'auto';
+    } else if (type === 'sortingMenu') {
+      setSortingMenuDisplay('hidden');
+      document.body.style.overflow = 'auto';
     }
-  }
+  };
 
   return (
-    <Section className='p-0 md:p-0 xl:p-0'>
+    <Section className="pt-10 pb-[84px] md:pt-[64px] md:pb-[104px] xl:pt-[88px] xl:pb-[164px] relative">
       <Container>
-        <div className={`${displayTitle}`}>
-          <SectionTitle name="Каталог" />
-        </div>
-        <div className='flex gap-6'>
+        <div className="flex gap-6">
           <Filter
             display={filterDisplay}
-            closeButtonClick={() => closeHandler("filter")}
+            closeButtonClick={() => closeHandler('filter')}
           />
 
-          <div className="block">
+          <div>
             <FilterControlButtons
-              filterButtonClick={() => openHandler("filter")}
-              sortingMenuButtonClick={() => openHandler("sortingMenu")}
+              filterButtonClick={() => openHandler('filter')}
+              sortingMenuButtonClick={() => openHandler('sortingMenu')}
             />
-            <ul className="grid gap-4 mt-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+            <ul className="grid gap-4 mt-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xl:sticky">
               {productsData.slice(0, showProducts).map((product, index) => {
                 return (
                   <li key={`${product.id}-${index}`}>
@@ -75,9 +73,10 @@ export default function CatalogueProducts({ displayTitle }: Props) {
               })}
             </ul>
           </div>
+
           <SortingMenu
             display={sortingMenuDisplay}
-            closeButtonClick={() => closeHandler("sortingMenu")}
+            closeButtonClick={() => closeHandler('sortingMenu')}
           />
         </div>
       </Container>

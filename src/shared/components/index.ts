@@ -20,3 +20,4 @@ export { default as CatalogueButton } from './CatalogueButton/CatalogueButton';
 export { default as PageWrapper } from './PageWrapper/PageWrapper';
 export { default as OrderFinalPrice } from './OrderFinalPrice/OrderFinalPrice';
 export { default as OrderList } from './OrderList/OrderList';
+export { default as PageTitle } from './PageTitle/PageTitle';

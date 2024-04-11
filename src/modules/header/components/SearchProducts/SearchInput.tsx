@@ -17,25 +17,22 @@ export default function SearchInput({
 
   const handleSearchClick = () => {
     console.log('message');
+
     if (toggleSearchVisibility) {
       toggleSearchVisibility();
     }
-
     // route.push(`/search?q=${searchText}`);
     router.push(`/catalogue`);
   };
 
-  // const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-  //   if (event.key === 'Enter') {
-  //     if (setShowSearch) {
-  //       setShowSearch(false);
-  //     }
-  //     if (toggleSearchVisibility) {
-  //       toggleSearchVisibility();
-  //     }
-  //     router.push(`/catalogue`);
-  //   }
-  // };
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.code === 'Enter') {
+      if (toggleSearchVisibility) {
+        toggleSearchVisibility();
+      }
+      router.push(`/catalogue`);
+    }
+  };
 
   return (
     <div className="flex w-full items-center px-3 py-2">
@@ -49,7 +46,7 @@ export default function SearchInput({
         placeholder="Я шукаю"
         value={searchText}
         onChange={event => setSearchText(event.target.value)}
-        // onKeyDown={handleKeyPress}
+        onKeyDown={handleKeyPress}
       />
     </div>
   );
