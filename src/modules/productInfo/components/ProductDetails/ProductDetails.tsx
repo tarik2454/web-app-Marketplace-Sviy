@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import dataProduct from '../../data/data-product';
 import { ArrowButton, OrangeButton } from '@/shared/components';
-import { SpriteSVG } from '../../img/SpriteSVG';
+import { SpriteSVG } from '../../image/SpriteSVG';
 import { ButtonAddFavorite, ButtonCounter, ModalSeller, Price } from '.';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 

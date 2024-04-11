@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 import dataImg from '../data/data-img';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
-import { SpriteSVG } from '../img/SpriteSVG';
+import { SpriteSVG } from '../image/SpriteSVG';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';

@@ -1,4 +1,4 @@
-import photoSeller from '../img/galina.jpg';
+import photoSeller from '../image/galina.jpg';
 
 const dataContactSeller = {
   name: 'Баба Галя',

@@ -1,6 +1,6 @@
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import Image from 'next/image';
-import { SpriteSVG } from '../../img/SpriteSVG';
+import { SpriteSVG } from '../../image/SpriteSVG';
 import Link from 'next/link';
 
 export default function ModalContent({

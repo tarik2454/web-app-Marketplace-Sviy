@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import { SpriteSVG } from '../../img/SpriteSVG';
+import { SpriteSVG } from '../../image/SpriteSVG';
 
 export default function ButtonAddFavorite({
   stylesWrapper,
