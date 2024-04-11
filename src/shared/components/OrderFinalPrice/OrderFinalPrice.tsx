@@ -1,11 +1,12 @@
 'use client';
 
+import { twMerge } from 'tailwind-merge';
+import { usePathname, useRouter } from 'next/navigation';
+
 import { OrangeButton } from '@/shared/components';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
-import { usePathname, useRouter } from 'next/navigation';
-import { twMerge } from 'tailwind-merge';
 
-type Props = {
+type OrderFinalPriceProps = {
   stylesWrapper?: string;
   stylesDelivery?: string;
   stylesTotal?: string;
@@ -33,12 +34,12 @@ export default function OrderFinalPrice({
   itemsQuantity,
   closeModal,
   isInCart = false,
-}: Props) {
+}: OrderFinalPriceProps) {
   const router = useRouter();
   const pathname = usePathname();
   const pathnameOrderDetails = '/order-details';
 
-  const { isOnMobile, isOnTablet, isOnDesktop } = ScreenSize();
+  const { isOnMobile, isOnTablet } = ScreenSize();
 
   const handleButtonClick = () => {
     if (pathname === pathnameOrderDetails) {
@@ -87,8 +88,8 @@ export default function OrderFinalPrice({
             stylesSumText
           )}
         >
-          {!isInCart || isOnMobile ? `${itemsQuantity}` : null}
-          {!isInCart || isOnMobile ? 'товара на суму ' : 'Сума'}
+          {!isInCart || isOnMobile ? `${itemsQuantity} ` : null}
+          {!isInCart || isOnMobile ? 'товара на суму' : 'Сума'}
         </p>
         <p
           className={twMerge(

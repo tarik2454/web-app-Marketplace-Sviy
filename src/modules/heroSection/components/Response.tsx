@@ -1,6 +1,6 @@
 import Image, { StaticImageData } from 'next/image';
 import React from 'react';
-import { Rating } from '..';
+import { Rating } from '.';
 
 type Props = {
   text: string;
