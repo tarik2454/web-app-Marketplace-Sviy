@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 import cardImg from '@/shared/img/salo.jpeg';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import Link from 'next/link';
 
 type CardType = {
   id?: number;
@@ -18,7 +19,10 @@ export default function Card({ product }: { product: CardType }) {
   const { id, image, name, information, price, currency } = product;
 
   return (
-    <div className="max-w-[343px] rounded-default bg-white relative group">
+    <Link
+      href={'./product-card'}
+      className="max-w-[343px] rounded-default bg-white relative group"
+    >
       <Image
         className="h-[216px] rounded-tl-default rounded-tr-default group-hover:h-[222px] group-hover:animate-jump transition-all"
         src={cardImg}
@@ -56,6 +60,6 @@ export default function Card({ product }: { product: CardType }) {
           <SpriteSVG name="card-arrow-right" />
         </button>
       </div>
-    </div>
+    </Link>
   );
 }

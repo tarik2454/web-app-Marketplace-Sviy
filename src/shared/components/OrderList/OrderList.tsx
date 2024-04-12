@@ -10,7 +10,6 @@ import { twMerge } from 'tailwind-merge';
 type OrderListProps = {
   heading: string;
   price: string;
-  // image: string;
 };
 
 export default function OrderList({
