@@ -9,7 +9,7 @@ export default function SearchProducts({
   toggleSearchVisibility,
 }: SearchProductsProps) {
   return (
-    <div className="rounded-b-default md:bg-neutral-50 absolute z-20 w-full left-0 top-[80px] md:top-[113px]">
+    <div className="w-full rounded-b-default bg-neutral-50 absolute z-20 left-0 top-[80px] md:top-[113px]">
       <Container>
         <div className="block w-full py-6 bg-neutral-50">
           <div className="flex items-center border-2 border-blue-700 rounded-default">

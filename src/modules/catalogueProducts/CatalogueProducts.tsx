@@ -6,28 +6,14 @@ import {
   Card,
   Container,
   FilterControlButtons,
+  Pagination,
   Section,
 } from '@/shared/components';
 import { Filter, SortingMenu } from '..';
-import ScreenSize from '@/shared/hooks/useMediaQuery';
 
 export default function CatalogueProducts() {
   const [sortingMenuDisplay, setSortingMenuDisplay] = useState('hidden');
   const [filterDisplay, setFilterDisplay] = useState('hidden');
-
-  const { isOnMobile, isOnTablet } = ScreenSize();
-
-  const [showProducts, setShowProducts] = useState(
-    isOnMobile ? 6 : isOnTablet ? 8 : 9
-  );
-
-  const moreProductsClickHandler = () => {
-    isOnMobile
-      ? setShowProducts(showProducts + 6)
-      : isOnTablet
-      ? setShowProducts(showProducts + 8)
-      : setShowProducts(showProducts + 9);
-  };
 
   const openHandler = (type: string) => {
     if (type === 'filter') {
@@ -49,6 +35,15 @@ export default function CatalogueProducts() {
     }
   };
 
+  const renderItemLi = (item: {
+    id: number;
+    image: string;
+    name: string;
+    information: string;
+    price: number;
+    currency: string;
+  }) => <Card key={item.id} product={item} />;
+
   return (
     <Section className="pt-10 pb-[84px] md:pt-[64px] md:pb-[104px] xl:pt-[88px] xl:pb-[164px] relative">
       <Container>
@@ -63,15 +58,15 @@ export default function CatalogueProducts() {
               filterButtonClick={() => openHandler('filter')}
               sortingMenuButtonClick={() => openHandler('sortingMenu')}
             />
-            <ul className="grid gap-4 mt-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xl:sticky">
-              {productsData.slice(0, showProducts).map((product, index) => {
-                return (
-                  <li key={`${product.id}-${index}`}>
-                    <Card product={product} />
-                  </li>
-                );
-              })}
-            </ul>
+
+            <Pagination
+              itemsPerPage={6}
+              array={productsData}
+              styleUl={
+                'grid gap-6 mt-5 mb-8 grid-cols-1 md:grid-cols-2 md:gap-4 md:mt-10 md:mt-10 xl:grid-cols-3 xl:mt-6 xl:gap-6 xl:sticky'
+              }
+              renderItemLi={renderItemLi}
+            />
           </div>
 
           <SortingMenu
