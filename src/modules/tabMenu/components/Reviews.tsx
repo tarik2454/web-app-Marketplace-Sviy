@@ -51,7 +51,7 @@ export default function Reviews() {
     <Pagination
       itemsPerPage={3}
       array={reviewsData}
-      renderItem={renderItem}
+      renderItemLi={renderItem}
       styleUl={'mb-10 md:mb-11'}
     />
   );

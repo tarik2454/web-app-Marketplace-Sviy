@@ -1,3 +1,4 @@
+import { CatalogueProducts } from '@/modules';
 import {
   Breadcrumbs,
   ColorSpot,
@@ -5,7 +6,6 @@ import {
   PageTitle,
   PageWrapper,
 } from '@/shared/components';
-import { CatalogueProducts } from '@/modules';
 
 export default function Catalogue() {
   return (
