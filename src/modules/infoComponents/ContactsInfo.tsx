@@ -5,7 +5,7 @@ import React from 'react'
 export default function ContactsInfo() {
   return (
     <Section className={
-      'pt-[32px] pb-[80px] md:pt-[78px] pd:mb-[164px] xl:pt-[78px] xl:pb-[164px] xl:text-xl md:text-xl text-base'
+      'pt-[32px] pb-[80px] md:pt-[78px] md:pb-[164px] xl:pt-[78px] xl:pb-[164px] xl:text-xl md:text-xl text-base'
     }>
       <Container>
         <p>Повідомляємо, що електронна скринька працює в будні дні з 9.00 до 18.00 </p>
