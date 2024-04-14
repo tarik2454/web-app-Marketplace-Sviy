@@ -1,11 +1,18 @@
-import { Breadcrumbs, ColorSpot, PageWrapper } from '@/shared/components';
+import { Breadcrumbs, ColorSpot, Container, PageTitle, PageWrapper } from '@/shared/components';
+import ContactsInfo from '@/modules/infoComponents/ContactsInfo';
 
 export default function Contacts() {
   return (
     <PageWrapper>
       <ColorSpot />
-      <Breadcrumbs homeElement={<span>Головна</span>} />
-      <div>test text</div>
+      <Breadcrumbs 
+        containerClasses={'mb-[44px] md:mb-[98px] xl:mb-[98px]'}
+        homeElement={<span>Головна</span>}
+        />
+      <Container>
+        <PageTitle name={'Контакти'} />
+      </Container>
+      <ContactsInfo/>
     </PageWrapper>
   );
 }

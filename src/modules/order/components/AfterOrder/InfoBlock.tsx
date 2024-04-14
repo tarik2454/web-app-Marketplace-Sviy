@@ -13,14 +13,16 @@ export default function InfoBlock() {
         </div>
         <div className="flex flex-col gap-3">
           <p>Поліна Ващук</p>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             <SpriteSVG name="phone" className="stroke-[#1565C0]" />
             <p className="block">+380 96 900 90 90</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             <SpriteSVG
               name="mail"
-              className="stroke-[#1565C0] text-[#1565C0]"
+              className="stroke-[#1565C0]"
+              width={20}
+              height={20}
             />
             <p className="block">polina.vach@gmail.com</p>
           </div>
@@ -29,17 +31,22 @@ export default function InfoBlock() {
       <div className="flex flex-col gap-3">
         <h3 className="text-2xl">Продавець</h3>
         <p>Назва бренду</p>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
           <span className="text-[#1565C0]">
             <SpriteSVG name="location" />
           </span>
           <p className="block">м. Львів, Залізничний р-н</p>
         </div>
-        <div className="flex gap-2">
-          <SpriteSVG name="mail" className="stroke-[#1565C0] text-[#1565C0]" />
+        <div className="flex gap-2 items-center">
+          <SpriteSVG 
+            name="mail" 
+            width={20}
+            height={20} 
+            className="stroke-[#1565C0]" 
+          />
           <p className="block">fuhriug@gmail.com</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
           <SpriteSVG name="phone" className="stroke-[#1565C0]" />
           <p className="block">+380 96 900 90 99</p>
         </div>

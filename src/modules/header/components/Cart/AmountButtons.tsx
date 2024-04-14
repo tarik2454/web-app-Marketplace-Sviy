@@ -1,9 +1,14 @@
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import { twJoin } from 'tailwind-merge';
 
-export default function AmountButtons() {
+type AmountButtonsProps = {
+  stylesWrapper?: string;
+};
+
+export default function AmountButtons({ stylesWrapper }: AmountButtonsProps) {
   return (
-    <div className="flex items-center w-full xl:w-2/3">
-      <div className="flex w-20 md:mx-auto">
+    <div className={twJoin(`flex items-center w-full xl:w-2/3`, stylesWrapper)}>
+      <div className="flex w-20 md:mx-auto ">
         <button className="border-2 p-2 rounded-circle">
           <SpriteSVG name="minus" />
         </button>

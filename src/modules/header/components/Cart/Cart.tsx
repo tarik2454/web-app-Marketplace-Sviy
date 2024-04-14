@@ -8,7 +8,7 @@ type CatrProps = {
 
 export default function Cart({ closeModal }: CatrProps) {
   return (
-    <>
+    <div>
       <p
         className="mb-5 font-lora text-[32px] font-normal leading-[1.3]
         md:text-2xl md:font-lato md:font-normal 
@@ -20,7 +20,29 @@ export default function Cart({ closeModal }: CatrProps) {
 
       <div className="flex flex-col gap-5 md:flex-row md:gap-4 xl:gap-5">
         <OrderList
-          stylesUlWrapper={'md:w-[466px] xl:w-[804px]'}
+          stylesUlWrapper={
+            'md:w-[466px] xl:w-[804px] flex flex-col gap-4 md:gap-[6px] xl:gap-2'
+          }
+          stylesLiWrapper={
+            'flex mb-0 pt-0 p-4 shadow-default rounded-default bg-white last:pb-4 height-[700px] md:gap-4 md:p-[12px] md:border-none md:last:pb-[12px] xl:pt-[14px] xl:pb-[18px] xl:pl-5 xl:pr-[66px]'
+          }
+          stylesImageWrapper={
+            'w-[93px] h-[86px] min-w-[93px] min-h-[86px] md:w-[60px] md:h-[66px] md:min-w-[60px] md:min-h-[66px] xl:w-[114px] xl:h-[100px] xl:min-w-[114px] xl:min-h-[100px]'
+          }
+          stylesContentWrapper={
+            'flex flex-col w-full md:justify-normal xl:flex-row xl:gap-0'
+          }
+          stylesProductName={
+            'mb-2 text-base md:text-sm md:leading[1.4] md:mb-[12px] xl:mb-0 xl:w-[244px] xl:text-base'
+          }
+          stylesPriceWrapper={'md:hidden'}
+          stylesSumWrapper={
+            'relative flex flex-row justify-start items-center md:flex-row-reverse md:justify-between xl:w-full'
+          }
+          stylesSumNumber={'flex mb-2 md:mb-0 md:text-base xl:text-xl'}
+          stylesButton={`mb-0 absolute top-[32px] right-0 md:relative md:top-0 md:mb-0`}
+          stylesSumWord={'md:hidden'}
+          isInCart={true}
           cartItems={orderedProductsData}
         />
         <OrderFinalPrice
@@ -44,6 +66,6 @@ export default function Cart({ closeModal }: CatrProps) {
           totalPrice={470}
         />
       </div>
-    </>
+    </div>
   );
 }
