@@ -1,4 +1,10 @@
-export const SpriteSVG = ({ name, className }: { name: string, className?: string }) => {
+"use client"
+import { useState } from "react";
+
+export const SpriteSVG = ({ name, className, height, width }: { name: string, className?: string, height?: number, width?: number }) => {
+ const [dForMail, _] = useState(width === 24 ? "M2 8L11.1056 12.5528C11.6686 12.8343 12.3314 12.8343 12.8944 12.5528L22 8" : 
+ width === 20 ? "M1.6665 6.66663L9.10541 10.3861C9.66847 10.6676 10.3312 10.6676 10.8943 10.3861L18.3332 6.66663" : "") 
+
   switch (name) {
     case 'arrow-right':
       return (
@@ -135,10 +141,10 @@ export const SpriteSVG = ({ name, className }: { name: string, className?: strin
 
     case 'facebook':
       return (
-        <svg width="24" height="24" fill="none">
+        <svg width="24" height="24" fill="none" className={className}>
           <g clipPath="url(#a)">
             <path
-              stroke="#386A93"
+              // stroke="#386A93"
               strokeWidth="2"
               d="M12 23.2A11.2 11.2 0 1 1 12 .798 11.2 11.2 0 0 1 12 23.2Zm0 0V10.4a3.2 3.2 0 0 1 3.2-3.2h.8m-8 6.4h8"
             />
@@ -153,10 +159,10 @@ export const SpriteSVG = ({ name, className }: { name: string, className?: strin
 
     case 'instagram':
       return (
-        <svg width="24" height="24" fill="none">
+        <svg width="24" height="24" fill="none" className={className}>
           <g clipPath="url(#a)">
             <path
-              stroke="#386A93"
+              // stroke="#386A93"
               strokeWidth="2"
               d="M17.6 5.6h1.6M7.2.8h9.6a6.4 6.4 0 0 1 6.4 6.4v9.6a6.4 6.4 0 0 1-6.4 6.4H7.2a6.4 6.4 0 0 1-6.4-6.4V7.2A6.4 6.4 0 0 1 7.2.8Zm4.8 16a4.8 4.8 0 1 1 0-9.6 4.8 4.8 0 0 1 0 9.6Z"
             />
@@ -777,24 +783,25 @@ export const SpriteSVG = ({ name, className }: { name: string, className?: strin
           return (
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              width="20" 
-              height="20" 
+              width={width} 
+              height={height} 
               fill="none"
               className={className}
               >
               <rect 
-                width="16.6667" 
-                height="12.5" 
+                width={width && width * 0.8335} 
+                height={height && height * 0.625} 
                 x="1.6665" 
                 y="4.1666" 
                 // stroke="#386A93" 
                 strokeWidth="2" 
                 rx="2"
               />
-                <path 
-                  fill="currentColor" 
+                <path  
                   fillRule="evenodd" 
-                  d="m2.1138 5.7722 7.439 3.7194q.2109.1056.447.1056.236 0 .4472-.1056l7.439-3.7194.8943 1.7888-7.4387 3.7195q-.6336.3167-1.3418.3167-.708 0-1.3416-.3167L1.2192 7.561l.8946-1.7888Z"
+                  d={dForMail}
+                  strokeWidth="2"
+                  stroke="#1565C0"
                 />
             </svg>
           )

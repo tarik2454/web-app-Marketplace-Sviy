@@ -67,7 +67,7 @@ export default function Order() {
             {formik => {
               const { values, handleChange, touched, errors } = formik;
               return (
-                <Form>
+                <Form id="orderFormSubmit">
                   {(isOnMobile && (
                     <>
                       <OrderCheckout formik={formik} />
