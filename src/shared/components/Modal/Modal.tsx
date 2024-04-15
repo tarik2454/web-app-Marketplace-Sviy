@@ -55,7 +55,7 @@ export default function Modal({
         >
           <div
             className={twMerge(
-              `w-full max-w-[514px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-default z-50 px-4 pt-[72px] pb-10 md:pt-20 md:pb-16`,
+              `w-full max-w-[530px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-default z-50 px-4 pt-[72px] pb-10 md:pt-20 md:pb-16`,
               stylesWrapper
             )}
           >
