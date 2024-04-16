@@ -19,8 +19,8 @@ export default function FilterControlButtons({
   ];
 
   return (
-    <div className="block md:flex flex-row-reverse items-center">
-      <div className="flex md:gap-6">
+    <div className="block flex-row-reverse items-center md:flex md:mb-10 xl:mb-6">
+      <div className="flex mb-5 md:gap-6 md:mb-0 ">
         <button
           onClick={filterButtonClick}
           className="flex items-center gap-2 py-[10px] pl-[10px] pr-[80px] mr-auto bg-white border-2 rounded-default xl:hidden"
@@ -44,7 +44,7 @@ export default function FilterControlButtons({
           className="hidden mt-0 min-w-[300px] md:block"
         />
       </div>
-      <h3 className="mt-5 md:mt-0 md:mr-auto">Всього: 10</h3>
+      <p className="mb-5 md:mt-0 md:mr-auto md:mb-0">Всього: 10</p>
     </div>
   );
 }

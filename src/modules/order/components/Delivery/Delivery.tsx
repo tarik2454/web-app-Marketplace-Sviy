@@ -134,8 +134,7 @@ export default function Delivery({ formik }: any) {
                 htmlFor="ukrposhta"
                 className="xl:text-base md:text-base text-gray-900 pl-9 sm:text-sm"
               >
-                {' '}
-                Доставка на Укрпошту{' '}
+                Доставка на Укрпошту
               </label>
             </div>
             <p className="xl:text-base md:text-base text-gray-900 text-end xl:text-nowrap md:text-nowrap sm:text-wrap sm:text-xs">

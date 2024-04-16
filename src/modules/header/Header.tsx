@@ -92,6 +92,7 @@ export default function Header() {
           <div className="flex items-center gap-auto ">
             <BurgerMenu
               display={displayMenu}
+              setDisplayMenu={setDisplayMenu}
               closeButtonClick={() => setDisplayMenu('hidden')}
             />
             <CatalogButton
