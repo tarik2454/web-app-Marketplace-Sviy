@@ -23,7 +23,7 @@ export default function MyData() {
                 <FormPersonalData />
               </div>
               <div className="w-full xl:basis-2/3 xl:max-w-[411px]">
-                {/*<FormLoginPassword />*/}
+                {/* <FormLoginPassword /> */}
               </div>
             </div>
           </div>

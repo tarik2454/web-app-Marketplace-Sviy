@@ -9,7 +9,7 @@ import Link from 'next/link';
 type Props = {
   name: string;
   label?: string;
-  inputType: 'password' | 'text' | 'email' | 'number';
+  inputType: 'password' | 'text' | 'email' | 'number' | 'textarea';
   formik: FormikProps<any>;
   placeholder?: string;
   inputIcon?: string;
@@ -49,15 +49,26 @@ Props) {
       <div
         className={`flex px-4 py-3 gap-2 relative ${borderColor} border-[1px] bg-white rounded-default`}
       >
-        <input
-          onChange={formik.handleChange}
-          type={inputTypePass}
-          name={name}
-          placeholder={placeholder}
-          value={formik.values[name]}
-          className="w-full h-6 outline-none flex-grow order-2"
-          pattern={inputType === 'number' ? '[0-9]*' : undefined}
-        />
+        {inputType !== 'textarea' && (
+          <input
+            onChange={formik.handleChange}
+            type={inputTypePass}
+            name={name}
+            placeholder={placeholder}
+            value={formik.values[name]}
+            className="w-full h-6 outline-none flex-grow order-2"
+            pattern={inputType === 'number' ? '[0-9]*' : undefined}
+          />
+        )}
+        {inputType === 'textarea' && (
+          <textarea
+            onChange={formik.handleChange}
+            name={name}
+            placeholder={placeholder}
+            value={formik.values[name]}
+            className="w-full h-6 outline-none flex-grow order-2 overflow-hidden"
+          />
+        )}
         {inputIcon && (
           <span className={`${styles.prevIcon} text-gray-400 order-1`}>
             <SpriteSVG name={inputIcon} />
@@ -77,9 +88,7 @@ Props) {
         )}
       </div>
       {error && (
-        <p className="text-[#C60000] text-end text-sm">
-          {String(error)}
-        </p>
+        <p className="text-[#C60000] text-end text-sm">{String(error)}</p>
       )}
     </div>
   );
