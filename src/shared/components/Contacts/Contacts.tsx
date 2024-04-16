@@ -8,13 +8,15 @@ export default function Contacts({
   stylesContactsUl,
   stylesContactsLi,
 }: {
-  setDisplayMenu: Dispatch<SetStateAction<string>>;
+  setDisplayMenu?: Dispatch<SetStateAction<string>>;
   stylesContactsWrapper?: string;
   stylesContactsUl?: string;
   stylesContactsLi?: string;
 }) {
   const handleSetDisplayMenu = () => {
-    setDisplayMenu('hidden');
+    if (setDisplayMenu) {
+      setDisplayMenu('hidden');
+    }
   };
 
   return (

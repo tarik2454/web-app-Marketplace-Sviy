@@ -18,7 +18,7 @@ import Container from '@/shared/components/Container/Container';
 type Props = {
   display: string;
   closeButtonClick: MouseEventHandler<HTMLButtonElement>;
-  setDisplayMenu: Dispatch<SetStateAction<string>>;
+  setDisplayMenu?: Dispatch<SetStateAction<string>>;
 };
 
 export default function BurgerMenu({
