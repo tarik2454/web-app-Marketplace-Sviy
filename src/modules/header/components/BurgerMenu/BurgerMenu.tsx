@@ -1,25 +1,31 @@
 'use client';
 
 import { Cabinet } from '.';
-import {
-  CatalogButton,
-  CatalogueButton,
-  CloseButton,
-} from '@/shared/components/index';
+import { CatalogueButton, CloseButton } from '@/shared/components/index';
 import { Categories, SigninForm, SignupForm } from '@/modules';
 import SigninForgotForm from '@/modules/signinForgotForm/SigninForgotForm';
 import RecoverPasswordForm from '@/modules/recoverPasswordForm/RecoverPasswordForm';
-import { MouseEventHandler, useEffect, useState } from 'react';
+import {
+  Dispatch,
+  MouseEventHandler,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 import { Contacts } from '@/modules/footer';
 import Container from '@/shared/components/Container/Container';
-import { FormHeading } from '@/shared/components/index';
 
 type Props = {
   display: string;
   closeButtonClick: MouseEventHandler<HTMLButtonElement>;
+  setDisplayMenu?: Dispatch<SetStateAction<string>>;
 };
 
-export default function BurgerMenu({ display, closeButtonClick }: Props) {
+export default function BurgerMenu({
+  display,
+  closeButtonClick,
+  setDisplayMenu,
+}: Props) {
   const [displayCategories, setDisplayCategories] = useState('hidden');
   const [signinFormDisplay, setSigninFormDisplay] = useState('hidden');
   const [signupFormDisplay, setSignupFormDisplay] = useState('hidden');
@@ -67,6 +73,14 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
     setSigninForgotDisplay('hidden');
   };
 
+  const closeMenu = () => {
+    setDisplayCategories('hidden');
+    setSigninFormDisplay('hidden');
+    setSignupFormDisplay('hidden');
+    setSigninForgotDisplay('hidden');
+    setRecoverPassDisplay('hidden');
+  };
+
   return (
     <div
       className={`${display} md:hidden w-full py-5 bg-neutral-50 fixed inset-0 z-10`}
@@ -87,7 +101,10 @@ export default function BurgerMenu({ display, closeButtonClick }: Props) {
               />
             </div>
           </div>
-          <Contacts stylesContactsUl={'flex-col'} />
+          <Contacts
+            stylesContactsUl={'flex-col'}
+            setDisplayMenu={setDisplayMenu}
+          />
         </nav>
       </Container>
 

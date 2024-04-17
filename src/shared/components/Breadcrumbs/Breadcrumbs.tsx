@@ -46,7 +46,7 @@ const Breadcrumbs = ({
     <Container>
       <ul
         className={twMerge(
-          `flex items-center pt-[21px] mb-0 xl:pt-[26px]`,
+          `flex items-center mt-[21px] md:mt-[21px] xl:mt-[26px]`,
           containerClasses
         )}
       >

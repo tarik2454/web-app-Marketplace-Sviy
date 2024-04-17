@@ -45,7 +45,7 @@ export default function CatalogueProducts() {
   }) => <Card key={item.id} product={item} />;
 
   return (
-    <Section className="pt-10 pb-[84px] md:pt-[64px] md:pb-[104px] xl:pt-[88px] xl:pb-[164px] relative">
+    <Section className="pt-10 pb-[80px] md:pt-[64px] md:pb-[104px] xl:pt-[88px] xl:pb-[164px] relative">
       <Container>
         <div className="flex gap-6">
           <Filter
@@ -63,7 +63,7 @@ export default function CatalogueProducts() {
               itemsPerPage={6}
               array={productsData}
               styleUl={
-                'grid gap-6 mt-5 mb-8 grid-cols-1 md:grid-cols-2 md:gap-4 md:mt-10 md:mt-10 xl:grid-cols-3 xl:mt-6 xl:gap-6 xl:sticky'
+                'grid gap-6 mb-8 grid-cols-1 md:grid-cols-2 md:gap-4 md:mb-10 xl:grid-cols-3 xl:gap-6 xl:sticky'
               }
               renderItemLi={renderItemLi}
             />
