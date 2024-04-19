@@ -13,27 +13,27 @@ export default function ContactsInfo() {
         <p>Не знайшли на сайті те, що шукали?</p>
         <p className='mb-5'>Ви можете з нами зв’язатись:</p>
         <div className='text-base flex flex-col gap-3'>
-          <div className='flex gap-2 items-center'>
-            <SpriteSVG 
-              name="mail" 
-              className="stroke-[#1565C0]"
-              width={24}
-              height={24}
-            />
-            <a href='sviy@gmail.com'>sviy@gmail.com</a>
-          </div>
-          <div className='flex gap-2 items-center'>
-            <SpriteSVG name="instagram" className='stroke-[#1565C0]'/>
+            <a 
+            href='mailto:sviy@gmail.com'
+            target="_blank"
+            className='flex gap-2 items-center'
+            >
+              <SpriteSVG 
+                name="mail" 
+                className="stroke-[#1565C0]"
+                width={24}
+                height={24}
+              />
+              sviy@gmail.com
+            </a>
             <a 
               href='https://www.instagram.com/sviy.ua'
-              className='text-ellipsis overflow-hidden ...'>https://www.instagram.com/sviy.ua</a>
-          </div>
-          <div className='flex gap-2 items-center'>
-            <SpriteSVG name="facebook" className='stroke-[#1565C0]'/>
+              target="_blank"
+              className='flex gap-2 items-center text-ellipsis overflow-hidden ...'><SpriteSVG name="instagram" className='stroke-[#1565C0]'/> https://www.instagram.com/sviy.ua</a>
             <a 
               href='https://facebook.com/sviy.ua'
-              className='text-ellipsis overflow-hidden ...'>https://facebook.com/sviy.ua</a>
-          </div>
+              target="_blank"
+              className='flex gap-2 items-center text-ellipsis overflow-hidden ...'> <SpriteSVG name="facebook" className='stroke-[#1565C0]'/> https://facebook.com/sviy.ua</a>
         </div>
       </Container>
     </Section>

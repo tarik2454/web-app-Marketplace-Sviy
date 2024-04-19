@@ -16,7 +16,7 @@ export default function Contacts() {
         homeElement={<span>Головна</span>}
       />
       <Container>
-        <PageTitle name={'Контакти'} />
+        <PageTitle name={'Контакти'} stylesPageTitle="text-2xl xl:text-[40px] md:text-[32px]"/>
       </Container>
       <ContactsInfo />
     </PageWrapper>
