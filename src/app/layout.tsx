@@ -4,6 +4,7 @@ import { Footer } from '@/modules';
 import { Header } from '@/modules';
 
 import '../styles/globals.css';
+import StoreProvider from './StoreProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,13 +17,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      {/* <body className="font-lato font-normal"> */}
-      <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        {/* <body className="font-lato font-normal"> */}
+        <body>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </StoreProvider>
   );
 }

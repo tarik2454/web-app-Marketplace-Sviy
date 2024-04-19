@@ -2,10 +2,12 @@
 
 import { Container } from '@/shared/components';
 import Link from 'next/link';
+import { API } from '../../config/config';
+import MyComponent from '@/shared/components/myComponent';
 
 export default function Page() {
   return (
-    <div className="h-screen pt-[150px]">
+    <div className="pt-[150px]">
       <Container>
         <div className="flex flex-col">
           <Link href="/">- main</Link>
@@ -31,6 +33,8 @@ export default function Page() {
             </li>
           </ul>
         </div>
+
+        <MyComponent />
       </Container>
     </div>
   );
