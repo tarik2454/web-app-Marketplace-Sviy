@@ -3,7 +3,7 @@ import { Field, FieldArray, FormikProvider, useFormik } from 'formik';
 import * as Yup from 'yup';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import React from 'react';
-import PhoneInput from '@/modules/myData/components/PhoneInput/PhoneInput';
+import PhoneInput from '@/modules/personalMyData/components /PhoneInput';
 import BlueBorderButton from '@/shared/components/BlueBorderButton/BlueBorderButton';
 
 export default function FormPersonalData() {

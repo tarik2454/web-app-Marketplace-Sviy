@@ -1,3 +1,5 @@
+'use client';
+
 import { Container } from '@/shared/components';
 import Link from 'next/link';
 
@@ -9,7 +11,6 @@ export default function Page() {
           <Link href="/">- main</Link>
           <Link href="/catalogue">- catalogue</Link>
           <Link href="/catalogue-seller">- catalogue-seller</Link>
-          <Link href="/my-data">- my-data</Link>
           <Link href="/order-details">- order-details</Link>
           <Link href="/product-card">- product-card</Link>
           <Link href="/favorites">- favorites</Link>
@@ -22,6 +23,13 @@ export default function Page() {
           <Link href="/delivery">- delivery</Link>
           <Link href="/questions-answers">- questions-answers</Link>
           <Link href="/not-found">- not-found</Link>
+
+          <ul>
+            personal-office
+            <li>
+              <Link href="/personal-office/profile">- мої дані</Link>
+            </li>
+          </ul>
         </div>
       </Container>
     </div>
