@@ -1,7 +1,7 @@
 import React, { useEffect, ReactNode } from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { twMerge } from 'tailwind-merge';
-import { boolean } from 'yup';
+// import { boolean } from 'yup';
 
 type Props = {
   isOpen: boolean;
@@ -43,7 +43,13 @@ export default function Modal({
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();
+      document.body.style.overflow = 'auto';
     }
+  };
+
+  const handleCloseButtonClick = () => {
+    onClose();
+    document.body.style.overflow = 'auto';
   };
 
   return (
@@ -60,7 +66,7 @@ export default function Modal({
             )}
           >
             <button
-              onClick={onClose}
+              onClick={handleCloseButtonClick}
               className={twMerge(
                 `absolute top-5 right-4 text-600 hover:text-gray-800`,
                 stylesCloseButton
