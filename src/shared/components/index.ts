@@ -21,3 +21,4 @@ export { default as PageWrapper } from './PageWrapper/PageWrapper';
 export { default as OrderFinalPrice } from './OrderFinalPrice/OrderFinalPrice';
 export { default as OrderList } from './OrderList/OrderList';
 export { default as PageTitle } from './PageTitle/PageTitle';
+export { default as BlueBorderButton } from './BlueBorderButton/BlueBorderButton';

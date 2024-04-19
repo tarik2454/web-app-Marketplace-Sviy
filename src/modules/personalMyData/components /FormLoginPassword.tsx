@@ -1,6 +1,4 @@
-import { FormInput } from '@/shared/components';
-import BlueBorderButton from '@/shared/components/BlueBorderButton/BlueBorderButton';
-import React from 'react';
+import { BlueBorderButton, FormInput } from '@/shared/components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
