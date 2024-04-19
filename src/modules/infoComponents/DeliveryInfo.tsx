@@ -1,12 +1,13 @@
-import { Container, Section } from '@/shared/components'
+import { Container, Section, SectionTitle } from '@/shared/components'
 import React from 'react'
 
 export default function DeliveryInfo() {
   return (
     <Section className={
-        'pt-[20px] pb-[80px] md:pt-[40px] md:pb-[88px] xl:pt-[40px] xl:pb-[88px] xl:text-xl md:text-xl text-base'
+        'pt-0 md:pt-0 xl:pt-0 pb-[80px] md:pb-[88px]  xl:pb-[88px] xl:text-xl md:text-xl text-base'
       }>
       <Container>
+      <SectionTitle name={'Доставка'} className="mb-5 xl:mb-10 md:mb-10"/>
         <p className='mb-8'>Кожне замовлення  відправляється Вам безпосередньо виробником. Якщо ви замовляєте продукти у більш ніж одного продавця, ви отримаєте декілька доставок.</p>
         <div>
             <h4 className='xl:text-2xl md:text-2xl text-xl mb-4'>Способи доставки</h4>
