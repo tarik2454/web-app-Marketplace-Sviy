@@ -1,10 +1,7 @@
 'use client';
 
-import { Breadcrumbs, ColorSpot } from '@/shared/components';
-import Section from '@/shared/components/Section/Section';
-import Container from '@/shared/components/Container/Container';
-import SidebarNavigation from '@/modules/personalMyData/components /SidebarNavigation';
-import FormPersonalData from '@/modules/personalMyData/components /FormPersonalData';
+import { Container, Section } from '@/shared/components';
+import { FormPersonalData, SidebarNavigation } from './components ';
 
 export default function PersonalMyData() {
   return (
