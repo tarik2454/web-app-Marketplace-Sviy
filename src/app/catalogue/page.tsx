@@ -16,7 +16,7 @@ export default function Catalogue() {
         homeElement={<span>Головна</span>}
       />
       <Container>
-        <PageTitle stylesPageTitle={'font-lora'} name={'Каталог'} />
+        <PageTitle name={'Каталог'} />
       </Container>
       <CatalogueProducts />
     </PageWrapper>
