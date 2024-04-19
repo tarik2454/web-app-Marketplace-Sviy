@@ -79,13 +79,16 @@ export default function OrderList({
             <div className="flex flex-col justify-center">
               <p
                 className={twMerge(
-                  `text-sm leading-[1.4] mb-[22px] md:leading-[1.6] md:mb-10 md:text-base`,
+                  `max-w-[222px] text-sm leading-[1.4] mb-[22px] md:leading-[1.6] md:mb-10 md:text-base`,
                   stylesProductName
                 )}
               >
                 {cartItem.heading}
               </p>
-              {(!isInCart && <AmountButtons />) || null}
+              {(!isInCart && (
+                <AmountButtons stylesWrapper={'w-auto md:w-auto xl:w-auto'} />
+              )) ||
+                null}
             </div>
 
             <div

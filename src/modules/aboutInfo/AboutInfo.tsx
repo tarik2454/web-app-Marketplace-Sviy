@@ -1,13 +1,11 @@
-import { Container, Section } from '@/shared/components';
+import { Container, PageTitle, Section } from '@/shared/components';
 import React from 'react';
 
 export default function AboutInfo() {
   return (
-    <Section className="pt-11 pb-20 md:pt-[38px] md:pb-[104px] xl:pt-[98px] xl:pb-[164px]">
+    <Section className="pb-20 pt-8 md:pb-[104px] md:pt-16 xl:pb-[164px] xl:pt-[88px]">
+      <PageTitle stylesPageTitle={'visually hidden'} name={'Про нас'} />
       <Container>
-        <h2 className="text-xl mb-8 md:text-[32px] md:mb-16 xl:mb-[88px] xl:text-[40px]">
-          Про нас
-        </h2>
         <p className="mb-6 md:mb-0 md:text-xl xl:mb-6">
           <span className="text-blue-700">Свій</span> — інноваційний торговий
           майданчик, де можна продвати і купувати продукти місцевих виробників.
