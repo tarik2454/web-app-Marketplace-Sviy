@@ -1,10 +1,7 @@
-import { FormInput, OrangeButton } from '@/shared/components';
-import { Field, FieldArray, FormikProvider, useFormik } from 'formik';
+import { BlueBorderButton, FormInput, OrangeButton } from '@/shared/components';
+import { Field, FormikProvider, useFormik } from 'formik';
 import * as Yup from 'yup';
-import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import React from 'react';
-import PhoneInput from '@/modules/personalMyData/components /PhoneInput';
-import BlueBorderButton from '@/shared/components/BlueBorderButton/BlueBorderButton';
+import PhoneInput from './PhoneInput';
 
 export default function FormPersonalData() {
   const formik = useFormik({
