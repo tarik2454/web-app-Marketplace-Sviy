@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Section } from '@/shared/components';
-import { FormPersonalData, SidebarNavigation } from './components ';
+import { FormPersonalData, SidebarNavigation } from './components';
 
 export default function PersonalMyData() {
   return (
