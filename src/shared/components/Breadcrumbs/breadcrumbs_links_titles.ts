@@ -15,4 +15,5 @@ export const linksTitles: TlinksTitles[] = [
   { link: 'delivery', title: 'Доставка та оплата' },
   { link: 'about-us', title: 'Про нас' },
   { link: 'questions-answers', title: 'Питання і відповіді' },
+  { link: 'marketing', title: 'Реклама на сайті' },
 ];
