@@ -2,8 +2,6 @@
 
 import { Container } from '@/shared/components';
 import Link from 'next/link';
-import { API } from '../../config/config';
-import MyComponent from '@/shared/components/myComponent';
 
 export default function Page() {
   return (
@@ -33,8 +31,6 @@ export default function Page() {
             </li>
           </ul>
         </div>
-
-        <MyComponent />
       </Container>
     </div>
   );
