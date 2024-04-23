@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from '../redux/user/userSlice';
+import userReducer from './user/userSlice';
 
 export const makeStore = () => {
   return configureStore({
@@ -9,7 +9,7 @@ export const makeStore = () => {
   });
 };
 
-// Infer the type of makeStore
+// Infer the type of makeStore(Redux)
 export type AppStore = ReturnType<typeof makeStore>;
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<AppStore['getState']>;

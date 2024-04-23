@@ -2,10 +2,10 @@
 
 import { useEffect, useRef } from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { increment } from '@/redux/user/userSlice';
-import { AppDispatch, RootState } from '@/redux/store';
+import { decrement, increment } from '@/redux/user/userSlice';
+import { RootState } from '@/redux/store';
 import { fetchUsers } from '@/redux/user/operations';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 
 import {
   Container,
@@ -17,11 +17,9 @@ import {
 export default function Home() {
   const userRef = useRef(false);
 
-  const { entities, loading, value } = useSelector(
-    (state: RootState) => state.user
-  );
+  const { entities, loading, value } = useAppSelector(state => state.user);
 
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (userRef.current === false) {
@@ -44,8 +42,11 @@ export default function Home() {
             entities?.map((user: any) => <h3 key={user.id}>{user.name}</h3>)
           )}
 
-          <button onClick={() => dispatch(increment())}>Click on me</button>
-          {value}
+          <div className="flex gap-3">
+            <button onClick={() => dispatch(decrement())}>-</button>
+            {value}
+            <button onClick={() => dispatch(increment())}>+</button>
+          </div>
         </Container>
       </Section>
     </PageWrapper>
