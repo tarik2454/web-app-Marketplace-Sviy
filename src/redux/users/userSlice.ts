@@ -3,7 +3,7 @@ import { fetchUsers } from './operations';
 
 const initialState = {
   entities: [],
-  loading: false,
+  isLoading: false,
   value: 10,
 } as any;
 
@@ -21,11 +21,11 @@ const userSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
-      state.loading = false;
+      state.isLoading = false;
       state.entities.push(...action.payload);
     });
     builder.addCase(fetchUsers.pending, (state, action) => {
-      state.loading = true;
+      state.isLoading = true;
     });
   },
 });

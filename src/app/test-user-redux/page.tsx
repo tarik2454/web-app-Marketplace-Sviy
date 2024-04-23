@@ -1,10 +1,9 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-import { decrement, increment } from '@/redux/user/userSlice';
-import { RootState } from '@/redux/store';
-import { fetchUsers } from '@/redux/user/operations';
+import { decrement, increment } from '@/redux/users/userSlice';
+import { fetchUsers } from '@/redux/users/operations';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 
 import {
@@ -17,7 +16,7 @@ import {
 export default function Home() {
   const userRef = useRef(false);
 
-  const { entities, loading, value } = useAppSelector(state => state.user);
+  const { entities, isLoading, value } = useAppSelector(state => state.user);
 
   const dispatch = useAppDispatch();
 
@@ -31,22 +30,31 @@ export default function Home() {
     };
   }, [dispatch]);
 
+  const [isHydrated, setIsHydrated] = useState(false);
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
   return (
     <PageWrapper>
       <Section className={'xl:pt-20 xl:pb-20'}>
         <Container>
           <PageTitle stylesPageTitle="mb-5" name="Test user redux" />
-          {loading ? (
+          {isLoading ? (
             <h1>Loading...</h1>
           ) : (
-            entities?.map((user: any) => <h3 key={user.id}>{user.name}</h3>)
-          )}
+            <>
+              {entities?.map((user: any) => (
+                <h3 key={user.id}>{user.name}</h3>
+              ))}
 
-          <div className="flex gap-3">
-            <button onClick={() => dispatch(decrement())}>-</button>
-            {value}
-            <button onClick={() => dispatch(increment())}>+</button>
-          </div>
+              <div className="flex gap-3">
+                <button onClick={() => dispatch(decrement())}>-</button>
+                {isHydrated ? value : null}
+                <button onClick={() => dispatch(increment())}>+</button>
+              </div>
+            </>
+          )}
         </Container>
       </Section>
     </PageWrapper>
