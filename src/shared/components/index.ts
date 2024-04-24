@@ -22,3 +22,4 @@ export { default as OrderFinalPrice } from './OrderFinalPrice/OrderFinalPrice';
 export { default as OrderList } from './OrderList/OrderList';
 export { default as PageTitle } from './PageTitle/PageTitle';
 export { default as BlueBorderButton } from './BlueBorderButton/BlueBorderButton';
+export { default as PersonalSidebarNavigation } from './PersonalSidebarNavigation/PersonalSidebarNavigation';
