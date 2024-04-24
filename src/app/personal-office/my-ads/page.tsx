@@ -1,3 +1,4 @@
+import { PersonalMyAds } from '@/modules';
 import {
   Breadcrumbs,
   ColorSpot,
@@ -15,9 +16,9 @@ export default function MyAds() {
         homeElement={<span>Головна</span>}
       />
       <Container>
-        <PageTitle name={'Обране'} />
+        <PageTitle name={'Мої оголошення'} />
       </Container>
-      {/* Мои модули (sections) */}
+      <PersonalMyAds />
     </PageWrapper>
   );
 }

@@ -92,10 +92,13 @@ export default function SignupForm({ signupType, signinClick }: Props) {
           label="Запам’ятати мене"
           className="text-sm md:text-base"
         />
-        <p className="text-gray-500 font-lato text-sm md:pb-[34px]">
+        <a
+          className="text-gray-500 font-lato text-sm md:pb-[34px]"
+          href="https://www.termsfeed.com/live/3dd36d5f-36ec-41fc-9795-f516c6d2694e"
+        >
           Реєструючись ви погоджуєтесь з Правилами використання сайту та
           Політикою конфіденційності
-        </p>
+        </a>
         <div className="text-white md:text-base sm:text-sm">
           <OrangeButton
             onClick={() => setShowModal(true)}

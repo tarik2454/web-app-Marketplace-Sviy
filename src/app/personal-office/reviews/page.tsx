@@ -1,14 +1,13 @@
-import { PersonalMyOrders } from '@/modules';
+import { PersonalReviews } from '@/modules';
 import {
   Breadcrumbs,
   ColorSpot,
   Container,
   PageTitle,
   PageWrapper,
-  PersonalSidebarNavigation,
 } from '@/shared/components';
 
-export default function MyPurchases() {
+export default function Reviews() {
   return (
     <PageWrapper>
       <ColorSpot />
@@ -17,14 +16,8 @@ export default function MyPurchases() {
         homeElement={<span>Головна</span>}
       />
       <Container>
-        <PageTitle
-          stylesPageTitle={'hidden xl:block'}
-          name={'Мої замовлення'}
-        />
-        <div>
-          <PersonalSidebarNavigation />
-          <PersonalMyOrders />
-        </div>
+        <PageTitle stylesPageTitle={'hidden xl:block'} name={'Відгуки'} />
+        <PersonalReviews />
       </Container>
     </PageWrapper>
   );

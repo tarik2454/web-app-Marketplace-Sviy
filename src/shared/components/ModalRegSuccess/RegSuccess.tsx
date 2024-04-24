@@ -11,7 +11,7 @@ export default function RegIsSuccesful() {
         Реєстрація пройшла успішно
       </h2>
       <div className=" flex justify-center py-10">
-        <SpriteSVG name="check-mark" />
+        <SpriteSVG name="check-mark" className="fill-blue-700" />
       </div>
       <div className="flex justify-center items-start gap-3 ">
         <div className="text-white">
