@@ -7,7 +7,7 @@ import {
   Section,
   FormHeading,
 } from '@/shared/components';
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useState, ChangeEvent } from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { useFormik } from 'formik';
 import Modal from '@/shared/components/Modal/Modal';
@@ -27,12 +27,14 @@ export default function SignupForm({ signupType, signinClick }: Props) {
   const handleSubmit = async () => {
     setShowModal(true);
     setIsFormSubmitted(true);
+    console.log(formik.values);
   };
 
   const formik = useFormik({
     initialValues: {
       login: '',
       email: '',
+      phoneNumber: '',
       password: '',
       passwordRepeat: '',
       chekSignUp: false,
@@ -48,8 +50,9 @@ export default function SignupForm({ signupType, signinClick }: Props) {
         .min(8, 'Пароль повинен мати довжину не менше 8 символів')
         .required('Введіть пароль'),
       passwordRepeat: Yup.string()
-        .min(8, 'Пароль повинен мати довжину не менше 8 символів')
-        .required('Введіть пароль'),
+        .oneOf([Yup.ref('password')], 'Паролі мають співпадати')
+        .required('Повторіть пароль'),
+      phoneNumber: Yup.string().required('Введіть номер телефону'),
       chekSignUp: Yup.boolean(),
     }),
     onSubmit: handleSubmit,
@@ -73,6 +76,12 @@ export default function SignupForm({ signupType, signinClick }: Props) {
           name="email"
           label={'Електронна пошта'}
           inputType="email"
+        />
+        <FormInput
+          formik={formik}
+          name="phoneNumber"
+          label={'Телефон'}
+          inputType="tel"
         />
         <FormInput
           formik={formik}
