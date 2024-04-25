@@ -24,7 +24,7 @@ export default function DynamicSidebar ({childProfile, childOrders, childAds, ch
   return (
     <> 
       {(isOnMobile && (
-      <ul className="bg-white rounded-[20px] shadow-md">
+      <ul className="bg-transparent rounded-[20px]">
         <li className={`group ${activeProfile}`}>
           <Link className={`link ${pathname === '/personal-office/profile' ? 'active' : ''}`} href="/personal-office/profile">
             <div className={'rounded-t-[20px] relative' + ` ${liClass}`}>
@@ -117,7 +117,7 @@ export default function DynamicSidebar ({childProfile, childOrders, childAds, ch
         </li>
       </ul>)) ||
       (isOnTablet && (
-        <ul className="bg-white rounded-[20px] shadow-md">
+        <ul className="bg-transparent rounded-[20px]">
          <li className={`group ${activeProfile}`}>
           <Link className={`link ${pathname === '/personal-office/profile' ? 'active' : ''}`} href="/personal-office/profile">
             <div className={'rounded-t-[20px] relative' + ` ${liClass}`}>

@@ -15,6 +15,10 @@ type Props = {
   placeholder?: string;
   inputIcon?: string;
   inputLink?: string;
+  classNameLogin?: string;
+  id?: string;
+  // fieldName?: string;
+
 };
 
 export default function FormInput({
@@ -25,7 +29,10 @@ export default function FormInput({
   placeholder,
   inputIcon,
   inputLink,
-}: Props) {
+  classNameLogin,
+  id,
+}: // fieldName,
+Props) {
   const [inputTypePass, setInputTypePass] = useState(inputType);
   const error = formik.touched[name] && formik.errors[name];
   const [borderColor, setBorderColor] = useState('border-blue-200');
@@ -42,7 +49,7 @@ export default function FormInput({
     <div
       className={`relative h-auto flex flex-col w-full ${styles.customInput}`}
     >
-      <label htmlFor={name} className="ml-4 md:text-base sm:text-sm">
+      <label htmlFor={id} className={`ml-4 md:text-base sm:text-sm ${classNameLogin}`}>
         {label}
       </label>
       <div
@@ -50,6 +57,7 @@ export default function FormInput({
       >
         {inputType !== 'textarea' && inputType !== 'tel' && (
           <input
+            id={id}
             onChange={formik.handleChange}
             type={inputTypePass}
             name={name}
