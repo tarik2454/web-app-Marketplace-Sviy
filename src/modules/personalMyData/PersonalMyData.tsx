@@ -1,25 +1,30 @@
 'use client';
-
+import ScreenSize from '@/shared/hooks/useMediaQuery';
 import { Container, Section } from '@/shared/components';
-import { FormPersonalData, SidebarNavigation } from './components';
+import DynamicSidebar from '@/shared/components/PersonalSidebarNavigation/DynamicSidebar';
+import FormikProfile from './components/FormikProfile';
 
 export default function PersonalMyData() {
+  const { isOnMobile, isOnTablet } = ScreenSize();
   return (
-    <Section className="pt-[120px] md:pt-[140px] pb-[80px] xl:py-[164px]">
+    <Section className="pt-0 xl:pt-0 md:pt-0 pb-[80px] md:pb-[104px] xl:pb-[164px]">
       <Container>
-        <div className="flex flex-col items-start gap-8 md:flex-row">
-          <div className="w-full md:basis-2/3 lg:basis-1/3 md:max-w-[302px]">
-            <SidebarNavigation />
+      {(isOnMobile && (
+        <DynamicSidebar activeProfile="active" childProfile={(
+            <FormikProfile/>)} />
+     )) ||
+      (isOnTablet && (
+        <DynamicSidebar activeProfile="active" childProfile={(
+          <FormikProfile/>)} />
+      )) || 
+        (<div className="flex items-start gap-6">
+          <div className="basis-1/3 max-w-[302px]">
+            <DynamicSidebar activeProfile="active" />
           </div>
-          <div className="flex w-full justify-between flex-wrap gap-6">
-            <div className="w-full xl:basis-2/3 xl:max-w-[411px]">
-              <FormPersonalData />
-            </div>
-            <div className="w-full xl:basis-2/3 xl:max-w-[411px]">
-              {/* <FormLoginPassword /> */}
-            </div>
+         <div className='basis-2/3'>
+          <FormikProfile/>
           </div>
-        </div>
+        </div>)}
       </Container>
     </Section>
   );

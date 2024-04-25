@@ -14,6 +14,7 @@ type Props = {
   };
   index: number;
   inputIcon?: string;
+  classNameLogin?: string;
 };
 
 export default function PhoneInput({
@@ -24,6 +25,7 @@ export default function PhoneInput({
   index,
   field,
   inputIcon,
+  classNameLogin,
 }: Props) {
   const errors = Array.isArray(formik.errors[fieldName])
     ? formik.errors[fieldName][index]
@@ -43,12 +45,12 @@ export default function PhoneInput({
   return (
     <div className="relative h-auto flex flex-col w-full customInput">
       {label && (
-        <label htmlFor={id} className="ml-4">
+        <label htmlFor={id} className={`ml-4 ${classNameLogin}`}>
           {label}
         </label>
       )}
       <div
-        className={`flex flex-row-reverse px-4 py-3 gap-2 border-blue-200 border-2 bg-white rounded-default ${borderColor}`}
+        className={`flex flex-row-reverse px-4 py-3 gap-2 border-blue-200 border bg-white rounded-default ${borderColor}`}
       >
         <InputMask
           mask="+3\80 99 999 99 99"
