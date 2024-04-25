@@ -632,6 +632,18 @@ export const SpriteSVG = ({ name, className, height, width }: { name: string, cl
           ></path>
         </svg>
       );
+    case 'expand_up':
+        return (
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path d="M18 15L12 9L6 15" stroke="#212121" strokeWidth="2"/>
+          </svg>
+        );
+    case 'expand_down':
+        return (
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 9L12 15L6 9" stroke="#212121" strokeWidth="2"/>
+          </svg>
+          );
     case 'selected':
       return (
         <svg
