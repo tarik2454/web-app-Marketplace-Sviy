@@ -12,11 +12,11 @@ export default function Profile() {
     <PageWrapper>
       <ColorSpot />
       <Breadcrumbs
-        containerClasses={'xl:mb-[98px]'}
+        containerClasses={'xl:mb-[98px] md:mb-[38px] mb-[47px]'}
         homeElement={<span>Головна</span>}
       />
       <Container>
-        <PageTitle stylesPageTitle={'hidden xl:block'} name={'Мої дані'} />
+        <PageTitle stylesPageTitle={'hidden xl:text-[40px] xl:block xl:mb-[88px]'} name={'Мої дані'} />
       </Container>
       <PersonalMyData />
     </PageWrapper>
