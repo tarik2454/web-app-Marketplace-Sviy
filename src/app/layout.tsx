@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import StoreProvider from './StoreProvider';
+
 import { Footer } from '@/modules';
 import { Header } from '@/modules';
 
@@ -19,9 +21,11 @@ export default function RootLayout({
     <html lang="en">
       {/* <body className="font-lato font-normal"> */}
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <StoreProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );
