@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { decrement, increment, selectUsers } from '@/redux/users/usersSlice';
 import { fetchUsersThunk } from '@/redux/users/operations';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { selectAuth, setAuthState } from '@/redux/authSlice';
 
 import {
   Container,
@@ -12,7 +13,11 @@ import {
   PageWrapper,
   Section,
 } from '@/shared/components';
-import { selectAuth, setAuthState } from '@/redux/authSlice';
+
+interface User {
+  id: number;
+  name: string;
+}
 
 export default function Home() {
   const [isHydrated, setIsHydrated] = useState(false);
@@ -45,7 +50,7 @@ export default function Home() {
             <h1>Loading...</h1>
           ) : (
             <>
-              {entities?.map((user: any) => (
+              {entities?.map((user: User) => (
                 <p key={user.id}>{user.name}</p>
               ))}
 

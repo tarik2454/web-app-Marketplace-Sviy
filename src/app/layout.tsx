@@ -18,15 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      {/* <body className="font-lato font-normal"> */}
-      <body>
-        <StoreProvider>
+    <StoreProvider>
+      <html lang="en">
+        {/* <body className="font-lato font-normal"> */}
+        <body>
           <Header />
           <main>{children}</main>
           <Footer />
-        </StoreProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </StoreProvider>
   );
 }
