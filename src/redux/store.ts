@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { ThunkAction, UnknownAction, configureStore } from '@reduxjs/toolkit';
 import usersReducer from './users/usersSlice';
 import { authReducer } from './authSlice';
 
@@ -15,7 +15,6 @@ import createWebStorage from 'redux-persist/es/storage/createWebStorage';
 
 export function createPersistStore() {
   const isServer = typeof window === 'undefined';
-
   if (isServer) {
     return {
       getItem() {
@@ -67,5 +66,13 @@ export const store = configureStore({
     }),
 });
 
+// Infer the return type of `makeStore`
+// export type AppStore = ReturnType<typeof makeStore>;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  UnknownAction
+>;

@@ -1,10 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { fetchUsersThunk } from './operations';
 import { RootState } from '../store';
 
+interface User {
+  id: number;
+  name: string;
+}
+
 interface UsersState {
-  entities: any;
+  entities: User[];
   isLoading: boolean;
   value: number;
 }
@@ -28,10 +33,13 @@ const usersSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(fetchUsersThunk.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.entities.push(...action.payload);
-    });
+    builder.addCase(
+      fetchUsersThunk.fulfilled,
+      (state, action: PayloadAction<User[]>) => {
+        state.isLoading = false;
+        state.entities.push(...action.payload);
+      }
+    );
     builder.addCase(fetchUsersThunk.pending, (state, action) => {
       state.isLoading = true;
     });
