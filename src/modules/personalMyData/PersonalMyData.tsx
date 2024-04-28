@@ -17,11 +17,11 @@ export default function PersonalMyData() {
         <DynamicSidebar activeProfile="active" childProfile={(
           <FormikProfile/>)} />
       )) || 
-        (<div className="flex items-start gap-6">
-          <div className="basis-1/3 max-w-[302px]">
+        (<div className="flex gap-6 items-start">
+          <div className="basis-1/4 max-w-[302px]">
             <DynamicSidebar activeProfile="active" />
           </div>
-         <div className='basis-2/3'>
+         <div className='basis-3/4'>
           <FormikProfile/>
           </div>
         </div>)}

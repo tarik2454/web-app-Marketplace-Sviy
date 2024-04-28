@@ -77,7 +77,7 @@ export default function FormikProfile() {
                 )) ||
                 (isOnTablet && (
                     <div className='flex md:gap-4 mb-10 mt-10 items-start '>
-                    <div className='basis-1/2'>
+                    <div className='basis-1/2 max-w-[344px]'>
                         <FormPersonalData formik={formik}/>
                         <ButtonProfile/>
                     </div>
