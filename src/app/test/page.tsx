@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Page() {
   return (
-    <div className="h-screen pt-[150px]">
+    <div className="pt-[150px]">
       <Container>
         <div className="flex flex-col">
           <Link href="/">- main</Link>

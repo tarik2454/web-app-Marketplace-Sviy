@@ -5,7 +5,6 @@ import {
   Container,
   PageTitle,
   PageWrapper,
-  PersonalSidebarNavigation,
 } from '@/shared/components';
 
 export default function MyPurchases() {
@@ -21,10 +20,7 @@ export default function MyPurchases() {
           stylesPageTitle={'hidden xl:block'}
           name={'Мої замовлення'}
         />
-        <div>
-          <PersonalSidebarNavigation />
-          <PersonalMyOrders />
-        </div>
+        <PersonalMyOrders />
       </Container>
     </PageWrapper>
   );

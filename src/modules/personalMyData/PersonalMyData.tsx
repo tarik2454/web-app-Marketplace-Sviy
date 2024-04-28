@@ -1,7 +1,10 @@
 'use client';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
-import { Container, Section } from '@/shared/components';
-import DynamicSidebar from '@/shared/components/PersonalSidebarNavigation/DynamicSidebar';
+import {
+  Container,
+  PersonalDynamicSidebar,
+  Section,
+} from '@/shared/components';
 import FormikProfile from './components/FormikProfile';
 
 export default function PersonalMyData() {
