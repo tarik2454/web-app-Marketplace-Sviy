@@ -7,17 +7,14 @@ import { fetchUsersThunk } from '@/redux/users/operations';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectAuth, setAuthState } from '@/redux/authSlice';
 
+import { User } from '@/types/interfaces/User';
+
 import {
   Container,
   PageTitle,
   PageWrapper,
   Section,
 } from '@/shared/components';
-
-interface User {
-  id: number;
-  name: string;
-}
 
 export default function Home() {
   const [isHydrated, setIsHydrated] = useState(false);

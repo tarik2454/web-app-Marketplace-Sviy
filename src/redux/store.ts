@@ -36,8 +36,8 @@ const storage =
     ? createWebStorage('local')
     : createPersistStore();
 
-const persistConfigUser = {
-  key: 'root',
+const usersPersistConfig = {
+  key: 'users',
   version: 1,
   storage,
   whitelist: ['value'],
@@ -49,13 +49,13 @@ const authPersistConfig = {
   whitelist: ['authState'],
 };
 
-const persistedUsersReducer = persistReducer(persistConfigUser, usersReducer);
-const persistedReducer = persistReducer(authPersistConfig, authReducer);
+const persistedUsersReducer = persistReducer(usersPersistConfig, usersReducer);
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
     users: persistedUsersReducer,
-    auth: persistedReducer,
+    auth: persistedAuthReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: getDefaultMiddleware =>
@@ -66,8 +66,6 @@ export const store = configureStore({
     }),
 });
 
-// Infer the return type of `makeStore`
-// export type AppStore = ReturnType<typeof makeStore>;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ThunkAction<
