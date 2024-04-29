@@ -3,10 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { fetchUsersThunk } from './operations';
 import { RootState } from '../store';
 
-interface User {
-  id: number;
-  name: string;
-}
+import { User } from '@/types/interfaces/User';
 
 interface UsersState {
   entities: User[];

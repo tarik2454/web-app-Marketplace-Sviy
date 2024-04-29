@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { authFormValues } from '@/types/auth';
+import { authFormValues } from '@/types/interfaces/auth';
 import { API, clearToken, setToken } from '@/config/globalConfig';
 
 interface AuthData {
