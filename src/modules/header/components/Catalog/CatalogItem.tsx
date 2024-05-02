@@ -64,61 +64,67 @@ export default function CatalogItem({
       >
         <p className="text-black">{object.category}</p>
         <SpriteSVG name="catalog-arrow" />
-        {<div className={stylesLining}></div>}
+        <div className={stylesLining}></div>
       </Link>
 
-      {isHovered && object.subCategories && (
-        <ul
-          className={`w-full md:w-[302px] h-full bg-neutral-50 absolute top-0 z-10 ${
-            isHovered && isSmallScreen
-              ? 'left-0 overflow-y-hidden'
-              : 'left-[310px] overflow-y-visible'
-          }`}
-        >
-          {object.subCategories.map((subCategory, index) => (
-            <li
-              className="md:bg-white"
-              onMouseEnter={() => handleMouseEnter(subCategory.title)}
-              onMouseLeave={handleMouseLeave}
-              key={index}
-            >
-              <Link href="#" className={stylesLink}>
-                <p className="text-black">{subCategory.title}</p>
-                <SpriteSVG name="catalog-arrow" />
-                <div className={stylesLining}></div>
-              </Link>
+      {isHovered && object.subCategories && setIsThirdList && (
+        <>
+          {/* {isDescktopScreen
+            ? setIsThirdList('')
+            : setIsThirdList('pointer-events-none')} */}
+          <ul
+            className={`w-full md:w-[302px] h-full bg-neutral-50 absolute top-0 z-10 pointer-events-auto ${
+              isHovered && isSmallScreen
+                ? 'left-0 overflow-y-hidden'
+                : 'left-[310px] overflow-y-visible'
+            }`}
+          >
+            {object.subCategories.map((subCategory, index) => (
+              <li
+                className="md:bg-white"
+                onMouseEnter={() => handleMouseEnter(subCategory.title)}
+                onMouseLeave={handleMouseLeave}
+                key={index}
+              >
+                <Link href="#" className={stylesLink}>
+                  <p className="text-black">{subCategory.title}</p>
+                  <SpriteSVG name="catalog-arrow" />
+                  <div className={stylesLining}></div>
+                </Link>
 
-              {hoveredSubCategory === subCategory.title &&
-                !isSmallScreen &&
-                setIsThirdList && (
-                  <>
-                    {isDescktopScreen
-                      ? setIsThirdList('')
-                      : setIsThirdList('pointer-events-none')}
+                {hoveredSubCategory === subCategory.title &&
+                  !isSmallScreen &&
+                  setIsThirdList && (
+                    <>
+                      {isDescktopScreen
+                        ? setIsThirdList('')
+                        : setIsThirdList('pointer-events-none')}
 
-                    <ul
-                      className={`w-full md:w-[638px] xl:w-[302px] h-full md:bg-neutral-50 absolute top-0 left-[310px] md:-left-[310px] xl:left-[310px] z-50 pointer-events-auto `}
-                    >
-                      {subCategory.items.map((item, index) => (
-                        <li
-                          key={index}
-                          className="flex w-[302px] bg-neutral-50 md:bg-white"
-                          onMouseEnter={() =>
-                            handleMouseEnter(subCategory.title)
-                          }
-                          onMouseLeave={handleMouseLeave}
-                        >
-                          <Link href="#" className={stylesLink}>
-                            <p className="text-black">{item}</p>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                )}
-            </li>
-          ))}
-        </ul>
+                      <ul
+                        className={`w-full md:w-[302px] xl:w-[302px] h-full bg-neutral-50 absolute top-0 left-[310px] md:-left-[310px] xl:left-[310px] z-50 pointer-events-auto `}
+                      >
+                        {subCategory.items.map((item, index) => (
+                          <li
+                            key={index}
+                            className="flex w-[302px] bg-neutral-50 md:bg-white"
+                            onMouseEnter={() =>
+                              handleMouseEnter(subCategory.title)
+                            }
+                            onMouseLeave={handleMouseLeave}
+                          >
+                            <Link href="#" className={stylesLink}>
+                              <p className="text-black">{item}</p>
+                              <div className={stylesLining}></div>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </li>
   );
