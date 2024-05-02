@@ -20,8 +20,8 @@ export default function MyPurchases() {
           stylesPageTitle={'hidden xl:block'}
           name={'Мої замовлення'}
         />
-        <PersonalMyOrders />
       </Container>
+      <PersonalMyOrders />
     </PageWrapper>
   );
 }
