@@ -22,6 +22,14 @@ export default function Header() {
   const backdropCatalogRef = useRef<HTMLDivElement | null>(null);
   const backdropSearchRef = useRef<HTMLDivElement | null>(null);
 
+  useEffect(() => {
+    if (displayMenu === 'hidden') {
+      document.body.style.overflow = 'auto';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+  }, [displayMenu]);
+
   const toggleCatalogVisibility = useCallback(() => {
     if (showCatalog) {
       setShowCatalog(false);
@@ -35,7 +43,6 @@ export default function Header() {
   }, [showCatalog]);
 
   const toggleSearchVisibility = useCallback(() => {
-    console.log('toggleSearchVisibility');
     if (showSearch) {
       setShowSearch(false);
       document.body.style.overflow = 'auto';
@@ -95,11 +102,14 @@ export default function Header() {
               setDisplayMenu={setDisplayMenu}
               closeButtonClick={() => setDisplayMenu('hidden')}
             />
+
             <CatalogButton
               catalogueClick={toggleCatalogVisibility}
               isClicked={showCatalog}
             />
+
             <HamburgerButton hamburgerClick={() => setDisplayMenu('block')} />
+
             <div className="mx-auto">
               {isOnMobile ? (
                 <Logo logo="logoHeaderMobile" />
@@ -109,6 +119,7 @@ export default function Header() {
                 <Logo logo="logoHeaderDesktop" />
               )}
             </div>
+
             <FunctionalButtons
               openModal={openModal}
               toggleSearchVisibility={toggleSearchVisibility}
