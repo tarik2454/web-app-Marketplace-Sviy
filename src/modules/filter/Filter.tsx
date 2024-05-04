@@ -4,7 +4,7 @@ import { CloseButton, Dropdown, OrangeButton } from '@/shared/components';
 import { FilterOptions, OptionsButtons, PriceButtons } from './components';
 import { ChangeEvent, MouseEventHandler, useEffect, useState } from 'react';
 
-import categoriesData from '../header/data/categories-data';
+import categoriesData from '../../shared/data/categories-data';
 
 type Props = {
   display: string;
@@ -127,14 +127,14 @@ export default function Filter({ display, closeButtonClick }: Props) {
       <Dropdown
         options={categoriesData.map(category => ({
           value: String(category.id),
-          label: category.category,
+          label: category.title,
         }))}
         placeholder={'Категорії'}
         id={'categories'}
         dropdownName={'Категорії'}
         onChange={(category: any) => {
           const specificCategory = categoriesData.find(
-            specific => specific.category === category.label
+            specific => specific.title === category.label
           );
           setFirstSubcategories(
             specificCategory?.subCategories?.map((subcategory: any) => ({
