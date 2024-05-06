@@ -67,7 +67,7 @@ export default function SigninForm({
           label={'Пароль'}
           inputType="password"
         />
-        <div className="flex justify-between items-center pt-2">
+        <div className="flex justify-between items-center">
           <FormCheckbox
             formik={formik}
             id="chekSignIn"

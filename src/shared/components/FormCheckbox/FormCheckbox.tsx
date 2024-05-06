@@ -18,12 +18,12 @@ export default function FormCheckbox({ formik, id, label, className }: Props) {
         id={id}
         onChange={formik.handleChange}
         checked={formik.values[id]}
-        className="hidden"
+        className="absolute z-10 w-5 h-5 opacity-0 cursor-pointer"
       />
 
       <label htmlFor={id} className="flex items-center gap-2 ">
         <span
-          className={`:block w-5 h-5 ${
+          className={`block w-5 h-5 ${
             formik.values[id] ? 'text-blue-700' : 'text-neutral-400'
           }`}
         >
