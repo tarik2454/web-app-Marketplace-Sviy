@@ -56,7 +56,7 @@ export default function Header() {
   const closeBackdrop = () => {
     setShowCatalog(false);
     setShowSearch(false);
-    // document.body.style.overflow = 'auto';
+    document.body.style.overflow = 'auto';
   };
 
   useEffect(() => {
