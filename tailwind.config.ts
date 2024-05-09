@@ -35,6 +35,9 @@ const config: Config = {
         red: {
           700: '#C50000',
         },
+        slate: {
+          300: '#B3C5D3',
+        },
         white: '#FFFFFF',
       },
       fontFamily: {
