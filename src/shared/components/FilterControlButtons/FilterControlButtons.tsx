@@ -18,7 +18,7 @@ export default function FilterControlButtons({
       <div className="flex mb-5 md:gap-6 md:mb-0 ">
         <button
           onClick={filterButtonClick}
-          className="flex items-center gap-2 py-[10px] pl-[10px] pr-[80px] mr-auto bg-white border-2 rounded-default xl:hidden"
+          className="flex items-center gap-2 py-[10px] pl-[10px] pr-[80px] mr-auto bg-white border-[1px] border-slate-300 rounded-default xl:hidden"
         >
           <SpriteSVG name="filter" />
           <p>Фільтр</p>
@@ -37,7 +37,7 @@ export default function FilterControlButtons({
           options={options}
           placeholder="Новинки"
           id="novelties"
-          className="hidden mt-0 min-w-[300px] md:block"
+          wrapperClassName="hidden min-w-[302px] md:block"
         />
       </div>
       <p className="mb-5 md:mt-0 md:mr-auto md:mb-0">Всього: 10</p>
