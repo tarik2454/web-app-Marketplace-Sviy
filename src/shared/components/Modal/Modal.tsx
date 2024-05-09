@@ -1,7 +1,6 @@
 import React, { useEffect, ReactNode } from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { twMerge } from 'tailwind-merge';
-// import { boolean } from 'yup';
 
 type Props = {
   isOpen: boolean;

@@ -2,22 +2,17 @@ import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { MouseEventHandler } from 'react';
 import { Dropdown } from '..';
 
-type Props = {
+type FilterControlButtonsProps = {
   filterButtonClick: MouseEventHandler<HTMLButtonElement>;
   sortingMenuButtonClick: MouseEventHandler<HTMLButtonElement>;
+  options: Array<{ value: string; label: string }>;
 };
 
 export default function FilterControlButtons({
   filterButtonClick,
   sortingMenuButtonClick,
-}: Props) {
-  const options = [
-    { value: 'новинки', label: 'Новинки' },
-    { value: 'від дорогих до дешевих', label: 'Від дорогих до дешевих' },
-    { value: 'від дешевих до дорогих', label: 'Від дешевих до дорогих' },
-    { value: 'за рейтингом', label: 'За рейтингом' },
-  ];
-
+  options,
+}: FilterControlButtonsProps) {
   return (
     <div className="block flex-row-reverse items-center md:flex md:mb-10 xl:mb-6">
       <div className="flex mb-5 md:gap-6 md:mb-0 ">
@@ -28,6 +23,7 @@ export default function FilterControlButtons({
           <SpriteSVG name="filter" />
           <p>Фільтр</p>
         </button>
+
         <button
           onClick={sortingMenuButtonClick}
           className="flex items-center gap-[33px] py-[10px] px-[10px] bg-white border-2 rounded-default md:hidden"

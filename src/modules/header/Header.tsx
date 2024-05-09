@@ -9,14 +9,15 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import CatalogButton from './components/Catalog/CatalogButton';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import ModalCart from './components/Cart/ModalCart';
+import useModal from '@/shared/hooks/useModal';
 
 export default function Header() {
   const [displayMenu, setDisplayMenu] = useState('hidden');
   const [displayCategories, setDisplayCategories] = useState('hidden');
   const [showCatalog, setShowCatalog] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
   const { isOnMobile, isOnTablet } = ScreenSize();
 
   const backdropCatalogRef = useRef<HTMLDivElement | null>(null);
@@ -84,14 +85,6 @@ export default function Header() {
     };
   }, []);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <>
       <header className="w-full py-[22.5px] md:py-[30px] bg-neutral-50 shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] fixed top-0 left-0 z-50">
@@ -121,7 +114,7 @@ export default function Header() {
             </div>
 
             <FunctionalButtons
-              openModal={openModal}
+              openModal={handleOpenModal}
               toggleSearchVisibility={toggleSearchVisibility}
               setShowCatalog={setShowCatalog}
               setShowSearch={setShowSearch}
@@ -152,8 +145,8 @@ export default function Header() {
       )}
 
       <ModalCart
-        isModalOpen={isModalOpen}
-        closeModal={closeModal}
+        isModalOpen={isOpenModal}
+        closeModal={handleCloseModal}
         showCatalog={showCatalog}
         showSearch={showSearch}
       />

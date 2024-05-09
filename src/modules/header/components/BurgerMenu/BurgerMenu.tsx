@@ -9,6 +9,7 @@ import { Dispatch, MouseEventHandler, SetStateAction, useState } from 'react';
 import { Contacts } from '@/modules/footer';
 import Container from '@/shared/components/Container/Container';
 import { twMerge } from 'tailwind-merge';
+import useFormsState from '../../hooks/useFormsState';
 
 type Props = {
   display: string;
@@ -22,42 +23,21 @@ export default function BurgerMenu({
   setDisplayMenu,
 }: Props) {
   const [displayCategories, setDisplayCategories] = useState('hidden');
-  const [signinFormDisplay, setSigninFormDisplay] = useState('hidden');
-  const [signupFormDisplay, setSignupFormDisplay] = useState('hidden');
-  const [signinForgotDisplay, setSigninForgotDisplay] = useState('hidden');
-  const [recoverPassDisplay, setRecoverPassDisplay] = useState('hidden');
+
+  const {
+    signinFormDisplay,
+    signupFormDisplay,
+    signinForgotDisplay,
+    recoverPassDisplay,
+    closeForm,
+    signinClick,
+    signupClick,
+    signinForgotClick,
+    recoverPassClick,
+  } = useFormsState();
 
   const closeCatalogClick = () => {
     setDisplayCategories('hidden');
-  };
-
-  const closeForm = () => {
-    setSigninFormDisplay('hidden');
-    setSignupFormDisplay('hidden');
-    setSigninForgotDisplay('hidden');
-    setRecoverPassDisplay('hidden');
-  };
-
-  const signinClick = () => {
-    setSigninFormDisplay('block');
-    setSignupFormDisplay('hidden');
-    setSigninForgotDisplay('hidden');
-    setRecoverPassDisplay('hidden');
-  };
-
-  const signupClick = () => {
-    setSignupFormDisplay('block');
-    setSigninFormDisplay('hidden');
-    setSigninForgotDisplay('hidden');
-  };
-
-  const signinForgotClick = () => {
-    setSigninForgotDisplay('block');
-  };
-
-  const recoverPassClick = () => {
-    setRecoverPassDisplay('block');
-    setSigninForgotDisplay('hidden');
   };
 
   return (
