@@ -39,7 +39,7 @@ export default function Dropdown({
             },
             menu: () => {
               return twMerge(
-                'w-full min-w-[300px] mt-[14px] bg-neutral-50 border-x-[1px] border-b-[1px] border-slate-300 rounded-default overflow-hidden bg-red-500 absolute -left-[17px] xl:overflow-auto',
+                'w-full min-w-[300px] mt-[14px] bg-neutral-50 border-x-[1px] border-b-[1px] border-slate-300 rounded-default overflow-hidden bg-red-500 absolute -left-[15px] xl:overflow-auto',
                 menuClassName
               );
             },
