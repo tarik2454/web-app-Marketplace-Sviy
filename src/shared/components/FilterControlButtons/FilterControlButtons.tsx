@@ -38,6 +38,7 @@ export default function FilterControlButtons({
           placeholder="Новинки"
           id="novelties"
           wrapperClassName="hidden min-w-[302px] md:block"
+          menuClassName="min-w-[302px]"
         />
       </div>
       <p className="mb-5 md:mt-0 md:mr-auto md:mb-0">Всього: 10</p>
