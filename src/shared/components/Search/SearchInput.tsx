@@ -6,10 +6,12 @@ import { useRouter } from 'next/navigation';
 
 interface SearchInputProps {
   toggleSearchVisibility?: () => void;
+  className?: string; 
 }
 
 export default function SearchInput({
   toggleSearchVisibility,
+  className,
 }: SearchInputProps) {
   const [searchText, setSearchText] = useState('');
 
@@ -35,7 +37,7 @@ export default function SearchInput({
   };
 
   return (
-    <div className="flex w-full items-center px-3 py-2">
+    <div className={`flex w-full items-center px-3 py-2 ${className}`}>
       <button className="text-blue-700" onClick={handleSearchClick}>
         <SpriteSVG name="search" />
       </button>
