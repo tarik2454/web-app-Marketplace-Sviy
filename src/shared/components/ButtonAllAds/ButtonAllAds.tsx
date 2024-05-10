@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 export default function ButtonAllAds({
   children,
-  pageLink,
+  pageLink = '/',
 }: {
   children?: ReactNode;
   pageLink?: string;

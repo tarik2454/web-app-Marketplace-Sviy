@@ -14,7 +14,6 @@ export default function Page() {
           <Link href="/order-details">- order-details</Link>
           <Link href="/product-card">- product-card</Link>
           <Link href="/favorites">- favorites</Link>
-          <Link href="/products-week">- products-week</Link>
           <Link href="/recover-password">- recover-password</Link>
           <Link href="/signin">- signin</Link>
           <Link href="/signin-forgot">- signin-forgot</Link>
@@ -28,7 +27,14 @@ export default function Page() {
           <ul>
             personal-office
             <li>
-              <Link href="/personal-office/profile">- мої дані</Link>
+              <Link href="/personal-office/profile">- profile</Link>
+              <Link href="/personal-office/my-ads">- my-ads</Link>
+              <Link href="/personal-office/my-purchases">- my-purchases</Link>
+              <Link href="/personal-office/order-customers">
+                - order-customers
+              </Link>
+              <Link href="/personal-office/reviews">- reviews</Link>
+              <Link href="/personal-office/selected">- selected</Link>
             </li>
           </ul>
         </div>

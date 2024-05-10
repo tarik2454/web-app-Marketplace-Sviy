@@ -133,8 +133,8 @@ body {
   }
 }
 
-.mySwiper .mySwiper-prev,
-.mySwiper .mySwiper-next {
+.mySwiper-prev,
+.mySwiper-next {
   display: inline-flex !important;
   justify-content: center !important;
   align-items: center !important;

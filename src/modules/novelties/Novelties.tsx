@@ -7,13 +7,15 @@ import {
 import NoveltiesList from './components/NoveltiesList';
 
 export default function Novelties() {
+  const pageLink = '/catalogue';
+
   return (
     <Section>
       <Container>
         <SectionTitle name="Новинки" />
 
         <div className="relative ">
-          <ButtonAllAds />
+          <ButtonAllAds pageLink={pageLink} />
           <NoveltiesList />
         </div>
       </Container>

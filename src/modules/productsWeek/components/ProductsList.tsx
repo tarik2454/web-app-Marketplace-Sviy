@@ -2,7 +2,7 @@ import Slider from '@/shared/components/Slider/Slider';
 import productsData from '@/shared/data/products-data';
 
 export default function ProductsList() {
-  const pageLink = '/products-week';
+  const pageLink = '/catalogue';
 
   return (
     <div className="relative">
