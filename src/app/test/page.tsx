@@ -14,6 +14,7 @@ export default function Page() {
           <Link href="/order-details">- order-details</Link>
           <Link href="/product-card">- product-card</Link>
           <Link href="/favorites">- favorites</Link>
+          <Link href="/products-week">- products-week</Link>
           <Link href="/recover-password">- recover-password</Link>
           <Link href="/signin">- signin</Link>
           <Link href="/signin-forgot">- signin-forgot</Link>

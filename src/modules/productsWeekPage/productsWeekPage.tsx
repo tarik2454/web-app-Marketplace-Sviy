@@ -4,7 +4,7 @@ import productsData from '@/shared/data/products-data';
 import { Card, Container, Pagination, Section } from '@/shared/components';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 
-export default function Favorites() {
+export default function ProductsWeekPage() {
   const { isOnMobile, isOnTablet } = ScreenSize();
 
   const itemsPerPage = isOnMobile ? 6 : isOnTablet ? 8 : 12;

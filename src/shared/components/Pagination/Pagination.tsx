@@ -1,7 +1,7 @@
 'use client';
 
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
 type PaginationItem = {
@@ -27,10 +27,13 @@ export default function Pagination<T extends PaginationItem>({
   const [endIndex, setEndIndex] = useState(startIndex + itemsPerPage);
   const currentItems = array.slice(startIndex, endIndex);
 
+  useEffect(() => {
+    setStartIndex(currentPage * itemsPerPage);
+    setEndIndex((currentPage + 1) * itemsPerPage);
+  }, [currentPage, itemsPerPage, array]);
+
   const handlePageClick = (selectedPage: { selected: number }) => {
     setCurrentPage(selectedPage.selected);
-    setStartIndex(selectedPage.selected * itemsPerPage);
-    setEndIndex(selectedPage.selected * itemsPerPage + itemsPerPage);
   };
 
   return (

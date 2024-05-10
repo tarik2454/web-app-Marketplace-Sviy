@@ -19,7 +19,13 @@ type ProductDataType = {
   currency: string;
 };
 
-export default function Slider({ data }: { data: ProductDataType[] }) {
+export default function Slider({
+  data,
+  pageLink,
+}: {
+  data: ProductDataType[];
+  pageLink?: string;
+}) {
   return (
     <>
       <Swiper
@@ -58,7 +64,7 @@ export default function Slider({ data }: { data: ProductDataType[] }) {
         </div>
       </Swiper>
 
-      <ButtonAllAds>
+      <ButtonAllAds pageLink={pageLink}>
         <div className="hidden gap-3 md:flex">
           <button className="mySwiper-prev">
             <SpriteSVG name="slider-prev" />
