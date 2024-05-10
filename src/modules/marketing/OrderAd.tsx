@@ -40,7 +40,7 @@ export default function AdOrder({ closeModal }: Props) {
       </div>
       <SectionTitle
         className="text-xl text-gray-900 font-['Lato'] sm:mb-6 md:text-xl md:font-['Lato'] xl:text-xl xl:font-['Lato'] xl:mb-6"
-        name="Залиште свої контакти і ми з вами звяжимось"
+        name="Залиште свої контакти і ми з вами зв'яжемось"
       />
       <form className="flex flex-col gap-6 ">
         <FormInput

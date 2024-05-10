@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import Link from 'next/link';
-import { useMediaQuery } from 'react-responsive';
+
+import ScreenSize from '@/shared/hooks/useMediaQuery';
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
 type SubCategory = {
   title: string;
@@ -11,38 +12,37 @@ type SubCategory = {
 };
 
 type CategoryWithSubcategories = {
-  id?: number;
-  category: string;
+  id: number;
+  title: string;
   subCategories?: SubCategory[];
 };
 
 type CatalogItemProps = {
-  object: CategoryWithSubcategories;
+  category: CategoryWithSubcategories;
   onCategoryClick: (categoryName: string) => void;
   setIsThirdList?: (value: string) => void;
 };
 
 export default function CatalogItem({
-  object,
+  category,
   onCategoryClick,
   setIsThirdList,
 }: CatalogItemProps) {
-  const [isHovered, setHovered] = useState(false);
-  const [hoveredSubCategory, setHoveredSubCategory] = useState<string | null>(
-    null
-  );
+  const [isHoveredCategory, setHoveredCategory] = useState(false);
+  const [isHoveredSubCategory, setIsHoveredSubCategory] = useState<
+    string | null
+  >(null);
 
-  const isSmallScreen = useMediaQuery({ query: '(max-width: 767.9px)' });
-  const isDescktopScreen = useMediaQuery({ query: '(min-width: 1440px)' });
+  const { isOnMobile, isOnDesktop } = ScreenSize();
 
   const handleMouseEnter = (categoryTitle: string) => {
-    setHovered(true);
-    setHoveredSubCategory(categoryTitle);
+    setHoveredCategory(true);
+    setIsHoveredSubCategory(categoryTitle);
   };
 
   const handleMouseLeave = () => {
-    setHovered(false);
-    setHoveredSubCategory(null);
+    setHoveredCategory(false);
+    setIsHoveredSubCategory(null);
     if (setIsThirdList) {
       setIsThirdList('');
     }
@@ -54,28 +54,28 @@ export default function CatalogItem({
   return (
     <li
       className={`w-full md:w-[302px] bg-neutral-50 md:bg-white `}
-      onMouseEnter={() => handleMouseEnter(object.category)}
+      onMouseEnter={() => handleMouseEnter(category.title)}
       onMouseLeave={handleMouseLeave}
     >
       <Link
         href="#"
         className={stylesLink}
-        onClick={() => onCategoryClick(object.category)}
+        onClick={() => onCategoryClick(category.title)}
       >
-        <p className="text-black">{object.category}</p>
+        <p className="text-black">{category.title}</p>
         <SpriteSVG name="catalog-arrow" />
-        {<div className={stylesLining}></div>}
+        <div className={stylesLining}></div>
       </Link>
 
-      {isHovered && object.subCategories && (
+      {isHoveredCategory && category.subCategories && (
         <ul
-          className={`w-full md:w-[302px] h-full bg-neutral-50 absolute top-0 z-10 ${
-            isHovered && isSmallScreen
+          className={`w-full md:w-[302px] h-full bg-neutral-50 absolute top-0 z-10 pointer-events-auto ${
+            isHoveredCategory && isOnMobile
               ? 'left-0 overflow-y-hidden'
               : 'left-[310px] overflow-y-visible'
           }`}
         >
-          {object.subCategories.map((subCategory, index) => (
+          {category.subCategories.map((subCategory, index) => (
             <li
               className="md:bg-white"
               onMouseEnter={() => handleMouseEnter(subCategory.title)}
@@ -88,16 +88,16 @@ export default function CatalogItem({
                 <div className={stylesLining}></div>
               </Link>
 
-              {hoveredSubCategory === subCategory.title &&
-                !isSmallScreen &&
+              {isHoveredSubCategory === subCategory.title &&
+                !isOnMobile &&
                 setIsThirdList && (
                   <>
-                    {isDescktopScreen
+                    {isOnDesktop
                       ? setIsThirdList('')
                       : setIsThirdList('pointer-events-none')}
 
                     <ul
-                      className={`w-full md:w-[638px] xl:w-[302px] h-full md:bg-neutral-50 absolute top-0 left-[310px] md:-left-[310px] xl:left-[310px] z-50 pointer-events-auto `}
+                      className={`w-full md:w-[302px] xl:w-[302px] h-full bg-neutral-50 absolute top-0 left-[310px] md:-left-[310px] xl:left-[310px] z-50 pointer-events-auto`}
                     >
                       {subCategory.items.map((item, index) => (
                         <li
@@ -110,6 +110,7 @@ export default function CatalogItem({
                         >
                           <Link href="#" className={stylesLink}>
                             <p className="text-black">{item}</p>
+                            <div className={stylesLining}></div>
                           </Link>
                         </li>
                       ))}

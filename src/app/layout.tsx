@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import StoreProvider from './StoreProvider';
+
 import { Footer } from '@/modules';
 import { Header } from '@/modules';
 
@@ -16,13 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      {/* <body className="font-lato font-normal"> */}
-      <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        {/* <body className="font-lato font-normal"> */}
+        <body>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </StoreProvider>
   );
 }

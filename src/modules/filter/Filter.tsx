@@ -4,7 +4,7 @@ import { CloseButton, Dropdown, OrangeButton } from '@/shared/components';
 import { FilterOptions, OptionsButtons, PriceButtons } from './components';
 import { ChangeEvent, MouseEventHandler, useEffect, useState } from 'react';
 
-import categoriesData from '../header/data/categories-data';
+import categoriesData from '../../shared/data/categories-data';
 
 type Props = {
   display: string;
@@ -100,7 +100,9 @@ export default function Filter({ display, closeButtonClick }: Props) {
 
   return (
     <div
-      className={`${display} fixed h-screen w-full left-0 top-0 px-4 py-6 bg-white z-[60] overflow-auto md:w-fit md:left-auto md:right-0 xl:relative xl:block xl:rounded-default xl:z-0 xl:inset-0 xl:overflow-visible xl:h-fit xl:min-w-fit`}
+      className={`${display} fixed h-screen w-full left-0 top-0 px-4 py-6 bg-white z-[60] overflow-auto 
+      md:w-fit md:left-auto md:right-0 
+      xl:relative xl:block xl:rounded-default xl:z-0 xl:inset-0 xl:overflow-visible xl:h-fit xl:min-w-fit`}
     >
       <div className="flex items-center text-2xl pb-[10px] border-b-2 xl:hidden">
         <h1 className="mr-auto">Фільтр</h1>
@@ -127,14 +129,14 @@ export default function Filter({ display, closeButtonClick }: Props) {
       <Dropdown
         options={categoriesData.map(category => ({
           value: String(category.id),
-          label: category.category,
+          label: category.title,
         }))}
         placeholder={'Категорії'}
         id={'categories'}
         dropdownName={'Категорії'}
         onChange={(category: any) => {
           const specificCategory = categoriesData.find(
-            specific => specific.category === category.label
+            specific => specific.title === category.label
           );
           setFirstSubcategories(
             specificCategory?.subCategories?.map((subcategory: any) => ({
@@ -145,6 +147,7 @@ export default function Filter({ display, closeButtonClick }: Props) {
           );
           setSecondSubcategories(undefined);
         }}
+        menuClassName="min-w-[275px]"
       />
 
       {firstSubcategories && (
@@ -164,6 +167,7 @@ export default function Filter({ display, closeButtonClick }: Props) {
               }))
             );
           }}
+          menuClassName="min-w-[275px]"
         />
       )}
 
@@ -174,6 +178,7 @@ export default function Filter({ display, closeButtonClick }: Props) {
           id={'secondSubcategories'}
           dropdownName={'Підкатегорія 2'}
           onChange={() => {}}
+          menuClassName="min-w-[275px]"
         />
       )}
 
@@ -185,6 +190,7 @@ export default function Filter({ display, closeButtonClick }: Props) {
         onChange={(area: any) => {
           setFilterOptions(prevState => ({ ...prevState, area: area.label }));
         }}
+        menuClassName="min-w-[275px]"
       />
 
       <PriceButtons

@@ -10,6 +10,7 @@ import {
   Section,
 } from '@/shared/components';
 import { Filter, SortingMenu } from '..';
+import options from './data/options-data';
 
 export default function CatalogueProducts() {
   const [sortingMenuDisplay, setSortingMenuDisplay] = useState('hidden');
@@ -57,6 +58,7 @@ export default function CatalogueProducts() {
             <FilterControlButtons
               filterButtonClick={() => openHandler('filter')}
               sortingMenuButtonClick={() => openHandler('sortingMenu')}
+              options={options}
             />
 
             <Pagination

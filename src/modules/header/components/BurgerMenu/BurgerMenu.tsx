@@ -5,20 +5,16 @@ import { CatalogueButton, CloseButton } from '@/shared/components/index';
 import { Categories, SigninForm, SignupForm } from '@/modules';
 import SigninForgotForm from '@/modules/signinForgotForm/SigninForgotForm';
 import RecoverPasswordForm from '@/modules/recoverPasswordForm/RecoverPasswordForm';
-import {
-  Dispatch,
-  MouseEventHandler,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
+import { Dispatch, MouseEventHandler, SetStateAction, useState } from 'react';
 import { Contacts } from '@/modules/footer';
 import Container from '@/shared/components/Container/Container';
+import { twMerge } from 'tailwind-merge';
+import useFormsState from '../../hooks/useFormsState';
 
 type Props = {
   display: string;
   closeButtonClick: MouseEventHandler<HTMLButtonElement>;
-  setDisplayMenu?: Dispatch<SetStateAction<string>>;
+  setDisplayMenu: Dispatch<SetStateAction<string>>;
 };
 
 export default function BurgerMenu({
@@ -27,63 +23,29 @@ export default function BurgerMenu({
   setDisplayMenu,
 }: Props) {
   const [displayCategories, setDisplayCategories] = useState('hidden');
-  const [signinFormDisplay, setSigninFormDisplay] = useState('hidden');
-  const [signupFormDisplay, setSignupFormDisplay] = useState('hidden');
-  const [signinForgotDisplay, setSigninForgotDisplay] = useState('hidden');
-  const [recoverPassDisplay, setRecoverPassDisplay] = useState('hidden');
 
-  useEffect(() => {
-    if (display === 'hidden') {
-      document.body.style.overflow = 'auto';
-    } else {
-      document.body.style.overflow = 'hidden';
-    }
-  }, [display]);
+  const {
+    signinFormDisplay,
+    signupFormDisplay,
+    signinForgotDisplay,
+    recoverPassDisplay,
+    closeForm,
+    signinClick,
+    signupClick,
+    signinForgotClick,
+    recoverPassClick,
+  } = useFormsState();
 
   const closeCatalogClick = () => {
     setDisplayCategories('hidden');
   };
 
-  const closeForm = () => {
-    setSigninFormDisplay('hidden');
-    setSignupFormDisplay('hidden');
-    setSigninForgotDisplay('hidden');
-    setRecoverPassDisplay('hidden');
-  };
-
-  const signinClick = () => {
-    setSigninFormDisplay('block');
-    setSignupFormDisplay('hidden');
-    setSigninForgotDisplay('hidden');
-    setRecoverPassDisplay('hidden');
-  };
-
-  const signupClick = () => {
-    setSignupFormDisplay('block');
-    setSigninFormDisplay('hidden');
-    setSigninForgotDisplay('hidden');
-  };
-
-  const signinForgotClick = () => {
-    setSigninForgotDisplay('block');
-  };
-
-  const recoverPassClick = () => {
-    setRecoverPassDisplay('block');
-    setSigninForgotDisplay('hidden');
-  };
-
-  const closeMenu = () => {
-    setDisplayCategories('hidden');
-    setSigninFormDisplay('hidden');
-    setSignupFormDisplay('hidden');
-    setSigninForgotDisplay('hidden');
-    setRecoverPassDisplay('hidden');
-  };
-
   return (
     <div
-      className={`${display} md:hidden w-full py-5 bg-neutral-50 fixed inset-0 z-10`}
+      className={twMerge(
+        display,
+        `md:hidden w-full py-5 bg-neutral-50 fixed inset-0 z-10`
+      )}
     >
       <Container>
         <div className="flex justify-end mb-5">
@@ -92,6 +54,7 @@ export default function BurgerMenu({
             closeCatalogClick={closeCatalogClick}
           />
         </div>
+
         <nav>
           <Cabinet signinClick={signinClick} signupClick={signupClick} />
           <div className="w-full max-w-[375px] py-5 border-y-2 absolute top-[158px] left-[50%] -translate-x-2/4">

@@ -27,7 +27,7 @@ export default function FormLoginPassword({formik}: FormLoginPasswordProps ) {
               classNameLogin="mb-2 ml-0"
             />
           </div>
-          <BlueBorderButton onClick={() => {}} smallButton type="button">
+          <BlueBorderButton onClick={() => {}} cssSettings="xl:max-w-[254px] text-nowrap" smallButton={true} type="button">
             Змінити електронну адресу
           </BlueBorderButton>
           <div className='flex flex-col gap-6'>
@@ -56,7 +56,7 @@ export default function FormLoginPassword({formik}: FormLoginPasswordProps ) {
               id="repeatPasswordProfile"
             />
           </div>
-          <BlueBorderButton onClick={() => {}} smallButton type="button">
+          <BlueBorderButton onClick={() => {}} smallButton={true} cssSettings="text-nowrap xl:max-w-[164px]" type="button">
             Змінити пароль
           </BlueBorderButton>
         </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { MouseEventHandler, useState } from 'react';
-import categoriesData from '../../data/categories-data';
+import categoriesData from '../../../../shared/data/categories-data';
 import CatalogItem from './CatalogItem';
 import Container from '@/shared/components/Container/Container';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
@@ -59,7 +59,7 @@ export default function Catalog({
           <ul className={`relative ${isThirdList}`}>
             {categoriesData.map((category, index) => (
               <CatalogItem
-                object={category}
+                category={category}
                 key={index}
                 onCategoryClick={handleCategoryClick}
                 setIsThirdList={setIsThirdList}

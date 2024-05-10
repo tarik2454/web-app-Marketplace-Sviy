@@ -1,4 +1,3 @@
-// useFormsState.ts
 import { useState } from 'react';
 
 export default function useFormsState() {
@@ -7,33 +6,33 @@ export default function useFormsState() {
   const [signinForgotDisplay, setSigninForgotDisplay] = useState('hidden');
   const [recoverPassDisplay, setRecoverPassDisplay] = useState('hidden');
 
-  const openSigninForm = () => {
+  const closeForm = () => {
+    setSigninFormDisplay('hidden');
+    setSignupFormDisplay('hidden');
+    setSigninForgotDisplay('hidden');
+    setRecoverPassDisplay('hidden');
+  };
+
+  const signinClick = () => {
     setSigninFormDisplay('block');
     setSignupFormDisplay('hidden');
     setSigninForgotDisplay('hidden');
     setRecoverPassDisplay('hidden');
   };
 
-  const openSignupForm = () => {
+  const signupClick = () => {
     setSignupFormDisplay('block');
     setSigninFormDisplay('hidden');
     setSigninForgotDisplay('hidden');
   };
 
-  const openSigninForgotForm = () => {
+  const signinForgotClick = () => {
     setSigninForgotDisplay('block');
   };
 
-  const openRecoverPassForm = () => {
+  const recoverPassClick = () => {
     setRecoverPassDisplay('block');
     setSigninForgotDisplay('hidden');
-  };
-
-  const closeAllForms = () => {
-    setSigninFormDisplay('hidden');
-    setSignupFormDisplay('hidden');
-    setSigninForgotDisplay('hidden');
-    setRecoverPassDisplay('hidden');
   };
 
   return {
@@ -41,10 +40,23 @@ export default function useFormsState() {
     signupFormDisplay,
     signinForgotDisplay,
     recoverPassDisplay,
-    openSigninForm,
-    openSignupForm,
-    openSigninForgotForm,
-    openRecoverPassForm,
-    closeAllForms,
+    closeForm,
+    signinClick,
+    signupClick,
+    signinForgotClick,
+    recoverPassClick,
   };
 }
+
+// Использование
+// const {
+//   signinFormDisplay,
+//   signupFormDisplay,
+//   signinForgotDisplay,
+//   recoverPassDisplay,
+//   closeForm,
+//   signinClick,
+//   signupClick,
+//   signinForgotClick,
+//   recoverPassClick,
+// } = useFormsState();

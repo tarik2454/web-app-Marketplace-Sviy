@@ -88,8 +88,7 @@ export default function OrderFinalPrice({
             stylesSumText
           )}
         >
-          {!isInCart || isOnMobile ? `${itemsQuantity} ` : null}
-          {!isInCart || isOnMobile ? 'товари на суму' : 'Сума'}
+          Сума
         </p>
         <p
           className={twMerge(
