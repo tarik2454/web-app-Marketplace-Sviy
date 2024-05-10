@@ -13,15 +13,15 @@ type Props = {
 export default function OnMobileOrder({ orderedItems }: Props) {
   const [openOrderList, setOpenOrderList] = useState<number | null>(null);
 
-  const containerStyle = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(50px, 57px))',
-    gridGap: '10px',
-    marginBottom: '10px',
-  };
+  // const containerStyle = {
+  //   display: 'grid',
+  //   gridTemplateColumns: 'repeat(auto-fit, minmax(50px, 57px))',
+  //   gridGap: '10px',
+  //   marginBottom: '10px',
+  // }; стилі для картинок грідами
 
   return (
-    <ul className="">
+    <ul>
       {orderedItems.map((orderItem, index) => {
         const { class: statusClass, name: statusName } = getStatusValues([
           orderItem,
@@ -30,7 +30,7 @@ export default function OnMobileOrder({ orderedItems }: Props) {
         const isListOpen = openOrderList === index;
 
         return (
-          <li className="" key={index}>
+          <li key={index}>
             <div className={containerClassName}>
               <div className="flex mb-2.5">
                 <span className="mr-3">{orderItem.number}</span>
@@ -40,9 +40,9 @@ export default function OnMobileOrder({ orderedItems }: Props) {
                 <span>{orderItem.text}</span>
                 <span>{orderItem.total} ₴</span>
               </div>
-              <div style={containerStyle}>
+              <div className="flex flex-wrap ">
                 <Image
-                  className="max-w-[57px] max-h-[60px] rounded-[10px] "
+                  className="max-w-[57px] max-h-[60px] rounded-[10px] mr-2.5 mb-2.5"
                   width={0}
                   height={0}
                   sizes="100vh"
@@ -50,7 +50,7 @@ export default function OnMobileOrder({ orderedItems }: Props) {
                   alt="Order photo"
                 />
                 <Image
-                  className="max-w-[57px] max-h-[60px] rounded-[10px] "
+                  className="max-w-[57px] max-h-[60px] rounded-[10px] mr-2.5 mb-2.5"
                   width={0}
                   height={0}
                   sizes="100vh"
@@ -58,13 +58,37 @@ export default function OnMobileOrder({ orderedItems }: Props) {
                   alt="Order photo"
                 />
                 <Image
-                  className="max-w-[57px] max-h-[60px] rounded-[10px] "
+                  className="max-w-[57px] max-h-[60px] rounded-[10px] mr-2.5 mb-2.5"
                   width={0}
                   height={0}
                   sizes="100vh"
                   src={OrderImage}
                   alt="Order photo"
                 />
+                <Image
+                  className="max-w-[57px] max-h-[60px] rounded-[10px] mr-2.5 mb-2.5"
+                  width={0}
+                  height={0}
+                  sizes="100vh"
+                  src={OrderImage}
+                  alt="Order photo"
+                />
+                {/* <Image
+                  className="max-w-[57px] max-h-[60px] rounded-[10px] mr-2.5 mb-2.5"
+                  width={0}
+                  height={0}
+                  sizes="100vh"
+                  src={OrderImage}
+                  alt="Order photo"
+                />
+                <Image
+                  className="max-w-[57px] max-h-[60px] rounded-[10px] mr-2.5 mb-2.5"
+                  width={0}
+                  height={0}
+                  sizes="100vh"
+                  src={OrderImage}
+                  alt="Order photo"
+                /> */}
               </div>
               <div className="flex justify-between">
                 <span>{statusName}</span>

@@ -8,13 +8,12 @@ type Props = {
 };
 
 export default function MyOrderProfile({ orderedItems }: Props) {
-  const { isOnMobile, isOnTablet } = ScreenSize();
+  const { isOnMobile } = ScreenSize();
   return (
     <>
-      {(isOnMobile && <OnMobileOrder orderedItems={orderedItems} />) ||
-        (isOnTablet && <OnAdaptiveOrder orderedItems={orderedItems} />) || (
-          <OnAdaptiveOrder orderedItems={orderedItems} />
-        )}
+      {(isOnMobile && <OnMobileOrder orderedItems={orderedItems} />) || (
+        <OnAdaptiveOrder orderedItems={orderedItems} />
+      )}
     </>
   );
 }
