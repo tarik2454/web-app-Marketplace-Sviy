@@ -2,8 +2,13 @@
 
 import productsData from '@/shared/data/products-data';
 import { Card, Container, Pagination, Section } from '@/shared/components';
+import ScreenSize from '@/shared/hooks/useMediaQuery';
 
 export default function Favorites() {
+  const { isOnMobile, isOnTablet } = ScreenSize();
+
+  const itemsPerPage = isOnMobile ? 6 : isOnTablet ? 8 : 12;
+
   const renderItemLi = (item: {
     id: number;
     image: string;
@@ -17,7 +22,7 @@ export default function Favorites() {
     <Section className="pt-10 pb-[84px] md:pt-[64px] md:pb-[104px] xl:pt-[88px] xl:pb-[164px]">
       <Container>
         <Pagination
-          itemsPerPage={8}
+          itemsPerPage={itemsPerPage}
           array={productsData}
           styleUl={
             'grid gap-6 grid-cols-1 mb-8 md:grid-cols-2 md:gap-4 md:mb-10 xl:grid-cols-4 xl:gap-6'

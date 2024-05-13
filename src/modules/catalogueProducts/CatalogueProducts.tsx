@@ -11,10 +11,13 @@ import {
 } from '@/shared/components';
 import { Filter, SortingMenu } from '..';
 import options from './data/options-data';
+import ScreenSize from '@/shared/hooks/useMediaQuery';
 
 export default function CatalogueProducts() {
   const [sortingMenuDisplay, setSortingMenuDisplay] = useState('hidden');
   const [filterDisplay, setFilterDisplay] = useState('hidden');
+
+  const { isOnMobile, isOnTablet } = ScreenSize();
 
   const openHandler = (type: string) => {
     if (type === 'filter') {
@@ -35,6 +38,8 @@ export default function CatalogueProducts() {
       document.body.style.overflow = 'auto';
     }
   };
+
+  const itemsPerPage = isOnMobile ? 6 : isOnTablet ? 8 : 9;
 
   const renderItemLi = (item: {
     id: number;
@@ -62,7 +67,7 @@ export default function CatalogueProducts() {
             />
 
             <Pagination
-              itemsPerPage={6}
+              itemsPerPage={itemsPerPage}
               array={productsData}
               styleUl={
                 'grid gap-6 mb-8 grid-cols-1 md:grid-cols-2 md:gap-4 md:mb-10 xl:grid-cols-3 xl:gap-6 xl:sticky'

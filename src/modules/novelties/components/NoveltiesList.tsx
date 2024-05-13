@@ -3,12 +3,15 @@
 import React, { useEffect, useState } from 'react';
 import Card from '@/shared/components/Card/Card';
 import productsData from '@/shared/data/products-data';
+import Link from 'next/link';
 
 export default function NoveltiesList() {
   const [visibleCards, setVisibleCards] = useState(4);
   const [viewportWidth, setViewportWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 0
   );
+
+  const pageLink = '/catalogue';
 
   const handleShowMore = () => {
     const currentViewportWidth = window.innerWidth;
@@ -51,11 +54,13 @@ export default function NoveltiesList() {
           onClick={handleShowMore}
           className="text-xs md:text-xl leading-[25.6px] md:leading-8 text-blue-900"
         >
-          {viewportWidth >= 320 && visibleCards >= 8 && viewportWidth < 768
-            ? 'До каталогу'
-            : viewportWidth >= 768 && visibleCards >= 16
-            ? 'До каталогу'
-            : 'Ще новинки'}
+          {viewportWidth >= 320 && visibleCards >= 8 && viewportWidth < 768 ? (
+            <Link href={pageLink}>До каталогу</Link>
+          ) : viewportWidth >= 768 && visibleCards >= 16 ? (
+            <Link href={pageLink}>До каталогу</Link>
+          ) : (
+            'Ще новинки'
+          )}
         </button>
       </div>
     </div>

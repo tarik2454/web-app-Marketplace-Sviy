@@ -6,7 +6,7 @@ import cardImg from '@/shared/img/salo.jpeg';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import Link from 'next/link';
 
-type CardType = {
+type CardProps = {
   id?: number;
   image: string;
   name: string;
@@ -15,7 +15,7 @@ type CardType = {
   currency: string;
 };
 
-export default function Card({ product }: { product: CardType }) {
+export default function Card({ product }: { product: CardProps }) {
   const { id, image, name, information, price, currency } = product;
 
   return (
