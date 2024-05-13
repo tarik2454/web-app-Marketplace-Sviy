@@ -5,7 +5,7 @@ import {
   PersonalDynamicSidebar,
   Section,
 } from '@/shared/components';
-import orderedItems from './data';
+import orderedItems from './data/myOrder-data';
 import MyOrderProfile from './components/MyOrderProfile';
 
 export default function PersonalMyOrders() {
