@@ -1,10 +1,24 @@
-import { Dropdown, OrangeButton } from '@/shared/components';
+import { Dropdown, OrangeButton, Pagination } from '@/shared/components';
 import { SearchInput } from '@/modules/header/components/SearchProducts';
 import PersonalMyAdsList from './PersonalMyAddList';
-import {sort} from '@/modules/personalMyAds/data/myAddData';
-
+import { sort } from '@/modules/personalMyAds/data/myAddData';
+import ScreenSize from '@/shared/hooks/useMediaQuery';
+import productsData from '@/shared/data/products-data';
 
 export default function PersonalMyAdsItems() {
+
+  const { isOnMobile, isOnTablet } = ScreenSize();
+
+  const itemsPerPage = isOnMobile ? 6 : isOnTablet ? 8 : 9;
+
+    const renderItemLi = (item: {
+      id: number;
+      number: string;
+      date: string;
+      image: string;
+      description: string;
+      price: number;
+    }) => <PersonalMyAdsList key={item.id} />;
 
   return (
     <div>
@@ -25,12 +39,12 @@ export default function PersonalMyAdsItems() {
           menuClassName="!w-[193px]"
         />
       </div>
-      <ul className="flex flex-col gap-5">
-        <PersonalMyAdsList />
-        <PersonalMyAdsList />
-        <PersonalMyAdsList />
-        <PersonalMyAdsList />
-      </ul>
+      <Pagination
+        itemsPerPage={itemsPerPage}
+        array={productsData}
+        styleUl={'flex flex-col gap-5'}
+        renderItemLi={renderItemLi}
+      />
     </div>
   );
 }

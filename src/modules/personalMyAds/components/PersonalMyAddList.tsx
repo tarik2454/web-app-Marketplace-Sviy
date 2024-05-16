@@ -8,7 +8,7 @@ export default function PersonalMyAdsList() {
   return (
     <>
       {adsData.map(ad => (
-        <li
+        <div
           key={ad.id}
           className="w-full bg-white py-5 px-4 rounded-[20px] flex flex-col relative"
         >
@@ -44,8 +44,9 @@ export default function PersonalMyAdsList() {
             menuClassName="!w-[136px] md:!w-[156px] text-gray-900"
             dropdownIndicatorClassName="text-gray-600"
           />
-        </li>
-      ))}
+        </div>
+       )) 
+      }
     </>
   );
 }
