@@ -6,19 +6,18 @@ import ScreenSize from '@/shared/hooks/useMediaQuery';
 import productsData from '@/shared/data/products-data';
 
 export default function PersonalMyAdsItems() {
-
   const { isOnMobile, isOnTablet } = ScreenSize();
 
   const itemsPerPage = isOnMobile ? 6 : isOnTablet ? 8 : 9;
 
-    const renderItemLi = (item: {
-      id: number;
-      number: string;
-      date: string;
-      image: string;
-      description: string;
-      price: number;
-    }) => <PersonalMyAdsList key={item.id} />;
+  const renderItemLi = (item: {
+    id: number;
+    image: string;
+    name: string;
+    information: string;
+    price: number;
+    currency: string;
+  }) => <PersonalMyAdsList key={item.id} />;
 
   return (
     <div>
@@ -39,12 +38,12 @@ export default function PersonalMyAdsItems() {
           menuClassName="!w-[193px]"
         />
       </div>
-      <Pagination
-        itemsPerPage={itemsPerPage}
-        array={productsData}
-        styleUl={'flex flex-col gap-5'}
-        renderItemLi={renderItemLi}
-      />
+        <Pagination
+          itemsPerPage={itemsPerPage}
+          array={productsData}
+          styleUl={'flex flex-col gap-5'}
+          renderItemLi={renderItemLi}
+        />
     </div>
   );
 }
