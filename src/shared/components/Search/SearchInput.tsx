@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 interface SearchInputProps {
   toggleSearchVisibility?: () => void;
-  className?: string; 
+  className?: string;
 }
 
 export default function SearchInput({
@@ -43,9 +43,9 @@ export default function SearchInput({
       </button>
 
       <input
-        className="w-full outline-none px-2 bg-neutral-50 text-neutral-800 placeholder-neutral-800"
+        className="w-full outline-none px-2  bg-transparent text-neutral-800 placeholder-neutral-800"
         type="text"
-        placeholder="Я шукаю"
+        placeholder="Пошук оголошень"
         value={searchText}
         onChange={event => setSearchText(event.target.value)}
         onKeyDown={handleKeyPress}
