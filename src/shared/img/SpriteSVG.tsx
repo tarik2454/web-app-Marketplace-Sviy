@@ -270,7 +270,7 @@ export const SpriteSVG = ({
 
     case 'rating-star':
       return (
-        <svg className="w-7 h-7" version="1.1" viewBox="0 0 35 32">
+        <svg className="w-full h-full" version="1.1" viewBox="0 0 35 32">
           <path
             fill="url(#paint0_linear_1735_17367)"
             d="M17.333 0l5.892 9.818 11.441 2.405-7.8 8.473 1.179 11.304-10.713-4.582-10.713 4.582 1.179-11.304-7.8-8.473 11.441-2.405 5.892-9.818z"

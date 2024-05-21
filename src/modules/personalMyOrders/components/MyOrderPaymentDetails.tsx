@@ -33,7 +33,7 @@ export default function MyOrderPaymentDetails() {
       </div>
 
       {isOpenModal && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 ">
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
           <div className="bg-white px-5 py-6 rounded-2xl sm:min-w-[343px]">
             <div className="flex justify-between">
               <h2 className="text-2xl leading-10 text-gray-900 mb-4">
@@ -45,13 +45,23 @@ export default function MyOrderPaymentDetails() {
             <p className="text-base leading-relaxed text-gray-900 mb-5">
               Ваша оцінка товара
             </p>
-            <div className="flex gap-2 mb-5">
-              <SpriteSVG name="rating-star" />
-              <SpriteSVG name="rating-star" />
-              <SpriteSVG name="rating-star" />
-              <SpriteSVG name="rating-star" />
-              <SpriteSVG name="rating-star" />
-            </div>
+            <ul className="flex gap-2 mb-5">
+              <li className="w-7 h-7">
+                <SpriteSVG name="rating-star" />
+              </li>
+              <li className="w-7 h-7">
+                <SpriteSVG name="rating-star" />
+              </li>
+              <li className="w-7 h-7">
+                <SpriteSVG name="rating-star" />
+              </li>
+              <li className="w-7 h-7">
+                <SpriteSVG name="rating-star" />
+              </li>
+              <li className="w-7 h-7">
+                <SpriteSVG name="rating-star" />
+              </li>
+            </ul>
             <p className="text-base leading-relaxed text-gray-900 mb-2">
               Ваш коментар
             </p>
