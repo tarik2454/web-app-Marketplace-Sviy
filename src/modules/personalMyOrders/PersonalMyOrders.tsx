@@ -16,13 +16,13 @@ export default function PersonalMyOrders() {
         {(isOnMobile && (
           <PersonalDynamicSidebar
             activeOrders="active"
-            childOrders={<MyOrderProfile orderedItems={orderedItems} />}
+            childOrders={<MyOrderProfile />}
           />
         )) ||
           (isOnTablet && (
             <PersonalDynamicSidebar
               activeOrders="active"
-              childOrders={<MyOrderProfile orderedItems={orderedItems} />}
+              childOrders={<MyOrderProfile />}
             />
           )) || (
             <div className="flex items-start gap-6">
@@ -30,7 +30,7 @@ export default function PersonalMyOrders() {
                 <PersonalDynamicSidebar activeOrders="active" />
               </div>
               <div className="basis-2/3">
-                <MyOrderProfile orderedItems={orderedItems} />
+                <MyOrderProfile />
               </div>
             </div>
           )}
