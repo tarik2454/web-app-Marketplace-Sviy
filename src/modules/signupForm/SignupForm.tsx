@@ -102,11 +102,13 @@ export default function SignupForm({ signupType, signinClick }: Props) {
           className="text-sm md:text-base"
         />
         <a
-          className="text-gray-500 font-lato text-sm md:pb-[34px]"
+          className="text-gray-500 font-lato text-sm md:pb-[34px] "
           href="https://www.termsfeed.com/live/3dd36d5f-36ec-41fc-9795-f516c6d2694e"
         >
-          Реєструючись ви погоджуєтесь з Правилами використання сайту та
-          Політикою конфіденційності
+          Реєструючись ви погоджуєтесь з{' '}
+          <span className="underline text-blue-800">
+            Правилами використання сайту та Політикою конфіденційності
+          </span>
         </a>
         <div className="text-white md:text-base sm:text-sm">
           <OrangeButton
