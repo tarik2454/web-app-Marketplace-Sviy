@@ -7,8 +7,8 @@ export default function MyOrderPaymentDetails() {
   // const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
   const {
     isOpenModal,
-    handleOpenOrderModal,
-    handleCloseOrderModal,
+    handleOpenModal,
+    handleCloseModal,
     isItemModalOpen,
     handleOpenItemModal,
     handleCloseItemModal,
@@ -34,7 +34,7 @@ export default function MyOrderPaymentDetails() {
           </OrangeButton>
         </div>
         <div className="sm:text-sm">
-          <ArrowButton onClick={handleOpenOrderModal} cssSettings="sm:px-2">
+          <ArrowButton onClick={handleOpenModal} cssSettings="sm:px-2">
             Залишити відгук
           </ArrowButton>
           {/* <ArrowButton onClick={handleOpenModal} cssSettings="sm:px-2">
@@ -47,7 +47,7 @@ export default function MyOrderPaymentDetails() {
         />
         <MyOrderFeedback
           isOpenModal={isOpenModal}
-          handleCloseModal={handleCloseOrderModal}
+          handleCloseModal={handleCloseModal}
           handleOpenModal={handleOpenItemModal}
         />
         {/* <MyItemFeedback

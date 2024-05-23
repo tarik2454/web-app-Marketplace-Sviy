@@ -20,8 +20,8 @@ export default function useModal() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isItemModalOpen, setItemModalOpen] = useState(false);
 
-  const handleOpenOrderModal = () => setIsOpenModal(true);
-  const handleCloseOrderModal = () => setIsOpenModal(false);
+  const handleOpenModal = () => setIsOpenModal(true);
+  const handleCloseModal = () => setIsOpenModal(false);
 
   const handleOpenItemModal = () => {
     setItemModalOpen(true);
@@ -31,8 +31,8 @@ export default function useModal() {
 
   return {
     isOpenModal,
-    handleOpenOrderModal,
-    handleCloseOrderModal,
+    handleOpenModal,
+    handleCloseModal,
     isItemModalOpen,
     handleOpenItemModal,
     handleCloseItemModal,
