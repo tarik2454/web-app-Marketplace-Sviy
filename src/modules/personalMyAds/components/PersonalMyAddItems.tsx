@@ -38,12 +38,12 @@ export default function PersonalMyAdsItems() {
           menuClassName="!w-[193px]"
         />
       </div>
-        <Pagination
-          itemsPerPage={itemsPerPage}
-          array={productsData}
-          styleUl={'flex flex-col gap-5'}
-          renderItemLi={renderItemLi}
-        />
+      <Pagination
+        itemsPerPage={itemsPerPage}
+        array={productsData}
+        styleUl={'flex flex-col gap-5'}
+        renderItemLi={renderItemLi}
+      />
     </div>
   );
 }

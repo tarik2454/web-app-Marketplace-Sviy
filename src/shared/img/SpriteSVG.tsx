@@ -1,9 +1,24 @@
-"use client"
-import { useState } from "react";
+'use client';
+import { useState } from 'react';
 
-export const SpriteSVG = ({ name, className, height, width }: { name: string, className?: string, height?: number, width?: number }) => {
- const [dForMail, _] = useState(width === 24 ? "M2 8L11.1056 12.5528C11.6686 12.8343 12.3314 12.8343 12.8944 12.5528L22 8" : 
- width === 20 ? "M1.6665 6.66663L9.10541 10.3861C9.66847 10.6676 10.3312 10.6676 10.8943 10.3861L18.3332 6.66663" : "") 
+export const SpriteSVG = ({
+  name,
+  className,
+  height,
+  width,
+}: {
+  name: string;
+  className?: string;
+  height?: number;
+  width?: number;
+}) => {
+  const [dForMail, _] = useState(
+    width === 24
+      ? 'M2 8L11.1056 12.5528C11.6686 12.8343 12.3314 12.8343 12.8944 12.5528L22 8'
+      : width === 20
+      ? 'M1.6665 6.66663L9.10541 10.3861C9.66847 10.6676 10.3312 10.6676 10.8943 10.3861L18.3332 6.66663'
+      : ''
+  );
 
   switch (name) {
     case 'arrow-right':
@@ -633,17 +648,29 @@ export const SpriteSVG = ({ name, className, height, width }: { name: string, cl
         </svg>
       );
     case 'expand_up':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-             <path d="M18 15L12 9L6 15" stroke="#212121" strokeWidth="2"/>
-          </svg>
-        );
+      return (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M18 15L12 9L6 15" stroke="#212121" strokeWidth="2" />
+        </svg>
+      );
     case 'expand_down':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 9L12 15L6 9" stroke="#212121" strokeWidth="2"/>
-          </svg>
-          );
+      return (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M18 9L12 15L6 9" stroke="#212121" strokeWidth="2" />
+        </svg>
+      );
     case 'selected':
       return (
         <svg
@@ -774,49 +801,49 @@ export const SpriteSVG = ({ name, className, height, width }: { name: string, cl
         </svg>
       );
 
-    case "phone":
-        return (
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            width="18" 
-            height="18"
-            fill="none"
-            className={className}
-            >
-            <path 
-              // stroke="#386A93" 
-              strokeWidth="2" 
-              d="M13.9546 11.3294c-.3904-.3905-1.0237-.3905-1.4141 0l-1.0212 1.0212a.5331.5331 0 0 1-.6155.0998 12.2638 12.2638 0 0 1-5.4844-5.4843.5332.5332 0 0 1 .0999-.6155l1.0212-1.0212c.3904-.3905.3904-1.0237 0-1.4142L3.8923 1.2671a.9119.9119 0 0 0-1.2895 0C.6775 3.1923.4609 6.24 2.0945 8.4183L3.276 9.9938a23.0008 23.0008 0 0 0 4.6001 4.6l1.5755 1.1815c2.1779 1.6336 5.2258 1.417 7.1511-.5082a.9117.9117 0 0 0 0-1.2896l-2.6482-2.6481Z"
-            />
-          </svg>
-        )  
+    case 'phone':
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          fill="none"
+          className={className}
+        >
+          <path
+            // stroke="#386A93"
+            strokeWidth="2"
+            d="M13.9546 11.3294c-.3904-.3905-1.0237-.3905-1.4141 0l-1.0212 1.0212a.5331.5331 0 0 1-.6155.0998 12.2638 12.2638 0 0 1-5.4844-5.4843.5332.5332 0 0 1 .0999-.6155l1.0212-1.0212c.3904-.3905.3904-1.0237 0-1.4142L3.8923 1.2671a.9119.9119 0 0 0-1.2895 0C.6775 3.1923.4609 6.24 2.0945 8.4183L3.276 9.9938a23.0008 23.0008 0 0 0 4.6001 4.6l1.5755 1.1815c2.1779 1.6336 5.2258 1.417 7.1511-.5082a.9117.9117 0 0 0 0-1.2896l-2.6482-2.6481Z"
+          />
+        </svg>
+      );
 
-    case "mail":
-          return (
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width={width} 
-              height={height} 
-              fill="none"
-              className={className}
-              >
-              <rect 
-                width={width && width * 0.8335} 
-                height={height && height * 0.625} 
-                x="1.6665" 
-                y="4.1666" 
-                // stroke="#386A93" 
-                strokeWidth="2" 
-                rx="2"
-              />
-                <path  
-                  fillRule="evenodd" 
-                  d={dForMail}
-                  strokeWidth="2"
-                  stroke="#1565C0"
-                />
-            </svg>
-          )
+    case 'mail':
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={width}
+          height={height}
+          fill="none"
+          className={className}
+        >
+          <rect
+            width={width && width * 0.8335}
+            height={height && height * 0.625}
+            x="1.6665"
+            y="4.1666"
+            // stroke="#386A93"
+            strokeWidth="2"
+            rx="2"
+          />
+          <path
+            fillRule="evenodd"
+            d={dForMail}
+            strokeWidth="2"
+            stroke="#1565C0"
+          />
+        </svg>
+      );
 
     case 'message':
       return (

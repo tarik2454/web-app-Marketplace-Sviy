@@ -41,16 +41,6 @@ const orderedItems = [
     date: '09.01.2024 14:35:13',
     images: Image,
   },
-  {
-    heading: 'Варениник з картоплею',
-    status: 'fulfilled',
-    number: '1226',
-    text: 'Сума замовлення',
-    price: '150',
-    total: '170',
-    date: '09.01.2024 14:35:13',
-    images: Image,
-  },
 ];
 
 export default orderedItems;
