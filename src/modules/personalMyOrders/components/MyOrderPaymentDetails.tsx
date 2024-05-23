@@ -1,10 +1,18 @@
 import { OrangeButton, ArrowButton } from '@/shared/components';
+import MyOrderFeedback from './MyOrderFeedback';
+import MyItemFeedback from './MyItemFeedback';
+import useModal from '@/shared/hooks/useModal';
 
-type Props = {
-  handleOpenModal: () => void;
-};
-
-export default function MyOrderPaymentDetails({ handleOpenModal }: Props) {
+export default function MyOrderPaymentDetails() {
+  // const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
+  const {
+    isOpenModal,
+    handleOpenModal,
+    handleCloseModal,
+    isItemModalOpen,
+    handleOpenItemModal,
+    handleCloseItemModal,
+  } = useModal();
   return (
     <>
       <div className="flex justify-between sm:mb-3">
@@ -29,7 +37,28 @@ export default function MyOrderPaymentDetails({ handleOpenModal }: Props) {
           <ArrowButton onClick={handleOpenModal} cssSettings="sm:px-2">
             Залишити відгук
           </ArrowButton>
+          {/* <ArrowButton onClick={handleOpenModal} cssSettings="sm:px-2">
+            Залишити відгук
+          </ArrowButton> */}
         </div>
+        <MyItemFeedback
+          isItemModalOpen={isItemModalOpen}
+          handleCloseItemModal={handleCloseItemModal}
+        />
+        <MyOrderFeedback
+          isOpenModal={isOpenModal}
+          handleCloseModal={handleCloseModal}
+          handleOpenModal={handleOpenItemModal}
+        />
+        {/* <MyItemFeedback
+          isOpenModal={isOpenModal}
+          handleCloseModal={handleCloseModal}
+        />
+        <MyOrderFeedback
+          isOpenModal={isOpenModal}
+          handleCloseModal={handleCloseModal}
+          handleOpenModal={handleOpenModal}
+        /> */}
       </div>
     </>
   );
