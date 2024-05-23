@@ -1,13 +1,14 @@
-"use client"
+'use client';
 import { Container, PageTitle, Section } from '@/shared/components';
 import React, { useState } from 'react';
 import QuestionsAnswersItem from './QuestionsAnswersItem';
 
-type Question = {
+export type Question = {
   id: number;
   question: string;
   isOpen: boolean;
   text: string;
+  link?: string;
 };
 
 export default function QuestionsAnswersPage() {
@@ -27,7 +28,8 @@ export default function QuestionsAnswersPage() {
     {
       id: 3,
       question: 'Як СВІЙ доставляє?',
-      text: 'Усі доставки організовуються продавцями, у яких ви замовляєте на СВІЙ. Час і вартість доставки залежать від продавця. Якщо у вашому кошику є кілька роздрібних продавців, плата за доставку стягуватиметься з кожного продавця, оскільки кожен роздрібний продавець доставлятиме свої товари окремо. Будь ласка, зверніть увагу, що час і вартість доставки можуть відрізнятися залежно від продавця та місця розташування, тому ми рекомендуємо уточнювати цю інформацію у продавців.',
+      text: 'Усі доставки організовуються продавцями, у яких ви замовляєте на СВІЙ, через відповідних перевізників. Якщо у вашому кошику є кілька роздрібних продавців, плата за доставку стягуватиметься з кожного продавця, оскільки кожен роздрібний продавець доставлятиме свої товари окремо. Більш детально про доставку та оплату можна дізнатись ',
+      link: 'https://web-app-marketplace-sviy.vercel.app/delivery',
       isOpen: false,
     },
     {

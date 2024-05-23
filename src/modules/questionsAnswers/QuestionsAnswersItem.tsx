@@ -1,12 +1,6 @@
 import { ArrowButton } from '@/shared/components';
 import React from 'react';
-
-type Question = {
-  id: number;
-  question: string;
-  isOpen: boolean;
-  text: string;
-};
+import { Question } from './QuestionsAnswersPage';
 
 type Props = {
   question: Question;
@@ -16,7 +10,7 @@ export default function QuestionsAnswersItem({
   question,
   toggleQuestion,
 }: Props): JSX.Element {
-  const { id, question: questionText, isOpen, text } = question;
+  const { id, question: questionText, isOpen, text, link } = question;
 
   return (
     <li className="max-w-[1062px] bg-white pl-4 rounded-[20px] group group-hover:rotate-[50deg]  hover:bg-blue-200 active:bg-blue-700 active:text-white">
@@ -36,6 +30,10 @@ export default function QuestionsAnswersItem({
         } max-w-[260px] md:max-w-[620px] xl:max-w-[938px] mb-5`}
       >
         {text}
+        <a className='text-blue-900' href={link} target="_blank">
+          тут
+        </a>
+        .
       </p>
     </li>
   );
