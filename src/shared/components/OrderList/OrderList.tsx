@@ -69,7 +69,6 @@ export default function OrderList({
               alt="Order photo"
             />
           </div>
-
           <div
             className={twMerge(
               `flex justify-between w-full xl:gap-16`,

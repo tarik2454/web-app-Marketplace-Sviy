@@ -2,24 +2,24 @@ import { OrangeButton, ArrowButton, CloseButton } from '@/shared/components';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
 type Props = {
-  isOpenModal: boolean;
-  handleCloseModal: () => void;
+  isItemModalOpen: boolean;
+  handleCloseItemModal: () => void;
 };
 
-export default function MyFeedbackModal({
-  isOpenModal,
-  handleCloseModal,
+export default function MyItemFeedback({
+  isItemModalOpen,
+  handleCloseItemModal,
 }: Props) {
   return (
     <>
-      {isOpenModal && (
+      {isItemModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <div className="bg-white px-5 py-6 rounded-2xl w-full mx-5 md:mx-10 md:px-10 md:py-15 xl:max-w-[768px] ">
+          <div className="bg-white px-5 py-6 rounded-2xl w-full mx-5 md:mx-10 md:px-10 md:py-15 md:max-w-[768px] ">
             <div className="flex justify-between">
               <h2 className="text-2xl leading-10 text-gray-900 ">
                 Написати відгук
               </h2>
-              <CloseButton closeButtonClick={handleCloseModal} />
+              <CloseButton closeButtonClick={handleCloseItemModal} />
             </div>
             <div className="border-b-2 border-gray-300 w-full mb-5"></div>
 
@@ -47,7 +47,7 @@ export default function MyFeedbackModal({
               Ваш коментар
             </p>
             <textarea
-              className="w-full p-2 border rounded-2xl mb-4"
+              className="w-full p-2 border border-gray-400 rounded-2xl mb-4"
               rows={5}
             ></textarea>
             <div className="flex flex-col items-center md:flex-row md:justify-center">
@@ -56,7 +56,7 @@ export default function MyFeedbackModal({
               </OrangeButton>
               <ArrowButton
                 cssSettings="text-gray-900 mr-2 px-5 py-3 "
-                onClick={handleCloseModal}
+                onClick={handleCloseItemModal}
               >
                 Скасувати
               </ArrowButton>

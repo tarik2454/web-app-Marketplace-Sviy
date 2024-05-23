@@ -10,8 +10,6 @@ import Image from 'next/image';
 import InfoAboutOrder from './InfoAboutOrder';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import MyOrderPaymentDetails from './MyOrderPaymentDetails';
-import useModal from '@/shared/hooks/useModal';
-import MyFeedbackModal from './MyFeedbcakModal';
 
 type Props = {
   orderedItems: Order[];
@@ -19,7 +17,6 @@ type Props = {
 
 export default function MyOrderList({ orderedItems }: Props) {
   const [openOrderList, setOpenOrderList] = useState<number | null>(null);
-  const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
   const { isOnMobile } = ScreenSize();
 
   return (
@@ -104,16 +101,15 @@ export default function MyOrderList({ orderedItems }: Props) {
                     <div>
                       <OrderList
                         cartItems={orderedItems}
-                        stylesImageWrapper="w-[84px] h-[81px] mb-6"
+                        stylesImageWrapper="w-[70px] h-[60px] mb-6"
+                        stylesSumWord=" h-6 text-base leading-relaxed text-right text-gray-400"
+                        stylesSumNumber=" h-6 text-sm leading-relaxed text-right text-gray-900"
                         stylesButton="hidden"
+                        isInCart={true}
                       />
                     </div>
                   </div>
-                  <MyOrderPaymentDetails handleOpenModal={handleOpenModal} />
-                  <MyFeedbackModal
-                    isOpenModal={isOpenModal}
-                    handleCloseModal={handleCloseModal}
-                  />
+                  <MyOrderPaymentDetails />
                 </div>
               )}
             </div>
