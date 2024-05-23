@@ -3,7 +3,7 @@ import { Order } from '../types';
 import SearchInput from '@/shared/components/Search/SearchInput';
 import { Dropdown, Pagination } from '@/shared/components';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
-import { sort } from '@/modules/personalMyAds/data/myAddData';
+import { sort } from '@/modules/personalMyAds/data/my-add-data';
 import orderedItems from '../data/myOrder-data';
 import productsData from '@/shared/data/products-data';
 
