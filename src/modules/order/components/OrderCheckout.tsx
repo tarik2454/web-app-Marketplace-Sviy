@@ -24,12 +24,18 @@ export default function OrderChecout({ formik }: any) {
             inputIcon="location"
             inputLink="Змінити"
           />
+                    <div className="inline-flex items-center justify-start px-4 py-1.5 bg-white border rounded-2xl border-blue-700">
+            <p className="text-xs text-gray-900 md:text-base">
+            Увійдіть, щоб мати можливість оформити замовлення, додавати товари до обраного та бачити свої замовлення.
+            </p>
+          </div>
           <div className="inline-flex items-center justify-start px-4 py-1.5 bg-white border rounded-2xl border-blue-700">
             <p className="text-xs text-gray-900 md:text-base">
               Зверніть увагу, товари, які замовлені у різних продавців, буде
               доставлено окремими замовленнями.
             </p>
           </div>
+
         </div>
       </div>
     </div>
