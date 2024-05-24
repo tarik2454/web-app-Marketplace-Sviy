@@ -27,7 +27,7 @@ export default function PersonalMyAds() {
           )) || (
             <div className="flex items-start gap-6">
               <div className="basis-1/3 max-w-[302px]">
-                <PersonalDynamicSidebar childAds="active" />
+                <PersonalDynamicSidebar activeAds="active" />
               </div>
               <div className="basis-3/4">
                 <PersonalMyAdsItems />

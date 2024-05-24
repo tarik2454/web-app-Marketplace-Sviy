@@ -7,11 +7,13 @@ import { useRouter } from 'next/navigation';
 interface SearchInputProps {
   toggleSearchVisibility?: () => void;
   className?: string;
+  inputStyle?: string;
 }
 
 export default function SearchInput({
   toggleSearchVisibility,
   className,
+  inputStyle,
 }: SearchInputProps) {
   const [searchText, setSearchText] = useState('');
 
@@ -43,7 +45,7 @@ export default function SearchInput({
       </button>
 
       <input
-        className="w-full outline-none px-2  bg-transparent text-neutral-800 placeholder-neutral-800"
+        className={`w-full outline-none px-2 bg-transparent text-neutral-800 placeholder-neutral-800 ${inputStyle}`}
         type="text"
         placeholder="Пошук оголошень"
         value={searchText}
