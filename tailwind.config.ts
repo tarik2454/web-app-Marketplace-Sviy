@@ -11,6 +11,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        gradientStart: '#FF9800',
+        gradientEnd: '#FFCC80',
+        textColor: {
+          'custom-gradient':
+            'linear-gradient(94deg, var(--tw-gradient-from), var(--tw-gradient-to))',
+        },
         blue: {
           90: '#386A93',
           200: '#BBDEFB',

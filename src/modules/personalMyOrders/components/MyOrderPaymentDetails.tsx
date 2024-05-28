@@ -1,18 +1,18 @@
 import { OrangeButton, ArrowButton } from '@/shared/components';
 import MyOrderFeedback from './MyOrderFeedback';
-import MyItemFeedback from './MyItemFeedback';
 import useModal from '@/shared/hooks/useModal';
 
-export default function MyOrderPaymentDetails() {
-  // const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
-  const {
-    isOpenModal,
-    handleOpenModal,
-    handleCloseModal,
-    isItemModalOpen,
-    handleOpenItemModal,
-    handleCloseItemModal,
-  } = useModal();
+type MyOrderPaymentDetailsProps = {
+  status: string;
+};
+
+export default function MyOrderPaymentDetails({
+  status,
+}: MyOrderPaymentDetailsProps) {
+  const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
+
+  const isOrderCancelable = status !== 'fulfilled' && status !== 'canceled';
+
   return (
     <>
       <div className="flex justify-between sm:mb-3">
@@ -27,38 +27,30 @@ export default function MyOrderPaymentDetails() {
         <p className="sm:text-sm">Разом</p>
         <p className="sm:text-sm">150 ₴</p>
       </div>
-      <div className="flex">
-        <div className="text-white sm:mr-[2px] sm:text-sm md:mr-6">
-          <OrangeButton cssSettings="sm:px-2" onClick={() => {}}>
+      <div className="flex justify-between md:justify-start md:items-baseline ">
+        <div className="text-white sm:mr-[2px] sm:text-sm md:mr-6 ">
+          <OrangeButton
+            cssSettings="sm:px-2 md:py-2.5 md:px-8"
+            onClick={() => {}}
+            disabled={!isOrderCancelable}
+          >
             Скасувати замовлння
           </OrangeButton>
         </div>
-        <div className="sm:text-sm">
-          <ArrowButton onClick={handleOpenModal} cssSettings="sm:px-2">
+        <div className="sm:text-sm ">
+          <ArrowButton
+            onClick={handleOpenModal}
+            cssSettings="sm:px-2 md:py-2.5 md:px-8"
+            svgCssSettings="sm:hidden md:block "
+          >
             Залишити відгук
           </ArrowButton>
-          {/* <ArrowButton onClick={handleOpenModal} cssSettings="sm:px-2">
-            Залишити відгук
-          </ArrowButton> */}
         </div>
-        <MyItemFeedback
-          isItemModalOpen={isItemModalOpen}
-          handleCloseItemModal={handleCloseItemModal}
-        />
-        <MyOrderFeedback
-          isOpenModal={isOpenModal}
-          handleCloseModal={handleCloseModal}
-          handleOpenModal={handleOpenItemModal}
-        />
-        {/* <MyItemFeedback
-          isOpenModal={isOpenModal}
-          handleCloseModal={handleCloseModal}
-        />
         <MyOrderFeedback
           isOpenModal={isOpenModal}
           handleCloseModal={handleCloseModal}
           handleOpenModal={handleOpenModal}
-        /> */}
+        />
       </div>
     </>
   );

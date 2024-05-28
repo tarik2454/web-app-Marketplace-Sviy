@@ -5,7 +5,7 @@ import {
   PersonalDynamicSidebar,
   Section,
 } from '@/shared/components';
-import orderedItems from './data/myOrder-data';
+import orderedItems from './data/my-order-data';
 import MyOrderProfile from './components/MyOrderProfile';
 
 export default function PersonalMyOrders() {
@@ -29,7 +29,7 @@ export default function PersonalMyOrders() {
               <div className="basis-1/3 max-w-[302px]">
                 <PersonalDynamicSidebar activeOrders="active" />
               </div>
-              <div className="basis-2/3">
+              <div className="basis-3/4">
                 <MyOrderProfile />
               </div>
             </div>

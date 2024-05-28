@@ -26,6 +26,7 @@ type OrderListProps = {
   stylesButton?: string;
   stylesSumWord?: string;
   isInCart?: boolean;
+  stylesAmountButtons?: string;
 };
 
 export default function OrderList({
@@ -41,6 +42,7 @@ export default function OrderList({
   stylesButton,
   stylesSumWord,
   isInCart = false,
+  stylesAmountButtons,
 }: OrderListProps) {
   const { isOnMobile, isOnTablet, isOnDesktop } = ScreenSize();
 
@@ -85,7 +87,12 @@ export default function OrderList({
                 {cartItem.heading}
               </p>
               {(!isInCart && (
-                <AmountButtons stylesWrapper={'w-auto md:w-auto xl:w-auto'} />
+                <AmountButtons
+                  stylesWrapper={twMerge(
+                    'w-auto md:w-auto xl:w-auto',
+                    stylesAmountButtons
+                  )}
+                />
               )) ||
                 null}
             </div>

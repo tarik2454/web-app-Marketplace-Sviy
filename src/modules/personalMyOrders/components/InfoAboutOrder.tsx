@@ -22,21 +22,21 @@ export default function InfoAboutOrder() {
         <p className="text-xl mb-3">Продавець</p>
         <p className="text-sm leading-tight mb-3">Назва бренду</p>
         <div className="flex mb-3">
-          <p className="mr-3 ">
-            <SpriteSVG name="location" className="fill-blue-700" />
-          </p>
+          <div className="mr-3 text-blue-700">
+            <SpriteSVG name="location" />
+          </div>
           <p className="text-sm leading-tight">м. Львів, Залізничний р-н</p>
         </div>
         <div className="flex mb-3">
-          <p className="mr-3">
-            <SpriteSVG name="message" className="fill-blue-700" />
-          </p>
+          <div className="mr-3 text-blue-700">
+            <SpriteSVG name="mail" />
+          </div>
           <p className="text-sm leading-tight">fuhriug@gmail.com</p>
         </div>
         <div className="flex ">
-          <p className="mr-3">
+          <div className="mr-3 text-blue-700">
             <SpriteSVG name="phone" className="fill-blue-700" />
-          </p>
+          </div>
           <p>+380 96 900 90 90</p>
         </div>
       </div>

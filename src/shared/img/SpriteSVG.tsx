@@ -291,6 +291,21 @@ export const SpriteSVG = ({
         </svg>
       );
 
+    case 'star':
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+        >
+          <path
+            fill="currentColor"
+            d="m12 0 4.079 7.364L24 9.167l-5.4 6.355.816 8.478L12 20.564 4.584 24l.816-8.478L0 9.167l7.921-1.803L12 0Z"
+          />
+        </svg>
+      );
+
     case 'logo':
       return (
         <svg
@@ -821,26 +836,25 @@ export const SpriteSVG = ({
     case 'mail':
       return (
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width={width}
-          height={height}
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
           fill="none"
-          className={className}
+          xmlns="http://www.w3.org/2000/svg"
         >
           <rect
-            width={width && width * 0.8335}
-            height={height && height * 0.625}
-            x="1.6665"
-            y="4.1666"
-            // stroke="#386A93"
-            strokeWidth="2"
+            x="1.66602"
+            y="4.16602"
+            width="16.6667"
+            height="12.5"
             rx="2"
+            stroke="#1565C0"
+            stroke-width="2"
           />
           <path
-            fillRule="evenodd"
-            d={dForMail}
-            strokeWidth="2"
+            d="M1.66602 6.66602L9.10492 10.3855C9.66798 10.667 10.3307 10.667 10.8938 10.3855L18.3327 6.66602"
             stroke="#1565C0"
+            stroke-width="2"
           />
         </svg>
       );
