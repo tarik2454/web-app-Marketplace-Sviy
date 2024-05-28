@@ -1,7 +1,7 @@
 import { Dropdown, OrangeButton, Pagination } from '@/shared/components';
 import { SearchInput } from '@/modules/header/components/SearchProducts';
 import PersonalMyAdsList from './PersonalMyAddList';
-import { sort } from '@/modules/personalMyAds/data/myAddData';
+import sort from '@/shared/data/personal-select-data';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import productsData from '@/shared/data/products-data';
 
