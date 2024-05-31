@@ -1,9 +1,4 @@
-export const options = [
-  { value: 'Редагувати', label: 'Pедагувати' },
-  { value: 'Видалити', label: 'Видалити' },
-];
-
-export const adsData = [
+const adsData = [
   {
     id: 1,
     number: '№ 1223',
@@ -13,3 +8,5 @@ export const adsData = [
     price: '200 грн',
   },
 ];
+
+export default adsData;

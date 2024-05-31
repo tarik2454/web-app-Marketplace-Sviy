@@ -1,6 +1,7 @@
 import { OrangeButton, ArrowButton } from '@/shared/components';
 import MyOrderFeedback from './MyOrderFeedback';
 import useModal from '@/shared/hooks/useModal';
+import myOrderData from '../data/my-order-data';
 
 type MyOrderPaymentDetailsProps = {
   status: string;
@@ -50,6 +51,7 @@ export default function MyOrderPaymentDetails({
           isOpenModal={isOpenModal}
           handleCloseModal={handleCloseModal}
           handleOpenModal={handleOpenModal}
+          myOrderData={myOrderData}
         />
       </div>
     </>

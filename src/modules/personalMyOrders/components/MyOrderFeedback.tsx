@@ -1,24 +1,34 @@
-import {
-  OrangeButton,
-  CloseButton,
-  ArrowButton,
-  OrderList,
-} from '@/shared/components';
+import { OrangeButton, CloseButton, ArrowButton } from '@/shared/components';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { useState } from 'react';
-import myOrderData from '../data/my-order-data';
+import { StaticImageData } from 'next/image';
+import Image from 'next/image';
+import OrderImage from '@/shared/img/salo.jpeg';
 
-type MyOrderFeedback = {
+type Order = {
+  heading: string;
+  status: string;
+  number: string;
+  text: string;
+  price: string;
+  total: string;
+  date: string;
+  images: StaticImageData;
+};
+
+type MyOrderFeedbackProps = {
   isOpenModal: boolean;
   handleCloseModal: () => void;
   handleOpenModal: () => void;
+  myOrderData: Order[];
 };
 
 export default function MyOrderFeedback({
   isOpenModal,
   handleCloseModal,
   handleOpenModal,
-}: MyOrderFeedback) {
+  myOrderData,
+}: MyOrderFeedbackProps) {
   const [isOpenFeedback, setIsOpenFeedback] = useState(false);
   const [rating, setRating] = useState(0); // Додайте стан для рейтингу
 
@@ -53,31 +63,40 @@ export default function MyOrderFeedback({
             </div>
             <div className="border-b-2 border-gray-300 w-full mb-5"></div>
 
-            <OrderList
-              cartItems={myOrderData}
-              stylesLiWrapper="flex pt-4 gap-2 mb-0 md:gap-3 md:pb-2 "
-              stylesImageWrapper="w-[84px] h-[81px] mb-6"
-              stylesContentWrapper="hidden"
-              stylesProductName=""
-              stylesAmountButtons="hidden"
-              stylesPriceWrapper="hidden"
-              stylesSumWrapper="hidden"
-              stylesSumNumber="hidden"
-              stylesButton="hidden"
-              stylesSumWord="hidden"
-            />
-
-            <div className="flex flex-col items-center md:flex-row md:justify-center">
-              <OrangeButton
-                onClick={() => {
-                  handleOpenFeedback();
-                  handleCloseModal();
-                }}
-                cssSettings="px-8 py-2.5 font-medium text-white mb-4 md:mr-6"
-              >
-                Залишити відгук
-              </OrangeButton>
-            </div>
+            {myOrderData.map((orderItem, index) => {
+              return (
+                <li
+                  key={index}
+                  className="flex justify-between mb-4 border-b border-gray-300 pb-4 md:mb-4 md:pb-2"
+                >
+                  <div className="flex items-center w-full">
+                    <Image
+                      className="w-[57px] h-[57px] rounded-2xl mr-4 md:mr-6 md:w-[84px] md:h-[81px]"
+                      src={OrderImage}
+                      alt="Order photo"
+                    />
+                    <div className="flex-grow md:flex justify-between items-baseline">
+                      <div>
+                        <p className="text-sm text-gray-900 mb-2">
+                          {orderItem.heading}
+                        </p>
+                      </div>
+                      <div className="flex justify-end">
+                        <OrangeButton
+                          onClick={() => {
+                            handleOpenFeedback();
+                            handleCloseModal();
+                          }}
+                          cssSettings="px-4 py-1 text-sm text-white md:px-8 md:py-2.5"
+                        >
+                          Залишити відгук
+                        </OrangeButton>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
           </div>
         </div>
       )}

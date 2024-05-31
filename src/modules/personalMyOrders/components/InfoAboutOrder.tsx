@@ -3,7 +3,7 @@ import { SpriteSVG } from '@/shared/img/SpriteSVG';
 export default function InfoAboutOrder() {
   return (
     <>
-      <div className="sm:mb-5 md:mr-10">
+      <div className="sm:mb-5 md:mr-10 xl:mr-0">
         <p className="text-xl mb-3">Інформація про замовлення</p>
         <p className="text-sm leading-tight mb-3 ">
           Самовивіз з відділення Нової Пошти №12

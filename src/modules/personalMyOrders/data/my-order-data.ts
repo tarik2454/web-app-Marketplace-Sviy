@@ -36,7 +36,7 @@ const myOrderData = [
   },
   {
     id: 3,
-    heading: 'Варениник з картоплею',
+    heading: 'Вареники з картоплею',
     status: 'canceled',
     number: '1226',
     text: 'Сума замовлення',
@@ -47,7 +47,7 @@ const myOrderData = [
   },
   {
     id: 4,
-    heading: 'Варениник з картоплею',
+    heading: 'Вареники з картоплею',
     status: 'canceled',
     number: '1226',
     text: 'Сума замовлення',

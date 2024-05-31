@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { OrderList } from '@/shared/components';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { getStatusValues } from '../helpers/orderUtils';
 import { StaticImageData } from 'next/image';
@@ -10,6 +9,7 @@ import Image from 'next/image';
 import InfoAboutOrder from './InfoAboutOrder';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import MyOrderPaymentDetails from './MyOrderPaymentDetails';
+import MyItemsList from './MyItemsList';
 
 type Order = {
   heading: string;
@@ -62,11 +62,15 @@ export default function MyOrderList({ myOrderData }: MyOrderListProps) {
                     <p className="sm:hidden md:block">{statusName}</p>
                   </div>
 
-                  <div className="flex justify-between mb-2.5  md:order-3 md:block ">
-                    <p>{orderItem.text}</p>
+                  <div className="flex justify-between  text-center md:order-3 md:block ">
+                    <p className="mb-2.5">
+                      {' '}
+                      {}
+                      {orderItem.text}
+                    </p>
                     <p>{orderItem.total} ₴</p>
                   </div>
-                  <div className="flex items-center md:order-1">
+                  <div className="flex items-center  md:order-1">
                     {[...Array(isOnMobile ? 2 : 3)].map((_, i) => (
                       <Image
                         key={i}
@@ -115,21 +119,14 @@ export default function MyOrderList({ myOrderData }: MyOrderListProps) {
                   <div className="mb-5 ">
                     <span>{statusName}</span>
                   </div>
-                  <div className="xl:flex justify-between">
+                  <div className="xl:flex ">
                     <div>
-                      <div className="md:flex mb-8 xl:block">
+                      <div className="md:flex mb-8 xl:block xl:mr-6 xl:w-[282px]">
                         <InfoAboutOrder />
                       </div>
                     </div>
-                    <div>
-                      <OrderList
-                        cartItems={myOrderData}
-                        stylesImageWrapper="w-[70px] h-[60px] mb-6"
-                        stylesSumWord=" h-6 text-base leading-relaxed text-right text-gray-400"
-                        stylesSumNumber=" h-6 text-sm leading-relaxed text-right text-gray-900"
-                        stylesButton="hidden"
-                        stylesAmountButtons="hidden"
-                      />
+                    <div className="xl:w-full">
+                      <MyItemsList myOrderData={myOrderData} />
                     </div>
                   </div>
                   <MyOrderPaymentDetails status={orderItem.status} />

@@ -1,10 +1,10 @@
 import { Dropdown } from '@/shared/components';
 import Image from 'next/image';
 import OrderImage from '@/shared/img/salo.jpeg';
-import { adsData, options } from '../data/myAddData';
+import adsData from '../data/my-add-data';
+import options from '../data/my-options-data';
 
 export default function PersonalMyAdsList() {
-
   return (
     <>
       {adsData.map(ad => (
@@ -15,7 +15,7 @@ export default function PersonalMyAdsList() {
           <div className="flex flex-col md:flex-row">
             <div className="mr-6 flex gap-2 md:flex-col xl:gap-3 mb-3 xl:mb-0">
               <p>{ad.number}</p>
-              <p className='text-gray-600'>{ad.date}</p>
+              <p className="text-gray-600">{ad.date}</p>
             </div>
 
             <div className="flex">
@@ -45,8 +45,7 @@ export default function PersonalMyAdsList() {
             dropdownIndicatorClassName="text-gray-600"
           />
         </div>
-       )) 
-      }
+      ))}
     </>
   );
 }
