@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { OrderList, Dropdown } from '@/shared/components';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import { getStatusValues } from '../orderUtils';
-import { Order } from '../types';
+import { getStatusValues } from '../helpers/orderUtils';
+import { StaticImageData } from 'next/image';
 
 import OrderImage from '@/shared/img/salo.jpeg';
 import Image from 'next/image';
@@ -10,27 +9,49 @@ import Image from 'next/image';
 import InfoAboutOrder from './InfoAboutOrder';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import MyOrderPaymentDetails from './MyOrderPaymentDetails';
+import MyItemsList from './MyItemsList';
 
-type Props = {
-  orderedItems: Order[];
+type Order = {
+  heading: string;
+  status: string;
+  number: string;
+  text: string;
+  price: string;
+  total: string;
+  date: string;
+  images: StaticImageData;
 };
 
-export default function MyOrderList({ orderedItems }: Props) {
+type MyOrderListProps = {
+  myOrderData: Order[];
+};
+
+export default function MyOrderList({ myOrderData }: MyOrderListProps) {
   const [openOrderList, setOpenOrderList] = useState<number | null>(null);
   const { isOnMobile } = ScreenSize();
 
   return (
     <>
-      {orderedItems.map((orderItem, index) => {
+      {myOrderData.map((orderItem, index) => {
         const { class: statusClass, name: statusName } = getStatusValues([
           orderItem,
         ])[0];
         const containerClassName = `bg-white w-full h-full p-4 rounded-[20px] shadow border-l-4 ${statusClass}`;
         const isListOpen = openOrderList === index;
 
+        const openList = () => {
+          if (!isListOpen) {
+            setOpenOrderList(index);
+          }
+        };
+
+        const toggleOpenList = () => {
+          setOpenOrderList(isListOpen ? null : index);
+        };
+
         return (
           <li key={index}>
-            <div className={containerClassName}>
+            <div className={containerClassName} onClick={openList}>
               <div className={`${isListOpen ? 'hidden' : 'block'}`}>
                 <div className="md:flex justify-between ">
                   <div className="md:order-2">
@@ -41,11 +62,15 @@ export default function MyOrderList({ orderedItems }: Props) {
                     <p className="sm:hidden md:block">{statusName}</p>
                   </div>
 
-                  <div className="flex justify-between mb-2.5  md:order-3 md:block ">
-                    <p>{orderItem.text}</p>
+                  <div className="flex justify-between  text-center md:order-3 md:block ">
+                    <p className="mb-2.5">
+                      {' '}
+                      {}
+                      {orderItem.text}
+                    </p>
                     <p>{orderItem.total} ₴</p>
                   </div>
-                  <div className="flex items-center md:order-1">
+                  <div className="flex items-center  md:order-1">
                     {[...Array(isOnMobile ? 2 : 3)].map((_, i) => (
                       <Image
                         key={i}
@@ -61,9 +86,10 @@ export default function MyOrderList({ orderedItems }: Props) {
                   <div className="flex justify-between md:order-4">
                     <p className="mt-2.5 md:hidden">{statusName}</p>
                     <div
-                      onClick={() =>
-                        setOpenOrderList(isListOpen ? null : index)
-                      }
+                      onClick={e => {
+                        e.stopPropagation();
+                        toggleOpenList();
+                      }}
                     >
                       <SpriteSVG
                         name={isListOpen ? 'expand_up' : 'expand_down'}
@@ -80,9 +106,10 @@ export default function MyOrderList({ orderedItems }: Props) {
                       <p className="text-gray-600">{orderItem.date}</p>
                     </div>
                     <div
-                      onClick={() =>
-                        setOpenOrderList(isListOpen ? null : index)
-                      }
+                      onClick={e => {
+                        e.stopPropagation();
+                        toggleOpenList();
+                      }}
                     >
                       <SpriteSVG
                         name={isListOpen ? 'expand_up' : 'expand_down'}
@@ -92,24 +119,17 @@ export default function MyOrderList({ orderedItems }: Props) {
                   <div className="mb-5 ">
                     <span>{statusName}</span>
                   </div>
-                  <div className="xl:flex">
+                  <div className="xl:flex ">
                     <div>
-                      <div className="md:flex mb-8 xl:block">
+                      <div className="md:flex mb-8 xl:block xl:mr-6 xl:w-[282px]">
                         <InfoAboutOrder />
                       </div>
                     </div>
-                    <div>
-                      <OrderList
-                        cartItems={orderedItems}
-                        stylesImageWrapper="w-[70px] h-[60px] mb-6"
-                        stylesSumWord=" h-6 text-base leading-relaxed text-right text-gray-400"
-                        stylesSumNumber=" h-6 text-sm leading-relaxed text-right text-gray-900"
-                        stylesButton="hidden"
-                        isInCart={true}
-                      />
+                    <div className="xl:w-full">
+                      <MyItemsList myOrderData={myOrderData} />
                     </div>
                   </div>
-                  <MyOrderPaymentDetails />
+                  <MyOrderPaymentDetails status={orderItem.status} />
                 </div>
               )}
             </div>
