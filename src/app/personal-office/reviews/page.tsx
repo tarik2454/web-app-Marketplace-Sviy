@@ -16,7 +16,7 @@ export default function Reviews() {
         homeElement={<span>Головна</span>}
       />
       <Container>
-        <PageTitle stylesPageTitle={'hidden xl:block'} name={'Відгуки'} />
+        <PageTitle stylesPageTitle={'hidden xl:block xl:mb-[77px]'} name={'Відгуки'} />
         <PersonalReviews />
       </Container>
     </PageWrapper>

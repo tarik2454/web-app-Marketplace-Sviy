@@ -20,15 +20,20 @@ export default function PersonalMyAdsItems() {
   }) => <PersonalMyAdsList key={item.id} />;
 
   return (
-    <div>
+    <>
       <div className="flex gap-6 w-full flex-col-reverse pt-8 md:pt-10 xl:pt-0 xl:flex-row ">
-        <SearchInput className="border border-blue-500 rounded-[20px]" />
+        <SearchInput
+          className="border border-blue-500 rounded-[20px]"
+          inputStyle="placeholder-gray-600"
+        />
         <OrangeButton cssSettings="text-white w-full max-w-[215px]">
           Додати оголошення
         </OrangeButton>
       </div>
       <div className="flex justify-between mb-5">
-        <p className="pt-5 text-sm flex items-center md:text-base">Всього: 8</p>
+        <p className="pt-5 text-sm flex items-center md:text-base md:items-end">
+          Всього: 8
+        </p>
         <Dropdown
           onChange={() => {}}
           options={sort}
@@ -41,9 +46,9 @@ export default function PersonalMyAdsItems() {
       <Pagination
         itemsPerPage={itemsPerPage}
         array={productsData}
-        styleUl={'flex flex-col gap-5'}
+        styleUl={'flex flex-col gap-5 mb-5 md:mb-10'}
         renderItemLi={renderItemLi}
       />
-    </div>
+    </>
   );
 }
