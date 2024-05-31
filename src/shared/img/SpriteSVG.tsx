@@ -291,6 +291,21 @@ export const SpriteSVG = ({
         </svg>
       );
 
+    case 'star':
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+        >
+          <path
+            fill="currentColor"
+            d="m12 0 4.079 7.364L24 9.167l-5.4 6.355.816 8.478L12 20.564 4.584 24l.816-8.478L0 9.167l7.921-1.803L12 0Z"
+          />
+        </svg>
+      );
+
     case 'logo':
       return (
         <svg
@@ -841,6 +856,31 @@ export const SpriteSVG = ({
             d={dForMail}
             strokeWidth="2"
             stroke="#1565C0"
+          />
+        </svg>
+      );
+
+    case 'email':
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="none"
+        >
+          <rect
+            width="16.667"
+            height="12.5"
+            x="1.667"
+            y="4.167"
+            stroke="#1565C0"
+            stroke-width="2"
+            rx="2"
+          />
+          <path
+            stroke="#1565C0"
+            stroke-width="2"
+            d="m1.667 6.667 7.439 3.72a2 2 0 0 0 1.789 0l7.439-3.72"
           />
         </svg>
       );
