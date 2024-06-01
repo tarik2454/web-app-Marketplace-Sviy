@@ -21,6 +21,6 @@ export { default as FavoritesSection } from './favoritesSection/FavoritesSection
 export { default as PersonalMyData } from './personalMyData/PersonalMyData';
 export { default as PersonalMyOrders } from './personalMyOrders/PersonalMyOrders';
 export { default as PersonalMyAds } from './personalMyAds/PersonalMyAds';
-export { default as PersonalOrderCustomers } from './personalOrderCustomers/PersonalOrderCustomers';
+export { default as PersonalMySales } from './personalMySales/PersonalMySales';
 export { default as PersonalMySelectedAnnouncements } from './personalMySelectedAnnouncements/PersonalMySelectedAnnouncements';
 export { default as PersonalReviews } from './personalReviews/PersonalReviews';

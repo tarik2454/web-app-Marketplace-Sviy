@@ -30,9 +30,7 @@ export default function Page() {
               <Link href="/personal-office/profile">- profile</Link>
               <Link href="/personal-office/my-ads">- my-ads</Link>
               <Link href="/personal-office/my-purchases">- my-purchases</Link>
-              <Link href="/personal-office/order-customers">
-                - order-customers
-              </Link>
+              <Link href="/personal-office/my-sales">- my-sales</Link>
               <Link href="/personal-office/reviews">- reviews</Link>
               <Link href="/personal-office/selected">- selected</Link>
             </li>

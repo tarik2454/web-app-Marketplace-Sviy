@@ -1,7 +1,8 @@
 import Image from '@/shared/img/salo.jpeg';
 
-const orderedItems = [
+const myOrderData = [
   {
+    id: 0,
     heading: 'Вареники з картоплею',
     status: 'new',
     number: '1223',
@@ -12,6 +13,7 @@ const orderedItems = [
     images: Image,
   },
   {
+    id: 1,
     heading: 'Вареники з картоплею',
     status: 'inprogress',
     number: '1224',
@@ -22,6 +24,7 @@ const orderedItems = [
     images: Image,
   },
   {
+    id: 2,
     heading: 'Вареники з картоплею',
     status: 'fulfilled',
     number: '1225',
@@ -32,7 +35,19 @@ const orderedItems = [
     images: Image,
   },
   {
-    heading: 'Варениник з картоплею',
+    id: 3,
+    heading: 'Вареники з картоплею',
+    status: 'canceled',
+    number: '1226',
+    text: 'Сума замовлення',
+    price: '150',
+    total: '170',
+    date: '09.01.2024 14:35:13',
+    images: Image,
+  },
+  {
+    id: 4,
+    heading: 'Вареники з картоплею',
     status: 'canceled',
     number: '1226',
     text: 'Сума замовлення',
@@ -43,4 +58,4 @@ const orderedItems = [
   },
 ];
 
-export default orderedItems;
+export default myOrderData;

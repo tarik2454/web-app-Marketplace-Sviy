@@ -1,15 +1,15 @@
 import { OrangeButton, ArrowButton, CloseButton } from '@/shared/components';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
-type Props = {
+type MyOrderItemFeedbackProps = {
   isItemModalOpen: boolean;
   handleCloseItemModal: () => void;
 };
 
-export default function MyItemFeedback({
+export default function MyOrderItemFeedback({
   isItemModalOpen,
   handleCloseItemModal,
-}: Props) {
+}: MyOrderItemFeedbackProps) {
   return (
     <>
       {isItemModalOpen && (

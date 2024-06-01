@@ -97,9 +97,9 @@ export default function PersonalDynamicSidebar({
           <li className={`group ${activeSale}`}>
             <Link
               className={`link ${
-                pathname === '/personal-office/order-customers' ? 'active' : ''
+                pathname === '/personal-office/my-sales' ? 'active' : ''
               }`}
-              href="/personal-office/order-customers"
+              href="/personal-office/my-sales"
             >
               <div className={`${liClass} relative`}>
                 <SpriteSVG name="discount-label" />
@@ -217,11 +217,9 @@ export default function PersonalDynamicSidebar({
             <li className={`group ${activeSale}`}>
               <Link
                 className={`link ${
-                  pathname === '/personal-office/order-customers'
-                    ? 'active'
-                    : ''
+                  pathname === '/personal-office/my-sales' ? 'active' : ''
                 }`}
-                href="/personal-office/order-customers"
+                href="/personal-office/my-sales"
               >
                 <div className={`${liClass} relative`}>
                   <SpriteSVG name="discount-label" />
@@ -324,11 +322,9 @@ export default function PersonalDynamicSidebar({
             <li className={`group ${activeSale}`}>
               <Link
                 className={`link ${
-                  pathname === '/personal-office/order-customers'
-                    ? 'active'
-                    : ''
+                  pathname === '/personal-office/my-sales' ? 'active' : ''
                 }`}
-                href="/personal-office/order-customers"
+                href="/personal-office/my-sales"
               >
                 <div className={liClass}>
                   <SpriteSVG name="discount-label" />
