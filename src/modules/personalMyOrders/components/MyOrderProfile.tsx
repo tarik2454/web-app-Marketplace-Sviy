@@ -3,11 +3,11 @@ import SearchInput from '@/shared/components/Search/SearchInput';
 import { Dropdown, Pagination } from '@/shared/components';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import sort from '@/shared/data/personal-select-data';
-import myOrderData from '@/shared/data/my-order-data';
+import myOrderData from '../data/my-order-data';
 
 const renderItemLi = (item: {
   id: number;
-  heading: string;
+  name: string;
   status: string;
   number: string;
   text: string;

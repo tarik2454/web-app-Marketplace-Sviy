@@ -6,7 +6,7 @@ import Image from 'next/image';
 import OrderImage from '@/shared/img/salo.jpeg';
 
 type Order = {
-  heading: string;
+  name: string;
   status: string;
   number: string;
   text: string;
@@ -78,7 +78,7 @@ export default function MyOrderFeedback({
                     <div className="flex-grow md:flex justify-between items-baseline">
                       <div>
                         <p className="text-sm text-gray-900 mb-2">
-                          {orderItem.heading}
+                          {orderItem.name}
                         </p>
                       </div>
                       <div className="flex justify-end">

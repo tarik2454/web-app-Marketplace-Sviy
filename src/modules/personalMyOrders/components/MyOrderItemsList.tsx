@@ -3,7 +3,7 @@ import OrderImage from '@/shared/img/salo.jpeg';
 import Image from 'next/image';
 
 type Order = {
-  heading: string;
+  name: string;
   status: string;
   number: string;
   text: string;
@@ -35,7 +35,7 @@ export default function MyOrderItemsList({
                 alt="Order photo"
               />
               <div>
-                <p className=" text-gray-900 md:text-xl">{orderItem.heading}</p>
+                <p className=" text-gray-900 md:text-xl">{orderItem.name}</p>
                 <p className="text-sm text-gray-400 md:text-base">Ціна</p>
                 <p className="text-sm md:text-base">{orderItem.price} ₴</p>
               </div>

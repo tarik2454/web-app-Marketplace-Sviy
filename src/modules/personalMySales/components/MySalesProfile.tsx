@@ -2,12 +2,12 @@ import { Dropdown } from '@/shared/components';
 import sort from '@/shared/data/personal-select-data';
 import sortOrder from '@/shared/data/sort-order-data';
 import MySalesList from './MySalesList';
-import myOrderData from '@/shared/data/my-order-data';
+import mySalesData from '../data/my-sales-data';
 
 export default function MySalesProfile() {
   return (
     <>
-      <div className="flex sm:justify-between md:justify-end md:gap-6">
+      <div className="flex mb-5 sm:justify-between md:justify-end md:gap-6">
         <Dropdown
           onChange={() => {}}
           options={sort}
@@ -27,7 +27,7 @@ export default function MySalesProfile() {
           menuClassName="!w-[165px] md:!w-[193px]"
         />
       </div>
-      <MySalesList myOrderData={myOrderData} />
+      <MySalesList mySalesData={mySalesData} />
     </>
   );
 }
