@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import { getStatusValues } from '../helpers/orderUtils';
+import { getStatusValues } from '@/modules/personalMyOrders/helpers/orderUtils';
 import { StaticImageData } from 'next/image';
 
 import OrderImage from '@/shared/img/salo.jpeg';
 import Image from 'next/image';
 
-import InfoAboutOrder from './InfoAboutOrder';
+// import InfoAboutOrder from './InfoAboutOrder';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
-import MyOrderPaymentDetails from './MyOrderPaymentDetails';
-import MyOrderItemsList from './MyOrderItemsList';
+// import MyOrderPaymentDetails from './MyOrderPaymentDetails';
+// import MyOrderItemsList from './MyOrderItemsList';
 
 type Order = {
   heading: string;
@@ -22,11 +22,11 @@ type Order = {
   images: StaticImageData;
 };
 
-type MyOrderListProps = {
+type MySalesListProps = {
   myOrderData: Order[];
 };
 
-export default function MyOrderList({ myOrderData }: MyOrderListProps) {
+export default function MySalesList({ myOrderData }: MySalesListProps) {
   const [openOrderList, setOpenOrderList] = useState<number | null>(null);
   const { isOnMobile } = ScreenSize();
 
@@ -122,14 +122,14 @@ export default function MyOrderList({ myOrderData }: MyOrderListProps) {
                   <div className="xl:flex ">
                     <div>
                       <div className="md:flex mb-8 xl:block xl:mr-6 xl:w-[282px]">
-                        <InfoAboutOrder />
+                        {/* <InfoAboutOrder /> */}
                       </div>
                     </div>
                     <div className="xl:w-full">
-                      <MyOrderItemsList myOrderData={myOrderData} />
+                      {/* <MyOrderItemsList myOrderData={myOrderData} /> */}
                     </div>
                   </div>
-                  <MyOrderPaymentDetails status={orderItem.status} />
+                  {/* <MyOrderPaymentDetails status={orderItem.status} /> */}
                 </div>
               )}
             </div>

@@ -13,11 +13,13 @@ type Order = {
   images: StaticImageData;
 };
 
-type MyItemsListProps = {
+type MyOrderItemsListProps = {
   myOrderData: Order[];
 };
 
-export default function MyItemsList({ myOrderData }: MyItemsListProps) {
+export default function MyOrderItemsList({
+  myOrderData,
+}: MyOrderItemsListProps) {
   return (
     <>
       {myOrderData.map((orderItem, index) => {

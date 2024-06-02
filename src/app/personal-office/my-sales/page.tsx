@@ -1,4 +1,4 @@
-import { PersonalMyOrders } from '@/modules';
+import { PersonalMySales } from '@/modules';
 import {
   Breadcrumbs,
   ColorSpot,
@@ -7,7 +7,7 @@ import {
   PageWrapper,
 } from '@/shared/components';
 
-export default function MyPurchases() {
+export default function Reviews() {
   return (
     <PageWrapper>
       <ColorSpot />
@@ -18,10 +18,10 @@ export default function MyPurchases() {
       <Container>
         <PageTitle
           stylesPageTitle={'hidden xl:block xl:mb-[77px]'}
-          name={'Мої замовлення'}
+          name={'Мої продажі'}
         />
       </Container>
-      <PersonalMyOrders />
+      <PersonalMySales />
     </PageWrapper>
   );
 }

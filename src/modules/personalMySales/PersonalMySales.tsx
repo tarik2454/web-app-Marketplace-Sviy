@@ -5,7 +5,7 @@ import {
   PersonalDynamicSidebar,
   Section,
 } from '@/shared/components';
-import MyOrderProfile from './components/MyOrderProfile';
+import MySalesProfile from './components/MySalesProfile';
 
 export default function PersonalMyOrders() {
   const { isOnMobile, isOnTablet } = ScreenSize();
@@ -14,22 +14,22 @@ export default function PersonalMyOrders() {
       <Container>
         {(isOnMobile && (
           <PersonalDynamicSidebar
-            activeOrders="active"
-            childOrders={<MyOrderProfile />}
+            activeSale="active"
+            childSale={<MySalesProfile />}
           />
         )) ||
           (isOnTablet && (
             <PersonalDynamicSidebar
-              activeOrders="active"
-              childOrders={<MyOrderProfile />}
+              activeSale="active"
+              childSale={<MySalesProfile />}
             />
           )) || (
             <div className="flex items-start gap-6">
               <div className="basis-1/3 max-w-[302px]">
-                <PersonalDynamicSidebar activeOrders="active" />
+                <PersonalDynamicSidebar activeSale="active" />
               </div>
               <div className="basis-3/4">
-                <MyOrderProfile />
+                <MySalesProfile />
               </div>
             </div>
           )}
