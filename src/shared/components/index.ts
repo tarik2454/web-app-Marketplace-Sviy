@@ -23,3 +23,4 @@ export { default as OrderList } from './OrderList/OrderList';
 export { default as PageTitle } from './PageTitle/PageTitle';
 export { default as BlueBorderButton } from './BlueBorderButton/BlueBorderButton';
 export { default as PersonalDynamicSidebar } from './PersonalDynamicSidebar/PersonalDynamicSidebar';
+export { default as FavoritesSection } from './FavoritesSection/FavoritesSection';

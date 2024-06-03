@@ -1,8 +1,8 @@
-import { FavoritesSection } from '@/modules';
 import {
   Breadcrumbs,
   ColorSpot,
   Container,
+  FavoritesSection,
   PageTitle,
   PageWrapper,
 } from '@/shared/components';
