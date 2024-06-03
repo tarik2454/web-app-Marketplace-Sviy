@@ -17,7 +17,6 @@ export { default as SignupForm } from './signupForm/SignupForm';
 export { default as NotFound } from './notFound/NotFound';
 export { default as SellerData } from './sellerData/SellerData';
 export { default as Order } from './order/Order';
-export { default as FavoritesSection } from './favoritesSection/FavoritesSection';
 export { default as PersonalMyData } from './personalMyData/PersonalMyData';
 export { default as PersonalMyOrders } from './personalMyOrders/PersonalMyOrders';
 export { default as PersonalMyAds } from './personalMyAds/PersonalMyAds';

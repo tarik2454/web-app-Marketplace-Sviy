@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { useRouter } from 'next/navigation';
+import { twMerge } from 'tailwind-merge';
 
 interface SearchInputProps {
   toggleSearchVisibility?: () => void;
@@ -39,13 +40,16 @@ export default function SearchInput({
   };
 
   return (
-    <div className={`flex w-full items-center px-3 py-2 ${className}`}>
+    <div className={twMerge(`flex w-full items-center px-3 py-2`, className)}>
       <button className="text-blue-700" onClick={handleSearchClick}>
         <SpriteSVG name="search" />
       </button>
 
       <input
-        className={`w-full outline-none px-2 bg-transparent text-neutral-800 placeholder-neutral-800 ${inputStyle}`}
+        className={twMerge(
+          `w-full outline-none px-2 bg-transparent text-neutral-800 placeholder-neutral-800`,
+          inputStyle
+        )}
         type="text"
         placeholder="Пошук оголошень"
         value={searchText}
