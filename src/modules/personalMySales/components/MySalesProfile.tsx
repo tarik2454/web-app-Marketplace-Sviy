@@ -1,6 +1,6 @@
 import { Dropdown } from '@/shared/components';
 import sort from '@/shared/data/personal-select-data';
-import sortOrder from '@/shared/data/sort-order-data';
+import sortSales from '@/shared/data/sort-sales-data';
 import MySalesList from './MySalesList';
 import mySalesData from '../data/my-sales-data';
 
@@ -19,7 +19,7 @@ export default function MySalesProfile() {
         />
         <Dropdown
           onChange={() => {}}
-          options={sortOrder}
+          options={sortSales}
           placeholder="Всі замовлення"
           controlClassName="text-sm md:text-base"
           id={`novelties-${23}`}
