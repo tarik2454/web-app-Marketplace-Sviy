@@ -13,7 +13,7 @@ export default function PriceButtons({
   maxPriceChange,
 }: Props) {
   return (
-    <div className="flex mt-8 flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <span>Ціна</span>
       <div className="flex gap-5 xl:gap-1">
         <input

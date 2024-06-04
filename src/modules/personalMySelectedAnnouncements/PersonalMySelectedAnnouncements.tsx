@@ -18,13 +18,13 @@ export default function PersonalMySelectedAnnouncements() {
         {(isOnMobile && (
           <PersonalDynamicSidebar
             activeFavorite="active"
-            childSale={<MySelectedProfile />}
+            childFavorite={<MySelectedProfile />}
           />
         )) ||
           (isOnTablet && (
             <PersonalDynamicSidebar
               activeFavorite="active"
-              childSale={<MySelectedProfile />}
+              childFavorite={<MySelectedProfile />}
             />
           )) || (
             <div className="flex items-start gap-6">

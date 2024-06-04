@@ -104,104 +104,108 @@ export default function Filter({ display, closeButtonClick }: Props) {
       md:w-fit md:left-auto md:right-0 
       xl:relative xl:block xl:rounded-default xl:z-0 xl:inset-0 xl:overflow-visible xl:h-fit xl:min-w-fit`}
     >
-      <div className="flex items-center text-2xl pb-[10px] border-b-2 xl:hidden">
+      <div className="flex items-center text-2xl mb-10 border-b-2 xl:hidden">
         <h1 className="mr-auto">Фільтр</h1>
         <CloseButton closeButtonClick={closeButtonClick} />
       </div>
 
       <h1 className="text-2xl hidden xl:block">Фільтр</h1>
 
-      <FilterOptions
-        inStockClick={() => filterOptionsHandler('inStockDelete')}
-        priceClick={() => filterOptionsHandler('priceDelete')}
-        areaClick={() => filterOptionsHandler('areaDelete')}
-        salesPromotionClick={() => filterOptionsHandler('salesPromotionDelete')}
-        filterOptionsDisplay={filterOptionsDisplay}
-        deleteAllOptionsClick={() => filterOptionsHandler('deleteAll')}
-        filterOptions={filterOptions}
-      />
+      <div className="flex flex-col gap-8">
+        <FilterOptions
+          inStockClick={() => filterOptionsHandler('inStockDelete')}
+          priceClick={() => filterOptionsHandler('priceDelete')}
+          areaClick={() => filterOptionsHandler('areaDelete')}
+          salesPromotionClick={() =>
+            filterOptionsHandler('salesPromotionDelete')
+          }
+          filterOptionsDisplay={filterOptionsDisplay}
+          deleteAllOptionsClick={() => filterOptionsHandler('deleteAll')}
+          filterOptions={filterOptions}
+        />
 
-      <OptionsButtons
-        inStockClick={() => filterOptionsHandler('inStockAdd')}
-        salesPromotionClick={() => filterOptionsHandler('salesPromotionAdd')}
-      />
+        <OptionsButtons
+          inStockClick={() => filterOptionsHandler('inStockAdd')}
+          salesPromotionClick={() => filterOptionsHandler('salesPromotionAdd')}
+        />
 
-      <Dropdown
-        options={categoriesData.map(category => ({
-          value: String(category.id),
-          label: category.title,
-        }))}
-        placeholder={'Категорії'}
-        id={'categories'}
-        dropdownName={'Категорії'}
-        onChange={(category: any) => {
-          const specificCategory = categoriesData.find(
-            specific => specific.title === category.label
-          );
-          setFirstSubcategories(
-            specificCategory?.subCategories?.map((subcategory: any) => ({
-              value: subcategory.title,
-              label: subcategory.title,
-              items: subcategory.items,
-            }))
-          );
-          setSecondSubcategories(undefined);
-        }}
-        menuClassName="min-w-[275px]"
-      />
-
-      {firstSubcategories && (
         <Dropdown
-          options={firstSubcategories}
-          placeholder={'Підкатегорія 1'}
-          id={'firstSubcategories'}
-          dropdownName={'Підкатегорія 1'}
+          options={categoriesData.map(category => ({
+            value: String(category.id),
+            label: category.title,
+          }))}
+          placeholder={'Категорії'}
+          id={'categories'}
+          dropdownName={'Категорії'}
           onChange={(category: any) => {
-            const specificCategory = firstSubcategories.find(
-              specific => specific.label === category.label
+            const specificCategory = categoriesData.find(
+              specific => specific.title === category.label
             );
-            setSecondSubcategories(
-              specificCategory.items.map((subcategory: string) => ({
-                value: subcategory,
-                label: subcategory,
+            setFirstSubcategories(
+              specificCategory?.subCategories?.map((subcategory: any) => ({
+                value: subcategory.title,
+                label: subcategory.title,
+                items: subcategory.items,
               }))
             );
+            setSecondSubcategories(undefined);
           }}
           menuClassName="min-w-[275px]"
         />
-      )}
 
-      {secondSubcategories && (
+        {firstSubcategories && (
+          <Dropdown
+            options={firstSubcategories}
+            placeholder={'Підкатегорія 1'}
+            id={'firstSubcategories'}
+            dropdownName={'Підкатегорія 1'}
+            onChange={(category: any) => {
+              const specificCategory = firstSubcategories.find(
+                specific => specific.label === category.label
+              );
+              setSecondSubcategories(
+                specificCategory.items.map((subcategory: string) => ({
+                  value: subcategory,
+                  label: subcategory,
+                }))
+              );
+            }}
+            menuClassName="min-w-[275px]"
+          />
+        )}
+
+        {secondSubcategories && (
+          <Dropdown
+            options={secondSubcategories}
+            placeholder={'Підкатегорія 2'}
+            id={'secondSubcategories'}
+            dropdownName={'Підкатегорія 2'}
+            onChange={() => {}}
+            menuClassName="min-w-[275px]"
+          />
+        )}
+
         <Dropdown
-          options={secondSubcategories}
-          placeholder={'Підкатегорія 2'}
-          id={'secondSubcategories'}
-          dropdownName={'Підкатегорія 2'}
-          onChange={() => {}}
+          options={areaOptions}
+          placeholder={'Район'}
+          id={'searchArea'}
+          dropdownName={'Шукати в...'}
+          onChange={(area: any) => {
+            setFilterOptions(prevState => ({ ...prevState, area: area.label }));
+          }}
           menuClassName="min-w-[275px]"
         />
-      )}
 
-      <Dropdown
-        options={areaOptions}
-        placeholder={'Район'}
-        id={'searchArea'}
-        dropdownName={'Шукати в...'}
-        onChange={(area: any) => {
-          setFilterOptions(prevState => ({ ...prevState, area: area.label }));
-        }}
-        menuClassName="min-w-[275px]"
-      />
-
-      <PriceButtons
-        minPriceChange={(event: ChangeEvent<HTMLInputElement>) =>
-          setTemporaryMin(event.target.value)
-        }
-        maxPriceChange={(event: ChangeEvent<HTMLInputElement>) =>
-          setTemporaryMax(event.target.value)
-        }
-        okButtonClick={() => filterOptionsHandler('priceAdd')}
-      />
+        <PriceButtons
+          minPriceChange={(event: ChangeEvent<HTMLInputElement>) =>
+            setTemporaryMin(event.target.value)
+          }
+          maxPriceChange={(event: ChangeEvent<HTMLInputElement>) =>
+            setTemporaryMax(event.target.value)
+          }
+          okButtonClick={() => filterOptionsHandler('priceAdd')}
+        />
+      </div>
     </div>
   );
 }

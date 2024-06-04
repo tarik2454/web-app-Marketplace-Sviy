@@ -30,7 +30,8 @@ export default function Dropdown({
 }: Props) {
   return (
     <div className={twMerge('flex flex-col gap-4 mt-0', wrapperClassName)}>
-      {/* <label htmlFor={id}>{dropdownName}</label> */}
+      {dropdownName ? <label htmlFor={id}>{dropdownName}</label> : null}
+
       <div className="px-4 py-1 border-[1px] border-slate-300 rounded-default bg-white">
         <Select
           classNames={{
