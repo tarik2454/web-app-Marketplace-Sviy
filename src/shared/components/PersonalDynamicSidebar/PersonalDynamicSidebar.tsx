@@ -1,4 +1,5 @@
 'use client';
+
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import { ReactNode } from 'react';
@@ -33,6 +34,7 @@ export default function PersonalDynamicSidebar({
   activeFeedback,
 }: PropsSidebar) {
   const { isOnMobile, isOnTablet } = ScreenSize();
+
   const pathname = usePathname();
 
   return (
@@ -56,8 +58,9 @@ export default function PersonalDynamicSidebar({
                 </span>
               </div>
             </Link>
-            <>{childProfile}</>
+            <div>{childProfile}</div>
           </li>
+
           <li className={`group ${activeOrders}`}>
             <Link
               className={`link ${
@@ -75,8 +78,9 @@ export default function PersonalDynamicSidebar({
                 </span>
               </div>
             </Link>
-            <>{childOrders}</>
+            <div>{childOrders}</div>
           </li>
+
           <li className={`group ${activeAds}`}>
             <Link
               className={`link ${
@@ -94,6 +98,7 @@ export default function PersonalDynamicSidebar({
             </Link>
             <div>{childAds}</div>
           </li>
+
           <li className={`group ${activeSale}`}>
             <Link
               className={`link ${
@@ -111,6 +116,7 @@ export default function PersonalDynamicSidebar({
             </Link>
             <div>{childSale}</div>
           </li>
+
           <li className={`group ${activeFavorite}`}>
             <Link
               className={`link ${
@@ -130,6 +136,7 @@ export default function PersonalDynamicSidebar({
             </Link>
             <div>{childFavorite}</div>
           </li>
+
           <li className={`group ${activeFeedback}`}>
             <Link
               className={`link ${
@@ -149,11 +156,14 @@ export default function PersonalDynamicSidebar({
             </Link>
             <div>{childFeedback}</div>
           </li>
+
           <li className="group">
-            <div className={'rounded-b-lg' + ` ${liClass}`}>
-              <SpriteSVG name="exit" />
-              <p>Вийти</p>
-            </div>
+            <Link href={'/'}>
+              <div className={'rounded-b-lg' + ` ${liClass}`}>
+                <SpriteSVG name="exit" />
+                <p>Вийти</p>
+              </div>
+            </Link>
           </li>
         </ul>
       )) ||
@@ -178,6 +188,7 @@ export default function PersonalDynamicSidebar({
               </Link>
               <>{childProfile}</>
             </li>
+
             <li className={`group ${activeOrders}`}>
               <Link
                 className={`link ${
@@ -197,6 +208,7 @@ export default function PersonalDynamicSidebar({
               </Link>
               <div>{childOrders}</div>
             </li>
+
             <li className={`group ${activeAds}`}>
               <Link
                 className={`link ${
@@ -214,6 +226,7 @@ export default function PersonalDynamicSidebar({
               </Link>
               <div>{childAds}</div>
             </li>
+
             <li className={`group ${activeSale}`}>
               <Link
                 className={`link ${
@@ -233,6 +246,7 @@ export default function PersonalDynamicSidebar({
               </Link>
               <div>{childSale}</div>
             </li>
+
             <li className={`group ${activeFavorite}`}>
               <Link
                 className={`link ${
@@ -252,6 +266,7 @@ export default function PersonalDynamicSidebar({
               </Link>
               <div>{childFavorite}</div>
             </li>
+
             <li className={`group ${activeFeedback}`}>
               <Link
                 className={`link ${
@@ -271,11 +286,14 @@ export default function PersonalDynamicSidebar({
               </Link>
               <div>{childFeedback}</div>
             </li>
+
             <li className="group">
-              <div className={'rounded-b-lg' + ` ${liClass}`}>
-                <SpriteSVG name="exit" />
-                <p>Вийти</p>
-              </div>
+              <Link href={'/'}>
+                <div className={'rounded-b-lg' + ` ${liClass}`}>
+                  <SpriteSVG name="exit" />
+                  <p>Вийти</p>
+                </div>
+              </Link>
             </li>
           </ul>
         )) || (
@@ -293,6 +311,7 @@ export default function PersonalDynamicSidebar({
                 </div>
               </Link>
             </li>
+
             <li className={`group ${activeOrders}`}>
               <Link
                 className={`link ${
@@ -306,6 +325,7 @@ export default function PersonalDynamicSidebar({
                 </div>
               </Link>
             </li>
+
             <li className={`group ${activeAds}`}>
               <Link
                 className={`link ${
@@ -319,6 +339,7 @@ export default function PersonalDynamicSidebar({
                 </div>
               </Link>
             </li>
+
             <li className={`group ${activeSale}`}>
               <Link
                 className={`link ${
@@ -332,6 +353,7 @@ export default function PersonalDynamicSidebar({
                 </div>
               </Link>
             </li>
+
             <li className={`group ${activeFavorite}`}>
               <Link
                 className={`link ${
@@ -345,6 +367,7 @@ export default function PersonalDynamicSidebar({
                 </div>
               </Link>
             </li>
+
             <li className={`group ${activeFeedback}`}>
               <Link
                 className={`link ${
@@ -358,11 +381,14 @@ export default function PersonalDynamicSidebar({
                 </div>
               </Link>
             </li>
+
             <li className="group">
-              <div className={'rounded-b-lg' + ` ${liClass}`}>
-                <SpriteSVG name="exit" />
-                Вийти
-              </div>
+              <Link href={'/'}>
+                <div className={'rounded-b-lg' + ` ${liClass}`}>
+                  <SpriteSVG name="exit" />
+                  Вийти
+                </div>
+              </Link>
             </li>
           </ul>
         )}

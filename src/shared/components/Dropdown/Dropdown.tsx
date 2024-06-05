@@ -9,6 +9,7 @@ type Props = {
   id: string;
   dropdownName?: string;
   wrapperClassName?: string;
+  stylesInput?: string;
   controlClassName?: string;
   optionClassName?: string;
   menuClassName?: string;
@@ -22,6 +23,7 @@ export default function Dropdown({
   id,
   dropdownName,
   wrapperClassName,
+  stylesInput,
   controlClassName,
   optionClassName,
   menuClassName,
@@ -30,8 +32,14 @@ export default function Dropdown({
 }: Props) {
   return (
     <div className={twMerge('flex flex-col gap-4 mt-0', wrapperClassName)}>
-      <label htmlFor={id}>{dropdownName}</label>
-      <div className="px-4 py-1 border-[1px] border-slate-300 rounded-default bg-white">
+      {dropdownName ? <label htmlFor={id}>{dropdownName}</label> : null}
+
+      <div
+        className={twMerge(
+          'px-4 py-1 border-[1px] border-slate-300 rounded-default bg-white',
+          stylesInput
+        )}
+      >
         <Select
           classNames={{
             control: () => {

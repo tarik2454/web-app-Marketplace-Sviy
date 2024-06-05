@@ -17,11 +17,11 @@ export default function Selected() {
       />
       <Container>
         <PageTitle
-          stylesPageTitle={'hidden xl:block'}
+          stylesPageTitle={'hidden xl:block xl:mb-[88px]'}
           name={'Мої обрані оголошення'}
         />
-        <PersonalMySelectedAnnouncements />
       </Container>
+      <PersonalMySelectedAnnouncements />
     </PageWrapper>
   );
 }
