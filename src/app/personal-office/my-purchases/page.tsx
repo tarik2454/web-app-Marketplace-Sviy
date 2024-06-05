@@ -17,7 +17,7 @@ export default function MyPurchases() {
       />
       <Container>
         <PageTitle
-          stylesPageTitle={'hidden xl:block xl:mb-[77px]'}
+          stylesPageTitle={'hidden xl:block xl:mb-[88px]'}
           name={'Мої замовлення'}
         />
       </Container>

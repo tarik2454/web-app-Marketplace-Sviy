@@ -21,7 +21,7 @@ export default function MyOrderProfile() {
   const itemsPerPage = isOnMobile ? 1 : isOnTablet ? 2 : 3;
   return (
     <div className="max-xl:mt-8 mb-8">
-      <SearchInput className="border border-blue-500 rounded-[20px] h-[50px]" />
+      <SearchInput className="border border-blue-500 rounded-[20px] h-[50px] mb-5" />
 
       <div className="flex justify-between items-center mb-5">
         <span className="pt-5">Всього: 8</span>

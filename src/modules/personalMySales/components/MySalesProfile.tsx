@@ -7,7 +7,7 @@ import mySalesData from '../data/my-sales-data';
 export default function MySalesProfile() {
   return (
     <>
-      <div className="flex mb-5 sm:justify-between md:justify-end md:gap-6">
+      <div className="flex mt-5 mb-5 sm:justify-between md:justify-end md:gap-6">
         <Dropdown
           onChange={() => {}}
           options={sort}

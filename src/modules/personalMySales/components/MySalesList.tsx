@@ -62,7 +62,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                     <p>{saleItem.total} ₴</p>
                   </div>
                   <div className="flex justify-between">
-                    <div className="flex items-center  ">
+                    <div className="flex items-center mb-2.5 ">
                       {[...Array(isOnMobile ? 2 : 3)].map((_, i) => (
                         <Image
                           key={i}
@@ -83,6 +83,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                       placeholder="Нове"
                       controlClassName="text-sm"
                       id={`novelties-${23}`}
+                      stylesInput="py-0"
                       wrapperClassName="w-[142px]"
                       menuClassName="!w-[142px]"
                     />
@@ -105,6 +106,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                     statusName={statusName}
                     isListOpen={isListOpen}
                     toggleOpenList={toggleOpenList}
+                    mySalesData={mySalesData}
                   />
                 )}
               </div>
@@ -128,6 +130,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                         placeholder="Нове"
                         controlClassName="text-base"
                         id={`novelties-${23}`}
+                        stylesInput="py-0"
                         wrapperClassName="w-[193px] block"
                         menuClassName="!w-[193px]"
                       />
@@ -166,6 +169,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                     statusName={statusName}
                     isListOpen={isListOpen}
                     toggleOpenList={toggleOpenList}
+                    mySalesData={mySalesData}
                   />
                 )}
               </div>
@@ -229,6 +233,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                     statusName={statusName}
                     isListOpen={isListOpen}
                     toggleOpenList={toggleOpenList}
+                    mySalesData={mySalesData}
                   />
                 )}
               </div>

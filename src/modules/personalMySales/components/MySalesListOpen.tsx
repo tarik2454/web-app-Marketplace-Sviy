@@ -1,9 +1,8 @@
 import React from 'react';
-import Image, { StaticImageData } from 'next/image';
+import { StaticImageData } from 'next/image';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import OrderImage from '@/shared/img/salo.jpeg';
-import { Dropdown } from '@/shared/components';
-import sortSales from '@/shared/data/sort-sales-data';
+import InfoAboutSales from './InfoAboutSales';
+import MySalesItemsList from './MySalesItemList';
 
 type Order = {
   name: string;
@@ -17,6 +16,7 @@ type Order = {
 };
 
 type MySalesListOpenProps = {
+  mySalesData: Order[];
   saleItem: Order;
   statusName: string;
   isListOpen: boolean;
@@ -24,6 +24,7 @@ type MySalesListOpenProps = {
 };
 
 export default function MySalesListOpen({
+  mySalesData,
   saleItem,
   statusName,
   isListOpen,
@@ -49,17 +50,16 @@ export default function MySalesListOpen({
         <div className="mb-5 ">
           <span>{statusName}</span>
         </div>
-        <div className="xl:flex ">
+        <div className="md:flex flex-col-reverse xl:flex-row ">
           <div>
-            <div className="md:flex mb-8 xl:block xl:mr-6 xl:w-[282px]">
-              {/* <InfoAboutOrder /> */}
+            <div className="sm:mb-8 md:mb-0">
+              <InfoAboutSales />
             </div>
           </div>
           <div className="xl:w-full">
-            {/* <MyOrderItemsList myOrderData={myOrderData} /> */}
+            <MySalesItemsList mySalesData={mySalesData} />
           </div>
         </div>
-        {/* <MyOrderPaymentDetails status={saleItem.status} /> */}
       </div>
     )
   );

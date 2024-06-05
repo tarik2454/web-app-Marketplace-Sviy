@@ -1,7 +1,7 @@
 import { Dropdown, FavoritesSection } from '@/shared/components';
 import SearchInput from '@/shared/components/Search/SearchInput';
 import sort from '@/shared/data/personal-select-data';
-import sortOrder from '@/shared/data/sort-order-data';
+import sortOrder from '@/shared/data/personal-select-data';
 
 export default function MySelectedProfile() {
   return (
