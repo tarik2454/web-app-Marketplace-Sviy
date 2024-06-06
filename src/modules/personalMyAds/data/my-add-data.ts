@@ -1,4 +1,6 @@
-const adsData = [
+import { MyAd } from "../types";
+
+const adsData: MyAd[] = [
   {
     id: 1,
     number: '№ 1223',
