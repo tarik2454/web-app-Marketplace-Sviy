@@ -11,14 +11,14 @@ export default function PersonalReviews() {
        <Container>
          {(isOnMobile && (
            <PersonalDynamicSidebar
-             activeReviews="active"
-             childReviews={<PersonalReviews />}
+             activeFeedback="active"
+             childFeedback={<PersonalFeedback />}
            />
          )) ||
            (isOnTablet && (
              <PersonalDynamicSidebar
                activeFeedback="active"
-               childFeedback={<PersonalReviews />}
+               childFeedback={<PersonalFeedback />}
              />
            )) || (
              <div className="flex items-start gap-6">

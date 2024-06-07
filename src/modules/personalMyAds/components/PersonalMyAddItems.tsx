@@ -21,12 +21,12 @@ export default function PersonalMyAdsItems() {
 
   return (
     <>
-      <div className="flex gap-6 w-full flex-col-reverse pt-8 md:pt-10 xl:pt-0 xl:flex-row ">
+      <div className="flex gap-6 w-full flex-col-reverse pt-8 md:pt-10 xl:pt-0 xl:flex-row mb-8 md:mb-5">
         <SearchInput
           className="border border-blue-500 rounded-[20px]"
-          inputStyle="placeholder-gray-600"
+          inputStyle="!placeholder-gray-600"
         />
-        <OrangeButton cssSettings="text-white w-full max-w-[215px]">
+        <OrangeButton cssSettings="text-white w-full max-w-[215px] md:!py-3">
           Додати оголошення
         </OrangeButton>
       </div>
