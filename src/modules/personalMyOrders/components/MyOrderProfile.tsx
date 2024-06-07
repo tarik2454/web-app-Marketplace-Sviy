@@ -3,11 +3,11 @@ import SearchInput from '@/shared/components/Search/SearchInput';
 import { Dropdown, Pagination } from '@/shared/components';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import sort from '@/shared/data/personal-select-data';
-import myOrderData from '@/shared/data/my-order-data';
+import myOrderData from '../data/my-order-data';
 
 const renderItemLi = (item: {
   id: number;
-  heading: string;
+  name: string;
   status: string;
   number: string;
   text: string;
@@ -21,7 +21,7 @@ export default function MyOrderProfile() {
   const itemsPerPage = isOnMobile ? 1 : isOnTablet ? 2 : 3;
   return (
     <div className="max-xl:mt-8 mb-8">
-      <SearchInput className="border border-blue-500 rounded-[20px] h-[50px]" />
+      <SearchInput className="border border-blue-500 rounded-[20px] h-[50px] mb-5" />
 
       <div className="flex justify-between items-center mb-5">
         <span className="pt-5">Всього: 8</span>

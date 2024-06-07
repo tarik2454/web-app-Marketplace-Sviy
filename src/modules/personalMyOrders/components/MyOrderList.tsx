@@ -12,7 +12,7 @@ import MyOrderPaymentDetails from './MyOrderPaymentDetails';
 import MyOrderItemsList from './MyOrderItemsList';
 
 type Order = {
-  heading: string;
+  name: string;
   status: string;
   number: string;
   text: string;

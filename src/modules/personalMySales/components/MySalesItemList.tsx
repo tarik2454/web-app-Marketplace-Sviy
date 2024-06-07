@@ -13,16 +13,16 @@ type Order = {
   images: StaticImageData;
 };
 
-type MyOrderItemsListProps = {
-  myOrderData: Order[];
+type MySalesItemsListProps = {
+  mySalesData: Order[];
 };
 
-export default function MyOrderItemsList({
-  myOrderData,
-}: MyOrderItemsListProps) {
+export default function MySalesItemsList({
+  mySalesData,
+}: MySalesItemsListProps) {
   return (
     <>
-      {myOrderData.map((orderItem, index) => {
+      {mySalesData.map((saleItem, index) => {
         return (
           <li
             key={index}
@@ -35,14 +35,14 @@ export default function MyOrderItemsList({
                 alt="Order photo"
               />
               <div>
-                <p className=" text-gray-900 md:text-xl">{orderItem.name}</p>
+                <p className=" text-gray-900 md:text-xl">{saleItem.name}</p>
                 <p className="text-sm text-gray-400 md:text-base">Ціна</p>
-                <p className="text-sm md:text-base">{orderItem.price} ₴</p>
+                <p className="text-sm md:text-base">{saleItem.price} ₴</p>
               </div>
             </div>
             <div className="flex flex-col items-end justify-end">
               <p className="text-sm text-gray-400 md:text-base">Сума</p>
-              <p className="text-sm md:text-base">{orderItem.price} ₴</p>
+              <p className="text-sm md:text-base">{saleItem.price} ₴</p>
             </div>
           </li>
         );

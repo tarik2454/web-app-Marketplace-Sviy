@@ -3,7 +3,7 @@ import Image from '@/shared/img/salo.jpeg';
 const myOrderData = [
   {
     id: 0,
-    heading: 'Вареники з картоплею',
+    name: 'Вареники з картоплею',
     status: 'new',
     number: '1223',
     text: 'Сума замовлення',
@@ -14,7 +14,7 @@ const myOrderData = [
   },
   {
     id: 1,
-    heading: 'Вареники з картоплею',
+    name: 'Вареники з картоплею',
     status: 'inprogress',
     number: '1224',
     text: 'Сума замовлення',
@@ -25,7 +25,7 @@ const myOrderData = [
   },
   {
     id: 2,
-    heading: 'Вареники з картоплею',
+    name: 'Вареники з картоплею',
     status: 'fulfilled',
     number: '1225',
     text: 'Сума замовлення',
@@ -36,7 +36,7 @@ const myOrderData = [
   },
   {
     id: 3,
-    heading: 'Вареники з картоплею',
+    name: 'Вареники з картоплею',
     status: 'canceled',
     number: '1226',
     text: 'Сума замовлення',
@@ -47,7 +47,7 @@ const myOrderData = [
   },
   {
     id: 4,
-    heading: 'Вареники з картоплею',
+    name: 'Вареники з картоплею',
     status: 'canceled',
     number: '1226',
     text: 'Сума замовлення',
