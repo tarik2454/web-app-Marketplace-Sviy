@@ -5,7 +5,7 @@ import sortOrder from '@/shared/data/personal-select-data';
 
 export default function MySelectedProfile() {
   return (
-    <div className="pt-6 pb-6 md:pt-10 md:pb-10 xl:pt-0 xl:pb-0">
+    <div className="pt-8 pb-8 md:pt-10 md:pb-10 xl:pt-0 xl:pb-0">
       <SearchInput
         className={
           'mb-5 px-3 py-3 border-[1px] border-blue-700 rounded-default'
