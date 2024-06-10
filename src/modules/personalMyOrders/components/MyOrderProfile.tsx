@@ -20,8 +20,11 @@ export default function MyOrderProfile() {
   const { isOnMobile, isOnTablet } = ScreenSize();
   const itemsPerPage = isOnMobile ? 1 : isOnTablet ? 2 : 3;
   return (
-    <div className="max-xl:mt-8 mb-8">
-      <SearchInput className="border border-blue-500 rounded-[20px] h-[50px] mb-5" />
+    <div className="max-xl:pt-8 pb-8">
+      <SearchInput
+        className="border border-blue-500 rounded-[20px] h-[50px] mb-5"
+        inputStyle="placeholder-gray-600"
+      />
 
       <div className="flex justify-between items-center mb-5">
         <span className="pt-5">Всього: 8</span>

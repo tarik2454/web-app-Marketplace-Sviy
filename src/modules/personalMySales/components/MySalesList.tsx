@@ -76,7 +76,10 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                       ))}
                     </div>
                   </div>
-                  <div className="flex justify-between ">
+                  <div
+                    className="flex justify-between"
+                    onClick={e => e.stopPropagation()}
+                  >
                     <Dropdown
                       onChange={() => {}}
                       options={sortSales}
@@ -123,7 +126,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                       <p className="mb-2.5 mr-3">{saleItem.text}</p>
                       <p>{saleItem.total} ₴</p>
                     </div>
-                    <div className="ml-auto">
+                    <div className="ml-auto" onClick={e => e.stopPropagation()}>
                       <Dropdown
                         onChange={() => {}}
                         options={sortSales}
@@ -203,7 +206,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                       <p className="mb-2.5 mr-3">{saleItem.text}</p>
                       <p>{saleItem.total} ₴</p>
                     </div>
-                    <div className="">
+                    <div className="" onClick={e => e.stopPropagation()}>
                       <Dropdown
                         onChange={() => {}}
                         options={sortSales}
@@ -218,7 +221,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                           e.stopPropagation();
                           toggleOpenList();
                         }}
-                        className="mt-4"
+                        className="flex justify-end mt-4"
                       >
                         <SpriteSVG
                           name={isListOpen ? 'expand_up' : 'expand_down'}
