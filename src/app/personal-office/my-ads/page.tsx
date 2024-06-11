@@ -16,7 +16,7 @@ export default function MyAds() {
         homeElement={<span>Головна</span>}
       />
       <Container>
-        <PageTitle stylesPageTitle='hidden xl:block xl:mb-[77px]' name={'Мої оголошення'} />
+        <PageTitle stylesPageTitle='hidden xl:block xl:mb-[88px]' name={'Мої оголошення'} />
       </Container>
       <PersonalMyAds />
     </PageWrapper>
