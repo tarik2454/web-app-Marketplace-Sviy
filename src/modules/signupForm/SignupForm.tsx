@@ -1,5 +1,14 @@
 'use client';
 
+import { MouseEventHandler, useState } from 'react';
+import Link from 'next/link';
+import { useFormik } from 'formik';
+
+import validationSchemaSignup from './helpers/validationSchemaSignup';
+
+import Modal from '@/shared/components/Modal/Modal';
+import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import {
   FormCheckbox,
   FormInput,
@@ -7,20 +16,16 @@ import {
   Section,
   FormHeading,
 } from '@/shared/components';
-import { MouseEventHandler, useState, ChangeEvent } from 'react';
-import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import { useFormik } from 'formik';
-import Modal from '@/shared/components/Modal/Modal';
-import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
-import Link from 'next/link';
-import * as Yup from 'yup';
 
-type Props = {
+type PropsSignupForm = {
   signupType: 'page' | 'burger';
   signinClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export default function SignupForm({ signupType, signinClick }: Props) {
+export default function SignupForm({
+  signupType,
+  signinClick,
+}: PropsSignupForm) {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -39,22 +44,7 @@ export default function SignupForm({ signupType, signinClick }: Props) {
       passwordRepeat: '',
       chekSignUp: false,
     },
-    validationSchema: Yup.object().shape({
-      login: Yup.string()
-        .min(2, 'Логін повинен мати довжину не менше 2 символів')
-        .required("Введіть ім'я"),
-      email: Yup.string()
-        .email('Дані введені некоректно')
-        .required('Введіть електронну пошту'),
-      password: Yup.string()
-        .min(8, 'Пароль повинен мати довжину не менше 8 символів')
-        .required('Введіть пароль'),
-      passwordRepeat: Yup.string()
-        .oneOf([Yup.ref('password')], 'Паролі мають співпадати')
-        .required('Повторіть пароль'),
-      phoneNumber: Yup.string().required('Введіть номер телефону'),
-      chekSignUp: Yup.boolean(),
-    }),
+    validationSchema: validationSchemaSignup,
     onSubmit: handleSubmit,
   });
 
@@ -68,7 +58,7 @@ export default function SignupForm({ signupType, signinClick }: Props) {
         <FormInput
           formik={formik}
           name="login"
-          label={'Ваше ім’я '}
+          label={'Ваше ім’я та призвище'}
           inputType="text"
         />
         <FormInput

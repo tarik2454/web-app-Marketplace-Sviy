@@ -23,3 +23,4 @@ export { default as PersonalMyAds } from './personalMyAds/PersonalMyAds';
 export { default as PersonalMySales } from './personalMySales/PersonalMySales';
 export { default as PersonalMySelectedAnnouncements } from './personalMySelectedAnnouncements/PersonalMySelectedAnnouncements';
 export { default as PersonalReviews } from './personalReviews/PersonalReviews';
+export { default as PersonalNewAd } from './personalNewAd/PersonalNewAd';
