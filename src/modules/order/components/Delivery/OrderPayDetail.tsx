@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { Field, ErrorMessage } from 'formik';
+import OrderChangeRecipient from './OrderChangeRecipient';
 
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
@@ -9,11 +10,20 @@ export default function OrderPayDetail({ formik }: any) {
   const [errorClassRadio, setErrorClassRadio] = useState('');
   const [errorClassInput, setErrorClassInput] = useState('border-blue-200');
   const [selectInput, setSelectInput] = useState('');
+  const [isGhangeRepicient, setIsGhangeRepicient] = useState(false)
 
   const handleInput = () => {
     setIsDisabled(false);
     setSelectInput('border-[#1565C0] border-[1px] rounded-[20px] pl-2');
+    setIsGhangeRepicient(prevState => !prevState); 
   };
+
+  const handleInputChange = (value: string) => {
+    setSelectInput(value);
+    console.log(value)
+  };
+
+ 
 
   useEffect(() => {
     formik.errors.picked && formik.touched.picked
@@ -62,7 +72,7 @@ export default function OrderPayDetail({ formik }: any) {
           className="text-[#C60000] text-end text-sm"
         />
       </div>
-      <div className="mb-10">
+      <div className="mb-10 flex flex-col gap-5">
         <h3 className="mb-5 font-lora text-2xl md:mb-6">Отримувач</h3>
         <div
           className={`bg-white flex pl-4 pr-4 pt-3 pb-3 items-center justify-between rounded-[20px] border-[1px] xl:min-w-[845px] md:max-w-[700px] sm:max-w-[343px] ${errorClassInput}`}
@@ -87,6 +97,7 @@ export default function OrderPayDetail({ formik }: any) {
             Змінити
           </button>
         </div>
+        {isGhangeRepicient && <OrderChangeRecipient formik={formik} onInputChange={handleInputChange}/>}
         <ErrorMessage
           name="customer"
           component="p"
@@ -99,9 +110,8 @@ export default function OrderPayDetail({ formik }: any) {
           as="textarea"
           className="w-full focus:outline-[#1565C0] placeholder:text-gray-900 h-20 focus:border-blue-900 box-border resize-none bg-white pl-4 pr-4 pt-6 pb-6 rounded-[20px]"
           name="comment"
-          id="comment"
-          placeholder="Напишіть коментар"
-        ></Field>
+          placeholder="Введіть ваш коментар"
+        />
       </div>
     </>
   );

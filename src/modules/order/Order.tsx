@@ -1,7 +1,7 @@
 'use client';
-
 import { useState } from 'react';
 import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 
@@ -13,12 +13,28 @@ import {
 } from '@/shared/components';
 import { OrderCheckout, OrderListHeader } from './components';
 import { Delivery, OrderPayDetail } from './components/Delivery';
-import { orderSchema } from './helpers/order-schema';
 import AfterOrder from './components/AfterOrder/AfterOrder';
 
-// export type AfterOrderProps = {
-//   [key: string]: string | boolean;
-// }
+const orderSchema = Yup.object().shape({
+  firstName: Yup.string().required('Введіть ім\'я'),
+  lastName: Yup.string().required('Введіть прізвище'),
+  middleName: Yup.string(),
+  phone: Yup.string().required('Введіть телефон'),
+  customer: Yup.string().required('Введіть ПІБ отримувача'),
+  comment: Yup.string(),
+  product: Yup.string().required('Виберіть продукт'),
+  location: Yup.string().required('Введіть адресу'),
+  deliveryPicked: Yup.string().required('Виберіть метод доставки'),
+  city: Yup.string().required('Введіть місто'),
+  postOfficeApiSelect: Yup.string(),
+  deliveryByAddressPicked: Yup.boolean(),
+  address: Yup.string(),
+  homeAddress: Yup.string(),
+  apartmentAddress: Yup.string(),
+  exitAddress: Yup.string(),
+  floorAddress: Yup.string(),
+  picked: Yup.string().required('Виберіть метод оплати'),
+});
 
 export default function Order() {
   const { isOnMobile, isOnTablet } = ScreenSize();
@@ -41,7 +57,13 @@ export default function Order() {
         {!afterOrderState && (
           <Formik
             initialValues={{
-              name: '',
+              firstName: '',
+              lastName: '',
+              middleName: '',
+              phone: '',
+              customer: '',
+              comment: '',
+              product: 'Вареники з картоплею, 3шт, 470грн',
               location: '',
               deliveryPicked: '',
               city: '',
@@ -53,9 +75,6 @@ export default function Order() {
               exitAddress: '',
               floorAddress: '',
               picked: '',
-              customer: 'Поліна Ващук',
-              comment: '',
-              product: 'Вареники з картоплею, 3шт, 470грн',
             }}
             validationSchema={orderSchema}
             onSubmit={async values => {
