@@ -1,12 +1,13 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-
-import { loginThunk, refreshThunk, registerThunk } from './operations';
 import { RootState } from '../store';
+import { loginThunk, refreshThunk, registerThunk } from './operations';
 
 interface AuthState {
   access: string;
   refresh: string;
+  full_name?: string;
   email?: string;
+  phone?: string;
   isLoggedIn: boolean;
   error: string;
   isLoading: boolean;
@@ -16,7 +17,9 @@ interface AuthState {
 const initialState: AuthState = {
   access: '',
   refresh: '',
+  full_name: '',
   email: '',
+  phone: '',
   isLoggedIn: false,
   isLoading: false,
   isRefresh: false,
@@ -30,14 +33,16 @@ export const authSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(loginThunk.fulfilled, (state, { payload }) => {
-        state.access = payload.access;
-        state.refresh = payload.refresh;
+      .addCase(registerThunk.fulfilled, (state, { payload }) => {
+        // state.access = payload.access;
+        // state.refresh = payload.refresh;
+        state.full_name = payload.full_name;
         state.email = payload.email;
+        state.phone = payload.phone;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      .addCase(registerThunk.fulfilled, (state, { payload }) => {
+      .addCase(loginThunk.fulfilled, (state, { payload }) => {
         state.access = payload.access;
         state.refresh = payload.refresh;
         state.email = payload.email;

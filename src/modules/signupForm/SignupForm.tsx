@@ -2,7 +2,8 @@
 
 import { MouseEventHandler, useState } from 'react';
 import Link from 'next/link';
-import { useFormik } from 'formik';
+import { FormikHelpers, useFormik } from 'formik';
+import { toast } from 'react-toastify';
 
 import validationSchemaSignup from './helpers/validationSchemaSignup';
 
@@ -16,6 +17,11 @@ import {
   Section,
   FormHeading,
 } from '@/shared/components';
+import { useAppDispatch } from '@/redux/hooks';
+import { authFormValues } from '@/models/authFormValues';
+import { loginThunk, registerThunk } from '@/redux/auth/operations';
+import { useSelector } from 'react-redux';
+import { selectUser } from '@/redux/auth/authSlice';
 
 type PropsSignupForm = {
   signupType: 'page' | 'burger';
@@ -29,17 +35,52 @@ export default function SignupForm({
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const handleSubmit = async () => {
-    setShowModal(true);
-    setIsFormSubmitted(true);
-    console.log(formik.values);
+  // const handleSubmit = async () => {
+  //   setShowModal(true);
+  //   setIsFormSubmitted(true);
+
+  //   const { passwordRepeat, chekSignUp, ...formData } = formik.values;
+  //   console.log(formData);
+  // };
+
+  const { isLoggedIn } = useSelector(selectUser);
+  const dispatch = useAppDispatch();
+
+  const handleSubmit = (
+    values: authFormValues,
+    actions: FormikHelpers<authFormValues>
+  ) => {
+    const { passwordRepeat, chekSignUp, ...formData } = values;
+
+    if (isLoggedIn) {
+      dispatch(loginThunk(formData))
+        .unwrap()
+        .then(() => {
+          toast.success(`Welcome to Marketplace!`);
+        })
+        .catch(err => {
+          toast.error(err);
+        });
+    } else {
+      console.log(formData);
+      dispatch(registerThunk(formData))
+        .unwrap()
+        .then(() => {
+          setShowModal(true);
+          setIsFormSubmitted(true);
+          toast.success(`Welcome to Marketplace!`);
+        })
+        .catch(err => toast.error(err));
+    }
+
+    actions.resetForm();
   };
 
-  const formik = useFormik({
+  const formik = useFormik<authFormValues>({
     initialValues: {
-      login: '',
+      full_name: '',
       email: '',
-      phoneNumber: '',
+      phone: '',
       password: '',
       passwordRepeat: '',
       chekSignUp: false,
@@ -57,7 +98,7 @@ export default function SignupForm({
       >
         <FormInput
           formik={formik}
-          name="login"
+          name="full_name"
           label={'Ваше ім’я та призвище'}
           inputType="text"
         />
@@ -69,7 +110,7 @@ export default function SignupForm({
         />
         <FormInput
           formik={formik}
-          name="phoneNumber"
+          name="phone"
           label={'Телефон'}
           inputType="tel"
         />
