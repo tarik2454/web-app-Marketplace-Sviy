@@ -19,9 +19,9 @@ const validationSchemaSignup = Yup.object().shape({
   phone: Yup.string()
     .matches(phoneRegExp, 'Невірний формат номера телефону')
     .required('Введіть номер телефону'),
-  chekSignUp: Yup.boolean()
-    .oneOf([true], 'Необхідно підтвердити згоду')
-    .required('Необхідно підтвердити згоду'),
+  // chekSignUp: Yup.boolean()
+  //   .oneOf([true], 'Необхідно підтвердити згоду')
+  //   .required('Необхідно підтвердити згоду'),
 });
 
 export default validationSchemaSignup;

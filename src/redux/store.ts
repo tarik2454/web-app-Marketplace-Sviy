@@ -1,5 +1,5 @@
 import { ThunkAction, UnknownAction, configureStore } from '@reduxjs/toolkit';
-import usersReducer from './users/usersSlice';
+// import usersReducer from './users/usersSlice';
 import authReducer from './auth/authSlice';
 
 import {
@@ -47,15 +47,15 @@ const authPersistConfig = {
   key: 'auth',
   version: 1,
   storage,
-  whitelist: ['authState'],
+  whitelist: ['email'],
 };
 
-const persistedUsersReducer = persistReducer(usersPersistConfig, usersReducer);
+// const persistedUsersReducer = persistReducer(usersPersistConfig, usersReducer);
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
-    users: persistedUsersReducer,
+    // users: persistedUsersReducer,
     auth: persistedAuthReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',

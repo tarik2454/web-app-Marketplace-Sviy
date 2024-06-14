@@ -4,12 +4,13 @@ import axios from 'axios';
 import { API, clearToken, setToken } from '../../config/globalConfig';
 
 interface AuthData {
-  access: string;
-  refresh: string;
+  access?: string;
+  refresh?: string;
   full_name?: string;
   email?: string;
   phone?: string;
   password?: string;
+  chekSignUp?: boolean;
 }
 
 // Register
@@ -21,7 +22,8 @@ export const registerThunk = createAsyncThunk<
   try {
     const response = await API.post('/api/account/user/register/', credentials);
     const data = response.data;
-    localStorage.setItem('token', JSON.stringify(data));
+
+    // localStorage.setItem('token', JSON.stringify(data));
     return { ...data, email: credentials.email };
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -43,7 +45,8 @@ export const loginThunk = createAsyncThunk<
   try {
     const response = await API.post('/api/account/user/login/', credentials);
     const data = response.data;
-    localStorage.setItem('token', JSON.stringify(data));
+    // localStorage.setItem('token', JSON.stringify(data));
+
     return { ...data, email: credentials.email };
   } catch (error) {
     if (axios.isAxiosError(error)) {

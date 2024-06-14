@@ -21,7 +21,7 @@ import { useAppDispatch } from '@/redux/hooks';
 import { authFormValues } from '@/models/authFormValues';
 import { loginThunk, registerThunk } from '@/redux/auth/operations';
 import { useSelector } from 'react-redux';
-import { selectUser } from '@/redux/auth/authSlice';
+import { selectAuth } from '@/redux/auth/authSlice';
 
 type PropsSignupForm = {
   signupType: 'page' | 'burger';
@@ -43,7 +43,7 @@ export default function SignupForm({
   //   console.log(formData);
   // };
 
-  const { isLoggedIn } = useSelector(selectUser);
+  const { isLoggedIn } = useSelector(selectAuth);
   const dispatch = useAppDispatch();
 
   const handleSubmit = (
@@ -51,6 +51,10 @@ export default function SignupForm({
     actions: FormikHelpers<authFormValues>
   ) => {
     const { passwordRepeat, chekSignUp, ...formData } = values;
+
+    if (formData.phone) {
+      formData.phone = formData.phone.replace(/\s+/g, '');
+    }
 
     if (isLoggedIn) {
       dispatch(loginThunk(formData))
@@ -62,7 +66,6 @@ export default function SignupForm({
           toast.error(err);
         });
     } else {
-      console.log(formData);
       dispatch(registerThunk(formData))
         .unwrap()
         .then(() => {
@@ -126,12 +129,12 @@ export default function SignupForm({
           label={'Повторіть пароль'}
           inputType="password"
         />
-        <FormCheckbox
+        {/* <FormCheckbox
           formik={formik}
           id="chekSignUp"
           label="Запам’ятати мене"
           className="text-sm md:text-base"
-        />
+        /> */}
         <a
           className="text-gray-500 font-lato text-sm md:pb-[34px] "
           href="https://www.termsfeed.com/live/3dd36d5f-36ec-41fc-9795-f516c6d2694e"

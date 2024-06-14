@@ -3,8 +3,8 @@ import { RootState } from '../store';
 import { loginThunk, refreshThunk, registerThunk } from './operations';
 
 interface AuthState {
-  access: string;
-  refresh: string;
+  access?: string;
+  refresh?: string;
   full_name?: string;
   email?: string;
   phone?: string;
@@ -36,9 +36,9 @@ export const authSlice = createSlice({
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
         // state.access = payload.access;
         // state.refresh = payload.refresh;
-        state.full_name = payload.full_name;
-        state.email = payload.email;
-        state.phone = payload.phone;
+        // state.full_name = payload.full_name;
+        // state.email = payload.email;
+        // state.phone = payload.phone;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
@@ -77,6 +77,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const selectUser = (state: RootState) => state.auth;
+export const selectAuth = (state: RootState) => state.auth;
 
 export default authSlice.reducer;

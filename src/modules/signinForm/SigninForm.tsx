@@ -9,10 +9,17 @@ import {
 } from '@/shared/components';
 
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import { useFormik } from 'formik';
+import { FormikHelpers, useFormik } from 'formik';
 import Link from 'next/link';
 import * as Yup from 'yup';
 import { MouseEventHandler } from 'react';
+import validationSchemaSignin from './helpers/validationSchemaSignin';
+import { authFormValues } from '@/models/authFormValues';
+import { useSelector } from 'react-redux';
+import { selectAuth } from '@/redux/auth/authSlice';
+import { useAppDispatch } from '@/redux/hooks';
+import { loginThunk, registerThunk } from '@/redux/auth/operations';
+import { toast } from 'react-toastify';
 
 type Props = {
   signinType: 'page' | 'burger';
@@ -25,24 +32,33 @@ export default function SigninForm({
   signupClick,
   signinForgotClick,
 }: Props) {
+  const { isLoggedIn, access, refresh } = useSelector(selectAuth);
+  const dispatch = useAppDispatch();
+
+  const handleSubmit = (values: authFormValues) => {
+    const { passwordRepeat, chekSignUp, ...formData } = values;
+
+    dispatch(loginThunk(formData))
+      .unwrap()
+      .then(() => {
+        toast.success(`Welcome to Marketplace!`);
+        console.log(isLoggedIn);
+        console.log(access);
+        console.log(refresh);
+      })
+      .catch(err => {
+        toast.error(err);
+      });
+  };
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
-      chekSignIn: false,
+      // chekSignIn: false,
     },
-    validationSchema: Yup.object().shape({
-      email: Yup.string()
-        .email('Дані введені некоректно')
-        .required('Введіть електронну пошту'),
-      password: Yup.string()
-        .min(8, 'Пароль повинен мати довжину не менше 8 символів')
-        .required('Введіть пароль'),
-      chekSignIn: Yup.boolean(),
-    }),
-    onSubmit: async values => {
-      // console.log(values);
-    },
+    validationSchema: validationSchemaSignin,
+    onSubmit: handleSubmit,
   });
 
   return (
@@ -67,13 +83,13 @@ export default function SigninForm({
           label={'Пароль'}
           inputType="password"
         />
-        <div className="flex justify-between items-center">
-          <FormCheckbox
+        <div className="flex justify-end items-center">
+          {/* <FormCheckbox
             formik={formik}
             id="chekSignIn"
             label="Запам’ятати мене"
             className="text-sm md:text-base"
-          />
+          /> */}
           {signinType === 'page' ? (
             <Link href="/signin-forgot" className="text-blue-900 text-sm">
               Нагадати пароль
