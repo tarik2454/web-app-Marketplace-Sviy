@@ -25,7 +25,6 @@ export default function MyOrderProfile() {
         className="border border-blue-500 rounded-[20px] h-[50px] mb-5"
         inputStyle="placeholder-gray-600"
       />
-
       <div className="flex justify-between items-center mb-5">
         <span className="pt-5">Всього: 8</span>
         <Dropdown
