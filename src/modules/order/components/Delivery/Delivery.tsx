@@ -1,5 +1,4 @@
 'use client';
-
 import { Field, ErrorMessage } from 'formik';
 import React, { useState, useEffect } from 'react';
 import SelectPostoffice from './SelectPostoffice';
@@ -58,7 +57,6 @@ export default function Delivery({ formik }: any) {
   return (
     <div className="mb-10 ">
       <h3 className="mb-5 font-lora text-2xl md:mb-6">Доставка</h3>
-
       <div
         className={`bg-white pl-3 pr-3 pt-6 pb-6 rounded-[20px] ${errorClassRadio}`}
       >
@@ -156,7 +154,6 @@ export default function Delivery({ formik }: any) {
           />
         </div>
       </div>
-
       <ErrorMessage
         name="deliveryPicked"
         render={msg => (

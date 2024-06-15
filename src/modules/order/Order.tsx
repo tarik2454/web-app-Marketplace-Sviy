@@ -15,6 +15,7 @@ import { OrderCheckout, OrderListHeader } from './components';
 import { Delivery, OrderPayDetail } from './components/Delivery';
 import { orderSchema } from './helpers/order-schema';
 import AfterOrder from './components/AfterOrder/AfterOrder';
+import Test from './api/test';
 
 // export type AfterOrderProps = {
 //   [key: string]: string | boolean;
@@ -108,6 +109,7 @@ export default function Order() {
           </Formik>
         )}
         {afterOrderState && <AfterOrder />}
+        <Test />
       </Container>
     </Section>
   );
