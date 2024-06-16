@@ -223,7 +223,9 @@
 import React, { useEffect, useId, useState } from 'react';
 import { Field, ErrorMessage, useField } from 'formik';
 import Select from 'react-select';
-import { getCities, getWarehouses } from '../../api/novapostAPI';
+import { getCities } from '../../api/novapostAPI';
+import { handleWarehouseChange } from '../../helpers/get-warehouses';
+import { handleCityChange } from '../../helpers/get-cities';
 
 type SelectPostofficeProps = {
   postOfficeShow: string;
@@ -240,11 +242,11 @@ type SelectPostofficeProps = {
 };
 
 const SelectItems = (props: any) => {
-  const [field, state, { setValue }] = useField(props.field.name);
+  const [field, _, { setValue }] = useField(props.field.name);
   const onChange = (option: { value: string; label: string } | null) => {
     if (option) {
       setValue(option.value);
-      props.onChange(option); // Викликати onChange з батьківського компонента
+      props.onChange(option);
     }
   };
 
@@ -289,8 +291,7 @@ export default function SelectPostoffice({
   floorAddress,
   formik,
 }: SelectPostofficeProps) {
-  const [errorClassInputCity, setErrorClassInputCity] =
-    useState('border-blue-200');
+  const [_, setErrorClassInputCity] = useState('border-blue-200');
   const [errorClassInputSelect, setErrorClassInputSelect] =
     useState('border-blue-200');
   const [errorClassInputAddress, setErrorClassInputAddress] =
@@ -298,7 +299,7 @@ export default function SelectPostoffice({
   const [errorClassInputHome, setErrorClassInputHome] =
     useState('border-blue-200');
   const [cities, setCities] = useState([]);
-  const [warehouses, setWarehouses] = useState([]);
+  const [warehouses, setWarehouses] = useState<any[]>([]);
   const [selectedCity, setSelectedCity] = useState<{
     value: string;
     label: string;
@@ -335,29 +336,23 @@ export default function SelectPostoffice({
       : setErrorClassInputHome('border-blue-200');
   }, [formik]);
 
-  const handleCityChange = async (
+  const handleChangeCity = (
     selectedOption: { value: string; label: string } | null
   ) => {
-    if (selectedOption) {
-      setSelectedCity(selectedOption);
-      try {
-        const warehousesData = await getWarehouses({
-          cityRef: selectedOption.value,
-        });
-        setWarehouses(warehousesData);
-        setSelectedWarehouse(null); // Reset warehouse selection when city changes
-      } catch (error) {
-        console.error('Error fetching warehouses:', error);
-      }
-    }
+    handleCityChange(
+      selectedOption,
+      setSelectedCity,
+      setWarehouses,
+      setSelectedWarehouse
+    );
+    console.log(selectedCity);
   };
 
-  const handleWarehouseChange = (
+  const handleChangeWarehouse = (
     selectedOption: { value: string; label: string } | null
   ) => {
-    if (selectedOption) {
-      setSelectedWarehouse(selectedOption);
-    }
+    handleWarehouseChange(selectedOption, setSelectedWarehouse);
+    console.log(selectedWarehouse);
   };
 
   const cityOptions = cities.map((city: any) => ({
@@ -374,11 +369,12 @@ export default function SelectPostoffice({
     <div className={postOfficeShow}>
       <div className={postOfficeView}>
         <Field
+          name="city"
           component={SelectItems}
           options={cityOptions}
           placeholder="Вкажіть місто"
           errorClassInputSelect={errorClassInputSelect}
-          onChange={handleCityChange}
+          onChange={handleChangeCity}
           value={selectedCity}
         />
         <ErrorMessage
@@ -392,7 +388,7 @@ export default function SelectPostoffice({
             options={warehouseOptions}
             name="postOfficeApiSelect"
             errorClassInputSelect={errorClassInputSelect}
-            onChange={handleWarehouseChange}
+            onChange={handleChangeWarehouse}
             value={selectedWarehouse}
           />
         </div>
