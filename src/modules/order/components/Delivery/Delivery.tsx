@@ -5,7 +5,7 @@ import SelectPostoffice from './SelectPostoffice';
 
 export default function Delivery({ formik }: any) {
   const [showNovaposhta, setShowNovaposhta] = useState('hidden');
-  const [showUkrposhta, setShowUkrposhta] = useState('hidden');
+  // const [showUkrposhta, setShowUkrposhta] = useState('hidden');
   const [showByAddress, setShowByAddress] = useState('hidden');
   const [postOfficeView, setPostOfficeView] = useState('block');
 
@@ -20,7 +20,7 @@ export default function Delivery({ formik }: any) {
 
   const handleByYourself = () => {
     setShowNovaposhta('hidden');
-    setShowUkrposhta('hidden');
+    // setShowUkrposhta('hidden');
     setShowByAddress('hidden');
     setPostOfficeView('block');
     formik.values.deliveryByAddressPicked = false;
@@ -31,7 +31,7 @@ export default function Delivery({ formik }: any) {
   const handleShowNovaposhta = () => {
     setPostOfficeView('block');
     setShowNovaposhta('block');
-    setShowUkrposhta('hidden');
+    // setShowUkrposhta('hidden');
     setShowByAddress('hidden');
     formik.values.deliveryByAddressPicked = false;
     formik.values.postOfficeApiSelect = '';
@@ -41,7 +41,7 @@ export default function Delivery({ formik }: any) {
   const handleShowUkrposhta = () => {
     setPostOfficeView('block');
     setShowNovaposhta('hidden');
-    setShowUkrposhta('block');
+    // setShowUkrposhta('block');
     setShowByAddress('hidden');
     formik.values.deliveryByAddressPicked = false;
     formik.values.postOfficeApiSelect = '';
@@ -117,7 +117,7 @@ export default function Delivery({ formik }: any) {
             formik={formik}
           />
         </div>
-        <div>
+        {/* <div>
           <div className="flex justify-between items-start">
             <div className="flex items-center">
               <Field
@@ -152,7 +152,7 @@ export default function Delivery({ formik }: any) {
             floorAddress="floorAddress2"
             formik={formik}
           />
-        </div>
+        </div> */}
       </div>
       <ErrorMessage
         name="deliveryPicked"
