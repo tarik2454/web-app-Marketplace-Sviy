@@ -1,12 +1,10 @@
 'use client';
-
 import { Field, ErrorMessage } from 'formik';
 import React, { useState, useEffect } from 'react';
 import SelectPostoffice from './SelectPostoffice';
 
 export default function Delivery({ formik }: any) {
   const [showNovaposhta, setShowNovaposhta] = useState('hidden');
-  const [showUkrposhta, setShowUkrposhta] = useState('hidden');
   const [showByAddress, setShowByAddress] = useState('hidden');
   const [postOfficeView, setPostOfficeView] = useState('block');
 
@@ -21,7 +19,6 @@ export default function Delivery({ formik }: any) {
 
   const handleByYourself = () => {
     setShowNovaposhta('hidden');
-    setShowUkrposhta('hidden');
     setShowByAddress('hidden');
     setPostOfficeView('block');
     formik.values.deliveryByAddressPicked = false;
@@ -32,7 +29,6 @@ export default function Delivery({ formik }: any) {
   const handleShowNovaposhta = () => {
     setPostOfficeView('block');
     setShowNovaposhta('block');
-    setShowUkrposhta('hidden');
     setShowByAddress('hidden');
     formik.values.deliveryByAddressPicked = false;
     formik.values.postOfficeApiSelect = '';
@@ -42,7 +38,6 @@ export default function Delivery({ formik }: any) {
   const handleShowUkrposhta = () => {
     setPostOfficeView('block');
     setShowNovaposhta('hidden');
-    setShowUkrposhta('block');
     setShowByAddress('hidden');
     formik.values.deliveryByAddressPicked = false;
     formik.values.postOfficeApiSelect = '';
@@ -58,7 +53,6 @@ export default function Delivery({ formik }: any) {
   return (
     <div className="mb-10 ">
       <h3 className="mb-5 font-lora text-2xl md:mb-6">Доставка</h3>
-
       <div
         className={`bg-white pl-3 pr-3 pt-6 pb-6 rounded-[20px] ${errorClassRadio}`}
       >
@@ -119,44 +113,7 @@ export default function Delivery({ formik }: any) {
             formik={formik}
           />
         </div>
-        <div>
-          <div className="flex justify-between items-start">
-            <div className="flex items-center">
-              <Field
-                className="border-gray-600 w-6 h-6 block absolute"
-                id="ukrposhta"
-                type="radio"
-                name="deliveryPicked"
-                value="Доставка на Укрпошту"
-                onClick={() => handleShowUkrposhta()}
-              />
-              <label
-                htmlFor="ukrposhta"
-                className="xl:text-base md:text-base text-gray-900 pl-9 sm:text-sm"
-              >
-                Доставка на Укрпошту
-              </label>
-            </div>
-            <p className="xl:text-base md:text-base text-gray-900 text-end xl:text-nowrap md:text-nowrap sm:text-wrap sm:text-xs">
-              За тарифами перевізника
-            </p>
-          </div>
-          <SelectPostoffice
-            postOfficeView={postOfficeView}
-            postOfficeShow={showUkrposhta}
-            byAddress={showByAddress}
-            onclick={handleSetShowByAddress}
-            forAddressDelivery="byAddress2"
-            forAddressPoshta="addressPoshta2"
-            homeAddress="homeAddress2"
-            apartmentAddress="apartmentAddress2"
-            exitAddress="exitAddress2"
-            floorAddress="floorAddress2"
-            formik={formik}
-          />
-        </div>
       </div>
-
       <ErrorMessage
         name="deliveryPicked"
         render={msg => (
