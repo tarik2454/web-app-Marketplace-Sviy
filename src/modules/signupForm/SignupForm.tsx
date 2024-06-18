@@ -5,23 +5,22 @@ import Link from 'next/link';
 import { FormikHelpers, useFormik } from 'formik';
 import { toast } from 'react-toastify';
 
+import { useAppDispatch } from '@/redux/hooks';
+import { authFormValues } from '@/models/authFormValues';
+import { registerThunk } from '@/redux/auth/operations';
+
 import validationSchemaSignup from './helpers/validationSchemaSignup';
 
 import Modal from '@/shared/components/Modal/Modal';
 import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import {
-  FormCheckbox,
+  // FormCheckbox,
   FormInput,
   OrangeButton,
   Section,
   FormHeading,
 } from '@/shared/components';
-import { useAppDispatch } from '@/redux/hooks';
-import { authFormValues } from '@/models/authFormValues';
-import { loginThunk, registerThunk } from '@/redux/auth/operations';
-import { useSelector } from 'react-redux';
-import { selectAuth } from '@/redux/auth/authSlice';
 
 type PropsSignupForm = {
   signupType: 'page' | 'burger';
@@ -35,15 +34,6 @@ export default function SignupForm({
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  // const handleSubmit = async () => {
-  //   setShowModal(true);
-  //   setIsFormSubmitted(true);
-
-  //   const { passwordRepeat, chekSignUp, ...formData } = formik.values;
-  //   console.log(formData);
-  // };
-
-  const { isLoggedIn } = useSelector(selectAuth);
   const dispatch = useAppDispatch();
 
   const handleSubmit = (
@@ -56,25 +46,15 @@ export default function SignupForm({
       formData.phone = formData.phone.replace(/\s+/g, '');
     }
 
-    if (isLoggedIn) {
-      dispatch(loginThunk(formData))
-        .unwrap()
-        .then(() => {
-          toast.success(`Welcome to Marketplace!`);
-        })
-        .catch(err => {
-          toast.error(err);
-        });
-    } else {
-      dispatch(registerThunk(formData))
-        .unwrap()
-        .then(() => {
-          setShowModal(true);
-          setIsFormSubmitted(true);
-          toast.success(`Welcome to Marketplace!`);
-        })
-        .catch(err => toast.error(err));
-    }
+    dispatch(registerThunk(formData))
+      .unwrap()
+      .then(() => {
+        setShowModal(true);
+        setIsFormSubmitted(true);
+      })
+      .catch(error => {
+        toast.error(error);
+      });
 
     actions.resetForm();
   };

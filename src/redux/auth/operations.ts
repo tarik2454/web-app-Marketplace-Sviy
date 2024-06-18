@@ -24,7 +24,11 @@ export const registerThunk = createAsyncThunk<
     const data = response.data;
 
     // localStorage.setItem('token', JSON.stringify(data));
-    return { ...data, email: credentials.email };
+    return {
+      ...data,
+      full_name: credentials.full_name,
+      email: credentials.email,
+    };
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
@@ -45,9 +49,9 @@ export const loginThunk = createAsyncThunk<
   try {
     const response = await API.post('/api/account/user/login/', credentials);
     const data = response.data;
-    // localStorage.setItem('token', JSON.stringify(data));
+    localStorage.setItem('token', JSON.stringify(data));
 
-    return { ...data, email: credentials.email };
+    return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;

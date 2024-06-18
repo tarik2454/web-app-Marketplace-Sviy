@@ -20,6 +20,7 @@ import { selectAuth } from '@/redux/auth/authSlice';
 import { useAppDispatch } from '@/redux/hooks';
 import { loginThunk, registerThunk } from '@/redux/auth/operations';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   signinType: 'page' | 'burger';
@@ -32,7 +33,11 @@ export default function SigninForm({
   signupClick,
   signinForgotClick,
 }: Props) {
-  const { isLoggedIn, access, refresh } = useSelector(selectAuth);
+  const { access, refresh, email } = useSelector(selectAuth);
+
+  console.log(email);
+
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const handleSubmit = (values: authFormValues) => {
@@ -41,19 +46,18 @@ export default function SigninForm({
     dispatch(loginThunk(formData))
       .unwrap()
       .then(() => {
-        toast.success(`Welcome to Marketplace!`);
-        console.log(isLoggedIn);
         console.log(access);
         console.log(refresh);
+        router.push('/');
       })
-      .catch(err => {
-        toast.error(err);
+      .catch(error => {
+        toast.error(error);
       });
   };
 
   const formik = useFormik({
     initialValues: {
-      email: '',
+      email: `${email}`,
       password: '',
       // chekSignIn: false,
     },

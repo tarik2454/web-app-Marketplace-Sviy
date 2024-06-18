@@ -36,16 +36,16 @@ export const authSlice = createSlice({
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
         // state.access = payload.access;
         // state.refresh = payload.refresh;
-        // state.full_name = payload.full_name;
-        // state.email = payload.email;
+        state.full_name = payload.full_name;
+        state.email = payload.email;
         // state.phone = payload.phone;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = true;
         state.isLoading = false;
       })
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
         state.access = payload.access;
         state.refresh = payload.refresh;
-        state.email = payload.email;
+        // state.email = payload.email;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
