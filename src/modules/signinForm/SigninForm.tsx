@@ -12,13 +12,17 @@ import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { FormikHelpers, useFormik } from 'formik';
 import Link from 'next/link';
 import * as Yup from 'yup';
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useEffect } from 'react';
 import validationSchemaSignin from './helpers/validationSchemaSignin';
 import { authFormValues } from '@/models/authFormValues';
 import { useSelector } from 'react-redux';
 import { selectAuth } from '@/redux/auth/authSlice';
 import { useAppDispatch } from '@/redux/hooks';
-import { loginThunk, registerThunk } from '@/redux/auth/operations';
+import {
+  loginThunk,
+  logoutThunk,
+  registerThunk,
+} from '@/redux/auth/operations';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
@@ -33,9 +37,7 @@ export default function SigninForm({
   signupClick,
   signinForgotClick,
 }: Props) {
-  const { access, refresh, email } = useSelector(selectAuth);
-
-  console.log(email);
+  const { access, refresh, email, isLoggedIn } = useSelector(selectAuth);
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -46,8 +48,6 @@ export default function SigninForm({
     dispatch(loginThunk(formData))
       .unwrap()
       .then(() => {
-        console.log(access);
-        console.log(refresh);
         router.push('/');
       })
       .catch(error => {
@@ -55,11 +55,14 @@ export default function SigninForm({
       });
   };
 
+  const handleLogout = () => {
+    dispatch(logoutThunk());
+  };
+
   const formik = useFormik({
     initialValues: {
-      email: `${email}`,
+      email: email,
       password: '',
-      // chekSignIn: false,
     },
     validationSchema: validationSchemaSignin,
     onSubmit: handleSubmit,
@@ -88,12 +91,6 @@ export default function SigninForm({
           inputType="password"
         />
         <div className="flex justify-end items-center">
-          {/* <FormCheckbox
-            formik={formik}
-            id="chekSignIn"
-            label="Запам’ятати мене"
-            className="text-sm md:text-base"
-          /> */}
           {signinType === 'page' ? (
             <Link href="/signin-forgot" className="text-blue-900 text-sm">
               Нагадати пароль
@@ -109,9 +106,13 @@ export default function SigninForm({
         </div>
 
         <div className="w-28 mt-10 mx-auto pb-6 text-white md:text-base sm:text-sm">
-          <OrangeButton onClick={() => {}} type="submit">
-            Увійти
-          </OrangeButton>
+          {isLoggedIn ? (
+            <OrangeButton type="submit" onClick={handleLogout}>
+              Вийти
+            </OrangeButton>
+          ) : (
+            <OrangeButton type="submit">Увійти</OrangeButton>
+          )}
         </div>
       </form>
 
