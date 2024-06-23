@@ -11,15 +11,13 @@ export const orderSchema = yup.object().shape({
     then: schema => schema,
     otherwise: schema => schema.required('Треба вказати місто'),
   }),
-  postOfficeApiSelect: yup
-    .string()
-    .when(['deliveryByAddressPicked', 'deliveryPicked'], {
-      is: (deliveryByAddressPicked: boolean, deliveryPicked: string) =>
-        deliveryByAddressPicked || deliveryPicked === 'Самовивіз',
-      then: schema => schema,
-      otherwise: schema => schema.required('Треба обрати відділення'),
-    }),
-  address: yup.string().when('deliveryByAddressPicked', {
+  warehouse: yup.string().when(['deliveryByAddressPicked', 'deliveryPicked'], {
+    is: (deliveryByAddressPicked: boolean, deliveryPicked: string) =>
+      deliveryByAddressPicked || deliveryPicked === 'Самовивіз',
+    then: schema => schema,
+    otherwise: schema => schema.required('Треба обрати відділення'),
+  }),
+  street: yup.string().when('deliveryByAddressPicked', {
     is: true,
     then: schema => schema.required('Треба ввести адресу'),
     otherwise: schema => schema,
@@ -32,4 +30,3 @@ export const orderSchema = yup.object().shape({
   picked: yup.string().required('Треба обрати спосіб оплати'),
   customer: yup.string().required('Це поле має бути заповнено'),
 });
-

@@ -78,7 +78,7 @@
 //     formik.errors.city && formik.touched.city
 //       ? setErrorClassInputCity('border-[#C60000]')
 //       : setErrorClassInputCity('border-blue-200');
-//     formik.errors.postOfficeApiSelect && formik.touched.postOfficeApiSelect
+//     formik.errors.warehouse && formik.touched.warehouse
 //       ? setErrorClassInputSelect('border-[#C60000]')
 //       : setErrorClassInputSelect('border-blue-200');
 //     formik.errors.address && formik.touched.address
@@ -118,12 +118,12 @@
 //           <Field
 //             component={SelectItems}
 //             options={options}
-//             name="postOfficeApiSelect"
+//             name="warehouse"
 //             errorClassInputSelect={errorClassInputSelect}
 //           />
 //         </div>
 //         <ErrorMessage
-//           name="postOfficeApiSelect"
+//           name="warehouse"
 //           component="p"
 //           className="text-[#C60000] text-end"
 //         />
@@ -226,6 +226,7 @@ import Select from 'react-select';
 import { getCities } from '../../api/novapostAPI';
 import { handleWarehouseChange } from '../../helpers/get-warehouses';
 import { handleCityChange } from '../../helpers/get-cities';
+import { handleStreetChange } from '../../helpers/get-street';
 
 type SelectPostofficeProps = {
   postOfficeShow: string;
@@ -275,6 +276,20 @@ const SelectItems = (props: any) => {
       }
       {...props}
     />
+    // <Select
+    //   classNamePrefix="react-select"
+    //   className={`py-3 px-4 mt-5 text-nowrap w-full cursor-pointer bg-white border text-start text-gray-900 xl:min-w-[813px] md:w-[668px] sm:w-[311px] rounded-[20px] ${props.errorClassInputSelect}`}
+    //   placeholder="Виберіть своє відділення"
+    //   instanceId={props.field.name}
+    //   onChange={onChange}
+    //   value={
+    //     props.options.find(
+    //       (option: { value: string; label: string }) =>
+    //         option.value === field.value
+    //     ) || null
+    //   }
+    //   {...props}
+    // />
   );
 };
 
@@ -291,20 +306,26 @@ export default function SelectPostoffice({
   floorAddress,
   formik,
 }: SelectPostofficeProps) {
-  const [_, setErrorClassInputCity] = useState('border-blue-200');
-  const [errorClassInputSelect, setErrorClassInputSelect] =
+  const [errorClassInputCity, setErrorClassInputCity] =
     useState('border-blue-200');
-  const [errorClassInputAddress, setErrorClassInputAddress] =
+  const [errorClassInputWarehouse, setErrorClassInputWarehouse] =
+    useState('border-blue-200');
+  const [errorClassInputStreet, setErrorClassInputStreet] =
     useState('border-blue-200');
   const [errorClassInputHome, setErrorClassInputHome] =
     useState('border-blue-200');
   const [cities, setCities] = useState([]);
   const [warehouses, setWarehouses] = useState<any[]>([]);
+  const [streets, setStreets] = useState<any[]>([]);
   const [selectedCity, setSelectedCity] = useState<{
     value: string;
     label: string;
   } | null>(null);
   const [selectedWarehouse, setSelectedWarehouse] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
+  const [selectedStreet, setSelectedStreet] = useState<{
     value: string;
     label: string;
   } | null>(null);
@@ -325,12 +346,12 @@ export default function SelectPostoffice({
     formik.errors.city && formik.touched.city
       ? setErrorClassInputCity('border-[#C60000]')
       : setErrorClassInputCity('border-blue-200');
-    formik.errors.postOfficeApiSelect && formik.touched.postOfficeApiSelect
-      ? setErrorClassInputSelect('border-[#C60000]')
-      : setErrorClassInputSelect('border-blue-200');
+    formik.errors.warehouse && formik.touched.warehouse
+      ? setErrorClassInputWarehouse('border-[#C60000]')
+      : setErrorClassInputWarehouse('border-blue-200');
     formik.errors.address && formik.touched.address
-      ? setErrorClassInputAddress('border-[#C60000]')
-      : setErrorClassInputAddress('border-blue-200');
+      ? setErrorClassInputStreet('border-[#C60000]')
+      : setErrorClassInputStreet('border-blue-200');
     formik.errors.homeAddress && formik.touched.homeAddress
       ? setErrorClassInputHome('border-[#C60000]')
       : setErrorClassInputHome('border-blue-200');
@@ -343,16 +364,28 @@ export default function SelectPostoffice({
       selectedOption,
       setSelectedCity,
       setWarehouses,
-      setSelectedWarehouse
+      setSelectedWarehouse,
+      setStreets,
+      setSelectedStreet
     );
-    console.log(selectedCity);
+    formik.setFieldValue('city', selectedOption ? selectedOption.label : '');
   };
 
   const handleChangeWarehouse = (
     selectedOption: { value: string; label: string } | null
   ) => {
     handleWarehouseChange(selectedOption, setSelectedWarehouse);
-    console.log(selectedWarehouse);
+    formik.setFieldValue(
+      'warehouse',
+      selectedOption ? selectedOption.label : ''
+    );
+  };
+
+  const handleChangeStreet = (
+    selectedOption: { value: string; label: string } | null
+  ) => {
+    setSelectedStreet(selectedOption);
+    formik.setFieldValue('street', selectedOption ? selectedOption.label : '');
   };
 
   const cityOptions = cities.map((city: any) => ({
@@ -365,6 +398,11 @@ export default function SelectPostoffice({
     label: warehouse.Description,
   }));
 
+  const streetOptions = streets.map((street: any) => ({
+    value: street.Ref,
+    label: street.Description,
+  }));
+
   return (
     <div className={postOfficeShow}>
       <div className={postOfficeView}>
@@ -373,7 +411,7 @@ export default function SelectPostoffice({
           component={SelectItems}
           options={cityOptions}
           placeholder="Вкажіть місто"
-          errorClassInputSelect={errorClassInputSelect}
+          errorClassInputCity={errorClassInputCity}
           onChange={handleChangeCity}
           value={selectedCity}
         />
@@ -384,16 +422,16 @@ export default function SelectPostoffice({
         />
         <div>
           <Field
+            name="warehouse"
             component={SelectItems}
             options={warehouseOptions}
-            name="postOfficeApiSelect"
-            errorClassInputSelect={errorClassInputSelect}
+            errorClassInputWarehouse={errorClassInputWarehouse}
             onChange={handleChangeWarehouse}
             value={selectedWarehouse}
           />
         </div>
         <ErrorMessage
-          name="postOfficeApiSelect"
+          name="warehouse"
           component="p"
           className="text-[#C60000] text-end"
         />
@@ -421,13 +459,18 @@ export default function SelectPostoffice({
             Адреса доставки
           </label>
           <Field
+            name="street"
             id={forAddressPoshta}
-            type="text"
-            name="address"
-            className={`xl:min-w-[813px] md:w-[668px] sm:w-[311px] rounded-[20px] focus:outline-blue-200 py-3 px-4 border-[1px] ${errorClassInputAddress}`}
+            component={SelectItems}
+            options={streetOptions}
+            onChange={handleChangeStreet}
+            errorClassInputAddress={errorClassInputStreet}
+            value={selectedStreet}
+            // type="text"
+            // className={`${errorClassInputStreet}`}
           />
           <ErrorMessage
-            name="address"
+            name="street"
             component="p"
             className="text-[#C60000] text-end"
           />

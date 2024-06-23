@@ -30,3 +30,18 @@ export async function getWarehouses({ cityRef }: any) {
 
   return response.data.data;
 }
+
+//  отримання списку вулиць для міста
+export async function getStreets({ cityRef }: any) {
+  const response = await axios.post(NOVA_POSHTA_API_URL, {
+    apiKey: API_KEY,
+    modelName: 'AddressGeneral',
+    calledMethod: 'getStreet',
+    methodProperties: {
+      CityRef: cityRef,
+    },
+    Page: '1',
+  });
+
+  return response.data.data;
+}
