@@ -12,7 +12,7 @@ import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { FormikHelpers, useFormik } from 'formik';
 import Link from 'next/link';
 import * as Yup from 'yup';
-import { MouseEventHandler, useEffect } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import validationSchemaSignin from './helpers/validationSchemaSignin';
 import { authFormValues } from '@/models/authFormValues';
 import { useSelector } from 'react-redux';
@@ -25,6 +25,8 @@ import {
 } from '@/redux/auth/operations';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import Modal from '@/shared/components/Modal/Modal';
+import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
 
 type Props = {
   signinType: 'page' | 'burger';
@@ -37,7 +39,10 @@ export default function SigninForm({
   signupClick,
   signinForgotClick,
 }: Props) {
-  const { access, refresh, email, isLoggedIn } = useSelector(selectAuth);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const { email, isLoggedIn } = useSelector(selectAuth);
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -48,6 +53,8 @@ export default function SigninForm({
     dispatch(loginThunk(formData))
       .unwrap()
       .then(() => {
+        // setShowModal(true);
+        // setIsFormSubmitted(true);
         router.push('/');
       })
       .catch(error => {
@@ -56,7 +63,14 @@ export default function SigninForm({
   };
 
   const handleLogout = () => {
-    dispatch(logoutThunk());
+    dispatch(logoutThunk())
+      .unwrap()
+      .then(() => {
+        toast.success('Ви вийшли зі свого облікового запису');
+      })
+      .catch(error => {
+        toast.error(error);
+      });
   };
 
   const formik = useFormik({
@@ -132,6 +146,12 @@ export default function SigninForm({
           </button>
         )}
       </div>
+
+      {isFormSubmitted && showModal && (
+        <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+          <RegIsSuccesful />
+        </Modal>
+      )}
     </Section>
   );
 }

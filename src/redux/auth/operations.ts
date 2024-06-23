@@ -33,10 +33,10 @@ export const registerThunk = createAsyncThunk<
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
       if (status === 401) {
-        return ThunkAPI.rejectWithValue('Incorrect email or password');
+        return ThunkAPI.rejectWithValue('Введено некоректні дані');
       }
     }
-    return ThunkAPI.rejectWithValue('Something went wrong! Try again....');
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
   }
 });
 
@@ -57,10 +57,10 @@ export const loginThunk = createAsyncThunk<
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
       if (status === 401) {
-        return ThunkAPI.rejectWithValue('Incorrect email or password');
+        return ThunkAPI.rejectWithValue('Некоректний email або пароль');
       }
     }
-    return ThunkAPI.rejectWithValue('Something went wrong! Try again....');
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
   }
 });
 
@@ -87,7 +87,7 @@ export const refreshThunk = createAsyncThunk<
     return { ...data };
   } catch (error) {
     clearToken();
-    return ThunkAPI.rejectWithValue('Something went wrong! Try again....');
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
   }
 });
 
@@ -103,6 +103,6 @@ export const logoutThunk = createAsyncThunk<
 
     return;
   } catch (error) {
-    return ThunkAPI.rejectWithValue('Failed to logout. Please try again.');
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
   }
 });

@@ -14,9 +14,9 @@ interface AuthState {
   email?: string;
   phone?: string;
   isLoggedIn: boolean;
-  error: string;
   isLoading: boolean;
   isRefresh: boolean;
+  error: string;
 }
 
 const initialState: AuthState = {
@@ -69,7 +69,6 @@ export const authSlice = createSlice({
         state.access = '';
         state.refresh = '';
         state.full_name = '';
-        state.email = '';
         state.phone = '';
         state.isLoggedIn = false;
         state.isLoading = false;

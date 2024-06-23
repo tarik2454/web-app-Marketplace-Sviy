@@ -134,11 +134,7 @@ export default function SignupForm({
           </OrangeButton>
         </div>
       </form>
-      {isFormSubmitted && showModal && (
-        <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-          <RegIsSuccesful />
-        </Modal>
-      )}
+
       <p className="text-center pb-3 sm:text-sm">Або увійдіть за допомогою:</p>
       <div className="flex justify-center pb-3">
         <SpriteSVG name="icon_google" />
@@ -155,6 +151,12 @@ export default function SignupForm({
           </button>
         )}
       </div>
+
+      {isFormSubmitted && showModal && (
+        <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+          <RegIsSuccesful />
+        </Modal>
+      )}
     </Section>
   );
 }

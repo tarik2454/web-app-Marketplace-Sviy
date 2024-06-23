@@ -7,21 +7,21 @@ import { useAppDispatch } from '@/redux/hooks';
 import { useEffect } from 'react';
 import { refreshThunk } from '@/redux/auth/operations';
 
-type ToastProviderProps = {
+type GlobalProviderProps = {
   children: React.ReactNode;
 };
 
-export default function ToastProvider({ children }: ToastProviderProps) {
+export default function GlobalProvider({ children }: GlobalProviderProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(refreshThunk())
       .unwrap()
       .then(() => {
-        toast.success('Success');
+        console.log('Success token');
       })
       .catch(error => {
-        toast.error(error);
+        console.log(error);
       });
   }, [dispatch]);
 
