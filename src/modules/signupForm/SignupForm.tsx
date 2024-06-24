@@ -10,12 +10,10 @@ import { authFormValues } from '@/models/authFormValues';
 import { registerThunk } from '@/redux/auth/operations';
 
 import validationSchemaSignup from './helpers/validationSchemaSignup';
-
 import Modal from '@/shared/components/Modal/Modal';
 import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import {
-  // FormCheckbox,
   FormInput,
   OrangeButton,
   Section,
@@ -35,6 +33,8 @@ export default function SignupForm({
   const [showModal, setShowModal] = useState(false);
 
   const dispatch = useAppDispatch();
+
+  const signinPage = '/signin';
 
   const handleSubmit = (
     values: authFormValues,
@@ -115,15 +115,17 @@ export default function SignupForm({
           label="Запам’ятати мене"
           className="text-sm md:text-base"
         /> */}
+
         <a
           className="text-gray-500 font-lato text-sm md:pb-[34px] "
           href="https://www.termsfeed.com/live/3dd36d5f-36ec-41fc-9795-f516c6d2694e"
         >
-          Реєструючись ви погоджуєтесь з{' '}
+          Реєструючись ви погоджуєтесь з
           <span className="underline text-blue-800">
             Правилами використання сайту та Політикою конфіденційності
           </span>
         </a>
+
         <div className="text-white md:text-base sm:text-sm">
           <OrangeButton
             onClick={() => setShowModal(true)}
@@ -139,10 +141,12 @@ export default function SignupForm({
       <div className="flex justify-center pb-3">
         <SpriteSVG name="icon_google" />
       </div>
+
       <div className="flex justify-center pb-7 items-baseline">
         <p className="pr-6">Маєте профіль?</p>
+
         {signupType === 'page' ? (
-          <Link href="/signin" className="text-blue-90 text-sm">
+          <Link href={signinPage} className="text-blue-90 text-sm">
             Увійти
           </Link>
         ) : (

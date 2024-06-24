@@ -3,8 +3,11 @@
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import { ReactNode } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { logoutThunk } from '@/redux/auth/operations';
+import { useAppDispatch } from '@/redux/hooks';
+import { toast } from 'react-toastify';
 
 type PropsSidebar = {
   [key: string]: ReactNode;
@@ -36,6 +39,21 @@ export default function PersonalDynamicSidebar({
   const { isOnMobile, isOnTablet } = ScreenSize();
 
   const pathname = usePathname();
+  const router = useRouter();
+
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logoutThunk())
+      .unwrap()
+      .then(() => {
+        router.push('/signin');
+        toast.warning('Ви вийшли зі свого облікового запису');
+      })
+      .catch(error => {
+        toast.error(error);
+      });
+  };
 
   return (
     <>
@@ -158,12 +176,12 @@ export default function PersonalDynamicSidebar({
           </li>
 
           <li className="group">
-            <Link href={'/'}>
+            <button onClick={handleLogout}>
               <div className={'rounded-b-lg' + ` ${liClass}`}>
                 <SpriteSVG name="exit" />
                 <p>Вийти</p>
               </div>
-            </Link>
+            </button>
           </li>
         </ul>
       )) ||
@@ -288,12 +306,12 @@ export default function PersonalDynamicSidebar({
             </li>
 
             <li className="group">
-              <Link href={'/'}>
+              <button onClick={handleLogout}>
                 <div className={'rounded-b-lg' + ` ${liClass}`}>
                   <SpriteSVG name="exit" />
                   <p>Вийти</p>
                 </div>
-              </Link>
+              </button>
             </li>
           </ul>
         )) || (
@@ -383,12 +401,12 @@ export default function PersonalDynamicSidebar({
             </li>
 
             <li className="group">
-              <Link href={'/'}>
+              <button className="w-full" onClick={handleLogout}>
                 <div className={'rounded-b-lg' + ` ${liClass}`}>
                   <SpriteSVG name="exit" />
                   Вийти
                 </div>
-              </Link>
+              </button>
             </li>
           </ul>
         )}
