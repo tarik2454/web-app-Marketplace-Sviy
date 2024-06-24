@@ -7,7 +7,7 @@ import { Header } from '@/modules';
 
 import '../styles/globals.css';
 
-import ToastProvider from './ToastProvider';
+import ToastProvider from './GlobalProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',

@@ -1,6 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { loginThunk, refreshThunk, registerThunk } from './operations';
+import {
+  loginThunk,
+  logoutThunk,
+  refreshThunk,
+  registerThunk,
+} from './operations';
 
 interface AuthState {
   access?: string;
@@ -9,9 +14,9 @@ interface AuthState {
   email?: string;
   phone?: string;
   isLoggedIn: boolean;
-  error: string;
   isLoading: boolean;
   isRefresh: boolean;
+  error: string;
 }
 
 const initialState: AuthState = {
@@ -34,12 +39,9 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
-        // state.access = payload.access;
-        // state.refresh = payload.refresh;
-        // state.full_name = payload.full_name;
-        // state.email = payload.email;
-        // state.phone = payload.phone;
-        state.isLoggedIn = true;
+        state.full_name = payload.full_name;
+        state.email = payload.email;
+        state.phone = payload.phone;
         state.isLoading = false;
       })
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
@@ -62,6 +64,16 @@ export const authSlice = createSlice({
         state.isRefresh = false;
         state.access = '';
         state.refresh = '';
+      })
+      .addCase(logoutThunk.fulfilled, state => {
+        state.access = '';
+        state.refresh = '';
+        state.full_name = '';
+        state.phone = '';
+        state.isLoggedIn = false;
+        state.isLoading = false;
+        state.isRefresh = false;
+        state.error = '';
       })
       .addMatcher(isAnyOf(loginThunk.pending, registerThunk.pending), state => {
         state.isLoading = true;

@@ -23,16 +23,20 @@ export const registerThunk = createAsyncThunk<
     const response = await API.post('/api/account/user/register/', credentials);
     const data = response.data;
 
-    // localStorage.setItem('token', JSON.stringify(data));
-    return { ...data, email: credentials.email };
+    return {
+      ...data,
+      full_name: credentials.full_name,
+      email: credentials.email,
+      phone: credentials.phone,
+    };
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
       if (status === 401) {
-        return ThunkAPI.rejectWithValue('Incorrect email or password');
+        return ThunkAPI.rejectWithValue('Введено некоректні дані');
       }
     }
-    return ThunkAPI.rejectWithValue('Something went wrong! Try again....');
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
   }
 });
 
@@ -45,17 +49,18 @@ export const loginThunk = createAsyncThunk<
   try {
     const response = await API.post('/api/account/user/login/', credentials);
     const data = response.data;
-    // localStorage.setItem('token', JSON.stringify(data));
+
+    localStorage.setItem('token', JSON.stringify(data));
 
     return { ...data, email: credentials.email };
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
       if (status === 401) {
-        return ThunkAPI.rejectWithValue('Incorrect email or password');
+        return ThunkAPI.rejectWithValue('Некоректний email або пароль');
       }
     }
-    return ThunkAPI.rejectWithValue('Something went wrong! Try again....');
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
   }
 });
 
@@ -67,24 +72,37 @@ export const refreshThunk = createAsyncThunk<
 >('auth/refresh', async (_, ThunkAPI) => {
   try {
     const token = JSON.parse(localStorage.getItem('token') as string);
+
     if (!token) {
       return ThunkAPI.rejectWithValue('Token does not exist');
     }
-    // Setting the token for the request
-    setToken(token.access);
 
     const response = await API.post('/api/account/user/refresh/', {
       refresh: token.refresh,
     });
+
     const data = response.data;
-    localStorage.setItem('token', JSON.stringify(data));
-    // Optional: Update the token in the header for subsequent requests
     setToken(data.access);
-    return data;
+
+    return { ...data };
   } catch (error) {
-    clearToken(); // Clear token if refresh fails
-    return ThunkAPI.rejectWithValue('Something went wrong! Try again....');
+    clearToken();
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
   }
 });
 
-//Logout
+// Logout
+export const logoutThunk = createAsyncThunk<
+  void,
+  void,
+  { rejectValue: string }
+>('auth/logout', async (_, ThunkAPI) => {
+  try {
+    localStorage.removeItem('token');
+    clearToken();
+
+    return;
+  } catch (error) {
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
+  }
+});

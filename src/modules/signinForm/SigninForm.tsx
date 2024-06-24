@@ -12,14 +12,21 @@ import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { FormikHelpers, useFormik } from 'formik';
 import Link from 'next/link';
 import * as Yup from 'yup';
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import validationSchemaSignin from './helpers/validationSchemaSignin';
 import { authFormValues } from '@/models/authFormValues';
 import { useSelector } from 'react-redux';
 import { selectAuth } from '@/redux/auth/authSlice';
 import { useAppDispatch } from '@/redux/hooks';
-import { loginThunk, registerThunk } from '@/redux/auth/operations';
+import {
+  loginThunk,
+  logoutThunk,
+  registerThunk,
+} from '@/redux/auth/operations';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
+import Modal from '@/shared/components/Modal/Modal';
+import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
 
 type Props = {
   signinType: 'page' | 'burger';
@@ -32,7 +39,12 @@ export default function SigninForm({
   signupClick,
   signinForgotClick,
 }: Props) {
-  const { isLoggedIn, access, refresh } = useSelector(selectAuth);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const { email, isLoggedIn } = useSelector(selectAuth);
+
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const handleSubmit = (values: authFormValues) => {
@@ -41,21 +53,30 @@ export default function SigninForm({
     dispatch(loginThunk(formData))
       .unwrap()
       .then(() => {
-        toast.success(`Welcome to Marketplace!`);
-        console.log(isLoggedIn);
-        console.log(access);
-        console.log(refresh);
+        // setShowModal(true);
+        // setIsFormSubmitted(true);
+        router.push('/');
       })
-      .catch(err => {
-        toast.error(err);
+      .catch(error => {
+        toast.error(error);
+      });
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutThunk())
+      .unwrap()
+      .then(() => {
+        toast.success('Ви вийшли зі свого облікового запису');
+      })
+      .catch(error => {
+        toast.error(error);
       });
   };
 
   const formik = useFormik({
     initialValues: {
-      email: '',
+      email: email,
       password: '',
-      // chekSignIn: false,
     },
     validationSchema: validationSchemaSignin,
     onSubmit: handleSubmit,
@@ -84,12 +105,6 @@ export default function SigninForm({
           inputType="password"
         />
         <div className="flex justify-end items-center">
-          {/* <FormCheckbox
-            formik={formik}
-            id="chekSignIn"
-            label="Запам’ятати мене"
-            className="text-sm md:text-base"
-          /> */}
           {signinType === 'page' ? (
             <Link href="/signin-forgot" className="text-blue-900 text-sm">
               Нагадати пароль
@@ -105,9 +120,13 @@ export default function SigninForm({
         </div>
 
         <div className="w-28 mt-10 mx-auto pb-6 text-white md:text-base sm:text-sm">
-          <OrangeButton onClick={() => {}} type="submit">
-            Увійти
-          </OrangeButton>
+          {isLoggedIn ? (
+            <OrangeButton type="submit" onClick={handleLogout}>
+              Вийти
+            </OrangeButton>
+          ) : (
+            <OrangeButton type="submit">Увійти</OrangeButton>
+          )}
         </div>
       </form>
 
@@ -127,6 +146,12 @@ export default function SigninForm({
           </button>
         )}
       </div>
+
+      {isFormSubmitted && showModal && (
+        <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+          <RegIsSuccesful />
+        </Modal>
+      )}
     </Section>
   );
 }

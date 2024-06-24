@@ -1,10 +1,13 @@
 'use client';
 
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-
-import { Counter } from '.';
 import { Dispatch, MouseEventHandler, SetStateAction } from 'react';
 import { useRouter } from 'next/navigation';
+
+import { useSelector } from 'react-redux';
+import { selectAuth } from '@/redux/auth/authSlice';
+
+import { Counter } from '.';
 
 type Props = {
   toggleSearchVisibility: MouseEventHandler<HTMLButtonElement>;
@@ -19,6 +22,8 @@ export default function FunctionalButtons({
   setShowCatalog,
   setShowSearch,
 }: Props) {
+  const { isLoggedIn } = useSelector(selectAuth);
+
   const router = useRouter();
   const signinPage = '/signin';
   const favoritesPage = '/favorites';
@@ -47,7 +52,8 @@ export default function FunctionalButtons({
 
         <button
           onClick={handleSigninClick}
-          className="hidden md:flex text-blue-700 hover:text-neutral-800 active:text-neutral-400 items-center content-center"
+          className={`hidden md:flex hover:text-neutral-800 active:text-neutral-400 items-center content-center 
+            ${isLoggedIn ? 'text-orange-500' : 'text-blue-700'}`}
         >
           <SpriteSVG name="user" />
         </button>
