@@ -21,4 +21,5 @@ export const linksTitles: TlinksTitles[] = [
   { link: 'my-purchases', title: 'Замовлення' },
   { link: 'my-ads', title: 'Мої Оголошення' },
   { link: 'reviews', title: 'Відгуки' },
+  { link: 'my-sales', title: 'Замовлення моїх клієнтів' },
 ];
