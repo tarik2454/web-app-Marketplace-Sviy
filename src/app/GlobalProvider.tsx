@@ -28,7 +28,7 @@ export default function GlobalProvider({ children }: GlobalProviderProps) {
   return (
     <>
       {children}
-      <ToastContainer autoClose={3500} transition={Slide} />
+      <ToastContainer autoClose={2000} transition={Slide} />
     </>
   );
 }
