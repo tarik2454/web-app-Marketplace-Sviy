@@ -1,6 +1,6 @@
 'use client';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { Slide, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useAppDispatch } from '@/redux/hooks';
@@ -28,7 +28,7 @@ export default function GlobalProvider({ children }: GlobalProviderProps) {
   return (
     <>
       {children}
-      <ToastContainer autoClose={3000} />
+      <ToastContainer autoClose={2000} transition={Slide} />
     </>
   );
 }

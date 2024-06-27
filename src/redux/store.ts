@@ -47,7 +47,7 @@ const authPersistConfig = {
   key: 'auth',
   version: 1,
   storage,
-  whitelist: ['email'],
+  whitelist: ['full_name', 'email', 'phone'],
 };
 
 // const persistedUsersReducer = persistReducer(usersPersistConfig, usersReducer);

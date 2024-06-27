@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { selectAuth } from '@/redux/auth/authSlice';
 
 import { Counter } from '.';
+import { useAppSelector } from '@/redux/hooks';
 
 type Props = {
   toggleSearchVisibility: MouseEventHandler<HTMLButtonElement>;
@@ -22,16 +23,22 @@ export default function FunctionalButtons({
   setShowCatalog,
   setShowSearch,
 }: Props) {
-  const { isLoggedIn } = useSelector(selectAuth);
+  const { isLoggedIn } = useAppSelector(selectAuth);
 
   const router = useRouter();
   const signinPage = '/signin';
   const favoritesPage = '/favorites';
+  const personalOfficePage = '/personal-office/profile';
 
   const handleSigninClick = () => {
     setShowCatalog(false);
     setShowSearch(false);
-    router.push(signinPage);
+
+    if (isLoggedIn) {
+      router.push(personalOfficePage);
+    } else {
+      router.push(signinPage);
+    }
   };
 
   const handleFavoritesClick = () => {

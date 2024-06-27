@@ -68,7 +68,6 @@ export const authSlice = createSlice({
       .addCase(logoutThunk.fulfilled, state => {
         state.access = '';
         state.refresh = '';
-        state.full_name = '';
         state.phone = '';
         state.isLoggedIn = false;
         state.isLoading = false;
