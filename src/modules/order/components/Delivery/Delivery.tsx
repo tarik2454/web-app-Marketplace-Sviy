@@ -13,7 +13,7 @@ export default function Delivery({ formik }: any) {
   const handleSetShowByAddress = () => {
     setShowByAddress('block');
     setPostOfficeView('hidden');
-    formik.values.postOfficeApiSelect = '';
+    formik.values.warehouse = '';
     formik.values.city = '';
   };
 
@@ -22,7 +22,7 @@ export default function Delivery({ formik }: any) {
     setShowByAddress('hidden');
     setPostOfficeView('block');
     formik.values.deliveryByAddressPicked = false;
-    formik.values.postOfficeApiSelect = '';
+    formik.values.warehouse = '';
     formik.values.city = '';
   };
 
@@ -31,7 +31,7 @@ export default function Delivery({ formik }: any) {
     setShowNovaposhta('block');
     setShowByAddress('hidden');
     formik.values.deliveryByAddressPicked = false;
-    formik.values.postOfficeApiSelect = '';
+    formik.values.warehouse = '';
     formik.values.city = '';
   };
 
@@ -40,7 +40,7 @@ export default function Delivery({ formik }: any) {
     setShowNovaposhta('hidden');
     setShowByAddress('hidden');
     formik.values.deliveryByAddressPicked = false;
-    formik.values.postOfficeApiSelect = '';
+    formik.values.warehouse = '';
     formik.values.city = '';
   };
 

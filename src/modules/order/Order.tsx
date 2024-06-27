@@ -13,7 +13,7 @@ import {
 } from '@/shared/components';
 import { OrderCheckout, OrderListHeader } from './components';
 import { Delivery, OrderPayDetail } from './components/Delivery';
-import { orderSchema } from './helpers/order-schema';
+import { orderSchema } from './helpers/validationSchemaOrder';
 import AfterOrder from './components/AfterOrder/AfterOrder';
 
 // export type AfterOrderProps = {
@@ -45,9 +45,9 @@ export default function Order() {
               location: '',
               deliveryPicked: '',
               city: '',
-              postOfficeApiSelect: '',
+              warehouse: '',
               deliveryByAddressPicked: false,
-              address: '',
+              street: '',
               homeAddress: '',
               apartmentAddress: '',
               exitAddress: '',

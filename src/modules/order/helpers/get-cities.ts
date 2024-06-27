@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { getWarehouses } from '../api/novapostAPI';
+import { getWarehouses, getStreets } from '../api/novapostAPI';
 
 export const handleCityChange = async (
   selectedOption: { value: string; label: string } | null,
@@ -8,6 +8,10 @@ export const handleCityChange = async (
   >,
   setWarehouses: Dispatch<SetStateAction<any[]>>,
   setSelectedWarehouse: Dispatch<
+    SetStateAction<{ value: string; label: string } | null>
+  >,
+  setStreets: Dispatch<SetStateAction<any[]>>,
+  setSelectedStreet: Dispatch<
     SetStateAction<{ value: string; label: string } | null>
   >
 ) => {
@@ -19,6 +23,12 @@ export const handleCityChange = async (
       });
       setWarehouses(warehousesData);
       setSelectedWarehouse(null);
+
+      const streetsData = await getStreets({
+        cityRef: selectedOption.value,
+      });
+      setStreets(streetsData);
+      setSelectedStreet(null);
     } catch (error) {
       console.error('Error fetching warehouses:', error);
     }
