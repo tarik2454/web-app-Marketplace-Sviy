@@ -20,7 +20,7 @@ import {
   FormHeading,
 } from '@/shared/components';
 
-type PropsSignupForm = {
+type SignupFormProps = {
   signupType: 'page' | 'burger';
   signinClick?: MouseEventHandler<HTMLButtonElement>;
 };
@@ -28,7 +28,7 @@ type PropsSignupForm = {
 export default function SignupForm({
   signupType,
   signinClick,
-}: PropsSignupForm) {
+}: SignupFormProps) {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 

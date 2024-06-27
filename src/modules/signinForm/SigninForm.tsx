@@ -21,7 +21,7 @@ import { authFormValues } from '@/models/authFormValues';
 import Modal from '@/shared/components/Modal/Modal';
 import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
 
-type Props = {
+type SigninFormProps = {
   signinType: 'page' | 'burger';
   signupClick?: MouseEventHandler<HTMLButtonElement>;
   signinForgotClick?: MouseEventHandler<HTMLButtonElement>;
@@ -31,7 +31,7 @@ export default function SigninForm({
   signinType,
   signupClick,
   signinForgotClick,
-}: Props) {
+}: SigninFormProps) {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -55,7 +55,7 @@ export default function SigninForm({
       });
   };
 
-  const formik = useFormik({
+  const formik = useFormik<authFormValues>({
     initialValues: {
       email: email,
       password: '',
