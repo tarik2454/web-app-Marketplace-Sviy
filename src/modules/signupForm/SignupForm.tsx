@@ -120,7 +120,7 @@ export default function SignupForm({
           className="text-gray-500 font-lato text-sm md:pb-[34px] "
           href="https://www.termsfeed.com/live/3dd36d5f-36ec-41fc-9795-f516c6d2694e"
         >
-          Реєструючись ви погоджуєтесь з
+          Реєструючись ви погоджуєтесь з&nbsp;
           <span className="underline text-blue-800">
             Правилами використання сайту та Політикою конфіденційності
           </span>

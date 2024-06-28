@@ -176,7 +176,7 @@ export default function PersonalDynamicSidebar({
           </li>
 
           <li className="group">
-            <button onClick={handleLogout}>
+            <button className="w-full" onClick={handleLogout}>
               <div className={'rounded-b-lg' + ` ${liClass}`}>
                 <SpriteSVG name="exit" />
                 <p>Вийти</p>
@@ -306,7 +306,7 @@ export default function PersonalDynamicSidebar({
             </li>
 
             <li className="group">
-              <button onClick={handleLogout}>
+              <button className="w-full" onClick={handleLogout}>
                 <div className={'rounded-b-lg' + ` ${liClass}`}>
                   <SpriteSVG name="exit" />
                   <p>Вийти</p>
