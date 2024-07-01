@@ -41,7 +41,6 @@ export const authSlice = createSlice({
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
         state.full_name = payload.full_name;
         state.email = payload.email;
-        state.phone = payload.phone;
         state.isLoading = false;
       })
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
@@ -69,7 +68,6 @@ export const authSlice = createSlice({
         state.access = '';
         state.refresh = '';
         state.full_name = '';
-        state.phone = '';
         state.isLoggedIn = false;
         state.isLoading = false;
         state.isRefresh = false;
@@ -83,7 +81,7 @@ export const authSlice = createSlice({
         isAnyOf(loginThunk.rejected, registerThunk.rejected),
         (state, { payload }) => {
           state.isLoading = false;
-          state.error = payload ?? 'Error refreshing token';
+          state.error = payload ?? 'Помилка оновлення токену';
         }
       );
   },

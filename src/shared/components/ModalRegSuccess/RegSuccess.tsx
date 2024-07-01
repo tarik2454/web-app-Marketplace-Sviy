@@ -14,7 +14,7 @@ export default function RegIsSuccesful() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const { full_name } = useAppSelector(selectAuth);
+  const { email } = useAppSelector(selectAuth);
 
   const signinPage = '/signin';
   const personalOfficePage = '/personal-office/profile';
@@ -27,8 +27,8 @@ export default function RegIsSuccesful() {
     <>
       <h2 className="text-center text-stone-900 text-xl font-normal font-['Lato'] leading-loose md:text-2xl">
         {pathname === signinPage
-          ? `Авторизація ${full_name} пройшла успішно`
-          : `Реєстрація ${full_name} пройшла успішно`}
+          ? `Авторизація ${email} пройшла успішно`
+          : `Реєстрація ${email} пройшла успішно`}
       </h2>
 
       <div className="flex justify-center py-10">

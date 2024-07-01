@@ -1,4 +1,4 @@
-import { ThunkAction, UnknownAction, configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 // import usersReducer from './users/usersSlice';
 import authReducer from './auth/authSlice';
 
@@ -13,51 +13,72 @@ import {
 } from 'redux-persist';
 import createWebStorage from 'redux-persist/es/storage/createWebStorage';
 
-export function createPersistStore() {
-  const isServer = typeof window === 'undefined';
-  if (isServer) {
-    return {
-      getItem() {
-        return Promise.resolve(null);
-      },
-      setItem() {
-        return Promise.resolve();
-      },
-      removeItem() {
-        return Promise.resolve();
-      },
-    };
-  }
-  return createWebStorage('local');
-}
+// export function createPersistStore() {
+//   const isServer = typeof window === 'undefined';
+//   if (isServer) {
+//     return {
+//       getItem() {
+//         return Promise.resolve(null);
+//       },
+//       setItem() {
+//         return Promise.resolve();
+//       },
+//       removeItem() {
+//         return Promise.resolve();
+//       },
+//     };
+//   }
+//   return createWebStorage('local');
+// }
+
+// const storage =
+//   typeof window !== 'undefined'
+//     ? createWebStorage('local')
+//     : createPersistStore();
+
+const createNoopStorage = () => {
+  return {
+    getItem() {
+      return Promise.resolve(null);
+    },
+    setItem(_key: string, value: number) {
+      return Promise.resolve(value);
+    },
+    removeItem() {
+      return Promise.resolve();
+    },
+  };
+};
 
 const storage =
   typeof window !== 'undefined'
     ? createWebStorage('local')
-    : createPersistStore();
+    : createNoopStorage();
 
 const usersPersistConfig = {
   key: 'users',
   version: 1,
-  storage,
+  storage: storage,
   whitelist: ['value'],
 };
 
 const authPersistConfig = {
   key: 'auth',
   version: 1,
-  storage,
+  storage: storage,
   whitelist: ['full_name', 'email', 'phone'],
 };
 
-// const persistedUsersReducer = persistReducer(usersPersistConfig, usersReducer);
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
+// const persistedUsersReducer = persistReducer(usersPersistConfig, usersReducer);
+
+const rootReducer = combineReducers({
+  auth: persistedAuthReducer,
+  // users: persistedUsersReducer,
+});
 
 export const store = configureStore({
-  reducer: {
-    // users: persistedUsersReducer,
-    auth: persistedAuthReducer,
-  },
+  reducer: rootReducer,
   devTools: process.env.NODE_ENV !== 'production',
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
