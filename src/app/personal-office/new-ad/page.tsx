@@ -12,12 +12,14 @@ export default function Selected() {
     <PageWrapper>
       <ColorSpot />
       <Breadcrumbs
-        containerClasses={'xl:mb-[98px]'}
+        containerClasses={'mb-10 xl:mb-[98px]'}
         homeElement={<span>Головна</span>}
       />
       <Container>
         <PageTitle
-          stylesPageTitle={'hidden xl:block xl:mb-[88px]'}
+          stylesPageTitle={
+            'text-[24px] block md:hidden xl:block xl:text-[41px] mb-8 xl:mb-[88px]'
+          }
           name={'Нове оголошення'}
         />
       </Container>

@@ -4,9 +4,12 @@ import PersonalMyAdsList from './PersonalMyAddList';
 import sort from '@/shared/data/personal-select-data';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import productsData from '@/shared/data/products-data';
+import { useRouter } from 'next/navigation';
 
 export default function PersonalMyAdsItems() {
   const { isOnMobile, isOnTablet } = ScreenSize();
+
+  const router = useRouter();
 
   const itemsPerPage = isOnMobile ? 6 : isOnTablet ? 8 : 9;
 
@@ -26,7 +29,10 @@ export default function PersonalMyAdsItems() {
           className="border border-blue-500 rounded-[20px] py-3"
           inputStyle="!placeholder-gray-600"
         />
-        <OrangeButton cssSettings="text-white w-full max-w-[215px] !py-3">
+        <OrangeButton
+          cssSettings="text-white w-full max-w-[215px] !py-3"
+          onClick={() => router.push('/personal-office/new-ad')}
+        >
           Додати оголошення
         </OrangeButton>
       </div>

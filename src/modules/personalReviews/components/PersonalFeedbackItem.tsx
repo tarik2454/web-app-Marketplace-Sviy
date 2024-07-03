@@ -100,14 +100,16 @@ export default function PersonalFeedbackItem({
             >
               Переглянути товар
             </OrangeButton>
-            <button
-              type="button"
-              className="flex gap-2 text-gray-500 items-center text-sm md:text-base"
-              onClick={handleOpenModal}
-            >
-              <SpriteSVG name="trash" />
-              Видалити
-            </button>
+            {!feedback.reviewStatus && (
+              <button
+                type="button"
+                className="flex gap-2 text-gray-500 items-center text-sm md:text-base"
+                onClick={handleOpenModal}
+              >
+                <SpriteSVG name="trash" />
+                Видалити
+              </button>
+            )}
           </div>
         </div>
       )}
