@@ -13,6 +13,12 @@ interface AuthData {
   chekSignUp?: boolean;
 }
 
+interface UpdateProfileValues {
+  full_name?: string;
+  email?: string;
+  phone?: string;
+}
+
 // Register
 export const registerThunk = createAsyncThunk<
   AuthData,
@@ -84,7 +90,7 @@ export const refreshThunk = createAsyncThunk<
     const data = response.data;
     setToken(data.access);
 
-    return { ...data };
+    return data;
   } catch (error) {
     clearToken();
     return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
@@ -102,6 +108,49 @@ export const logoutThunk = createAsyncThunk<
     clearToken();
 
     return;
+  } catch (error) {
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
+  }
+});
+
+// Update profile
+export const updateProfileThunk = createAsyncThunk<
+  AuthData,
+  UpdateProfileValues,
+  { rejectValue: string }
+>('auth/updateProfile', async (credentials, ThunkAPI) => {
+  try {
+    const response = await API.patch(
+      '/api/account/user/update_me/',
+      credentials
+    );
+    const data = response.data;
+
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+      if (status === 401) {
+        return ThunkAPI.rejectWithValue(
+          'Аутентификационные данные не предоставлены.'
+        );
+      }
+    }
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
+  }
+});
+
+// Current user
+export const currentUserThunk = createAsyncThunk<
+  AuthData,
+  undefined,
+  { rejectValue: string }
+>('auth/currentUser', async (_, ThunkAPI) => {
+  try {
+    const response = await API.get('/api/account/user/retrieve_me/');
+    const data = response.data;
+
+    return data;
   } catch (error) {
     return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
   }
