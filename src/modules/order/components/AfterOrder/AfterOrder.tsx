@@ -1,7 +1,8 @@
 import React from 'react';
-import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
+
 import ProductBlock from './ProductBlock';
 import InfoBlock from './InfoBlock';
 import ButtonBlock from './ButtonBlock';

@@ -1,19 +1,21 @@
 import { Dispatch, SetStateAction } from 'react';
 import { getWarehouses, getStreets } from '../api/novapostAPI';
 
+type Option = {
+  value: string;
+  label: string;
+};
+
+type SetOption = Dispatch<SetStateAction<Option | null>>;
+type SetOptionsArray = Dispatch<SetStateAction<any[]>>;
+
 export const handleCityChange = async (
-  selectedOption: { value: string; label: string } | null,
-  setSelectedCity: Dispatch<
-    SetStateAction<{ value: string; label: string } | null>
-  >,
-  setWarehouses: Dispatch<SetStateAction<any[]>>,
-  setSelectedWarehouse: Dispatch<
-    SetStateAction<{ value: string; label: string } | null>
-  >,
-  setStreets: Dispatch<SetStateAction<any[]>>,
-  setSelectedStreet: Dispatch<
-    SetStateAction<{ value: string; label: string } | null>
-  >
+  selectedOption: Option | null,
+  setSelectedCity: SetOption,
+  setWarehouses: SetOptionsArray,
+  setSelectedWarehouse: SetOption,
+  setStreets: SetOptionsArray,
+  setSelectedStreet: SetOption
 ) => {
   if (selectedOption) {
     setSelectedCity(selectedOption);

@@ -1,54 +1,20 @@
 'use client';
+
 import { Field, ErrorMessage } from 'formik';
-import React, { useState, useEffect } from 'react';
 import SelectPostoffice from './SelectPostoffice';
+import useDeliveryOptions from '../../hooks/useDeliveryOptions';
 
 export default function Delivery({ formik }: any) {
-  const [showNovaposhta, setShowNovaposhta] = useState('hidden');
-  const [showByAddress, setShowByAddress] = useState('hidden');
-  const [postOfficeView, setPostOfficeView] = useState('block');
-
-  const [errorClassRadio, setErrorClassRadio] = useState('');
-
-  const handleSetShowByAddress = () => {
-    setShowByAddress('block');
-    setPostOfficeView('hidden');
-    formik.values.warehouse = '';
-    formik.values.city = '';
-  };
-
-  const handleByYourself = () => {
-    setShowNovaposhta('hidden');
-    setShowByAddress('hidden');
-    setPostOfficeView('block');
-    formik.values.deliveryByAddressPicked = false;
-    formik.values.warehouse = '';
-    formik.values.city = '';
-  };
-
-  const handleShowNovaposhta = () => {
-    setPostOfficeView('block');
-    setShowNovaposhta('block');
-    setShowByAddress('hidden');
-    formik.values.deliveryByAddressPicked = false;
-    formik.values.warehouse = '';
-    formik.values.city = '';
-  };
-
-  const handleShowUkrposhta = () => {
-    setPostOfficeView('block');
-    setShowNovaposhta('hidden');
-    setShowByAddress('hidden');
-    formik.values.deliveryByAddressPicked = false;
-    formik.values.warehouse = '';
-    formik.values.city = '';
-  };
-
-  useEffect(() => {
-    formik.errors.deliveryPicked && formik.touched.deliveryPicked
-      ? setErrorClassRadio('border-[#C60000] border-[1px]')
-      : setErrorClassRadio('border-blue-200');
-  }, [formik]);
+  const {
+    showNovaposhta,
+    showByAddress,
+    postOfficeView,
+    errorClassRadio,
+    handleSetShowByAddress,
+    handleByYourself,
+    handleShowNovaposhta,
+    // handleShowUkrposhta,
+  } = useDeliveryOptions(formik);
 
   return (
     <div className="mb-10 ">
@@ -116,9 +82,7 @@ export default function Delivery({ formik }: any) {
       </div>
       <ErrorMessage
         name="deliveryPicked"
-        render={msg => (
-          <p className="text-[#C60000] text-end text-sm">{msg} </p>
-        )}
+        render={msg => <p className="text-red-700 text-end text-sm">{msg} </p>}
       />
     </div>
   );

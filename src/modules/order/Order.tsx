@@ -4,21 +4,17 @@ import { useState } from 'react';
 import { Formik, Form } from 'formik';
 
 import ScreenSize from '@/shared/hooks/useMediaQuery';
-
 import {
   Container,
   OrderFinalPrice,
   Section,
   SectionTitle,
 } from '@/shared/components';
+
 import { OrderCheckout, OrderListHeader } from './components';
 import { Delivery, OrderPayDetail } from './components/Delivery';
 import { orderSchema } from './helpers/validationSchemaOrder';
 import AfterOrder from './components/AfterOrder/AfterOrder';
-
-// export type AfterOrderProps = {
-//   [key: string]: string | boolean;
-// }
 
 export default function Order() {
   const { isOnMobile, isOnTablet } = ScreenSize();
@@ -65,7 +61,7 @@ export default function Order() {
             }}
           >
             {formik => {
-              const { values, handleChange, touched, errors } = formik;
+              // const { values, handleChange, touched, errors } = formik;
               return (
                 <Form id="orderFormSubmit">
                   {(isOnMobile && (
