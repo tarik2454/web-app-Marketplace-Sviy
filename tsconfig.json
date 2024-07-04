@@ -29,7 +29,7 @@
     ".next/types/**/*.ts",
     "src/shared/img/SpriteSVG.jsx",
     "src/shared/data/products-data.js",
-    "src/apiConfig/apiConfig.ts",
+    "src/config-api/apiConfig.ts",
     "src/redux/store.js",
     "src/redux/store.js"
   ],

@@ -6,7 +6,7 @@ import CatalogItem from './CatalogItem';
 import Container from '@/shared/components/Container/Container';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { CloseButton } from '@/shared/components';
-import { fetchCatalog } from '@/apiConfig/catalogApi';
+import { fetchCatalog } from '@/config-api/catalog-api';
 
 type CatalogProps = {
   displayCategories: string;
