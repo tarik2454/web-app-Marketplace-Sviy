@@ -3,21 +3,71 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectAuth } from '@/redux/auth/authSlice';
 
 import ArrowButton from '@/shared/components/ArrowButton/ArrowButton';
 import OrangeButton from '@/shared/components/OrangeButton/OrangeButton';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import { useEffect, useState } from 'react';
+import { currentUserThunk, refreshThunk } from '@/redux/auth/operations';
+import { toast } from 'react-toastify';
 
 export default function RegIsSuccesful() {
   const pathname = usePathname();
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
-  const { full_name } = useAppSelector(selectAuth);
+  const { access, full_name, email } = useAppSelector(selectAuth);
 
   const signinPage = '/signin';
   const personalOfficePage = '/personal-office/profile';
+
+  // useEffect(() => {
+  //   dispatch(refreshThunk());
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   if (access) {
+  //     dispatch(currentUserThunk())
+  //       .unwrap()
+  //       .then(() => {
+  //         toast.success(`Current user ${full_name}`);
+  //       })
+  //       .catch(error => {
+  //         toast.error(error);
+  //       });
+  //   }
+  // }, [access, dispatch, full_name]);
+
+  const [initialized, setInitialized] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await dispatch(refreshThunk()).unwrap();
+        setInitialized(true);
+      } catch (error) {
+        toast.error((error as Error).message || 'Error refreshing token');
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        await dispatch(currentUserThunk()).unwrap();
+      } catch (error) {
+        toast.error((error as Error).message || 'Error fetching user data');
+      }
+    };
+
+    if (initialized && access) {
+      fetchUser();
+    }
+  }, [initialized, access, dispatch, full_name]);
 
   const handleOrangeButtonClick = () => {
     router.push(pathname === signinPage ? '/catalogue' : '/signin');
@@ -27,8 +77,8 @@ export default function RegIsSuccesful() {
     <>
       <h2 className="text-center text-stone-900 text-xl font-normal font-['Lato'] leading-loose md:text-2xl">
         {pathname === signinPage
-          ? `Авторизація ${full_name} пройшла успішно`
-          : `Реєстрація ${full_name} пройшла успішно`}
+          ? `Авторизація ${email} пройшла успішно`
+          : `Реєстрація ${email} пройшла успішно`}
       </h2>
 
       <div className="flex justify-center py-10">

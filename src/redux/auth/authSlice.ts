@@ -1,10 +1,12 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import {
+  currentUserThunk,
   loginThunk,
   logoutThunk,
   refreshThunk,
   registerThunk,
+  updateProfileThunk,
 } from './operations';
 
 interface AuthState {
@@ -41,7 +43,6 @@ export const authSlice = createSlice({
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
         state.full_name = payload.full_name;
         state.email = payload.email;
-        state.phone = payload.phone;
         state.isLoading = false;
       })
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
@@ -75,15 +76,43 @@ export const authSlice = createSlice({
         state.isRefresh = false;
         state.error = '';
       })
-      .addMatcher(isAnyOf(loginThunk.pending, registerThunk.pending), state => {
-        state.isLoading = true;
-        state.error = '';
+      .addCase(updateProfileThunk.fulfilled, (state, { payload }) => {
+        state.full_name = payload.full_name;
+        state.email = payload.email;
+        state.phone = payload.phone;
+        state.isLoading = false;
       })
+      .addCase(updateProfileThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload ?? 'Помилка оновлення профілю';
+      })
+      .addCase(currentUserThunk.fulfilled, (state, { payload }) => {
+        state.full_name = payload.full_name;
+        state.email = payload.email;
+        state.phone = payload.phone;
+        state.isLoading = false;
+      })
+      .addCase(currentUserThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload ?? 'Помилка отримання данних з серверу';
+      })
+      .addMatcher(
+        isAnyOf(
+          loginThunk.pending,
+          registerThunk.pending,
+          updateProfileThunk.pending,
+          currentUserThunk.pending
+        ),
+        state => {
+          state.isLoading = true;
+          state.error = '';
+        }
+      )
       .addMatcher(
         isAnyOf(loginThunk.rejected, registerThunk.rejected),
         (state, { payload }) => {
           state.isLoading = false;
-          state.error = payload ?? 'Error refreshing token';
+          state.error = payload ?? 'Помилка авторизації';
         }
       );
   },

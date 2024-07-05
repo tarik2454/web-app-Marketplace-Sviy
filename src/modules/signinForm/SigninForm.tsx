@@ -2,12 +2,12 @@
 
 import { useFormik } from 'formik';
 import Link from 'next/link';
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import { selectAuth } from '@/redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { loginThunk } from '@/redux/auth/operations';
+import { loginThunk, refreshThunk } from '@/redux/auth/operations';
 
 import {
   FormInput,
