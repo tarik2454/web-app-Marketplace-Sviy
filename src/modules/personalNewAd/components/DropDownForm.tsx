@@ -2,7 +2,7 @@
 
 import Select from 'react-select';
 import { twMerge } from 'tailwind-merge';
-import { FormikProps, useField } from 'formik';
+import { FormikProps} from 'formik';
 
 type Props = {
   options: Array<{ value: string; label: string }>;

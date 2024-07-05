@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useFormik } from 'formik';
 
 import {
@@ -15,7 +16,9 @@ import InputPhoto from './components/InputPhotoForm';
 import DropDownForm from './components/DropDownForm';
 import validationSchemaNewAd from './helpers/validationSchemaNewAd';
 
-const PersonalNewAd: React.FC = () => {
+
+export default function PersonalNewAd() {
+  const [isChecked, setIsChecked] = useState<boolean>(false);
   const handleSubmit = (values: any, { resetForm }: any): void => {
     const formData = new FormData();
 
@@ -56,6 +59,7 @@ const PersonalNewAd: React.FC = () => {
       availability: '',
       location: '',
       deliveryMethods: [],
+      deliveryCom: '',
       pay: [],
       card: '',
       comment: '',
@@ -214,11 +218,13 @@ const PersonalNewAd: React.FC = () => {
               <span>
                 <span className="text-xl">Доставка</span>
                 <span className="flex gap-8 md:gap-[113px] mt-6 mb-6 md:mb-10">
-                  <CheckboxForm
-                    name="deliveryMethods"
-                    labelText="Самовивіз"
-                    formik={formik}
-                  />
+                  <span onChange={() => setIsChecked(!isChecked)}>
+                    <CheckboxForm
+                      name="deliveryMethods"
+                      labelText="Самовивіз"
+                      formik={formik}
+                    />
+                  </span>
                   <CheckboxForm
                     name="deliveryMethods"
                     labelText="Нова Пошта"
@@ -230,7 +236,17 @@ const PersonalNewAd: React.FC = () => {
                     formik={formik}
                   />
                 </span>
-                <span className="flex flex-col mb-4">
+                {isChecked && (
+                  <FormInput
+                    formik={formik}
+                    name="diliveryComment"
+                    placeholder="Львів"
+                    label={''}
+                    inputType="textarea"
+                    classNameLogin="text-xl text-gray-600"
+                  />
+                )}
+                <span className="flex flex-col mb-4 mt-6">
                   <span className="text-xl mb-6">Оплата</span>
                   <span className="flex flex-col md:flex-row gap-6">
                     <span className="w-full md:w-[487px]">
@@ -292,4 +308,3 @@ const PersonalNewAd: React.FC = () => {
   );
 };
 
-export default PersonalNewAd;

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import AddImage from '@/shared/img/add-image.png';
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
-const InputPhoto = ({
+export default function InputPhoto({
   formik,
   setFieldValue,
 }: {
   formik: any;
   setFieldValue: any;
-}) => {
+}) {
   const [previewPhotos1, setPreviewPhotos1] = useState<string[]>([]);
   const [previewPhotos2, setPreviewPhotos2] = useState<string[][]>([
     [],
@@ -17,6 +18,13 @@ const InputPhoto = ({
     [],
     [],
   ]);
+  const [trashVisibleIndex1, setTrashVisibleIndex1] = useState<number | null>(
+    null
+  );
+  const [trashVisibleIndex2, setTrashVisibleIndex2] = useState<{
+    groupIndex: number | null;
+    photoIndex: number | null;
+  }>({ groupIndex: null, photoIndex: null });
 
   const handleFileChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(event.target.files || []);
@@ -46,6 +54,22 @@ const InputPhoto = ({
       };
       reader.readAsDataURL(file);
     });
+  };
+  const handleDeletePhoto1 = () => {
+    setPreviewPhotos1([]);
+  };
+  const handleDeletePhoto2 = (groupIndex: number, photoIndex: number) => {
+    setPreviewPhotos2(prevState => {
+      const updatedPreviews = [...prevState];
+      updatedPreviews[groupIndex] = updatedPreviews[groupIndex].filter(
+        (_, idx) => idx !== photoIndex
+      );
+      return updatedPreviews;
+    });
+    const updatedPhotos = formik.values.photos2[groupIndex].filter(
+      (_: any, idx: number) => idx !== photoIndex
+    );
+    setFieldValue(`photos2[${groupIndex}]`, updatedPhotos);
   };
 
   useEffect(() => {
@@ -93,7 +117,11 @@ const InputPhoto = ({
                   </div>
                 </div>
               ) : (
-                <div className="absolute top-[274px] left-[133px] md:relative md:top-0 md:left-0 w-[121px] h-[113px] md:w-[262px] md:h-[243px]">
+                <div
+                  className="absolute top-[274px] left-[133px] md:relative md:top-0 md:left-0 w-[121px] h-[113px] md:w-[262px] md:h-[243px] z-10"
+                  onMouseEnter={() => setTrashVisibleIndex1(0)}
+                  onMouseLeave={() => setTrashVisibleIndex1(null)}
+                >
                   <Image
                     src={previewPhotos1[0]}
                     alt={`Uploaded photo 1`}
@@ -101,6 +129,14 @@ const InputPhoto = ({
                     width={0}
                     height={0}
                   />
+                  {trashVisibleIndex1 === 0 && (
+                    <button
+                      className="absolute top-1/3 md:top-1/2 right-2 bg-neutral-500 rounded-lg p-1"
+                      onClick={handleDeletePhoto1}
+                    >
+                      <SpriteSVG name="trash" />
+                    </button>
+                  )}
                 </div>
               )}
             </div>
@@ -137,7 +173,22 @@ const InputPhoto = ({
                     </div>
                   ) : (
                     previewPhotos2[index - 1].map((photoUrl, idx) => (
-                      <div key={idx} className="relative w-[121px] h-[113px]">
+                      <div
+                        key={idx}
+                        className="relative w-[121px] h-[113px] z-10"
+                        onMouseEnter={() =>
+                          setTrashVisibleIndex2({
+                            groupIndex: index,
+                            photoIndex: idx,
+                          })
+                        }
+                        onMouseLeave={() =>
+                          setTrashVisibleIndex2({
+                            groupIndex: null,
+                            photoIndex: null,
+                          })
+                        }
+                      >
                         <Image
                           src={photoUrl}
                           alt={`Uploaded photo ${index} - ${idx + 1}`}
@@ -145,6 +196,15 @@ const InputPhoto = ({
                           width={121}
                           height={113}
                         />
+                        {trashVisibleIndex2.groupIndex === index &&
+                          trashVisibleIndex2.photoIndex === idx && (
+                            <button
+                              className="absolute top-1/3 md:top-1/2 right-2 bg-neutral-500 rounded-lg p-1"
+                              onClick={() => handleDeletePhoto2(index - 1, idx)}
+                            >
+                              <SpriteSVG name="trash" />
+                            </button>
+                          )}
                       </div>
                     ))
                   )}
@@ -156,6 +216,4 @@ const InputPhoto = ({
       </div>
     </div>
   );
-};
-
-export default InputPhoto;
+}
