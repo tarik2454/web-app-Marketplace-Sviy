@@ -19,7 +19,7 @@ export default function ButtonBlock() {
       </div>
       <div className="flex gap-3 items-center">
         <p className="text-sm xl:text-nowrap md:text-nowrap">В мої покупки</p>
-        <span className="bg-[#1565C0] rounded-circle xl:w-[34px] xl:h-[34px] md:w-[34px] md:h-[34px] w-[28px] h-[28px] flex justify-center items-center">
+        <span className="bg-blue-700 rounded-circle xl:w-[34px] xl:h-[34px] md:w-[34px] md:h-[34px] w-[28px] h-[28px] flex justify-center items-center">
           <SpriteSVG name="card-arrow-right" />
         </span>
       </div>

@@ -1,11 +1,12 @@
 'use client';
+
 import React, { useEffect, useId, useState } from 'react';
 import { Field, ErrorMessage, useField } from 'formik';
-import Select from 'react-select';
 import { getCities } from '../../api/novapostAPI';
+
+import Select from 'react-select';
 import { handleWarehouseChange } from '../../helpers/get-warehouses';
 import { handleCityChange } from '../../helpers/get-cities';
-// import { handleStreetChange } from '../../helpers/get-street';
 
 type SelectPostofficeProps = {
   postOfficeShow: string;
@@ -201,6 +202,7 @@ export default function SelectPostoffice({
           className="text-[#C60000] text-end"
         />
       </div>
+
       <div className="flex justify-between items-start mt-5">
         <div className="mb-5 flex items-center gap-2">
           <Field
@@ -218,6 +220,7 @@ export default function SelectPostoffice({
           За тарифами перевізника
         </p>
       </div>
+
       <div className={byAddress}>
         <div className="flex flex-col">
           <label htmlFor={forAddressPoshta} className="text-gray-600 ml-[32px]">
@@ -231,16 +234,13 @@ export default function SelectPostoffice({
             onChange={handleChangeStreet}
             errorClassInputSelect={errorClassInputStreet}
             value={selectedStreet}
-            // type="text"
-            // className={`${errorClassInputStreet}`}
           />
           <ErrorMessage
             name="street"
             component="p"
-            className="text-[#C60000] text-end"
+            className="text-red-700 text-end"
           />
         </div>
-
         <div className="grid xl:grid-cols-4 xl:grid-rows-1 md:grid-rows-2 md:grid-cols-3 sm:grid-cols-2 sm:grid-rows-2 gap-auto mt-5 mb-5 ">
           <div className="flex flex-col">
             <label htmlFor={homeAddress} className="text-gray-600">
@@ -255,7 +255,7 @@ export default function SelectPostoffice({
             <ErrorMessage
               name="homeAddress"
               component="p"
-              className="text-[#C60000] text-sm"
+              className="text-red-700 text-sm"
             />
           </div>
           <div className="flex flex-col">

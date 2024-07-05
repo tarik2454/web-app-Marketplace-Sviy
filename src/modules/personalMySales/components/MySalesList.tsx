@@ -7,7 +7,7 @@ import { Dropdown } from '@/shared/components';
 import OrderImage from '@/shared/img/salo.jpeg';
 import Image from 'next/image';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
-import sortSales from '@/shared/data/sort-sales-data';
+import sortSalesItems from '../data/my-sales-items-data';
 import MySalesListOpen from './MySalesListOpen';
 
 type Order = {
@@ -82,7 +82,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                   >
                     <Dropdown
                       onChange={() => {}}
-                      options={sortSales}
+                      options={sortSalesItems}
                       placeholder="Нове"
                       controlClassName="text-sm"
                       id={`novelties-${23}`}
@@ -129,7 +129,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                     <div className="ml-auto" onClick={e => e.stopPropagation()}>
                       <Dropdown
                         onChange={() => {}}
-                        options={sortSales}
+                        options={sortSalesItems}
                         placeholder="Нове"
                         controlClassName="text-base"
                         id={`novelties-${23}`}
@@ -209,7 +209,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                     <div className="" onClick={e => e.stopPropagation()}>
                       <Dropdown
                         onChange={() => {}}
-                        options={sortSales}
+                        options={sortSalesItems}
                         placeholder="Нове"
                         controlClassName="text-base"
                         id={`novelties-${23}`}

@@ -1,10 +1,15 @@
 import { Dispatch, SetStateAction } from 'react';
 
+type Option = {
+  value: string;
+  label: string;
+};
+
+type SetOption = Dispatch<SetStateAction<Option | null>>;
+
 export const handleStreetChange = (
-  selectedOption: { value: string; label: string } | null,
-  setSelectedStreet: Dispatch<
-    SetStateAction<{ value: string; label: string } | null>
-  >
+  selectedOption: Option | null,
+  setSelectedStreet: SetOption
 ) => {
   if (selectedOption) {
     setSelectedStreet(selectedOption);
