@@ -7,18 +7,19 @@ interface CheckboxFormProps {
   formik: FormikProps<any>;
   className?: string;
   id?: string;
+  onClick?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const CheckboxForm: React.FC<CheckboxFormProps> = ({
+function CheckboxForm({
   name,
   labelText,
   formik,
   className,
   id,
-}) => {
+}: CheckboxFormProps) {
   const error = formik.touched[name] && formik.errors[name];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const isChecked = e.target.checked;
     let updatedValues = Array.isArray(formik.values[name])
       ? [...formik.values[name]]
@@ -31,7 +32,7 @@ const CheckboxForm: React.FC<CheckboxFormProps> = ({
     }
 
     formik.setFieldValue(name, updatedValues);
-  };
+  }
 
   return (
     <div className={`flex items-center ${className}`}>
@@ -53,6 +54,6 @@ const CheckboxForm: React.FC<CheckboxFormProps> = ({
       </span>
     </div>
   );
-};
+}
 
 export default CheckboxForm;
