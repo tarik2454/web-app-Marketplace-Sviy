@@ -13,29 +13,6 @@ import {
 } from 'redux-persist';
 import createWebStorage from 'redux-persist/es/storage/createWebStorage';
 
-// export function createPersistStore() {
-//   const isServer = typeof window === 'undefined';
-//   if (isServer) {
-//     return {
-//       getItem() {
-//         return Promise.resolve(null);
-//       },
-//       setItem() {
-//         return Promise.resolve();
-//       },
-//       removeItem() {
-//         return Promise.resolve();
-//       },
-//     };
-//   }
-//   return createWebStorage('local');
-// }
-
-// const storage =
-//   typeof window !== 'undefined'
-//     ? createWebStorage('local')
-//     : createPersistStore();
-
 const createNoopStorage = () => {
   return {
     getItem() {
@@ -55,19 +32,19 @@ const storage =
     ? createWebStorage('local')
     : createNoopStorage();
 
-const usersPersistConfig = {
-  key: 'users',
-  version: 1,
-  storage: storage,
-  whitelist: ['value'],
-};
-
 const authPersistConfig = {
   key: 'auth',
   version: 1,
   storage: storage,
-  whitelist: ['full_name', 'email', 'phone'],
+  whitelist: ['full_name', 'email', 'phone', 'address'],
 };
+
+// const usersPersistConfig = {
+//   key: 'users',
+//   version: 1,
+//   storage: storage,
+//   whitelist: ['value'],
+// };
 
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 // const persistedUsersReducer = persistReducer(usersPersistConfig, usersReducer);

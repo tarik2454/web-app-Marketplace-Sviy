@@ -9,6 +9,7 @@ interface AuthData {
   full_name?: string;
   email?: string;
   phone?: string;
+  address?: string;
   password?: string;
   chekSignUp?: boolean;
 }
@@ -17,6 +18,7 @@ interface UpdateProfileValues {
   full_name?: string;
   email?: string;
   phone?: string;
+  address?: string;
 }
 
 // Register
@@ -154,5 +156,34 @@ export const currentUserThunk = createAsyncThunk<
     return data;
   } catch (error) {
     return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
+  }
+});
+
+// Update password
+export const updatePasswordThunk = createAsyncThunk<
+  void,
+  { password: string; new_password: string },
+  { rejectValue: string }
+>('auth/updatePassword', async ({ password, new_password }, ThunkAPI) => {
+  try {
+    const response = await API.put('/api/account/user/set_password_me/', {
+      password,
+      new_password,
+    });
+
+    if (response.status === 204) {
+      return;
+    } else if (response.status === 400) {
+      const errorData = await response.data;
+      return ThunkAPI.rejectWithValue(JSON.stringify(errorData));
+    } else if (response.status === 401) {
+      return ThunkAPI.rejectWithValue(
+        'User is unauthenticated or token is invalid or expired.'
+      );
+    } else {
+      return ThunkAPI.rejectWithValue('Unexpected error occurred.');
+    }
+  } catch (error) {
+    return ThunkAPI.rejectWithValue('Something went wrong. Please try again.');
   }
 });

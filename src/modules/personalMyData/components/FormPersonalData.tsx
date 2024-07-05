@@ -34,6 +34,7 @@ export default function FormPersonalData({ formik }: any) {
           formik={formik}
           name="phone"
           label={'Телефон'}
+          classNameLogin="mb-2 ml-0"
           inputType="tel"
         />
       </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Formik, Form, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -16,7 +16,7 @@ import ButtonProfile from './ButtonProfile';
 type FormPersonalDataValues = {
   full_name: string | undefined;
   lastName: string;
-  address: string;
+  address: string | undefined;
   phone: string | undefined;
   email: string | undefined;
   newEmail: string;
@@ -28,23 +28,61 @@ type FormPersonalDataValues = {
 export default function FormikProfile() {
   const { isOnMobile, isOnTablet } = ScreenSize();
 
-  const { full_name, email, phone } = useAppSelector(selectAuth);
+  const { full_name, email, phone, address } = useAppSelector(selectAuth);
 
   const dispatch = useAppDispatch();
 
+  const [firstName, setFirstName] = useState('');
+  const [remainingNames, setRemainingNames] = useState('');
+  const [initialValues, setInitialValues] = useState<FormPersonalDataValues>({
+    full_name: '',
+    lastName: '',
+    address: address,
+    phone: phone,
+    email: email,
+    newEmail: '',
+    currentPassword: '',
+    password: '',
+    repeatPassword: '',
+  });
+
+  useEffect(() => {
+    if (full_name) {
+      const nameParts = full_name.split(' ');
+      if (nameParts.length > 0) {
+        setFirstName(nameParts[0]);
+        setRemainingNames(nameParts.slice(1).join(' '));
+      }
+    }
+  }, [full_name]);
+
+  useEffect(() => {
+    setInitialValues(prevValues => ({
+      ...prevValues,
+      full_name: firstName,
+      lastName: remainingNames,
+    }));
+  }, [firstName, remainingNames, address, phone, email]);
+
   const handleSubmit = (values: FormPersonalDataValues) => {
     const {
+      full_name,
       lastName,
-      address,
       newEmail,
       currentPassword,
+      password,
       repeatPassword,
       ...formData
     } = values;
 
-    console.log(formData);
+    const combinedFullName = `${full_name} ${lastName}`.trim();
 
-    dispatch(updateProfileThunk(formData))
+    const dataToSubmit = {
+      ...formData,
+      full_name: combinedFullName,
+    };
+
+    dispatch(updateProfileThunk(dataToSubmit))
       .unwrap()
       .then(() => {
         toast.success('Profile updated successfully');
@@ -55,19 +93,10 @@ export default function FormikProfile() {
   };
 
   const formik = useFormik<FormPersonalDataValues>({
-    initialValues: {
-      full_name: full_name,
-      lastName: '',
-      address: '',
-      phone: phone,
-      email: email,
-      newEmail: '',
-      currentPassword: '',
-      password: '',
-      repeatPassword: '',
-    },
+    initialValues,
     validationSchema: validationSchemaFormikProfile,
     onSubmit: handleSubmit,
+    enableReinitialize: true,
   });
 
   return (

@@ -7,6 +7,7 @@ import {
   refreshThunk,
   registerThunk,
   updateProfileThunk,
+  updatePasswordThunk,
 } from './operations';
 
 interface AuthState {
@@ -15,6 +16,7 @@ interface AuthState {
   full_name?: string;
   email?: string;
   phone?: string;
+  address?: string;
   isLoggedIn: boolean;
   isLoading: boolean;
   isRefresh: boolean;
@@ -27,6 +29,7 @@ const initialState: AuthState = {
   full_name: '',
   email: '',
   phone: '',
+  address: '',
   isLoggedIn: false,
   isLoading: false,
   isRefresh: false,
@@ -36,7 +39,6 @@ const initialState: AuthState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-
   reducers: {},
   extraReducers: builder => {
     builder
@@ -80,6 +82,7 @@ export const authSlice = createSlice({
         state.full_name = payload.full_name;
         state.email = payload.email;
         state.phone = payload.phone;
+        state.address = payload.address;
         state.isLoading = false;
       })
       .addCase(updateProfileThunk.rejected, (state, { payload }) => {
@@ -96,12 +99,21 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.error = payload ?? 'Помилка отримання данних з серверу';
       })
+      .addCase(updatePasswordThunk.fulfilled, state => {
+        state.isLoading = false;
+        state.error = '';
+      })
+      .addCase(updatePasswordThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload ?? 'Помилка зміни паролю';
+      })
       .addMatcher(
         isAnyOf(
           loginThunk.pending,
           registerThunk.pending,
           updateProfileThunk.pending,
-          currentUserThunk.pending
+          currentUserThunk.pending,
+          updatePasswordThunk.pending
         ),
         state => {
           state.isLoading = true;
@@ -109,7 +121,11 @@ export const authSlice = createSlice({
         }
       )
       .addMatcher(
-        isAnyOf(loginThunk.rejected, registerThunk.rejected),
+        isAnyOf(
+          loginThunk.rejected,
+          registerThunk.rejected,
+          updatePasswordThunk.rejected
+        ),
         (state, { payload }) => {
           state.isLoading = false;
           state.error = payload ?? 'Помилка авторизації';

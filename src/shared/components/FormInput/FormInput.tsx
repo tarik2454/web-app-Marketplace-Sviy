@@ -17,6 +17,7 @@ type Props = {
   inputLink?: string;
   classNameLogin?: string;
   id?: string;
+  readOnly?: boolean;
 };
 
 export default function FormInput({
@@ -29,6 +30,7 @@ export default function FormInput({
   inputLink,
   classNameLogin,
   id,
+  readOnly,
 }: Props) {
   const [inputTypePass, setInputTypePass] = useState(inputType);
   const [borderColor, setBorderColor] = useState('border-blue-200');
@@ -70,8 +72,11 @@ export default function FormInput({
             name={name}
             placeholder={placeholder}
             value={formik.values[name]}
-            className="w-full h-6 outline-none flex-grow order-2"
+            className={`w-full h-6 outline-none flex-grow order-2 ${
+              readOnly ? 'text-gray-600' : ''
+            }`}
             pattern={inputType === 'number' ? '[0-9]*' : undefined}
+            readOnly={readOnly}
           />
         )}
         {inputType === 'textarea' && (
