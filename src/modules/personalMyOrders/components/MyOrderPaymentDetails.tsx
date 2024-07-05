@@ -11,7 +11,6 @@ export default function MyOrderPaymentDetails({
   status,
 }: MyOrderPaymentDetailsProps) {
   const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
-
   const isOrderCancelable = status !== 'fulfilled' && status !== 'canceled';
 
   return (
@@ -28,7 +27,7 @@ export default function MyOrderPaymentDetails({
         <p className="sm:text-sm">Разом</p>
         <p className="sm:text-sm">150 ₴</p>
       </div>
-      <div className="flex justify-between md:justify-start md:items-baseline ">
+      <div className="flex justify-between md:justify-start">
         <div className="text-white sm:mr-[2px] sm:text-sm md:mr-6 ">
           <OrangeButton
             cssSettings="sm:px-2 md:py-2.5 md:px-8"
@@ -41,10 +40,10 @@ export default function MyOrderPaymentDetails({
         <div className="sm:text-sm ">
           <ArrowButton
             onClick={handleOpenModal}
-            cssSettings="sm:px-2 md:py-2.5 md:px-8"
-            svgCssSettings="sm:hidden md:block "
+            cssSettings="sm:px-2 sm:py-2.5 md:py-2.5 md:px-8"
+            svgCssSettings="sm:hidden md:block md:w-6 md:h-6"
           >
-            Залишити відгук
+            <span className="xl:pt-[5px]"> Залишити відгук</span>
           </ArrowButton>
         </div>
         <MyOrderFeedback
