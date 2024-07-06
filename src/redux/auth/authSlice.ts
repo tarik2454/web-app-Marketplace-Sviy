@@ -8,6 +8,7 @@ import {
   registerThunk,
   updateProfileThunk,
   updatePasswordThunk,
+  deleteProfileThunk,
 } from './operations';
 
 interface AuthState {
@@ -45,6 +46,7 @@ export const authSlice = createSlice({
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
         state.full_name = payload.full_name;
         state.email = payload.email;
+        state.phone = payload.phone;
         state.isLoading = false;
       })
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
@@ -107,13 +109,29 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.error = payload ?? 'Помилка зміни паролю';
       })
+      .addCase(deleteProfileThunk.fulfilled, state => {
+        state.access = '';
+        state.refresh = '';
+        state.full_name = '';
+        state.email = '';
+        state.phone = '';
+        state.address = '';
+        state.isLoggedIn = false;
+        state.isLoading = false;
+        state.error = '';
+      })
+      .addCase(deleteProfileThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload ?? 'Помилка видалення профілю';
+      })
       .addMatcher(
         isAnyOf(
           loginThunk.pending,
           registerThunk.pending,
           updateProfileThunk.pending,
           currentUserThunk.pending,
-          updatePasswordThunk.pending
+          updatePasswordThunk.pending,
+          deleteProfileThunk.pending
         ),
         state => {
           state.isLoading = true;

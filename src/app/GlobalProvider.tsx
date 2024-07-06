@@ -15,14 +15,7 @@ export default function GlobalProvider({ children }: GlobalProviderProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(refreshThunk())
-      .unwrap()
-      .then(() => {
-        console.log('Success token');
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    dispatch(refreshThunk());
   }, [dispatch]);
 
   return (

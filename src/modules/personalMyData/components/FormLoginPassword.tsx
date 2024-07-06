@@ -1,42 +1,62 @@
+'use client';
+
+import { selectAuth } from '@/redux/auth/authSlice';
+import { updatePasswordThunk } from '@/redux/auth/operations';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { BlueBorderButton, FormInput } from '@/shared/components';
+import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
+import validationSchemaFormikProfile from '../helpers/validationSchemaFormikProfile';
 
-export default function FormLoginPassword({ formik }: any) {
-  // const dispatch = useAppDispatch();
+type FormLoginPasswordValues = {
+  email: string | undefined;
+  password: string;
+  new_password: string;
+  repeatPassword: string;
+};
 
-  // const handleSubmit = (values: FormPersonalDataValues) => {
-  //   const {
-  //     full_name,
-  //     lastName,
-  //     newEmail,
-  //     currentPassword,
-  //     password,
-  //     repeatPassword,
-  //     ...formData
-  //   } = values;
+export default function FormLoginPassword() {
+  const { email } = useAppSelector(selectAuth);
 
-  //   // Отправка запроса на обновление пароля
-  //   if (currentPassword && password) {
-  //     dispatch(
-  //       updatePasswordThunk({
-  //         password: currentPassword,
-  //         new_password: password,
-  //       })
-  //     )
-  //       .unwrap()
-  //       .then(() => {
-  //         toast.success('Password updated successfully');
-  //       })
-  //       .catch(error => {
-  //         toast.error(error);
-  //       });
-  //   }
-  // };
+  const dispatch = useAppDispatch();
+
+  const handleSubmit = (values: FormLoginPasswordValues) => {
+    const { password, new_password } = values;
+
+    console.log(password);
+    console.log(new_password);
+    dispatch(
+      updatePasswordThunk({
+        password: password,
+        new_password: new_password,
+      })
+    )
+      .unwrap()
+      .then(() => {
+        toast.success('toast.success');
+      })
+      .catch(error => {
+        toast.error(error);
+      });
+  };
+
+  const formik = useFormik<FormLoginPasswordValues>({
+    initialValues: {
+      email: email,
+      password: '',
+      new_password: '',
+      repeatPassword: '',
+    },
+    validationSchema: validationSchemaFormikProfile,
+    onSubmit: handleSubmit,
+    enableReinitialize: true,
+  });
 
   return (
     <>
-      <h3 className="text-2xl xl:mb-10 md:mb-10 mb-0">Логін та пароль</h3>
+      <h3 className="text-2xl xl:mb-7 md:mb-10 mb-6">Логін та пароль</h3>
 
-      <div className="flex flex-col gap-10">
+      <form className="flex flex-col gap-10" onSubmit={formik.handleSubmit}>
         <div className="flex flex-col gap-6">
           <FormInput
             formik={formik}
@@ -48,14 +68,14 @@ export default function FormLoginPassword({ formik }: any) {
           />
           <FormInput
             formik={formik}
-            name="currentPassword"
+            name="password"
             label={'Поточний пароль'}
             inputType="password"
             classNameLogin="mb-2 ml-0"
           />
           <FormInput
             formik={formik}
-            name="password"
+            name="new_password"
             label={'Новий пароль'}
             inputType="password"
             classNameLogin="mb-2 ml-0"
@@ -68,15 +88,15 @@ export default function FormLoginPassword({ formik }: any) {
             classNameLogin="mb-2 ml-0"
           />
         </div>
+
         <BlueBorderButton
-          onClick={() => {}}
           smallButton={true}
           cssSettings="text-nowrap xl:max-w-[164px]"
-          type="button"
+          type="submit"
         >
           Змінити пароль
         </BlueBorderButton>
-      </div>
+      </form>
     </>
   );
 }

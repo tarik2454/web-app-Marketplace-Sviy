@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 import { selectAuth } from '@/redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { loginThunk, refreshThunk } from '@/redux/auth/operations';
+import { loginThunk } from '@/redux/auth/operations';
 
 import {
   FormInput,

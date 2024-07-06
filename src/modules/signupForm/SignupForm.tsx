@@ -46,6 +46,8 @@ export default function SignupForm({
       formData.phone = formData.phone.replace(/\s+/g, '');
     }
 
+    console.log(formData);
+
     dispatch(registerThunk(formData))
       .unwrap()
       .then(() => {

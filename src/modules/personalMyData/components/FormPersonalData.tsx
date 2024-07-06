@@ -1,43 +1,110 @@
 import { FormInput } from '@/shared/components';
+import ButtonProfile from './ButtonProfile';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { selectAuth } from '@/redux/auth/authSlice';
+import { useEffect, useState } from 'react';
+import { updateProfileThunk } from '@/redux/auth/operations';
+import { toast } from 'react-toastify';
+import { useFormik } from 'formik';
+import validationSchemaFormikProfile from '../helpers/validationSchemaFormikProfile';
 
-export default function FormPersonalData({ formik }: any) {
+type FormPersonalDataValues = {
+  full_name: string | undefined;
+  lastName: string;
+  address: string | undefined;
+  phone: string | undefined;
+};
+
+export default function FormPersonalData() {
+  const { full_name, phone, address } = useAppSelector(selectAuth);
+
+  const dispatch = useAppDispatch();
+
+  const [firstName, setFirstName] = useState('');
+  const [remainingNames, setRemainingNames] = useState('');
+
+  useEffect(() => {
+    if (full_name) {
+      const nameParts = full_name.split(' ');
+      if (nameParts.length > 0) {
+        setFirstName(nameParts[0]);
+        setRemainingNames(nameParts.slice(1).join(' '));
+      }
+    }
+  }, [full_name]);
+
+  const initialValues: FormPersonalDataValues = {
+    full_name: firstName,
+    lastName: remainingNames,
+    address: address || '',
+    phone: phone || '',
+  };
+
+  const handleSubmit = (values: FormPersonalDataValues) => {
+    const { full_name, lastName, ...formData } = values;
+
+    const combinedFullName = `${full_name} ${lastName}`.trim();
+
+    const dataToSubmit = { ...formData, full_name: combinedFullName };
+
+    dispatch(updateProfileThunk(dataToSubmit))
+      .unwrap()
+      .then(() => {
+        toast.success('toast.success');
+      })
+      .catch(error => {
+        toast.error(error);
+      });
+  };
+
+  const formik = useFormik<FormPersonalDataValues>({
+    initialValues,
+    validationSchema: validationSchemaFormikProfile,
+    onSubmit: handleSubmit,
+    enableReinitialize: true,
+  });
+
   return (
     <>
-      <h3 className="text-2xl xl:mb-7 md:mb-10 mb-6">Персональні дані</h3>
+      <h3 className="text-2xl xl:mb-7 md:mb-10 mb-6">Персональные данные</h3>
 
-      <div className="flex flex-col gap-6">
-        <FormInput
-          formik={formik}
-          name="full_name"
-          label={'Ім’я'}
-          classNameLogin="mb-2 ml-0"
-          placeholder={'Ім’я'}
-          inputType="text"
-        />
-        <FormInput
-          formik={formik}
-          name="lastName"
-          label={'Прізвище'}
-          classNameLogin="mb-2 ml-0"
-          placeholder={'Прізвище'}
-          inputType="text"
-        />
-        <FormInput
-          formik={formik}
-          name="address"
-          label={'Адреса'}
-          classNameLogin="mb-2 ml-0"
-          placeholder={'Адреса'}
-          inputType="text"
-        />
-        <FormInput
-          formik={formik}
-          name="phone"
-          label={'Телефон'}
-          classNameLogin="mb-2 ml-0"
-          inputType="tel"
-        />
-      </div>
+      <form className="flex flex-col gap-10" onSubmit={formik.handleSubmit}>
+        <div className="flex flex-col gap-6">
+          <FormInput
+            formik={formik}
+            name="full_name"
+            label={'Имя'}
+            classNameLogin="mb-2 ml-0"
+            placeholder={'Имя'}
+            inputType="text"
+          />
+          <FormInput
+            formik={formik}
+            name="lastName"
+            label={'Фамилия'}
+            classNameLogin="mb-2 ml-0"
+            placeholder={'Фамилия'}
+            inputType="text"
+          />
+          <FormInput
+            formik={formik}
+            name="address"
+            label={'Адрес'}
+            classNameLogin="mb-2 ml-0"
+            placeholder={'Адрес'}
+            inputType="text"
+          />
+          <FormInput
+            formik={formik}
+            name="phone"
+            label={'Телефон'}
+            classNameLogin="mb-2 ml-0"
+            inputType="tel"
+          />
+        </div>
+
+        <ButtonProfile />
+      </form>
     </>
   );
 }
