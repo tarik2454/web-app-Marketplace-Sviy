@@ -1,11 +1,11 @@
 'use client';
 
-import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { FormikProps } from 'formik';
 import { useEffect, useState } from 'react';
-import styles from '@/styles/FormInput.module.css';
 import Link from 'next/link';
 import InputMask from 'react-input-mask';
+
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
 type Props = {
   name: string;
@@ -50,10 +50,17 @@ export default function FormInput({
     formik.setFieldValue(name, value);
   };
 
+  const formatPhoneNumber = (phone: string) => {
+    const cleaned = phone.replace(/\D/g, '');
+
+    return cleaned.replace(
+      /(\d{2})(\d{3})(\d{3})(\d{2})(\d{2})/,
+      '+$1 $2 $3 $4 $5'
+    );
+  };
+
   return (
-    <div
-      className={`relative h-auto flex flex-col w-full ${styles.customInput}`}
-    >
+    <div className="relative h-auto flex flex-col w-full">
       <label
         htmlFor={id}
         className={`ml-4 md:text-base sm:text-sm ${classNameLogin}`}
@@ -71,7 +78,7 @@ export default function FormInput({
             type={inputTypePass}
             name={name}
             placeholder={placeholder}
-            value={formik.values[name]}
+            value={formik.values[name] || ''}
             className={`w-full h-6 outline-none flex-grow order-2 ${
               readOnly ? 'text-gray-600' : ''
             }`}
@@ -84,35 +91,23 @@ export default function FormInput({
             onChange={formik.handleChange}
             name={name}
             placeholder={placeholder}
-            value={formik.values[name]}
+            value={formik.values[name] || ''}
             className="w-full h-6 outline-none flex-grow order-2 overflow-hidden"
           />
         )}
         {inputType === 'tel' && (
-          <>
-            {formik.values[name] ? (
-              <input
-                id={id}
-                onChange={handlePhoneChange}
-                name={name}
-                placeholder={placeholder}
-                value={formik.values[name]}
-                className="w-full h-6 outline-none p-invalid"
-              />
-            ) : (
-              <InputMask
-                mask="+3\80 99 999 99 99"
-                maskChar="_"
-                placeholder="+380"
-                name={name}
-                onChange={formik.handleChange}
-                className="w-full h-6 outline-none p-invalid"
-              />
-            )}
-          </>
+          <InputMask
+            mask="+38 099 999 99 99"
+            maskChar={'_'}
+            placeholder="+38 0"
+            name={name}
+            onChange={handlePhoneChange}
+            className="w-full h-6 outline-none p-invalid"
+            value={formatPhoneNumber(formik.values[name] || '')}
+          />
         )}
         {inputIcon && (
-          <span className={`${styles.prevIcon} text-gray-400 order-1`}>
+          <span className="text-gray-400 order-1">
             <SpriteSVG name={inputIcon} />
           </span>
         )}
@@ -129,6 +124,7 @@ export default function FormInput({
           </Link>
         )}
       </div>
+
       {error && (
         <p className="text-[#C60000] text-end text-sm">{String(error)}</p>
       )}

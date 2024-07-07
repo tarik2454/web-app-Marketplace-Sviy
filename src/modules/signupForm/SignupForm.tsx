@@ -9,6 +9,8 @@ import { useAppDispatch } from '@/redux/hooks';
 import { authFormValues } from '@/models/authFormValues';
 import { registerThunk } from '@/redux/auth/operations';
 
+import phoneFormattingBeforeSending from '@/shared/helpers/phoneFormattingBeforeSending';
+
 import validationSchemaSignup from './helpers/validationSchemaSignup';
 import Modal from '@/shared/components/Modal/Modal';
 import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
@@ -42,11 +44,7 @@ export default function SignupForm({
   ) => {
     const { passwordRepeat, chekSignUp, ...formData } = values;
 
-    if (formData.phone) {
-      formData.phone = formData.phone.replace(/\s+/g, '');
-    }
-
-    console.log(formData);
+    formData.phone = phoneFormattingBeforeSending(formData, 'phone');
 
     dispatch(registerThunk(formData))
       .unwrap()

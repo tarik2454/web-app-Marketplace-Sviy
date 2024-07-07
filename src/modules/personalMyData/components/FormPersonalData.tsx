@@ -1,12 +1,16 @@
-import { FormInput } from '@/shared/components';
-import ButtonProfile from './ButtonProfile';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { selectAuth } from '@/redux/auth/authSlice';
-import { useEffect, useState } from 'react';
-import { updateProfileThunk } from '@/redux/auth/operations';
 import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
+import { useEffect, useState } from 'react';
+
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { selectAuth } from '@/redux/auth/authSlice';
+import { updateProfileThunk } from '@/redux/auth/operations';
+
 import validationSchemaFormikProfile from '../helpers/validationSchemaFormikProfile';
+import phoneFormattingBeforeSending from '@/shared/helpers/phoneFormattingBeforeSending';
+
+import { FormInput } from '@/shared/components';
+import ButtonProfile from './ButtonProfile';
 
 type FormPersonalDataValues = {
   full_name: string | undefined;
@@ -44,6 +48,8 @@ export default function FormPersonalData() {
     const { full_name, lastName, ...formData } = values;
 
     const combinedFullName = `${full_name} ${lastName}`.trim();
+
+    formData.phone = phoneFormattingBeforeSending(formData, 'phone');
 
     const dataToSubmit = { ...formData, full_name: combinedFullName };
 
