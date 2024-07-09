@@ -9,7 +9,13 @@ interface AuthData {
   full_name?: string;
   email?: string;
   phone?: string;
-  address?: string;
+  address: {
+    region: string;
+    city: string;
+    village?: string;
+    street: string;
+    number: string;
+  };
   password?: string;
   chekSignUp?: boolean;
 }
@@ -18,7 +24,13 @@ interface UpdateProfileValues {
   full_name?: string;
   email?: string;
   phone?: string;
-  address?: string;
+  address: {
+    region: string;
+    city: string;
+    village?: string;
+    street: string;
+    number: string;
+  };
 }
 
 // Register

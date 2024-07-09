@@ -11,13 +11,21 @@ import {
   deleteProfileThunk,
 } from './operations';
 
+interface Address {
+  region: string;
+  city: string;
+  village?: string;
+  street: string;
+  number: string;
+}
+
 interface AuthState {
   access?: string;
   refresh?: string;
   full_name?: string;
   email?: string;
   phone?: string;
-  address?: string;
+  address?: Address;
   isLoggedIn: boolean;
   isLoading: boolean;
   isRefresh: boolean;
@@ -30,7 +38,7 @@ const initialState: AuthState = {
   full_name: '',
   email: '',
   phone: '',
-  address: '',
+  address: undefined,
   isLoggedIn: false,
   isLoading: false,
   isRefresh: false,
@@ -62,9 +70,6 @@ export const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRefresh = false;
       })
-      .addCase(refreshThunk.pending, state => {
-        state.isRefresh = true;
-      })
       .addCase(refreshThunk.rejected, state => {
         state.isRefresh = false;
         state.access = '';
@@ -84,7 +89,14 @@ export const authSlice = createSlice({
         state.full_name = payload.full_name;
         state.email = payload.email;
         state.phone = payload.phone;
-        state.address = payload.address;
+        state.address = {
+          region: payload.address.region,
+          city: payload.address.city,
+          village: payload.address.village,
+          street: payload.address.street,
+          number: payload.address.number,
+        };
+
         state.isLoading = false;
       })
       .addCase(updateProfileThunk.rejected, (state, { payload }) => {
@@ -115,7 +127,13 @@ export const authSlice = createSlice({
         state.full_name = '';
         state.email = '';
         state.phone = '';
-        state.address = '';
+        state.address = {
+          region: '',
+          city: '',
+          village: '',
+          street: '',
+          number: '',
+        };
         state.isLoggedIn = false;
         state.isLoading = false;
         state.error = '';
@@ -128,6 +146,7 @@ export const authSlice = createSlice({
         isAnyOf(
           loginThunk.pending,
           registerThunk.pending,
+          refreshThunk.pending,
           updateProfileThunk.pending,
           currentUserThunk.pending,
           updatePasswordThunk.pending,

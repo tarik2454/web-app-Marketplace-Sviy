@@ -12,15 +12,29 @@ import phoneFormattingBeforeSending from '@/shared/helpers/phoneFormattingBefore
 import { FormInput } from '@/shared/components';
 import ButtonProfile from './ButtonProfile';
 
+interface Address {
+  region: string;
+  city: string;
+  village?: string;
+  street: string;
+  number: string;
+}
+
 type FormPersonalDataValues = {
   full_name: string | undefined;
   lastName: string;
-  address: string | undefined;
+  address: {
+    region: string;
+    city: string;
+    village?: string;
+    street: string;
+    number: string;
+  };
   phone: string | undefined;
 };
 
 export default function FormPersonalData() {
-  const { full_name, phone, address } = useAppSelector(selectAuth);
+  const { full_name, phone, email } = useAppSelector(selectAuth);
 
   const dispatch = useAppDispatch();
 
@@ -40,8 +54,21 @@ export default function FormPersonalData() {
   const initialValues: FormPersonalDataValues = {
     full_name: firstName,
     lastName: remainingNames,
-    address: address || '',
+    address: {
+      region: '',
+      city: '',
+      street: '',
+      number: '',
+    },
     phone: phone || '',
+  };
+
+  const address: Address = {
+    region: 'Ukr',
+    city: 'Odesa',
+    village: '',
+    street: 'Street',
+    number: '48',
   };
 
   const handleSubmit = (values: FormPersonalDataValues) => {
@@ -51,7 +78,12 @@ export default function FormPersonalData() {
 
     formData.phone = phoneFormattingBeforeSending(formData, 'phone');
 
-    const dataToSubmit = { ...formData, full_name: combinedFullName };
+    const dataToSubmit = {
+      ...formData,
+      full_name: combinedFullName,
+      email,
+      address,
+    };
 
     dispatch(updateProfileThunk(dataToSubmit))
       .unwrap()
