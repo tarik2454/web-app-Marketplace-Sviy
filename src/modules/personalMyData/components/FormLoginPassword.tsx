@@ -1,12 +1,21 @@
 'use client';
 
+import { useState } from 'react';
+import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
+
 import { selectAuth } from '@/redux/auth/authSlice';
 import { updatePasswordThunk } from '@/redux/auth/operations';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { BlueBorderButton, FormInput } from '@/shared/components';
-import { useFormik } from 'formik';
-import { toast } from 'react-toastify';
+
 import validationSchemaFormikProfile from '../helpers/validationSchemaFormikProfile';
+
+import {
+  BlueBorderButton,
+  FormInput,
+  ModalPersonalDataSuccess,
+} from '@/shared/components';
+import Modal from '@/shared/components/Modal/Modal';
 
 type FormLoginPasswordValues = {
   email: string | undefined;
@@ -16,6 +25,8 @@ type FormLoginPasswordValues = {
 };
 
 export default function FormLoginPassword() {
+  const [showModal, setShowModal] = useState(false);
+
   const { email } = useAppSelector(selectAuth);
 
   const dispatch = useAppDispatch();
@@ -33,7 +44,7 @@ export default function FormLoginPassword() {
     )
       .unwrap()
       .then(() => {
-        toast.success('toast.success');
+        setShowModal(true);
       })
       .catch(error => {
         toast.error(error);
@@ -97,6 +108,12 @@ export default function FormLoginPassword() {
           Змінити пароль
         </BlueBorderButton>
       </form>
+
+      {showModal && (
+        <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+          <ModalPersonalDataSuccess />
+        </Modal>
+      )}
     </>
   );
 }

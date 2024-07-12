@@ -6,14 +6,18 @@ import { useAppDispatch } from '@/redux/hooks';
 
 import { BlueBorderButton, OrangeButton } from '@/shared/components';
 
-export default function ButtonProfile() {
+interface ButtonProfileProps {
+  setShowModal: (show: boolean) => void;
+}
+
+export default function ButtonProfile({ setShowModal }: ButtonProfileProps) {
   const dispatch = useAppDispatch();
 
   const handleDeleteProfile = () => {
     dispatch(deleteProfileThunk())
       .unwrap()
       .then(() => {
-        toast.info('toast.success');
+        setShowModal(true);
       })
       .catch(error => {
         toast.error(error);

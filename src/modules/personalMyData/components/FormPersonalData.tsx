@@ -9,8 +9,10 @@ import { updateProfileThunk } from '@/redux/auth/operations';
 import validationSchemaFormikProfile from '../helpers/validationSchemaFormikProfile';
 import phoneFormattingBeforeSending from '@/shared/helpers/phoneFormattingBeforeSending';
 
-import { FormInput } from '@/shared/components';
+import { FormInput, ModalPersonalDataSuccess } from '@/shared/components';
 import ButtonProfile from './ButtonProfile';
+import Modal from '@/shared/components/Modal/Modal';
+import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
 
 interface Address {
   region: string;
@@ -34,12 +36,13 @@ type FormPersonalDataValues = {
 };
 
 export default function FormPersonalData() {
+  const [firstName, setFirstName] = useState('');
+  const [remainingNames, setRemainingNames] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
   const { full_name, phone, email } = useAppSelector(selectAuth);
 
   const dispatch = useAppDispatch();
-
-  const [firstName, setFirstName] = useState('');
-  const [remainingNames, setRemainingNames] = useState('');
 
   useEffect(() => {
     if (full_name) {
@@ -88,7 +91,7 @@ export default function FormPersonalData() {
     dispatch(updateProfileThunk(dataToSubmit))
       .unwrap()
       .then(() => {
-        toast.success('toast.success');
+        setShowModal(true);
       })
       .catch(error => {
         toast.error(error);
@@ -141,8 +144,14 @@ export default function FormPersonalData() {
           />
         </div>
 
-        <ButtonProfile />
+        <ButtonProfile setShowModal={setShowModal} />
       </form>
+
+      {showModal && (
+        <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+          <ModalPersonalDataSuccess />
+        </Modal>
+      )}
     </>
   );
 }
