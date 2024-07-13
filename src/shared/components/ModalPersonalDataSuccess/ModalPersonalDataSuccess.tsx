@@ -33,7 +33,7 @@ export default function ModalPersonalDataSuccess() {
           setInitialized(true);
         })
         .catch(error => {
-          toast.error((error as Error).message || 'Error refreshing token');
+          toast.error(error);
         });
     }
   }, [dispatch, isLoggedIn]);
@@ -43,7 +43,7 @@ export default function ModalPersonalDataSuccess() {
       dispatch(currentUserThunk())
         .unwrap()
         .catch(error => {
-          toast.error((error as Error).message || 'Error fetching user data');
+          toast.error(error);
         });
     }
   }, [initialized, access, dispatch, full_name]);

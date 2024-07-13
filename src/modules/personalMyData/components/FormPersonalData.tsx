@@ -12,20 +12,19 @@ import phoneFormattingBeforeSending from '@/shared/helpers/phoneFormattingBefore
 import { FormInput, ModalPersonalDataSuccess } from '@/shared/components';
 import ButtonProfile from './ButtonProfile';
 import Modal from '@/shared/components/Modal/Modal';
-import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
 
-interface Address {
+type Address = {
   region: string;
   city: string;
   village?: string;
   street: string;
   number: string;
-}
+};
 
 type FormPersonalDataValues = {
   full_name: string | undefined;
   lastName: string;
-  address: {
+  address?: {
     region: string;
     city: string;
     village?: string;
@@ -40,7 +39,7 @@ export default function FormPersonalData() {
   const [remainingNames, setRemainingNames] = useState('');
   const [showModal, setShowModal] = useState(false);
 
-  const { full_name, phone, email } = useAppSelector(selectAuth);
+  const { full_name, phone, email, address } = useAppSelector(selectAuth);
 
   const dispatch = useAppDispatch();
 
@@ -57,22 +56,23 @@ export default function FormPersonalData() {
   const initialValues: FormPersonalDataValues = {
     full_name: firstName,
     lastName: remainingNames,
-    address: {
-      region: '',
-      city: '',
-      street: '',
-      number: '',
-    },
+    address: address,
+    // address: {
+    //   region: '',
+    //   city: '',
+    //   street: '',
+    //   number: '',
+    // },
     phone: phone || '',
   };
 
-  const address: Address = {
-    region: 'Ukr',
-    city: 'Odesa',
-    village: '',
-    street: 'Street',
-    number: '48',
-  };
+  // const address: Address = {
+  //   region: 'Ukr',
+  //   city: 'Odesa',
+  //   village: '',
+  //   street: 'Street',
+  //   number: '48',
+  // };
 
   const handleSubmit = (values: FormPersonalDataValues) => {
     const { full_name, lastName, ...formData } = values;
@@ -85,7 +85,6 @@ export default function FormPersonalData() {
       ...formData,
       full_name: combinedFullName,
       email,
-      address,
     };
 
     dispatch(updateProfileThunk(dataToSubmit))

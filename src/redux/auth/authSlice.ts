@@ -89,14 +89,15 @@ export const authSlice = createSlice({
         state.full_name = payload.full_name;
         state.email = payload.email;
         state.phone = payload.phone;
-        state.address = {
-          region: payload.address.region,
-          city: payload.address.city,
-          village: payload.address.village,
-          street: payload.address.street,
-          number: payload.address.number,
-        };
-
+        state.address = payload.address
+          ? {
+              region: payload.address.region,
+              city: payload.address.city,
+              village: payload.address.village,
+              street: payload.address.street,
+              number: payload.address.number,
+            }
+          : undefined;
         state.isLoading = false;
       })
       .addCase(updateProfileThunk.rejected, (state, { payload }) => {

@@ -9,7 +9,7 @@ interface AuthData {
   full_name?: string;
   email?: string;
   phone?: string;
-  address: {
+  address?: {
     region: string;
     city: string;
     village?: string;
@@ -24,7 +24,7 @@ interface UpdateProfileValues {
   full_name?: string;
   email?: string;
   phone?: string;
-  address: {
+  address?: {
     region: string;
     city: string;
     village?: string;
