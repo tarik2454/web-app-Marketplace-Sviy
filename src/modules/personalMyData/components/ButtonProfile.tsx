@@ -1,29 +1,12 @@
-import React from 'react';
-
-import { deleteProfileThunk } from '@/redux/auth/operations';
-import { toast } from 'react-toastify';
-import { useAppDispatch } from '@/redux/hooks';
-
 import { BlueBorderButton, OrangeButton } from '@/shared/components';
 
-interface ButtonProfileProps {
-  setShowModal: (show: boolean) => void;
-}
+type ButtonProfileProps = {
+  handleDeleteProfileButton?: () => void;
+};
 
-export default function ButtonProfile({ setShowModal }: ButtonProfileProps) {
-  const dispatch = useAppDispatch();
-
-  const handleDeleteProfile = () => {
-    dispatch(deleteProfileThunk())
-      .unwrap()
-      .then(() => {
-        setShowModal(true);
-      })
-      .catch(error => {
-        toast.error(error);
-      });
-  };
-
+export default function ButtonProfile({
+  handleDeleteProfileButton,
+}: ButtonProfileProps) {
   return (
     <div className="flex xl:flex-row md:flex-row sm:flex-row flex-col gap-6 text-nowrap">
       <OrangeButton
@@ -33,7 +16,7 @@ export default function ButtonProfile({ setShowModal }: ButtonProfileProps) {
         Зберегти дані
       </OrangeButton>
       <BlueBorderButton
-        onClick={handleDeleteProfile}
+        onClick={handleDeleteProfileButton}
         type="button"
         cssSettings="md:max-w-[163px] xl:max-w-[201px]"
       >

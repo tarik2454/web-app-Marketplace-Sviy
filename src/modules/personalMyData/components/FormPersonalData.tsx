@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectAuth } from '@/redux/auth/authSlice';
-import { updateProfileThunk } from '@/redux/auth/operations';
+import { refreshThunk, updateProfileThunk } from '@/redux/auth/operations';
 
 import validationSchemaFormikProfile from '../helpers/validationSchemaFormikProfile';
 import phoneFormattingBeforeSending from '@/shared/helpers/phoneFormattingBeforeSending';
@@ -38,6 +38,8 @@ export default function FormPersonalData() {
   const [firstName, setFirstName] = useState('');
   const [remainingNames, setRemainingNames] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [deleteProfile, setDeleteProfile] = useState(false);
+  const [updateProfile, setUpdateProfile] = useState(false);
 
   const { full_name, phone, email, address } = useAppSelector(selectAuth);
 
@@ -74,8 +76,28 @@ export default function FormPersonalData() {
   //   number: '48',
   // };
 
+  // useEffect(() => {
+  //   dispatch(refreshThunk())
+  //     .unwrap()
+  //     .then(() => {
+  //       console.log('Updated');
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // }, [dispatch, full_name, phone, email, address]);
+
   const handleSubmit = (values: FormPersonalDataValues) => {
-    const { full_name, lastName, ...formData } = values;
+    dispatch(refreshThunk())
+      .unwrap()
+      .then(() => {
+        console.log('Updated profile');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    const { full_name, lastName, address, ...formData } = values;
 
     const combinedFullName = `${full_name} ${lastName}`.trim();
 
@@ -90,11 +112,19 @@ export default function FormPersonalData() {
     dispatch(updateProfileThunk(dataToSubmit))
       .unwrap()
       .then(() => {
+        setDeleteProfile(false);
+        setUpdateProfile(true);
         setShowModal(true);
       })
       .catch(error => {
         toast.error(error);
       });
+  };
+
+  const handleDeleteProfileButton = () => {
+    setShowModal(true);
+    setUpdateProfile(false);
+    setDeleteProfile(true);
   };
 
   const formik = useFormik<FormPersonalDataValues>({
@@ -143,12 +173,16 @@ export default function FormPersonalData() {
           />
         </div>
 
-        <ButtonProfile setShowModal={setShowModal} />
+        <ButtonProfile handleDeleteProfileButton={handleDeleteProfileButton} />
       </form>
 
       {showModal && (
         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-          <ModalPersonalDataSuccess />
+          <ModalPersonalDataSuccess
+            deleteProfile={deleteProfile}
+            updateProfile={updateProfile}
+            setShowModal={setShowModal}
+          />
         </Modal>
       )}
     </>

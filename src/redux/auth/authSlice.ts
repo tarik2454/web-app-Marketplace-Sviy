@@ -68,7 +68,7 @@ export const authSlice = createSlice({
         state.access = payload.access;
         state.refresh = payload.refresh;
         state.isLoggedIn = true;
-        state.isRefresh = false;
+        state.isRefresh = true;
       })
       .addCase(refreshThunk.rejected, state => {
         state.isRefresh = false;

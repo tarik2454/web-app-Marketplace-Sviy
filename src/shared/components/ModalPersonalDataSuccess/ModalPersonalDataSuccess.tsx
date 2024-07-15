@@ -1,87 +1,82 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+import { useState } from 'react';
 
+import { deleteProfileThunk } from '@/redux/auth/operations';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectAuth } from '@/redux/auth/authSlice';
 
-import ArrowButton from '@/shared/components/ArrowButton/ArrowButton';
 import OrangeButton from '@/shared/components/OrangeButton/OrangeButton';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import { useEffect, useState } from 'react';
-import { currentUserThunk, refreshThunk } from '@/redux/auth/operations';
-import { toast } from 'react-toastify';
 
-export default function ModalPersonalDataSuccess() {
-  const pathname = usePathname();
+type ModalPersonalDataSuccessProps = {
+  isFormPersonalData?: boolean;
+  deleteProfile?: boolean;
+  updateProfile?: boolean;
+  changePassword?: boolean;
+  setShowModal?: (show: boolean) => void;
+};
+
+export default function ModalPersonalDataSuccess({
+  isFormPersonalData,
+  deleteProfile,
+  updateProfile,
+  changePassword,
+  setShowModal,
+}: ModalPersonalDataSuccessProps) {
+  const [modalTitle, setModalTitle] = useState(
+    'Ви дійсно бажаете видалити профіль?'
+  );
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const { access, full_name, email, isLoggedIn } = useAppSelector(selectAuth);
+  const { email } = useAppSelector(selectAuth);
 
-  const signinPage = '/signin';
-  const personalOfficePage = '/personal-office/profile';
+  const cataloguePage = '/catalogue';
 
-  const [initialized, setInitialized] = useState(false);
+  const handlePassToCatalog = () => {
+    router.push(cataloguePage);
+  };
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(refreshThunk())
-        .unwrap()
-        .then(() => {
-          setInitialized(true);
-        })
-        .catch(error => {
-          toast.error(error);
-        });
-    }
-  }, [dispatch, isLoggedIn]);
-
-  useEffect(() => {
-    if (initialized && access) {
-      dispatch(currentUserThunk())
-        .unwrap()
-        .catch(error => {
-          toast.error(error);
-        });
-    }
-  }, [initialized, access, dispatch, full_name]);
-
-  const handleOrangeButtonClick = () => {
-    router.push(pathname === signinPage ? '/catalogue' : '/signin');
+  const handleDeleteProfile = () => {
+    dispatch(deleteProfileThunk())
+      .unwrap()
+      .then(() => {
+        setModalTitle('Ваш профіль успішно видалено');
+        setTimeout(() => {
+          setShowModal?.(false);
+        }, 2000);
+      })
+      .catch(error => {
+        toast.error(error);
+      });
   };
 
   return (
     <>
       <h2 className="text-center text-stone-900 text-xl font-normal font-['Lato'] leading-loose md:text-2xl">
-        {pathname === signinPage
-          ? `Авторизація ${email} пройшла успішно`
-          : `Реєстрація ${email} пройшла успішно`}
+        {deleteProfile && modalTitle}
+        {updateProfile && `Оновлення даних ${email} пройшло успішно`}
+        {changePassword && `Пароль ${email} успішно змінено`}
       </h2>
 
       <div className="flex justify-center py-10">
         <SpriteSVG name="check-mark" className="fill-blue-700" />
       </div>
 
-      <div className="flex justify-center items-start gap-3">
-        <div className="text-white">
-          <OrangeButton onClick={handleOrangeButtonClick}>
-            {pathname === signinPage ? (
-              <span className="text-nowrap">До каталогу</span>
-            ) : (
-              <span className="text-nowrap">До сторінки авторизації</span>
-            )}
-          </OrangeButton>
-        </div>
-
-        {pathname === signinPage ? (
-          <Link href={personalOfficePage}>
-            <ArrowButton>
-              <span className="text-nowrap">До профілю</span>
-            </ArrowButton>
-          </Link>
-        ) : null}
+      <div className="flex justify-center items-start gap-3 text-white">
+        {deleteProfile ? (
+          <>
+            <OrangeButton onClick={() => setShowModal?.(false)}>
+              Ні
+            </OrangeButton>
+            <OrangeButton onClick={handleDeleteProfile}>Так</OrangeButton>
+          </>
+        ) : (
+          <OrangeButton onClick={handlePassToCatalog}>До каталогу</OrangeButton>
+        )}
       </div>
     </>
   );

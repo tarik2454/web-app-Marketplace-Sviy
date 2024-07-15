@@ -25,6 +25,8 @@ export default function FunctionalButtons({
 }: Props) {
   const { isLoggedIn } = useAppSelector(selectAuth);
 
+  console.log(isLoggedIn);
+
   const router = useRouter();
   const signinPage = '/signin';
   const favoritesPage = '/favorites';

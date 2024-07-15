@@ -36,7 +36,7 @@ const authPersistConfig = {
   key: 'auth',
   version: 1,
   storage: storage,
-  whitelist: ['full_name', 'email', 'phone', 'address'],
+  whitelist: ['full_name', 'email', 'phone'],
 };
 
 // const usersPersistConfig = {
