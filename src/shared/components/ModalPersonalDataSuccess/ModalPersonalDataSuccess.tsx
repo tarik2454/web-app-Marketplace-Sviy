@@ -2,9 +2,13 @@
 
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { deleteProfileThunk } from '@/redux/auth/operations';
+import {
+  deleteProfileThunk,
+  refreshThunk,
+  updateProfileThunk,
+} from '@/redux/auth/operations';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectAuth } from '@/redux/auth/authSlice';
 
@@ -12,22 +16,34 @@ import OrangeButton from '@/shared/components/OrangeButton/OrangeButton';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
 type ModalPersonalDataSuccessProps = {
-  isFormPersonalData?: boolean;
-  deleteProfile?: boolean;
-  updateProfile?: boolean;
-  changePassword?: boolean;
+  showModal?: boolean;
   setShowModal?: (show: boolean) => void;
+  setDeleteProfile?: (show: boolean) => void;
+  setUpdateProfile?: (show: boolean) => void;
+  updateProfile?: boolean;
+  dataToSubmitUpdate?: any;
+  deleteProfile?: boolean;
+  changePassword?: boolean;
 };
 
 export default function ModalPersonalDataSuccess({
-  isFormPersonalData,
-  deleteProfile,
-  updateProfile,
-  changePassword,
+  showModal,
   setShowModal,
+  setDeleteProfile,
+  setUpdateProfile,
+  updateProfile,
+  dataToSubmitUpdate,
+  deleteProfile,
+  changePassword,
 }: ModalPersonalDataSuccessProps) {
-  const [modalTitle, setModalTitle] = useState(
+  const [deleteTitle, setDeleteTitle] = useState(
     'Ви дійсно бажаете видалити профіль?'
+  );
+  const [updateTitle, setUpdateTitle] = useState(
+    'Ви дійсно бажаете оновити профіль?'
+  );
+  const [passwordTitle, setPasswordTitle] = useState(
+    'Ви дійсно бажаете змінити пароль?'
   );
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -40,11 +56,37 @@ export default function ModalPersonalDataSuccess({
     router.push(cataloguePage);
   };
 
-  const handleDeleteProfile = () => {
-    dispatch(deleteProfileThunk())
+  useEffect(() => {
+    if (showModal) {
+      dispatch(refreshThunk()).unwrap();
+    }
+  }, [showModal, dispatch]);
+
+  const handleUpdateProfile = () => {
+    dispatch(refreshThunk())
       .unwrap()
       .then(() => {
-        setModalTitle('Ваш профіль успішно видалено');
+        return dispatch(updateProfileThunk(dataToSubmitUpdate)).unwrap();
+      })
+      .then(() => {
+        setUpdateTitle('Ваш профіль успішно оновлено');
+        setTimeout(() => {
+          setShowModal?.(false);
+        }, 2000);
+      })
+      .catch(error => {
+        toast.error(error);
+      });
+  };
+
+  const handleDeleteProfile = () => {
+    dispatch(refreshThunk())
+      .unwrap()
+      .then(() => {
+        return dispatch(deleteProfileThunk()).unwrap();
+      })
+      .then(() => {
+        setDeleteTitle('Ваш профіль успішно видалено');
         setTimeout(() => {
           setShowModal?.(false);
         }, 2000);
@@ -57,9 +99,9 @@ export default function ModalPersonalDataSuccess({
   return (
     <>
       <h2 className="text-center text-stone-900 text-xl font-normal font-['Lato'] leading-loose md:text-2xl">
-        {deleteProfile && modalTitle}
-        {updateProfile && `Оновлення даних ${email} пройшло успішно`}
-        {changePassword && `Пароль ${email} успішно змінено`}
+        {updateProfile && updateTitle}
+        {deleteProfile && deleteTitle}
+        {changePassword && passwordTitle}
       </h2>
 
       <div className="flex justify-center py-10">
@@ -67,17 +109,27 @@ export default function ModalPersonalDataSuccess({
       </div>
 
       <div className="flex justify-center items-start gap-3 text-white">
-        {deleteProfile ? (
+        {deleteProfile || updateProfile ? (
           <>
             <OrangeButton onClick={() => setShowModal?.(false)}>
               Ні
             </OrangeButton>
-            <OrangeButton onClick={handleDeleteProfile}>Так</OrangeButton>
+            {updateProfile && (
+              <OrangeButton onClick={handleUpdateProfile}>Так</OrangeButton>
+            )}
+            {deleteProfile && (
+              <OrangeButton onClick={handleDeleteProfile}>Так</OrangeButton>
+            )}
           </>
-        ) : (
-          <OrangeButton onClick={handlePassToCatalog}>До каталогу</OrangeButton>
-        )}
+        ) : null}
       </div>
     </>
   );
 }
+
+// {
+//   updateProfile && `Оновлення даних ${email} пройшло успішно`;
+// }
+// {
+//   changePassword && `Пароль ${email} успішно змінено`;
+// }

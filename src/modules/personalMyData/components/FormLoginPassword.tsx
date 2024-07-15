@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FormikHelpers, useFormik } from 'formik';
 import { toast } from 'react-toastify';
 
 import { selectAuth } from '@/redux/auth/authSlice';
-import { refreshThunk, updatePasswordThunk } from '@/redux/auth/operations';
+import { updatePasswordThunk } from '@/redux/auth/operations';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 
 import validationSchemaFormikProfile from '../helpers/validationSchemaFormikProfile';
@@ -16,7 +16,6 @@ import {
   ModalPersonalDataSuccess,
 } from '@/shared/components';
 import Modal from '@/shared/components/Modal/Modal';
-import { error } from 'console';
 
 type FormLoginPasswordValues = {
   email: string | undefined;
@@ -37,15 +36,6 @@ export default function FormLoginPassword() {
     values: FormLoginPasswordValues,
     actions: FormikHelpers<FormLoginPasswordValues>
   ) => {
-    dispatch(refreshThunk())
-      .unwrap()
-      .then(() => {
-        console.log('Updated password');
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
     const { password, new_password } = values;
 
     dispatch(

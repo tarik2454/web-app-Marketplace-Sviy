@@ -23,7 +23,7 @@ type Address = {
 
 type FormPersonalDataValues = {
   full_name: string | undefined;
-  lastName: string;
+  lastName?: string;
   address?: {
     region: string;
     city: string;
@@ -40,10 +40,12 @@ export default function FormPersonalData() {
   const [showModal, setShowModal] = useState(false);
   const [deleteProfile, setDeleteProfile] = useState(false);
   const [updateProfile, setUpdateProfile] = useState(false);
-
-  const { full_name, phone, email, address } = useAppSelector(selectAuth);
+  const [dataToSubmitUpdate, setDataToSubmitUpdate] =
+    useState<FormPersonalDataValues | null>(null);
 
   const dispatch = useAppDispatch();
+
+  const { full_name, phone, email, address } = useAppSelector(selectAuth);
 
   useEffect(() => {
     if (full_name) {
@@ -76,49 +78,27 @@ export default function FormPersonalData() {
   //   number: '48',
   // };
 
-  // useEffect(() => {
-  //   dispatch(refreshThunk())
-  //     .unwrap()
-  //     .then(() => {
-  //       console.log('Updated');
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }, [dispatch, full_name, phone, email, address]);
-
   const handleSubmit = (values: FormPersonalDataValues) => {
-    dispatch(refreshThunk())
-      .unwrap()
-      .then(() => {
-        console.log('Updated profile');
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
     const { full_name, lastName, address, ...formData } = values;
 
     const combinedFullName = `${full_name} ${lastName}`.trim();
 
     formData.phone = phoneFormattingBeforeSending(formData, 'phone');
 
-    const dataToSubmit = {
+    const data = {
       ...formData,
       full_name: combinedFullName,
       email,
+      address,
     };
 
-    dispatch(updateProfileThunk(dataToSubmit))
-      .unwrap()
-      .then(() => {
-        setDeleteProfile(false);
-        setUpdateProfile(true);
-        setShowModal(true);
-      })
-      .catch(error => {
-        toast.error(error);
-      });
+    setDataToSubmitUpdate(data);
+  };
+
+  const handleUpdateProfileButton = () => {
+    setShowModal(true);
+    setUpdateProfile(true);
+    setDeleteProfile(false);
   };
 
   const handleDeleteProfileButton = () => {
@@ -158,30 +138,58 @@ export default function FormPersonalData() {
           />
           <FormInput
             formik={formik}
-            name="address"
-            label={'Адрес'}
-            classNameLogin="mb-2 ml-0"
-            placeholder={'Адрес'}
-            inputType="text"
-          />
-          <FormInput
-            formik={formik}
             name="phone"
             label={'Телефон'}
             classNameLogin="mb-2 ml-0"
             inputType="tel"
           />
+
+          <FormInput
+            formik={formik}
+            name="city"
+            label={'Місто/село'}
+            classNameLogin="mb-2 ml-0"
+            placeholder={'Місто/село'}
+            inputType="text"
+          />
+          <div className="flex w-full">
+            <FormInput
+              formik={formik}
+              name="street"
+              label={'Вулиця'}
+              classNameLogin="mb-2 ml-0"
+              stylesInputWrapper={'rounded-br-none rounded-tr-none'}
+              placeholder={'Вулиця'}
+              inputType="text"
+            />
+            <FormInput
+              formik={formik}
+              name="number"
+              label={'Номер'}
+              classNameLogin="mb-2 ml-0"
+              stylesInputWrapper={'rounded-bl-none rounded-tl-none'}
+              placeholder={'Номер'}
+              inputType="text"
+            />
+          </div>
         </div>
 
-        <ButtonProfile handleDeleteProfileButton={handleDeleteProfileButton} />
+        <ButtonProfile
+          handleUpdateProfileButton={handleUpdateProfileButton}
+          handleDeleteProfileButton={handleDeleteProfileButton}
+        />
       </form>
 
       {showModal && (
         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
           <ModalPersonalDataSuccess
-            deleteProfile={deleteProfile}
-            updateProfile={updateProfile}
+            showModal={showModal}
             setShowModal={setShowModal}
+            setUpdateProfile={setUpdateProfile}
+            updateProfile={updateProfile}
+            dataToSubmitUpdate={dataToSubmitUpdate}
+            setDeleteProfile={setDeleteProfile}
+            deleteProfile={deleteProfile}
           />
         </Modal>
       )}

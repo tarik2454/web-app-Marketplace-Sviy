@@ -6,6 +6,7 @@ import Link from 'next/link';
 import InputMask from 'react-input-mask';
 
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   name: string;
@@ -16,6 +17,7 @@ type Props = {
   inputIcon?: string;
   inputLink?: string;
   classNameLogin?: string;
+  stylesInputWrapper?: string;
   id?: string;
   readOnly?: boolean;
 };
@@ -29,6 +31,7 @@ export default function FormInput({
   inputIcon,
   inputLink,
   classNameLogin,
+  stylesInputWrapper,
   id,
   readOnly,
 }: Props) {
@@ -69,7 +72,10 @@ export default function FormInput({
       </label>
 
       <div
-        className={`flex px-4 py-3 gap-2 relative ${borderColor} border-[1px] bg-white rounded-default`}
+        className={twMerge(
+          `flex px-4 py-3 gap-2 relative ${borderColor} border-[1px] bg-white rounded-default`,
+          stylesInputWrapper
+        )}
       >
         {inputType !== 'textarea' && inputType !== 'tel' && (
           <input
