@@ -12,7 +12,7 @@ import {
 } from './operations';
 
 interface Address {
-  region: string;
+  region?: string;
   city: string;
   village?: string;
   street: string;
@@ -91,7 +91,7 @@ export const authSlice = createSlice({
         state.phone = payload.phone;
         state.address = payload.address
           ? {
-              region: payload.address.region,
+              region: payload.address.city,
               city: payload.address.city,
               village: payload.address.village,
               street: payload.address.street,

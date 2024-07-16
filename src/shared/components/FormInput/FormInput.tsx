@@ -4,7 +4,6 @@ import { FormikProps } from 'formik';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import InputMask from 'react-input-mask';
-
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { twMerge } from 'tailwind-merge';
 
@@ -25,7 +24,7 @@ type Props = {
 export default function FormInput({
   name,
   label,
-  inputType,
+  inputType = 'text',
   formik,
   placeholder,
   inputIcon,
@@ -33,12 +32,14 @@ export default function FormInput({
   classNameLogin,
   stylesInputWrapper,
   id,
-  readOnly,
+  readOnly = false,
 }: Props) {
   const [inputTypePass, setInputTypePass] = useState(inputType);
   const [borderColor, setBorderColor] = useState('border-blue-200');
 
-  const error = formik.touched[name] && formik.errors[name];
+  const fieldProps = formik.getFieldProps(name);
+  const fieldMeta = formik.getFieldMeta(name);
+  const error = fieldMeta.touched && fieldMeta.error;
 
   useEffect(() => {
     setBorderColor(error ? 'border-[#C60000]' : 'border-blue-200');
@@ -51,15 +52,6 @@ export default function FormInput({
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     formik.setFieldValue(name, value);
-  };
-
-  const formatPhoneNumber = (phone: string) => {
-    const cleaned = phone.replace(/\D/g, '');
-
-    return cleaned.replace(
-      /(\d{2})(\d{3})(\d{3})(\d{2})(\d{2})/,
-      '+$1 $2 $3 $4 $5'
-    );
   };
 
   return (
@@ -77,14 +69,28 @@ export default function FormInput({
           stylesInputWrapper
         )}
       >
-        {inputType !== 'textarea' && inputType !== 'tel' && (
+        {inputType === 'tel' ? (
+          <InputMask
+            mask="+38 (099) 999 99 99"
+            maskChar={'_'}
+            placeholder="+38 (0"
+            name={name}
+            onChange={handlePhoneChange}
+            value={fieldProps.value || ''}
+            className={`w-full h-6 outline-none ${error ? 'p-invalid' : ''}`}
+          />
+        ) : inputType === 'textarea' ? (
+          <textarea
+            {...fieldProps}
+            placeholder={placeholder}
+            className="w-full h-6 outline-none flex-grow order-2"
+          />
+        ) : (
           <input
             id={id}
-            onChange={formik.handleChange}
+            {...fieldProps}
             type={inputTypePass}
-            name={name}
             placeholder={placeholder}
-            value={formik.values[name] || ''}
             className={`w-full h-6 outline-none flex-grow order-2 ${
               readOnly ? 'text-gray-600' : ''
             }`}
@@ -92,31 +98,13 @@ export default function FormInput({
             readOnly={readOnly}
           />
         )}
-        {inputType === 'textarea' && (
-          <textarea
-            onChange={formik.handleChange}
-            name={name}
-            placeholder={placeholder}
-            value={formik.values[name] || ''}
-            className="w-full h-6 outline-none flex-grow order-2 overflow-hidden"
-          />
-        )}
-        {inputType === 'tel' && (
-          <InputMask
-            mask="+38 099 999 99 99"
-            maskChar={'_'}
-            placeholder="+38 0"
-            name={name}
-            onChange={handlePhoneChange}
-            className="w-full h-6 outline-none p-invalid"
-            value={formatPhoneNumber(formik.values[name] || '')}
-          />
-        )}
+
         {inputIcon && (
           <span className="text-gray-400 order-1">
             <SpriteSVG name={inputIcon} />
           </span>
         )}
+
         {inputType === 'password' && (
           <button onClick={eyeButtonHandler} type="button">
             <SpriteSVG
@@ -124,6 +112,7 @@ export default function FormInput({
             />
           </button>
         )}
+
         {inputLink && (
           <Link href="" className="text-base text-blue-700 order-3">
             {inputLink}

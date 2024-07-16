@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectAuth } from '@/redux/auth/authSlice';
-import { refreshThunk, updateProfileThunk } from '@/redux/auth/operations';
+import { updateProfileThunk } from '@/redux/auth/operations';
 
 import validationSchemaFormikProfile from '../helpers/validationSchemaFormikProfile';
 import phoneFormattingBeforeSending from '@/shared/helpers/phoneFormattingBeforeSending';
@@ -14,9 +14,8 @@ import ButtonProfile from './ButtonProfile';
 import Modal from '@/shared/components/Modal/Modal';
 
 type Address = {
-  region: string;
+  region?: string;
   city: string;
-  village?: string;
   street: string;
   number: string;
 };
@@ -24,13 +23,7 @@ type Address = {
 type FormPersonalDataValues = {
   full_name: string | undefined;
   lastName?: string;
-  address?: {
-    region: string;
-    city: string;
-    village?: string;
-    street: string;
-    number: string;
-  };
+  address: Address;
   phone: string | undefined;
 };
 
@@ -42,8 +35,6 @@ export default function FormPersonalData() {
   const [updateProfile, setUpdateProfile] = useState(false);
   const [dataToSubmitUpdate, setDataToSubmitUpdate] =
     useState<FormPersonalDataValues | null>(null);
-
-  const dispatch = useAppDispatch();
 
   const { full_name, phone, email, address } = useAppSelector(selectAuth);
 
@@ -60,37 +51,41 @@ export default function FormPersonalData() {
   const initialValues: FormPersonalDataValues = {
     full_name: firstName,
     lastName: remainingNames,
-    address: address,
-    // address: {
-    //   region: '',
-    //   city: '',
-    //   street: '',
-    //   number: '',
-    // },
+    address: {
+      region: address?.region || '',
+      city: address?.city || '',
+      street: address?.street || '',
+      number: address?.number || '',
+    },
     phone: phone || '',
   };
-
-  // const address: Address = {
-  //   region: 'Ukr',
-  //   city: 'Odesa',
-  //   village: '',
-  //   street: 'Street',
-  //   number: '48',
-  // };
 
   const handleSubmit = (values: FormPersonalDataValues) => {
     const { full_name, lastName, address, ...formData } = values;
 
     const combinedFullName = `${full_name} ${lastName}`.trim();
 
-    formData.phone = phoneFormattingBeforeSending(formData, 'phone');
+    // formData.phone = phoneFormattingBeforeSending(formData, 'phone');
 
-    const data = {
+    console.log(formData.phone);
+
+    let updatedAddress;
+    if (address && address.city && address.street && address.number) {
+      updatedAddress = {
+        ...address,
+        region: address.city,
+      };
+    }
+
+    const data: any = {
       ...formData,
       full_name: combinedFullName,
       email,
-      address,
     };
+
+    if (updatedAddress) {
+      data.address = updatedAddress;
+    }
 
     setDataToSubmitUpdate(data);
   };
@@ -116,24 +111,24 @@ export default function FormPersonalData() {
 
   return (
     <>
-      <h3 className="text-2xl xl:mb-7 md:mb-10 mb-6">Персональные данные</h3>
+      <h3 className="text-2xl xl:mb-7 md:mb-10 mb-6">Персональні дані</h3>
 
       <form className="flex flex-col gap-10" onSubmit={formik.handleSubmit}>
         <div className="flex flex-col gap-6">
           <FormInput
             formik={formik}
             name="full_name"
-            label={'Имя'}
+            label={`Ім'я`}
             classNameLogin="mb-2 ml-0"
-            placeholder={'Имя'}
+            placeholder={`Ім'я`}
             inputType="text"
           />
           <FormInput
             formik={formik}
             name="lastName"
-            label={'Фамилия'}
+            label={'Прізвище'}
             classNameLogin="mb-2 ml-0"
-            placeholder={'Фамилия'}
+            placeholder={'Прізвище'}
             inputType="text"
           />
           <FormInput
@@ -146,16 +141,16 @@ export default function FormPersonalData() {
 
           <FormInput
             formik={formik}
-            name="city"
+            name="address.city"
             label={'Місто/село'}
             classNameLogin="mb-2 ml-0"
             placeholder={'Місто/село'}
             inputType="text"
           />
-          <div className="flex w-full">
+          <div className="grid grid-cols-[_2.1fr,_0.9fr]">
             <FormInput
               formik={formik}
-              name="street"
+              name="address.street"
               label={'Вулиця'}
               classNameLogin="mb-2 ml-0"
               stylesInputWrapper={'rounded-br-none rounded-tr-none'}
@@ -164,10 +159,10 @@ export default function FormPersonalData() {
             />
             <FormInput
               formik={formik}
-              name="number"
+              name="address.number"
               label={'Номер'}
               classNameLogin="mb-2 ml-0"
-              stylesInputWrapper={'rounded-bl-none rounded-tl-none'}
+              stylesInputWrapper={'border-l-0 rounded-bl-none rounded-tl-none'}
               placeholder={'Номер'}
               inputType="text"
             />

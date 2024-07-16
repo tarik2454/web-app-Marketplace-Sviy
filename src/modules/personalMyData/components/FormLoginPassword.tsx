@@ -2,11 +2,9 @@
 
 import { useState } from 'react';
 import { FormikHelpers, useFormik } from 'formik';
-import { toast } from 'react-toastify';
 
 import { selectAuth } from '@/redux/auth/authSlice';
-import { updatePasswordThunk } from '@/redux/auth/operations';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppSelector } from '@/redux/hooks';
 
 import validationSchemaFormikProfile from '../helpers/validationSchemaFormikProfile';
 
@@ -27,10 +25,9 @@ type FormLoginPasswordValues = {
 export default function FormLoginPassword() {
   const [showModal, setShowModal] = useState(false);
   const [changePassword, setChangePassword] = useState(false);
+  const [passwordToSubmitUpdate, setPasswordToSubmitUpdate] = useState({});
 
   const { email } = useAppSelector(selectAuth);
-
-  const dispatch = useAppDispatch();
 
   const handleSubmit = (
     values: FormLoginPasswordValues,
@@ -38,21 +35,17 @@ export default function FormLoginPassword() {
   ) => {
     const { password, new_password } = values;
 
-    dispatch(
-      updatePasswordThunk({
-        password: password,
-        new_password: new_password,
-      })
-    )
-      .unwrap()
-      .then(() => {
-        setChangePassword(true);
-        setShowModal(true);
-        actions.resetForm();
-      })
-      .catch(error => {
-        toast.error(error);
-      });
+    setPasswordToSubmitUpdate({
+      password: password,
+      new_password: new_password,
+    });
+
+    actions.resetForm();
+  };
+
+  const handleUpdatePusswordButton = () => {
+    setShowModal(true);
+    setChangePassword(true);
   };
 
   const formik = useFormik<FormLoginPasswordValues>({
@@ -105,6 +98,7 @@ export default function FormLoginPassword() {
         </div>
 
         <BlueBorderButton
+          onClick={handleUpdatePusswordButton}
           smallButton={true}
           cssSettings="text-nowrap xl:max-w-[164px]"
           type="submit"
@@ -115,7 +109,13 @@ export default function FormLoginPassword() {
 
       {showModal && (
         <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-          <ModalPersonalDataSuccess changePassword={changePassword} />
+          <ModalPersonalDataSuccess
+            showModal={showModal}
+            setShowModal={setShowModal}
+            changePassword={changePassword}
+            setChangePassword={setChangePassword}
+            passwordToSubmitUpdate={passwordToSubmitUpdate}
+          />
         </Modal>
       )}
     </>
