@@ -1,12 +1,11 @@
 'use client';
 
-import { MouseEventHandler, useState } from 'react';
-import categoriesData from '../../../../shared/data/categories-data';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import CatalogItem from './CatalogItem';
 import Container from '@/shared/components/Container/Container';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { CloseButton } from '@/shared/components';
-// import { fetchCatalog } from '@/config-api/catalog-api';
+import { fetchCatalog } from '@/config-api/catalog-api';
 
 type CatalogProps = {
   displayCategories: string;
@@ -21,12 +20,24 @@ export default function Catalog({
 }: CatalogProps) {
   const [selectedCategory, setSelectedCategory] = useState('Категорії товарів');
   const [isThirdList, setIsThirdList] = useState('');
+  const [catalogData, setCatalogData] = useState([]);
 
   const handleCategoryClick = (categoryName: string) => {
     setSelectedCategory(categoryName);
   };
 
-  // const data = fetchCatalog();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchCatalog();
+        setCatalogData(data);
+      } catch (error) {
+        console.log('Error fetching catalog data', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const stylesCatalog = `w-full md:w-[704px] xl:w-[1280px] h-full md:h-[80vh] my-0 mx-auto bg-neutral-50 md:rounded-br-default md:rounded-bl-default shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] absolute top-0 md:top-[113px] left-[50%] z-20 -translate-x-2/4`;
 
@@ -60,7 +71,7 @@ export default function Catalog({
 
         <nav className="max-w-[375px] my-0 mx-auto md:mx-0 py-5 md:w-full md:px-8 md:py-4">
           <ul className={`relative ${isThirdList}`}>
-            {categoriesData.map((category, index) => (
+            {catalogData.map((category, index) => (
               <CatalogItem
                 category={category}
                 key={index}
