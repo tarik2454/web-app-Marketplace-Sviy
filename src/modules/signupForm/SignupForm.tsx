@@ -44,7 +44,7 @@ export default function SignupForm({
   ) => {
     const { passwordRepeat, chekSignUp, ...formData } = values;
 
-    formData.phone = phoneFormattingBeforeSending(formData, 'phone');
+    // formData.phone = phoneFormattingBeforeSending(formData, 'phone');
 
     dispatch(registerThunk(formData))
       .unwrap()
