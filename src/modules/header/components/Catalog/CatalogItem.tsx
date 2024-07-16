@@ -6,19 +6,14 @@ import Link from 'next/link';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
-type SubCategory = {
-  title: string;
-  items: string[];
-};
-
-type CategoryWithSubcategories = {
+type Category = {
   id: number;
-  title: string;
-  subCategories?: SubCategory[];
+  name: string;
+  children?: Category[];
 };
 
 type CatalogItemProps = {
-  category: CategoryWithSubcategories;
+  category: Category;
   onCategoryClick: (categoryName: string) => void;
   setIsThirdList?: (value: string) => void;
 };
@@ -30,14 +25,14 @@ export default function CatalogItem({
 }: CatalogItemProps) {
   const [isHoveredCategory, setHoveredCategory] = useState(false);
   const [isHoveredSubCategory, setIsHoveredSubCategory] = useState<
-    string | null
+    number | null
   >(null);
 
   const { isOnMobile, isOnDesktop } = ScreenSize();
 
-  const handleMouseEnter = (categoryTitle: string) => {
+  const handleMouseEnter = (categoryId: number) => {
     setHoveredCategory(true);
-    setIsHoveredSubCategory(categoryTitle);
+    setIsHoveredSubCategory(categoryId);
   };
 
   const handleMouseLeave = () => {
@@ -54,20 +49,20 @@ export default function CatalogItem({
   return (
     <li
       className={`w-full md:w-[302px] bg-neutral-50 md:bg-white `}
-      onMouseEnter={() => handleMouseEnter(category.title)}
+      onMouseEnter={() => handleMouseEnter(category.id)}
       onMouseLeave={handleMouseLeave}
     >
       <Link
         href="#"
         className={stylesLink}
-        onClick={() => onCategoryClick(category.title)}
+        onClick={() => onCategoryClick(category.name)}
       >
-        <p className="text-black">{category.title}</p>
+        <p className="text-black">{category.name}</p>
         <SpriteSVG name="catalog-arrow" />
         <div className={stylesLining}></div>
       </Link>
 
-      {isHoveredCategory && category.subCategories && (
+      {isHoveredCategory && category.children && (
         <ul
           className={`w-full md:w-[302px] h-full bg-neutral-50 absolute top-0 z-10 pointer-events-auto ${
             isHoveredCategory && isOnMobile
@@ -75,20 +70,20 @@ export default function CatalogItem({
               : 'left-[310px] overflow-y-visible'
           }`}
         >
-          {category.subCategories.map((subCategory, index) => (
+          {category.children.map(subCategory => (
             <li
               className="md:bg-white"
-              onMouseEnter={() => handleMouseEnter(subCategory.title)}
+              onMouseEnter={() => handleMouseEnter(subCategory.id)}
               onMouseLeave={handleMouseLeave}
-              key={index}
+              key={subCategory.id}
             >
               <Link href="#" className={stylesLink}>
-                <p className="text-black">{subCategory.title}</p>
+                <p className="text-black">{subCategory.name}</p>
                 <SpriteSVG name="catalog-arrow" />
                 <div className={stylesLining}></div>
               </Link>
 
-              {isHoveredSubCategory === subCategory.title &&
+              {isHoveredSubCategory === subCategory.id &&
                 !isOnMobile &&
                 setIsThirdList && (
                   <>
@@ -99,17 +94,15 @@ export default function CatalogItem({
                     <ul
                       className={`w-full md:w-[302px] xl:w-[302px] h-full bg-neutral-50 absolute top-0 left-[310px] md:-left-[310px] xl:left-[310px] z-50 pointer-events-auto`}
                     >
-                      {subCategory.items.map((item, index) => (
+                      {subCategory.children?.map(item => (
                         <li
-                          key={index}
+                          key={item.id}
                           className="flex w-[302px] bg-neutral-50 md:bg-white"
-                          onMouseEnter={() =>
-                            handleMouseEnter(subCategory.title)
-                          }
+                          onMouseEnter={() => handleMouseEnter(subCategory.id)}
                           onMouseLeave={handleMouseLeave}
                         >
                           <Link href="#" className={stylesLink}>
-                            <p className="text-black">{item}</p>
+                            <p className="text-black">{item.name}</p>
                             <div className={stylesLining}></div>
                           </Link>
                         </li>
