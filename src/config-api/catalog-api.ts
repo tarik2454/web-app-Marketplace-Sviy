@@ -1,5 +1,4 @@
-import { API } from "@/config/globalConfig";
-
+import { API } from './global-config-api';
 
 export const fetchCatalog = async () => {
   try {
