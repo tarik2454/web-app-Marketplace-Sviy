@@ -18,54 +18,33 @@ export default function RegIsSuccesful() {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const { access, full_name, email } = useAppSelector(selectAuth);
+  const { access, full_name, email, isLoggedIn } = useAppSelector(selectAuth);
 
   const signinPage = '/signin';
   const personalOfficePage = '/personal-office/profile';
 
-  // useEffect(() => {
-  //   dispatch(refreshThunk());
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   if (access) {
-  //     dispatch(currentUserThunk())
-  //       .unwrap()
-  //       .then(() => {
-  //         toast.success(`Current user ${full_name}`);
-  //       })
-  //       .catch(error => {
-  //         toast.error(error);
-  //       });
-  //   }
-  // }, [access, dispatch, full_name]);
-
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await dispatch(refreshThunk()).unwrap();
-        setInitialized(true);
-      } catch (error) {
-        toast.error((error as Error).message || 'Error refreshing token');
-      }
-    };
-
-    fetchData();
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(refreshThunk())
+        .unwrap()
+        .then(() => {
+          setInitialized(true);
+        })
+        .catch(error => {
+          toast.error(error);
+        });
+    }
+  }, [dispatch, isLoggedIn]);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        await dispatch(currentUserThunk()).unwrap();
-      } catch (error) {
-        toast.error((error as Error).message || 'Error fetching user data');
-      }
-    };
-
     if (initialized && access) {
-      fetchUser();
+      dispatch(currentUserThunk())
+        .unwrap()
+        .catch(error => {
+          toast.error(error);
+        });
     }
   }, [initialized, access, dispatch, full_name]);
 

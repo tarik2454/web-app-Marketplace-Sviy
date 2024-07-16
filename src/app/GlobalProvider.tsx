@@ -1,28 +1,24 @@
 'use client';
 
+import { useEffect } from 'react';
 import { Slide, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { useAppDispatch } from '@/redux/hooks';
-import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { refreshThunk } from '@/redux/auth/operations';
+import { selectAuth } from '@/redux/auth/authSlice';
 
 type GlobalProviderProps = {
   children: React.ReactNode;
 };
 
 export default function GlobalProvider({ children }: GlobalProviderProps) {
+  const { isLoggedIn } = useAppSelector(selectAuth);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(refreshThunk())
-      .unwrap()
-      .then(() => {
-        console.log('Success token');
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    dispatch(refreshThunk());
   }, [dispatch]);
 
   return (

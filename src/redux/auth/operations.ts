@@ -9,6 +9,13 @@ interface AuthData {
   full_name?: string;
   email?: string;
   phone?: string;
+  address?: {
+    region: string;
+    city: string;
+    village?: string;
+    street: string;
+    number: string;
+  };
   password?: string;
   chekSignUp?: boolean;
 }
@@ -17,6 +24,13 @@ interface UpdateProfileValues {
   full_name?: string;
   email?: string;
   phone?: string;
+  address?: {
+    region: string;
+    city: string;
+    village?: string;
+    street: string;
+    number: string;
+  };
 }
 
 // Register
@@ -39,10 +53,10 @@ export const registerThunk = createAsyncThunk<
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
       if (status === 401) {
-        return ThunkAPI.rejectWithValue('Введено некоректні дані');
+        return ThunkAPI.rejectWithValue('Введено некоректні дані.');
       }
     }
-    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
   }
 });
 
@@ -63,10 +77,10 @@ export const loginThunk = createAsyncThunk<
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
       if (status === 401) {
-        return ThunkAPI.rejectWithValue('Некоректний email або пароль');
+        return ThunkAPI.rejectWithValue('Некоректний email або пароль.');
       }
     }
-    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
   }
 });
 
@@ -80,7 +94,7 @@ export const refreshThunk = createAsyncThunk<
     const token = JSON.parse(localStorage.getItem('token') as string);
 
     if (!token) {
-      return ThunkAPI.rejectWithValue('Token does not exist');
+      return ThunkAPI.rejectWithValue('Помилка оновлення токену');
     }
 
     const response = await API.post('/api/account/user/refresh/', {
@@ -93,7 +107,7 @@ export const refreshThunk = createAsyncThunk<
     return data;
   } catch (error) {
     clearToken();
-    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
   }
 });
 
@@ -109,7 +123,7 @@ export const logoutThunk = createAsyncThunk<
 
     return;
   } catch (error) {
-    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
   }
 });
 
@@ -124,6 +138,7 @@ export const updateProfileThunk = createAsyncThunk<
       '/api/account/user/update_me/',
       credentials
     );
+
     const data = response.data;
     console.log(data);
 
@@ -132,12 +147,10 @@ export const updateProfileThunk = createAsyncThunk<
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
       if (status === 401) {
-        return ThunkAPI.rejectWithValue(
-          'Аутентификационные данные не предоставлены.'
-        );
+        return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
       }
     }
-    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
   }
 });
 
@@ -153,6 +166,61 @@ export const currentUserThunk = createAsyncThunk<
 
     return data;
   } catch (error) {
-    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуй знову....');
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
+  }
+});
+
+// Update password
+export const updatePasswordThunk = createAsyncThunk<
+  void,
+  { password: string; new_password: string },
+  { rejectValue: string }
+>('auth/updatePassword', async ({ password, new_password }, ThunkAPI) => {
+  try {
+    const response = await API.put('/api/account/user/set_password_me/', {
+      password,
+      new_password,
+    });
+
+    if (response.status === 204) {
+      return;
+    }
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+      if (status === 400) {
+        return ThunkAPI.rejectWithValue('Надано некорректні данні.');
+      }
+      if (status === 401) {
+        return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
+      }
+    }
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
+  }
+});
+
+// Delete profile
+export const deleteProfileThunk = createAsyncThunk<
+  void,
+  void,
+  { rejectValue: string }
+>('auth/deleteProfile', async (_, ThunkAPI) => {
+  try {
+    const response = await API.delete('/api/account/user/disable_me/');
+
+    clearToken();
+
+    if (response.status === 204) {
+      return;
+    }
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      clearToken();
+      const status = error.response?.status;
+      if (status === 401) {
+        return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
+      }
+    }
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
   }
 });

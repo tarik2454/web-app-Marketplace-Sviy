@@ -26,6 +26,7 @@ export default function FunctionalButtons({
   const { isLoggedIn } = useAppSelector(selectAuth);
 
   const router = useRouter();
+
   const signinPage = '/signin';
   const favoritesPage = '/favorites';
   const personalOfficePage = '/personal-office/profile';

@@ -7,7 +7,17 @@ import {
   refreshThunk,
   registerThunk,
   updateProfileThunk,
+  updatePasswordThunk,
+  deleteProfileThunk,
 } from './operations';
+
+interface Address {
+  region?: string;
+  city: string;
+  village?: string;
+  street: string;
+  number: string;
+}
 
 interface AuthState {
   access?: string;
@@ -15,6 +25,7 @@ interface AuthState {
   full_name?: string;
   email?: string;
   phone?: string;
+  address?: Address;
   isLoggedIn: boolean;
   isLoading: boolean;
   isRefresh: boolean;
@@ -27,6 +38,7 @@ const initialState: AuthState = {
   full_name: '',
   email: '',
   phone: '',
+  address: undefined,
   isLoggedIn: false,
   isLoading: false,
   isRefresh: false,
@@ -36,13 +48,13 @@ const initialState: AuthState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-
   reducers: {},
   extraReducers: builder => {
     builder
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
         state.full_name = payload.full_name;
         state.email = payload.email;
+        state.phone = payload.phone;
         state.isLoading = false;
       })
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
@@ -56,9 +68,6 @@ export const authSlice = createSlice({
         state.access = payload.access;
         state.refresh = payload.refresh;
         state.isLoggedIn = true;
-        state.isRefresh = false;
-      })
-      .addCase(refreshThunk.pending, state => {
         state.isRefresh = true;
       })
       .addCase(refreshThunk.rejected, state => {
@@ -80,6 +89,15 @@ export const authSlice = createSlice({
         state.full_name = payload.full_name;
         state.email = payload.email;
         state.phone = payload.phone;
+        state.address = payload.address
+          ? {
+              region: payload.address.city,
+              city: payload.address.city,
+              village: payload.address.village,
+              street: payload.address.street,
+              number: payload.address.number,
+            }
+          : undefined;
         state.isLoading = false;
       })
       .addCase(updateProfileThunk.rejected, (state, { payload }) => {
@@ -96,12 +114,44 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.error = payload ?? 'Помилка отримання данних з серверу';
       })
+      .addCase(updatePasswordThunk.fulfilled, state => {
+        state.isLoading = false;
+        state.error = '';
+      })
+      .addCase(updatePasswordThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload ?? 'Помилка зміни паролю';
+      })
+      .addCase(deleteProfileThunk.fulfilled, state => {
+        state.access = '';
+        state.refresh = '';
+        state.full_name = '';
+        state.email = '';
+        state.phone = '';
+        state.address = {
+          region: '',
+          city: '',
+          village: '',
+          street: '',
+          number: '',
+        };
+        state.isLoggedIn = false;
+        state.isLoading = false;
+        state.error = '';
+      })
+      .addCase(deleteProfileThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload ?? 'Помилка видалення профілю';
+      })
       .addMatcher(
         isAnyOf(
           loginThunk.pending,
           registerThunk.pending,
+          refreshThunk.pending,
           updateProfileThunk.pending,
-          currentUserThunk.pending
+          currentUserThunk.pending,
+          updatePasswordThunk.pending,
+          deleteProfileThunk.pending
         ),
         state => {
           state.isLoading = true;
@@ -109,7 +159,11 @@ export const authSlice = createSlice({
         }
       )
       .addMatcher(
-        isAnyOf(loginThunk.rejected, registerThunk.rejected),
+        isAnyOf(
+          loginThunk.rejected,
+          registerThunk.rejected,
+          updatePasswordThunk.rejected
+        ),
         (state, { payload }) => {
           state.isLoading = false;
           state.error = payload ?? 'Помилка авторизації';

@@ -1,11 +1,11 @@
 'use client';
 
-import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { FormikProps } from 'formik';
 import { useEffect, useState } from 'react';
-import styles from '@/styles/FormInput.module.css';
 import Link from 'next/link';
 import InputMask from 'react-input-mask';
+import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   name: string;
@@ -16,24 +16,30 @@ type Props = {
   inputIcon?: string;
   inputLink?: string;
   classNameLogin?: string;
+  stylesInputWrapper?: string;
   id?: string;
+  readOnly?: boolean;
 };
 
 export default function FormInput({
   name,
   label,
-  inputType,
+  inputType = 'text',
   formik,
   placeholder,
   inputIcon,
   inputLink,
   classNameLogin,
+  stylesInputWrapper,
   id,
+  readOnly = false,
 }: Props) {
   const [inputTypePass, setInputTypePass] = useState(inputType);
   const [borderColor, setBorderColor] = useState('border-blue-200');
 
-  const error = formik.touched[name] && formik.errors[name];
+  const fieldProps = formik.getFieldProps(name);
+  const fieldMeta = formik.getFieldMeta(name);
+  const error = fieldMeta.touched && fieldMeta.error;
 
   useEffect(() => {
     setBorderColor(error ? 'border-[#C60000]' : 'border-blue-200');
@@ -49,9 +55,7 @@ export default function FormInput({
   };
 
   return (
-    <div
-      className={`relative h-auto flex flex-col w-full ${styles.customInput}`}
-    >
+    <div className="relative h-auto flex flex-col w-full">
       <label
         htmlFor={id}
         className={`ml-4 md:text-base sm:text-sm ${classNameLogin}`}
@@ -60,57 +64,47 @@ export default function FormInput({
       </label>
 
       <div
-        className={`flex px-4 py-3 gap-2 relative ${borderColor} border-[1px] bg-white rounded-default`}
+        className={twMerge(
+          `flex px-4 py-3 gap-2 relative ${borderColor} border-[1px] bg-white rounded-default`,
+          stylesInputWrapper
+        )}
       >
-        {inputType !== 'textarea' && inputType !== 'tel' && (
+        {inputType === 'tel' ? (
+          <InputMask
+            mask="+38 (099) 999 99 99"
+            maskChar={'_'}
+            placeholder="+38 (0"
+            name={name}
+            onChange={handlePhoneChange}
+            value={fieldProps.value || ''}
+            className={`w-full h-6 outline-none ${error ? 'p-invalid' : ''}`}
+          />
+        ) : inputType === 'textarea' ? (
+          <textarea
+            {...fieldProps}
+            placeholder={placeholder}
+            className="w-full h-6 outline-none flex-grow order-2"
+          />
+        ) : (
           <input
             id={id}
-            onChange={formik.handleChange}
+            {...fieldProps}
             type={inputTypePass}
-            name={name}
             placeholder={placeholder}
-            value={formik.values[name]}
-            className="w-full h-6 outline-none flex-grow order-2"
+            className={`w-full h-6 outline-none flex-grow order-2 ${
+              readOnly ? 'text-gray-600' : ''
+            }`}
             pattern={inputType === 'number' ? '[0-9]*' : undefined}
+            readOnly={readOnly}
           />
         )}
-        {inputType === 'textarea' && (
-          <textarea
-            onChange={formik.handleChange}
-            name={name}
-            placeholder={placeholder}
-            value={formik.values[name]}
-            className="w-full h-6 outline-none flex-grow order-2 overflow-hidden"
-          />
-        )}
-        {inputType === 'tel' && (
-          <>
-            {formik.values[name] ? (
-              <input
-                id={id}
-                onChange={handlePhoneChange}
-                name={name}
-                placeholder={placeholder}
-                value={formik.values[name]}
-                className="w-full h-6 outline-none p-invalid"
-              />
-            ) : (
-              <InputMask
-                mask="+3\80 99 999 99 99"
-                maskChar="_"
-                placeholder="+380"
-                name={name}
-                onChange={formik.handleChange}
-                className="w-full h-6 outline-none p-invalid"
-              />
-            )}
-          </>
-        )}
+
         {inputIcon && (
-          <span className={`${styles.prevIcon} text-gray-400 order-1`}>
+          <span className="text-gray-400 order-1">
             <SpriteSVG name={inputIcon} />
           </span>
         )}
+
         {inputType === 'password' && (
           <button onClick={eyeButtonHandler} type="button">
             <SpriteSVG
@@ -118,12 +112,14 @@ export default function FormInput({
             />
           </button>
         )}
+
         {inputLink && (
           <Link href="" className="text-base text-blue-700 order-3">
             {inputLink}
           </Link>
         )}
       </div>
+
       {error && (
         <p className="text-[#C60000] text-end text-sm">{String(error)}</p>
       )}
