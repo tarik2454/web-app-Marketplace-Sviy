@@ -28,6 +28,12 @@ type MySalesListProps = {
 export default function MySalesList({ mySalesData }: MySalesListProps) {
   const [openOrderList, setOpenOrderList] = useState<number | null>(null);
   const { isOnMobile, isOnTablet } = ScreenSize();
+  const [status, setStatus] = useState(null);
+
+  const handleStatus = ({ value }: any) => {
+    console.log('статус', status);
+    setStatus(value);
+  };
 
   return (
     <>
@@ -81,7 +87,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                     onClick={e => e.stopPropagation()}
                   >
                     <Dropdown
-                      onChange={() => {}}
+                      onChange={handleStatus}
                       options={sortSalesItems}
                       placeholder="Нове"
                       controlClassName="text-sm"
@@ -208,7 +214,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
                     </div>
                     <div className="" onClick={e => e.stopPropagation()}>
                       <Dropdown
-                        onChange={() => {}}
+                        onChange={handleStatus}
                         options={sortSalesItems}
                         placeholder="Нове"
                         controlClassName="text-base"
