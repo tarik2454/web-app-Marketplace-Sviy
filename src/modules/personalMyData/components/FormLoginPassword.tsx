@@ -113,7 +113,6 @@ export default function FormLoginPassword() {
             showModal={showModal}
             setShowModal={setShowModal}
             changePassword={changePassword}
-            setChangePassword={setChangePassword}
             passwordToSubmitUpdate={passwordToSubmitUpdate}
           />
         </Modal>

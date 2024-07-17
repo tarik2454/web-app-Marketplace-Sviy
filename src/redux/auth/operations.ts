@@ -1,7 +1,16 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { authFormValues } from '../../models/authFormValues';
 import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API, clearToken, setToken } from '../../config-api/global-config-api';
+import { Address } from '@/models/dataToSubmit';
+
+export interface authFormValues {
+  full_name?: string;
+  email?: string;
+  phone?: string;
+  password?: string;
+  passwordRepeat?: string;
+  chekSignUp?: boolean;
+}
 
 interface AuthData {
   access?: string;
@@ -24,13 +33,7 @@ interface UpdateProfileValues {
   full_name?: string;
   email?: string;
   phone?: string;
-  address?: {
-    region: string;
-    city: string;
-    village?: string;
-    street: string;
-    number: string;
-  };
+  address?: Address;
 }
 
 // Register

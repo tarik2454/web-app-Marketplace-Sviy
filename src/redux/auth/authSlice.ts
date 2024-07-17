@@ -10,14 +10,7 @@ import {
   updatePasswordThunk,
   deleteProfileThunk,
 } from './operations';
-
-interface Address {
-  region?: string;
-  city: string;
-  village?: string;
-  street: string;
-  number: string;
-}
+import { Address } from '@/models/dataToSubmit';
 
 interface AuthState {
   access?: string;
