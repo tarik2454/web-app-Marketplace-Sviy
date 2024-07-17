@@ -7,6 +7,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import OrderImage from '@/shared/img/salo.jpeg';
 import { OrangeButton, CloseButton, ArrowButton } from '@/shared/components';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import { feedbackSchema } from '../helpers/validationSchemaFeedback';
 
 type Order = {
   name: string;
@@ -25,11 +26,6 @@ type MyOrderFeedbackProps = {
   handleOpenModal: () => void;
   myOrderData: Order[];
 };
-
-const validationSchema = Yup.object().shape({
-  rating: Yup.number().min(1, 'Оберіть рейтинг').required('Оберіть рейтинг'),
-  comment: Yup.string().required('Коментар обов’язковий'),
-});
 
 export default function MyOrderFeedback({
   isOpenModal,
@@ -121,7 +117,7 @@ export default function MyOrderFeedback({
 
             <Formik
               initialValues={{ rating: 0, comment: '' }}
-              validationSchema={validationSchema}
+              validationSchema={feedbackSchema}
               onSubmit={handleSubmit}
             >
               {({ setFieldValue, values }) => (
