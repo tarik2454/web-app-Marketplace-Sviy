@@ -27,14 +27,15 @@ export default function Catalog({
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchCatalog();
+  const fetchData = () => {
+    fetchCatalog()
+      .then(data => {
         setCatalogData(data);
-      } catch (error) {
+      })
+      .catch(error => {
         console.log('Error fetching catalog data', error);
-      }
-    };
+      });
+  };
 
     fetchData();
   }, []);

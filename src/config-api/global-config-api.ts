@@ -4,6 +4,9 @@ import axios, { AxiosInstance } from 'axios';
 export const API: AxiosInstance = axios.create({
   baseURL: 'http://localhost',
 });
+export const APIEXTRA: AxiosInstance = axios.create({
+  baseURL: 'http://16.170.219.150',
+});
 
 // `token` parameter is typed as a string
 export const setToken = (token: string): void => {
