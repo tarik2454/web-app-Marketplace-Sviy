@@ -27,15 +27,15 @@ export default function Catalog({
   };
 
   useEffect(() => {
-  const fetchData = () => {
-    fetchCatalog()
-      .then(data => {
-        setCatalogData(data);
-      })
-      .catch(error => {
-        console.log('Error fetching catalog data', error);
-      });
-  };
+    const fetchData = () => {
+      fetchCatalog()
+        .then(data => {
+          setCatalogData(data);
+        })
+        .catch(error => {
+          console.log('Error fetching catalog data', error);
+        });
+    };
 
     fetchData();
   }, []);

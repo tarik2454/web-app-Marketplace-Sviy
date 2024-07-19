@@ -21,6 +21,19 @@ export default function GlobalProvider({ children }: GlobalProviderProps) {
     dispatch(refreshThunk());
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     dispatch(refreshThunk())
+  //       .unwrap()
+  //       .then(() => {
+  //         console.log('message logged in');
+  //       })
+  //       .catch(error => console.log(error));
+  //   }
+
+  //   return;
+  // }, [dispatch, isLoggedIn]);
+
   return (
     <>
       {children}

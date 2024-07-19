@@ -54,7 +54,6 @@ export default function ModalPersonalDataSuccess({
     const updateData = {
       full_name: dataToSubmitUpdate.full_name,
       address: dataToSubmitUpdate.address || {
-        region: '',
         city: '',
         street: '',
         number: '',
