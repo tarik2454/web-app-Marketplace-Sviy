@@ -59,7 +59,10 @@ export default function ModalPersonalDataSuccess({
         number: '',
       },
       phone: dataToSubmitUpdate.phone,
+      email: dataToSubmitUpdate.email,
     };
+
+    console.log(updateData);
 
     dispatch(refreshThunk())
       .unwrap()

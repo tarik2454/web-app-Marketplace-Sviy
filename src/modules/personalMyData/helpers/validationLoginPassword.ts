@@ -15,22 +15,22 @@ const validationLoginPassword = Yup.object().shape({
   //         }),
   //     otherwise: schema => schema,
   //   }),
-  repeatPassword: Yup.string()
-    .oneOf([Yup.ref('new_password')], 'Паролі повинні співпадати')
-    .required("Пароль обов'язковий"),
-  new_password: Yup.string()
-    .when(['password'], {
-      is: (password: string) => password === undefined,
-      then: schema =>
-        schema
-          .required("Пароль обов'язковий")
-          .matches(
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-            'Пароль має містити 8 символів, один великий регістр, один малий регістр, одну цифру та один символ спеціального регістру'
-          ),
-      otherwise: schema => schema,
-    })
-    .required("Пароль обов'язковий"),
+  // repeatPassword: Yup.string()
+  //   .oneOf([Yup.ref('new_password')], 'Паролі повинні співпадати')
+  //   .required("Пароль обов'язковий"),
+  // new_password: Yup.string()
+  //   .when(['password'], {
+  //     is: (password: string) => password === undefined,
+  //     then: schema =>
+  //       schema
+  //         .required("Пароль обов'язковий")
+  //         .matches(
+  //           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+  //           'Пароль має містити 8 символів, один великий регістр, один малий регістр, одну цифру та один символ спеціального регістру'
+  //         ),
+  //     otherwise: schema => schema,
+  //   })
+  //   .required("Пароль обов'язковий"),
 });
 
 export default validationLoginPassword;

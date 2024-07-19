@@ -41,6 +41,7 @@ export default function FormPersonalData() {
       number: address?.number || '',
     },
     phone: phone || '',
+    email: email || '',
   };
 
   const formik = useFormik<FormPersonalDataValues>({
