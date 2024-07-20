@@ -9,4 +9,5 @@ export type FormPersonalDataValues = {
   lastName?: string;
   address?: Address;
   phone: string;
+  email: string;
 };

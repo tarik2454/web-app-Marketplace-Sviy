@@ -1,3 +1,5 @@
+'use client';
+
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 
@@ -15,8 +17,8 @@ export default function FormPersonalData() {
   const [firstName, setFirstName] = useState('');
   const [remainingNames, setRemainingNames] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [deleteProfile, setDeleteProfile] = useState(false);
   const [updateProfile, setUpdateProfile] = useState(false);
+  const [deleteProfile, setDeleteProfile] = useState(false);
   const [dataToSubmitUpdate, setDataToSubmitUpdate] =
     useState<FormPersonalDataValues | null>(null);
 
@@ -41,59 +43,52 @@ export default function FormPersonalData() {
       number: address?.number || '',
     },
     phone: phone || '',
+    email: email || '',
+  };
+
+  const handleSubmit = (values: FormPersonalDataValues, actions: any) => {
+    const { full_name, lastName, address, ...formData } = values;
+
+    const combinedFullName = `${full_name} ${lastName}`.trim();
+
+    let updatedAddress;
+    if (address && address.city && address.street && address.number) {
+      updatedAddress = {
+        ...address,
+      };
+    }
+
+    const data: any = {
+      ...formData,
+      full_name: combinedFullName,
+      email,
+    };
+
+    if (updatedAddress) {
+      data.address = updatedAddress;
+    }
+
+    setDataToSubmitUpdate(data);
+    setShowModal(true);
+    setUpdateProfile(true);
+    setDeleteProfile(false);
   };
 
   const formik = useFormik<FormPersonalDataValues>({
     initialValues,
     validationSchema: validationSchemaFormikProfile,
-    onSubmit: values => {
-      const { full_name, lastName, address, ...formData } = values;
-
-      const combinedFullName = `${full_name} ${lastName}`.trim();
-
-      let updatedAddress;
-      if (address && address.city && address.street && address.number) {
-        updatedAddress = {
-          ...address,
-        };
-      }
-
-      const data: any = {
-        ...formData,
-        full_name: combinedFullName,
-        email,
-      };
-
-      if (updatedAddress) {
-        data.address = updatedAddress;
-      }
-
-      setDataToSubmitUpdate(data);
-    },
+    onSubmit: handleSubmit,
     enableReinitialize: true,
   });
 
-  const validateAndHandleAction = async (isUpdateProfile: boolean) => {
-    try {
-      const errors = await formik.validateForm();
-      if (Object.keys(errors).length === 0) {
-        setShowModal(true);
-        setUpdateProfile(isUpdateProfile);
-        setDeleteProfile(!isUpdateProfile);
-      } else {
-        console.log('Форма не валидна', errors);
-      }
-    } catch (error) {
-      console.error('Ошибка валидации', error);
-    }
-  };
-
   const handleUpdateProfileButton = () => {
-    validateAndHandleAction(true);
+    formik.handleSubmit();
   };
 
   const handleDeleteProfileButton = () => {
-    validateAndHandleAction(false);
+    setDeleteProfile(true);
+    setUpdateProfile(false);
+    setShowModal(true);
   };
 
   return (
