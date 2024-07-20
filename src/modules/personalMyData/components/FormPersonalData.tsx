@@ -36,58 +36,66 @@ export default function FormPersonalData() {
     full_name: firstName,
     lastName: remainingNames,
     address: {
-      region: address?.region || '',
       city: address?.city || '',
       street: address?.street || '',
       number: address?.number || '',
     },
     phone: phone || '',
-  };
-
-  const handleSubmit = (values: FormPersonalDataValues) => {
-    const { full_name, lastName, address, ...formData } = values;
-
-    const combinedFullName = `${full_name} ${lastName}`.trim();
-
-    let updatedAddress;
-    if (address && address.city && address.street && address.number) {
-      updatedAddress = {
-        ...address,
-        region: address.city,
-      };
-    }
-
-    const data: any = {
-      ...formData,
-      full_name: combinedFullName,
-      email,
-    };
-
-    if (updatedAddress) {
-      data.address = updatedAddress;
-    }
-
-    setDataToSubmitUpdate(data);
-  };
-
-  const handleUpdateProfileButton = () => {
-    setShowModal(true);
-    setUpdateProfile(true);
-    setDeleteProfile(false);
-  };
-
-  const handleDeleteProfileButton = () => {
-    setShowModal(true);
-    setUpdateProfile(false);
-    setDeleteProfile(true);
+    email: email || '',
   };
 
   const formik = useFormik<FormPersonalDataValues>({
     initialValues,
     validationSchema: validationSchemaFormikProfile,
-    onSubmit: handleSubmit,
+    onSubmit: values => {
+      const { full_name, lastName, address, ...formData } = values;
+
+      const combinedFullName = `${full_name} ${lastName}`.trim();
+
+      let updatedAddress;
+      if (address && address.city && address.street && address.number) {
+        updatedAddress = {
+          ...address,
+        };
+      }
+
+      const data: any = {
+        ...formData,
+        full_name: combinedFullName,
+        email,
+      };
+
+      if (updatedAddress) {
+        data.address = updatedAddress;
+      }
+
+      setDataToSubmitUpdate(data);
+    },
     enableReinitialize: true,
   });
+
+  const validateAndHandleAction = async (isUpdateProfile: boolean) => {
+    try {
+      const errors = await formik.validateForm();
+      if (Object.keys(errors).length === 0) {
+        setShowModal(true);
+        setUpdateProfile(isUpdateProfile);
+        setDeleteProfile(!isUpdateProfile);
+      } else {
+        console.log('Форма не валидна', errors);
+      }
+    } catch (error) {
+      console.error('Ошибка валидации', error);
+    }
+  };
+
+  const handleUpdateProfileButton = () => {
+    validateAndHandleAction(true);
+  };
+
+  const handleDeleteProfileButton = () => {
+    validateAndHandleAction(false);
+  };
 
   return (
     <>

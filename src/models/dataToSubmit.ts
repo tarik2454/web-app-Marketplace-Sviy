@@ -1,9 +1,7 @@
 export type Address = {
-  region?: string;
-  city: string;
-  village?: string;
-  street: string;
-  number: string;
+  city?: string;
+  street?: string;
+  number?: string;
 };
 
 export type FormPersonalDataValues = {
@@ -11,4 +9,5 @@ export type FormPersonalDataValues = {
   lastName?: string;
   address?: Address;
   phone: string;
+  email: string;
 };

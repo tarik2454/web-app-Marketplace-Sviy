@@ -18,13 +18,7 @@ interface AuthData {
   full_name?: string;
   email?: string;
   phone?: string;
-  address?: {
-    region: string;
-    city: string;
-    village?: string;
-    street: string;
-    number: string;
-  };
+  address?: Address;
   password?: string;
   chekSignUp?: boolean;
 }
@@ -110,6 +104,12 @@ export const refreshThunk = createAsyncThunk<
     return data;
   } catch (error) {
     clearToken();
+    // if (axios.isAxiosError(error)) {
+    //   const status = error.response?.status;
+    //   if (status === 401) {
+    //     return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
+    //   }
+    // }
     return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
   }
 });

@@ -34,19 +34,20 @@ export default function Catalog({
     setSelectedCategory(categoryName);
   };
 
-    //  useEffect(() => {
-    //    const fetchData = () => {
-    //      fetchCatalog()
-    //        .then(data => {
-    //          setCatalogData(data);
-    //        })
-    //        .catch(error => {
-    //          console.log(error);
-    //        });
-    //    };
 
-    //    fetchData();
-    //  }, []);
+  useEffect(() => {
+    const fetchData = () => {
+      fetchCatalog()
+        .then(data => {
+          setCatalogData(data);
+        })
+        .catch(error => {
+          console.log('Error fetching catalog data', error);
+        });
+    };
+
+        fetchData();
+    }, []);
 
   const stylesCatalog = `w-full md:w-[704px] xl:w-[1280px] h-full md:h-[80vh] my-0 mx-auto bg-neutral-50 md:rounded-br-default md:rounded-bl-default shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] absolute top-0 md:top-[113px] left-[50%] z-20 -translate-x-2/4`;
 

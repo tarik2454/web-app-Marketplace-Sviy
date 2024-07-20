@@ -87,7 +87,7 @@ export default function FormInput({
       >
         {inputType === 'tel' ? (
           <InputMask
-            mask="+38 (099) 999 99 99"
+            mask="+38 (099) 999 9999"
             maskChar={'_'}
             placeholder="+38 (0"
             name={name}

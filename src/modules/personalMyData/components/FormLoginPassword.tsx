@@ -6,7 +6,7 @@ import { FormikHelpers, useFormik } from 'formik';
 import { selectAuth } from '@/redux/auth/authSlice';
 import { useAppSelector } from '@/redux/hooks';
 
-import validationSchemaFormikProfile from '../helpers/validationSchemaFormikProfile';
+import validationLoginPassword from '../helpers/validationLoginPassword';
 
 import {
   BlueBorderButton,
@@ -55,7 +55,7 @@ export default function FormLoginPassword() {
       new_password: '',
       repeatPassword: '',
     },
-    validationSchema: validationSchemaFormikProfile,
+    validationSchema: validationLoginPassword,
     onSubmit: handleSubmit,
     enableReinitialize: true,
   });
