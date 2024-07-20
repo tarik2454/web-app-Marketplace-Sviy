@@ -3,6 +3,7 @@
 import Select from 'react-select';
 import { twMerge } from 'tailwind-merge';
 import { FormikProps} from 'formik';
+import { useState } from 'react';
 
 type Props = {
   options: Array<{ value: string; label: string }>;
@@ -35,7 +36,19 @@ export default function DropDownForm({
   dropdownIndicatorClassName,
   onChange,
 }: Props) {
+  const [isSelected] = useState(false);
   const error = formik.touched[name] && formik.errors[name];
+
+    const customStyles = {
+      placeholder: (provided: any) => ({
+        ...provided,
+        color: isSelected ? '#000000' : '#9E9E9E', 
+      }),
+      singleValue: (provided: any) => ({
+        ...provided,
+        color: '#000000', 
+      }),
+    };
 
   return (
     <div className={twMerge('flex flex-col gap-4 mt-0', wrapperClassName)}>
@@ -74,6 +87,7 @@ export default function DropDownForm({
           }}
           unstyled={true}
           options={options}
+          styles={customStyles}
           placeholder={placeholder}
           id={id}
           onChange={selectedOption => onChange(selectedOption)}
