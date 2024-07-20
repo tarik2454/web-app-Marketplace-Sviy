@@ -2,8 +2,8 @@
 
 import Select from 'react-select';
 import { twMerge } from 'tailwind-merge';
-import { FormikProps} from 'formik';
-import { useState } from 'react';
+import { FormikProps } from 'formik';
+import { useState, useEffect } from 'react';
 
 type Props = {
   options: Array<{ value: string; label: string }>;
@@ -36,19 +36,34 @@ export default function DropDownForm({
   dropdownIndicatorClassName,
   onChange,
 }: Props) {
-  const [isSelected] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
   const error = formik.touched[name] && formik.errors[name];
 
-    const customStyles = {
-      placeholder: (provided: any) => ({
-        ...provided,
-        color: isSelected ? '#000000' : '#9E9E9E', 
-      }),
-      singleValue: (provided: any) => ({
-        ...provided,
-        color: '#000000', 
-      }),
-    };
+  useEffect(() => {
+    const formikValue = formik.values[name];
+    setSelectedOption(
+      options.find(option => option.value === formikValue) || null
+    );
+  }, [formik.values[name], options]);
+
+  const customStyles = {
+    placeholder: (provided: any) => ({
+      ...provided,
+      color: selectedOption ? '#000000' : '#9E9E9E',
+    }),
+    singleValue: (provided: any) => ({
+      ...provided,
+      color: '#000000',
+    }),
+  };
+
+  const handleChange = (option: { value: string; label: string } | null) => {
+    setSelectedOption(option);
+    onChange(option);
+  };
 
   return (
     <div className={twMerge('flex flex-col gap-4 mt-0', wrapperClassName)}>
@@ -62,35 +77,27 @@ export default function DropDownForm({
       >
         <Select
           classNames={{
-            control: () => {
-              return twMerge('font-lato', controlClassName);
-            },
-            menu: () => {
-              return twMerge(
+            control: () => twMerge('font-lato', controlClassName),
+            menu: () =>
+              twMerge(
                 'w-full mt-[14px] bg-neutral-50 border-x-[1px] border-b-[1px] border-slate-300 rounded-default overflow-hidden absolute -left-[16px] xl:overflow-auto',
                 menuClassName
-              );
-            },
-            option: () => {
-              return twMerge(
+              ),
+            option: () =>
+              twMerge(
                 'px-5 py-2 bg-neutral-50 font-lato border-b-[1px] border-slate-300 last-of-type:border-b-0',
                 optionClassName
-              );
-            },
-
-            dropdownIndicator: () => {
-              return twMerge(
-                'text-[#212121] font-thin',
-                dropdownIndicatorClassName
-              );
-            },
+              ),
+            dropdownIndicator: () =>
+              twMerge('text-[#212121] font-thin', dropdownIndicatorClassName),
           }}
           unstyled={true}
           options={options}
           styles={customStyles}
           placeholder={placeholder}
           id={id}
-          onChange={selectedOption => onChange(selectedOption)}
+          value={selectedOption}
+          onChange={handleChange}
         />
       </div>
       {error && (
