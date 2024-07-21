@@ -1,8 +1,9 @@
 'use client';
 
 import { Cabinet } from '.';
+import { Catalog } from '../Catalog';
 import { CatalogueButton, CloseButton } from '@/shared/components/index';
-import { Categories, SigninForm, SignupForm } from '@/modules';
+import { SigninForm, SignupForm } from '@/modules';
 import SigninForgotForm from '@/modules/signinForgotForm/SigninForgotForm';
 import RecoverPasswordForm from '@/modules/recoverPasswordForm/RecoverPasswordForm';
 import { Dispatch, MouseEventHandler, SetStateAction, useState } from 'react';
@@ -10,7 +11,6 @@ import { Contacts } from '@/modules/footer';
 import Container from '@/shared/components/Container/Container';
 import { twMerge } from 'tailwind-merge';
 import useFormsState from '../../hooks/useFormsState';
-import { Catalog } from '../Catalog';
 
 type CatalogItemType = {
   id: number;
