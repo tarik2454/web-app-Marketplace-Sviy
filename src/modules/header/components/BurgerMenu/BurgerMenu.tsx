@@ -10,17 +10,26 @@ import { Contacts } from '@/modules/footer';
 import Container from '@/shared/components/Container/Container';
 import { twMerge } from 'tailwind-merge';
 import useFormsState from '../../hooks/useFormsState';
+import { Catalog } from '../Catalog';
+
+type CatalogItemType = {
+  id: number;
+  name: string;
+  items: [];
+};
 
 type Props = {
   display: string;
   closeButtonClick: MouseEventHandler<HTMLButtonElement>;
   setDisplayMenu: Dispatch<SetStateAction<string>>;
+  catalogData: CatalogItemType[];
 };
 
 export default function BurgerMenu({
   display,
   closeButtonClick,
   setDisplayMenu,
+  catalogData
 }: Props) {
   const [displayCategories, setDisplayCategories] = useState('hidden');
 
@@ -71,7 +80,8 @@ export default function BurgerMenu({
         </nav>
       </Container>
 
-      <Categories
+      <Catalog
+        catalogData={catalogData}
         displayCategories={displayCategories}
         closeButtonClick={closeButtonClick}
         closeCatalogClick={closeCatalogClick}
