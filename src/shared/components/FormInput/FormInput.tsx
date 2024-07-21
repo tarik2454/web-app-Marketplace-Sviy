@@ -43,7 +43,7 @@ export default function FormInput({
   const fieldProps = formik.getFieldProps(name);
   const fieldMeta = formik.getFieldMeta(name);
   const error = fieldMeta.touched && fieldMeta.error;
-   
+
   useEffect(() => {
     setBorderColor(error ? 'border-[#C60000]' : 'border-blue-200');
   }, [error]);
@@ -59,6 +59,7 @@ export default function FormInput({
     if (inputType === 'textarea') {
       textAreaHeight();
     }
+    // eslint-disable-next-line
   }, [formik.values[name], inputType]);
 
   const eyeButtonHandler = () => {

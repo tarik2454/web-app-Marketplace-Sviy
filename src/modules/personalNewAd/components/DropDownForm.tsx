@@ -47,6 +47,7 @@ export default function DropDownForm({
     setSelectedOption(
       options.find(option => option.value === formikValue) || null
     );
+    // eslint-disable-next-line
   }, [formik.values[name], options]);
 
   const customStyles = {
