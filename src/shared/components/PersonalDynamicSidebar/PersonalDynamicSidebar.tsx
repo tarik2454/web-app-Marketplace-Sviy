@@ -48,6 +48,7 @@ export default function PersonalDynamicSidebar({
       .unwrap()
       .then(() => {
         router.push('/signin');
+
         toast.warning('Ви вийшли зі свого облікового запису');
       })
       .catch(error => {
