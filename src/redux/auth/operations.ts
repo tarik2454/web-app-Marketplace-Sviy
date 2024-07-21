@@ -18,13 +18,7 @@ interface AuthData {
   full_name?: string;
   email?: string;
   phone?: string;
-  address?: {
-    region: string;
-    city: string;
-    village?: string;
-    street: string;
-    number: string;
-  };
+  address?: Address;
   password?: string;
   chekSignUp?: boolean;
 }
@@ -121,10 +115,13 @@ export const logoutThunk = createAsyncThunk<
   { rejectValue: string }
 >('auth/logout', async (_, ThunkAPI) => {
   try {
-    localStorage.removeItem('token');
-    clearToken();
+    const response = await API.post('/api/account/user/logout/');
 
-    return;
+    if (response.status === 204) {
+      localStorage.removeItem('token');
+      clearToken();
+      return;
+    }
   } catch (error) {
     return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
   }
@@ -143,7 +140,6 @@ export const updateProfileThunk = createAsyncThunk<
     );
 
     const data = response.data;
-    console.log(data);
 
     return data;
   } catch (error) {

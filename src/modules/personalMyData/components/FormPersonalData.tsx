@@ -1,3 +1,5 @@
+'use client';
+
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 
@@ -15,8 +17,8 @@ export default function FormPersonalData() {
   const [firstName, setFirstName] = useState('');
   const [remainingNames, setRemainingNames] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [deleteProfile, setDeleteProfile] = useState(false);
   const [updateProfile, setUpdateProfile] = useState(false);
+  const [deleteProfile, setDeleteProfile] = useState(false);
   const [dataToSubmitUpdate, setDataToSubmitUpdate] =
     useState<FormPersonalDataValues | null>(null);
 
@@ -36,15 +38,15 @@ export default function FormPersonalData() {
     full_name: firstName,
     lastName: remainingNames,
     address: {
-      region: address?.region || '',
       city: address?.city || '',
       street: address?.street || '',
       number: address?.number || '',
     },
     phone: phone || '',
+    email: email || '',
   };
 
-  const handleSubmit = (values: FormPersonalDataValues) => {
+  const handleSubmit = (values: FormPersonalDataValues, actions: any) => {
     const { full_name, lastName, address, ...formData } = values;
 
     const combinedFullName = `${full_name} ${lastName}`.trim();
@@ -53,7 +55,6 @@ export default function FormPersonalData() {
     if (address && address.city && address.street && address.number) {
       updatedAddress = {
         ...address,
-        region: address.city,
       };
     }
 
@@ -68,18 +69,9 @@ export default function FormPersonalData() {
     }
 
     setDataToSubmitUpdate(data);
-  };
-
-  const handleUpdateProfileButton = () => {
     setShowModal(true);
     setUpdateProfile(true);
     setDeleteProfile(false);
-  };
-
-  const handleDeleteProfileButton = () => {
-    setShowModal(true);
-    setUpdateProfile(false);
-    setDeleteProfile(true);
   };
 
   const formik = useFormik<FormPersonalDataValues>({
@@ -88,6 +80,16 @@ export default function FormPersonalData() {
     onSubmit: handleSubmit,
     enableReinitialize: true,
   });
+
+  const handleUpdateProfileButton = () => {
+    formik.handleSubmit();
+  };
+
+  const handleDeleteProfileButton = () => {
+    setDeleteProfile(true);
+    setUpdateProfile(false);
+    setShowModal(true);
+  };
 
   return (
     <>

@@ -6,7 +6,7 @@ import { FormikHelpers, useFormik } from 'formik';
 import { selectAuth } from '@/redux/auth/authSlice';
 import { useAppSelector } from '@/redux/hooks';
 
-import validationSchemaFormikProfile from '../helpers/validationSchemaFormikProfile';
+import validationLoginPassword from '../helpers/validationLoginPassword';
 
 import {
   BlueBorderButton,
@@ -41,9 +41,6 @@ export default function FormLoginPassword() {
     });
 
     actions.resetForm();
-  };
-
-  const handleUpdatePusswordButton = () => {
     setShowModal(true);
     setChangePassword(true);
   };
@@ -55,7 +52,7 @@ export default function FormLoginPassword() {
       new_password: '',
       repeatPassword: '',
     },
-    validationSchema: validationSchemaFormikProfile,
+    validationSchema: validationLoginPassword,
     onSubmit: handleSubmit,
     enableReinitialize: true,
   });
@@ -98,7 +95,6 @@ export default function FormLoginPassword() {
         </div>
 
         <BlueBorderButton
-          onClick={handleUpdatePusswordButton}
           smallButton={true}
           cssSettings="text-nowrap xl:max-w-[164px]"
           type="submit"
