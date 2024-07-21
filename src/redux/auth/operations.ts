@@ -123,6 +123,13 @@ export const logoutThunk = createAsyncThunk<
       return;
     }
   } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+      if (status === 401) {
+        clearToken();
+        return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
+      }
+    }
     return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
   }
 });

@@ -22,7 +22,10 @@ export default function FormPersonalData() {
   const [dataToSubmitUpdate, setDataToSubmitUpdate] =
     useState<FormPersonalDataValues | null>(null);
 
-  const { full_name, phone, email, address } = useAppSelector(selectAuth);
+  const { full_name, phone, email, address, isLoggedIn } =
+    useAppSelector(selectAuth);
+
+  console.log(isLoggedIn);
 
   useEffect(() => {
     if (full_name) {

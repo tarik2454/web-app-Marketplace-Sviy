@@ -51,16 +51,16 @@ export default function ModalPersonalDataSuccess({
   const handleUpdateProfile = () => {
     if (!dataToSubmitUpdate) return;
 
-    const updateData = {
-      full_name: dataToSubmitUpdate.full_name,
-      address: dataToSubmitUpdate.address || {
-        city: '',
-        street: '',
-        number: '',
-      },
-      phone: dataToSubmitUpdate.phone,
-      email: dataToSubmitUpdate.email,
+    const { full_name, address, phone, email } = dataToSubmitUpdate;
+    const updateData: any = {
+      full_name,
+      phone,
+      email,
     };
+
+    if (address?.city && address?.street && address?.number) {
+      updateData.address = address;
+    }
 
     dispatch(refreshThunk())
       .unwrap()
