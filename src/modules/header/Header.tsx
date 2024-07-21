@@ -88,7 +88,6 @@ export default function Header() {
   }, []);
 
    useEffect(() => {
-     const fetchData = () => {
        fetchCatalog()
          .then(data => {
            setCatalogData(data);
@@ -96,9 +95,6 @@ export default function Header() {
          .catch(error => {
            console.log(error);
          });
-     };
-
-     fetchData();
    }, []);
 
   return (
