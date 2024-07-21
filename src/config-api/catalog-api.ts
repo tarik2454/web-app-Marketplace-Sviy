@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { API } from './global-config-api';
 
 export const fetchCatalog = async () => {
@@ -5,6 +6,10 @@ export const fetchCatalog = async () => {
     const response = await API.get('/api/catalog/category/');
     return response.data;
   } catch (error) {
-    console.log('Error fetching catalog data:', error);
+    if (axios.isAxiosError(error)) {
+      console.warn('Axios error fetching catalog data', error.message);
+    } else {
+      console.warn('Unknown error fetching catalog data', error);
+    }
   }
 };

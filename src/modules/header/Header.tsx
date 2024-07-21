@@ -10,12 +10,14 @@ import CatalogButton from './components/Catalog/CatalogButton';
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import ModalCart from './components/Cart/ModalCart';
 import useModal from '@/shared/hooks/useModal';
+import { fetchCatalog } from '@/config-api/catalog-api';
 
 export default function Header() {
   const [displayMenu, setDisplayMenu] = useState('hidden');
   const [displayCategories, setDisplayCategories] = useState('hidden');
   const [showCatalog, setShowCatalog] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [catalogData, setCatalogData] = useState([]);
 
   const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
   const { isOnMobile, isOnTablet } = ScreenSize();
@@ -85,12 +87,23 @@ export default function Header() {
     };
   }, []);
 
+   useEffect(() => {
+       fetchCatalog()
+         .then(data => {
+           setCatalogData(data);
+         })
+         .catch(error => {
+           console.log(error);
+         });
+   }, []);
+
   return (
     <>
       <header className="w-full py-[22.5px] md:py-[30px] bg-neutral-50 shadow-[2px_2px_12px_0_rgba(186,186,186,0.40)] fixed top-0 left-0 z-50">
         <Container>
           <div className="flex items-center gap-auto ">
             <BurgerMenu
+              catalogData={catalogData}
               display={displayMenu}
               setDisplayMenu={setDisplayMenu}
               closeButtonClick={() => setDisplayMenu('hidden')}
@@ -129,6 +142,7 @@ export default function Header() {
           ref={backdropCatalogRef}
         >
           <Catalog
+            catalogData={catalogData}
             displayCategories={displayCategories}
             closeCatalogClick={closeBackdrop}
           />

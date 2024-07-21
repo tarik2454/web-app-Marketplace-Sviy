@@ -16,9 +16,10 @@ import InputPhoto from './components/InputPhotoForm';
 import DropDownForm from './components/DropDownForm';
 import validationSchemaNewAd from './helpers/validationSchemaNewAd';
 
-
 export default function PersonalNewAd() {
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [isCheckedPay, setIsCheckedPay] = useState<boolean>(false);
+
   const handleSubmit = (values: any, { resetForm }: any): void => {
     const formData = new FormData();
 
@@ -54,7 +55,7 @@ export default function PersonalNewAd() {
       title: '',
       category: '',
       description: '',
-      quantity: 1,
+      quantity: 0,
       unit: '',
       availability: '',
       location: '',
@@ -113,10 +114,16 @@ export default function PersonalNewAd() {
               <FormInput
                 formik={formik}
                 name="description"
-                placeholder="Опис товару"
+                placeholder={`Наприклад: Шановні гурмани та зайняті особи, ми раді представити вам нашу нову послугу - готові комплексні обіди на замовлення! Забудьте про готування та планування, ми покриємо ваші потреби в смачному та ситному харчуванні. Пропонуємо меню: 
+                1. Біле м'ясо в соусі теріякі з овочами. 
+                2. Паста з лососем та шпинатом в вершковому соусі
+                3. Індійський каррі з куркою та базматі-рисом
+                4. Салат 'Мікс зелених' з гарніром киш-миш
+                5. Суп-крем з брокколі та сиром`}
                 label={'Опис товару'}
                 inputType="textarea"
                 classNameLogin="!text-xl mb-4 !ml-0"
+                textAreaStyle="h-auto resize-none overflow-hidden"
               />
               <span className="flex flex-col md:flex-row gap-6 mt-6 mb-6 md:mt-10 md:mb-10">
                 <span className="w-full md:w-[301px]">
@@ -148,6 +155,8 @@ export default function PersonalNewAd() {
                     stylesInput="py-1.5"
                     placeholder="Оберіть одиницю"
                     dropdownIndicatorClassName="text-gray-600"
+                    menuClassName="text-gray-900"
+                    wrapperClassName="text-gray-600"
                     id="unit-dropdown"
                     onChange={selectedOption =>
                       formik.setFieldValue(
@@ -250,11 +259,13 @@ export default function PersonalNewAd() {
                   <span className="text-xl mb-6">Оплата</span>
                   <span className="flex flex-col md:flex-row gap-6">
                     <span className="w-full md:w-[487px]">
-                      <CheckboxForm
-                        name="pay"
-                        labelText="На картку продавця"
-                        formik={formik}
-                      />
+                      <span onChange={() => setIsCheckedPay(!isCheckedPay)}>
+                        <CheckboxForm
+                          name="pay"
+                          labelText="На картку продавця"
+                          formik={formik}
+                        />
+                      </span>
                       <FormInput
                         formik={formik}
                         name="card"
@@ -262,6 +273,7 @@ export default function PersonalNewAd() {
                         label={'Вкажіть номер картки'}
                         inputType="number"
                         classNameLogin="text-xl mt-4 mb-2 text-gray-600 !ml-0"
+                        readOnly={!isCheckedPay}
                       />
                     </span>
                     <span className="w-full md:w-[378px]">
@@ -277,6 +289,7 @@ export default function PersonalNewAd() {
                         label={'Коментар'}
                         inputType="textarea"
                         classNameLogin="text-xl mt-4 mb-2 text-gray-600 !ml-0"
+                        textAreaStyle="h-auto"
                       />
                     </span>
                   </span>
@@ -306,5 +319,4 @@ export default function PersonalNewAd() {
       </Container>
     </Section>
   );
-};
-
+}
