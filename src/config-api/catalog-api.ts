@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 import axios from 'axios';
-import { APIEXTRA } from './global-config-api';
-=======
+
 import { API } from './global-config-api';
->>>>>>> dev
 
 export const fetchCatalog = async () => {
   try {
