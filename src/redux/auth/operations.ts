@@ -115,11 +115,19 @@ export const logoutThunk = createAsyncThunk<
   { rejectValue: string }
 >('auth/logout', async (_, ThunkAPI) => {
   try {
-    const response = await API.post('/api/account/user/logout/');
+    const token = JSON.parse(localStorage.getItem('token') as string);
+
+    if (!token || !token.refresh) {
+      return ThunkAPI.rejectWithValue('Токен відсутній або недійсний.');
+    }
+
+    const response = await API.post('/api/account/user/logout/', {
+      refresh: token.refresh,
+    });
 
     if (response.status === 204) {
-      localStorage.removeItem('token');
-      clearToken();
+      // localStorage.removeItem('token');
+      // clearToken();
       return;
     }
   } catch (error) {
@@ -212,11 +220,10 @@ export const deleteProfileThunk = createAsyncThunk<
   { rejectValue: string }
 >('auth/deleteProfile', async (_, ThunkAPI) => {
   try {
-    const response = await API.delete('/api/account/user/disable_me/');
-
-    clearToken();
+    const response = await API.post('/api/account/user/disable_me/');
 
     if (response.status === 204) {
+      clearToken();
       return;
     }
   } catch (error) {

@@ -2,6 +2,7 @@
 
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 
 import {
   deleteProfileThunk,
@@ -34,7 +35,11 @@ export default function ModalPersonalDataSuccess({
   changePassword,
   passwordToSubmitUpdate,
 }: ModalPersonalDataSuccessProps) {
+  const router = useRouter();
+
   const dispatch = useAppDispatch();
+
+  const singUpPage = '/signup';
 
   const modalActions = () => {
     setTimeout(() => {
@@ -86,6 +91,7 @@ export default function ModalPersonalDataSuccess({
       .then(() => {
         modalActions();
         toast.success('Ваш профіль успішно видалено');
+        router.push(singUpPage);
       })
       .catch(error => {
         modalActions();

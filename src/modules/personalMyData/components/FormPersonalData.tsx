@@ -25,8 +25,6 @@ export default function FormPersonalData() {
   const { full_name, phone, email, address, isLoggedIn } =
     useAppSelector(selectAuth);
 
-  console.log(isLoggedIn);
-
   useEffect(() => {
     if (full_name) {
       const nameParts = full_name.split(' ');

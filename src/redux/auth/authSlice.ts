@@ -73,6 +73,11 @@ export const authSlice = createSlice({
         state.refresh = '';
         state.full_name = '';
         state.phone = '';
+        state.address = {
+          city: '',
+          street: '',
+          number: '',
+        };
         state.isLoggedIn = false;
         state.isLoading = false;
         state.isRefresh = false;
@@ -99,7 +104,13 @@ export const authSlice = createSlice({
         state.full_name = payload.full_name;
         state.email = payload.email;
         state.phone = payload.phone;
-        state.isLoading = false;
+        state.address = payload.address
+          ? {
+              city: payload.address.city,
+              street: payload.address.street,
+              number: payload.address.number,
+            }
+          : undefined;
       })
       .addCase(currentUserThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
