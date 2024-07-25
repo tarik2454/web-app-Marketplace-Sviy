@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 import { useAppDispatch } from '@/redux/hooks';
 import { registerThunk } from '@/redux/auth/operations';
 
-import phoneFormattingBeforeSending from '@/shared/helpers/phoneFormattingBeforeSending';
 import validationSchemaSignup from './helpers/validationSchemaSignup';
 
 import Modal from '@/shared/components/Modal/Modal';
@@ -51,8 +50,6 @@ export default function SignupForm({
     actions: FormikHelpers<SignupFormValues>
   ) => {
     const { passwordRepeat, chekSignUp, ...formData } = values;
-
-    // formData.phone = phoneFormattingBeforeSending(formData, 'phone');
 
     dispatch(registerThunk(formData))
       .unwrap()
