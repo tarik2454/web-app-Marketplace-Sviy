@@ -9,7 +9,12 @@ const validationSchemaNewAd = Yup.object({
   description: Yup.string()
     .min(2, 'Опис повинен містити принаймні 2 символи')
     .max(1024, 'Опис не повинен перевищувати 1024 символів'),
-  quantity: Yup.number().required('Вартість обов’язкова').positive().integer(),
+  quantity: Yup.number()
+    .required('Вартість обов’язкова')
+    .positive('Вартість повинна бути більшою 0')
+    .integer(),
+  availability: Yup.string()
+    .required('Наявність обов’язкова'),
   location: Yup.string().required('Місце розташування обов’язкове'),
   deliveryMethods: Yup.array()
     .min(1, 'Оберіть хоча б один спосіб доставки')
@@ -24,9 +29,9 @@ const validationSchemaNewAd = Yup.object({
       const { pay } = this.parent;
       if (pay.includes('На картку продавця')) {
         return Yup.string()
-          .required('Введіть коректний номер карти')
-          .length(12, 'Номер карти повинен містити рівно 12 символів')
-          .matches(/^\d{12}$/, 'Номер карти повинен складатися тільки з цифр')
+          .required("Номер карти обов'язковий")
+          .length(16, 'Номер карти повинен містити рівно 16 символів')
+          .matches(/^\d{16}$/, 'Номер карти повинен складатися тільки з цифр')
           .isValidSync(value);
       }
       return true;

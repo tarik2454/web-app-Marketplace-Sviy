@@ -15,10 +15,16 @@ import CheckboxForm from './components/СheckboxForm';
 import InputPhoto from './components/InputPhotoForm';
 import DropDownForm from './components/DropDownForm';
 import validationSchemaNewAd from './helpers/validationSchemaNewAd';
+import useModal from '@/shared/hooks/useModal';
+import { useRouter } from 'next/navigation';
 
 export default function PersonalNewAd() {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [isCheckedPay, setIsCheckedPay] = useState<boolean>(false);
+
+  const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
+  const [isDeleteModal, setIsDeleteModal] = useState(true);
+  const router = useRouter();
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
     const formData = new FormData();
@@ -44,10 +50,17 @@ export default function PersonalNewAd() {
     });
 
     resetForm();
+    handleOpenModal();
+    setIsDeleteModal(true);
   };
 
   const handleCancel = () => {
+    handleOpenModal();
+    setIsDeleteModal(false);
+  };
+  const handleDeleteForm = () => {
     formik.resetForm();
+    handleCloseModal();
   };
 
   const formik = useFormik({
@@ -69,6 +82,8 @@ export default function PersonalNewAd() {
     },
     validationSchema: validationSchemaNewAd,
     onSubmit: handleSubmit,
+    validateOnChange: true,
+    validateOnBlur: true,
   });
 
   return (
@@ -81,7 +96,11 @@ export default function PersonalNewAd() {
                 formik={formik}
                 name="title"
                 placeholder="Назва оголошення"
-                label={'Назва оголошення'}
+                label={
+                  <span>
+                    Назва оголошення <span className="text-red-600">*</span>
+                  </span>
+                }
                 inputType="text"
                 classNameLogin="!text-xl mb-4 !ml-0"
               />
@@ -91,6 +110,7 @@ export default function PersonalNewAd() {
                   className="block text-xl text-gray-900 mb-4"
                 >
                   Категорія/підкатегорія
+                  <span className="text-red-600"> *</span>
                 </label>
                 <DropDownForm
                   formik={formik}
@@ -131,7 +151,11 @@ export default function PersonalNewAd() {
                     formik={formik}
                     name="quantity"
                     placeholder="Вартість"
-                    label={'Вартість'}
+                    label={
+                      <span>
+                        Вартість<span className="text-red-600"> *</span>
+                      </span>
+                    }
                     inputType="number"
                     classNameLogin="!text-xl mb-4 !ml-0"
                   />
@@ -172,6 +196,7 @@ export default function PersonalNewAd() {
                     className="block mb-4 text-xl text-gray-900"
                   >
                     Наявність
+                    <span className="text-red-600"> *</span>
                   </label>
                   <DropDownForm
                     formik={formik}
@@ -199,6 +224,7 @@ export default function PersonalNewAd() {
                   className="block text-xl text-gray-900 mb-4 md:mb-8"
                 >
                   Місце розташування товару
+                  <span className="text-red-600"> *</span>
                 </label>
                 <DropDownForm
                   formik={formik}
@@ -225,7 +251,9 @@ export default function PersonalNewAd() {
                 />
               </div>
               <span>
-                <span className="text-xl">Доставка</span>
+                <span className="text-xl">
+                  Доставка <span className="text-red-600"> *</span>
+                </span>
                 <span className="flex gap-8 md:gap-[113px] mt-6 mb-6 md:mb-10">
                   <span onChange={() => setIsChecked(!isChecked)}>
                     <CheckboxForm
@@ -316,6 +344,46 @@ export default function PersonalNewAd() {
             </ArrowButton>
           </span>
         </form>
+
+        {isOpenModal && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+            {!isDeleteModal ? (
+              <div className="bg-white px-5 md:px-[60px] py-6 md:py-[40px] rounded-[20px]">
+                <h2 className="text-gray-900 text-xl xl:text-2xl mb-6 md:mb-10 flex flex-wrap justify-center">
+                  Ви дійсно бажаєте скасувати створення оголошення?
+                </h2>
+                <div className="flex justify-center gap-[28px] md:gap-[48px]">
+                  <OrangeButton
+                    cssSettings="text-white text-sm px-[45px] xl:px-[67px] xl:text-base"
+                    onClick={handleCloseModal}
+                  >
+                    Назад
+                  </OrangeButton>
+                  <ArrowButton
+                    cssSettings="text-sm xl:text-base !py-1 xl:!py-3"
+                    onClick={handleDeleteForm}
+                  >
+                    Скасувати
+                  </ArrowButton>
+                </div>
+              </div>
+            ) : (
+              <div className="bg-white rounded-[20px] px-5 md:px-[20px] py-6 md:py-[30px]">
+                <h2 className="px-[60px] text-xl xl:text-2xl mb-6 md:mb-10">
+                  Оголошення додано
+                </h2>
+                <div className="flex justify-center mb-5">
+                  <OrangeButton
+                    cssSettings="text-white w-full max-w-[215px] !py-3"
+                    onClick={() => router.push('/personal-office/my-ads')}
+                  >
+                    Мої оголошення
+                  </OrangeButton>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </Container>
     </Section>
   );
