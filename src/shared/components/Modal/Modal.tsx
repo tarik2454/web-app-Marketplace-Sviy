@@ -55,12 +55,12 @@ export default function Modal({
     <>
       {isOpen && (
         <div
-          className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50"
+          className="flex items-center justify-center bg-black bg-opacity-50 fixed z-50 inset-0 "
           onClick={handleBackdropClick}
         >
           <div
             className={twMerge(
-              `w-full max-w-[530px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-default z-50 px-4 pt-[72px] pb-10 md:pt-20 md:pb-16`,
+              `w-[96%] max-w-[530px] bg-white rounded-default px-4 pt-[72px] md:pt-20 pb-10 md:pb-16 fixed top-1/2 left-1/2 z-50  transform -translate-x-1/2 -translate-y-1/2`,
               stylesWrapper
             )}
           >

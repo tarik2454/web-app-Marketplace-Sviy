@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function useFormsState() {
@@ -5,6 +6,11 @@ export default function useFormsState() {
   const [signupFormDisplay, setSignupFormDisplay] = useState('hidden');
   const [signinForgotDisplay, setSigninForgotDisplay] = useState('hidden');
   const [recoverPassDisplay, setRecoverPassDisplay] = useState('hidden');
+
+  const router = useRouter();
+
+  const signinPage = '/signin';
+  const signupPage = '/signup';
 
   const closeForm = () => {
     setSigninFormDisplay('hidden');
@@ -14,6 +20,7 @@ export default function useFormsState() {
   };
 
   const signinClick = () => {
+    router.push(signinPage);
     setSigninFormDisplay('block');
     setSignupFormDisplay('hidden');
     setSigninForgotDisplay('hidden');
@@ -21,6 +28,7 @@ export default function useFormsState() {
   };
 
   const signupClick = () => {
+    router.push(signupPage);
     setSignupFormDisplay('block');
     setSigninFormDisplay('hidden');
     setSigninForgotDisplay('hidden');
@@ -48,7 +56,7 @@ export default function useFormsState() {
   };
 }
 
-// Использование
+// Использование хука в компоненте
 // const {
 //   signinFormDisplay,
 //   signupFormDisplay,

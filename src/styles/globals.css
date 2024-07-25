@@ -317,3 +317,5 @@ input::-webkit-inner-spin-button {
 .customInput input:focus + .prevIcon {
   color: #1565c0;
 }
+
+/* Modal */
