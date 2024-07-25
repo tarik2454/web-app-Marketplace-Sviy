@@ -4,7 +4,6 @@ import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { Dispatch, MouseEventHandler, SetStateAction } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { useSelector } from 'react-redux';
 import { selectAuth } from '@/redux/auth/authSlice';
 
 import { Counter } from '.';
@@ -31,7 +30,7 @@ export default function FunctionalButtons({
   const favoritesPage = '/favorites';
   const personalOfficePage = '/personal-office/profile';
 
-  const handleSigninClick = () => {
+  const handleUserClick = () => {
     setShowCatalog(false);
     setShowSearch(false);
 
@@ -59,7 +58,7 @@ export default function FunctionalButtons({
         </button>
 
         <button
-          onClick={handleSigninClick}
+          onClick={handleUserClick}
           className={`hidden md:flex hover:text-neutral-800 active:text-neutral-400 items-center content-center 
             ${isLoggedIn ? 'text-orange-500' : 'text-blue-700'}`}
         >

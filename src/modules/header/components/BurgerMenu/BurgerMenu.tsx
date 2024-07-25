@@ -29,7 +29,7 @@ export default function BurgerMenu({
   display,
   closeButtonClick,
   setDisplayMenu,
-  catalogData
+  catalogData,
 }: Props) {
   const [displayCategories, setDisplayCategories] = useState('hidden');
 
@@ -65,7 +65,11 @@ export default function BurgerMenu({
         </div>
 
         <nav>
-          <Cabinet signinClick={signinClick} signupClick={signupClick} />
+          <Cabinet
+            signinClick={signinClick}
+            signupClick={signupClick}
+            setDisplayMenu={setDisplayMenu}
+          />
           <div className="w-full max-w-[375px] py-5 border-y-2 absolute top-[158px] left-[50%] -translate-x-2/4">
             <div className="px-4 py-2.5 bg-white">
               <CatalogueButton

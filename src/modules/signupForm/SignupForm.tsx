@@ -70,7 +70,7 @@ export default function SignupForm({
       email: '',
       phone: '',
       password: '',
-      // passwordRepeat: '',
+      passwordRepeat: '',
       // chekSignUp: false,
     },
     validationSchema: validationSchemaSignup,
