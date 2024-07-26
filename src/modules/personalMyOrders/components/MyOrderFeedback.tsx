@@ -1,4 +1,3 @@
-import * as Yup from 'yup';
 import Image from 'next/image';
 import { StaticImageData } from 'next/image';
 import { useState } from 'react';
@@ -49,7 +48,7 @@ export default function MyOrderFeedback({
     console.log('Форма відправлена');
     console.log('рейтинг:', values.rating);
     console.log('коментар:', values.comment);
-    // Додати логіку для відправки даних
+    // Логіка для відправки даних
     handleCloseFeedback();
   };
 
