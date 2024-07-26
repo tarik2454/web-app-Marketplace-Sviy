@@ -10,14 +10,7 @@ import {
   updatePasswordThunk,
   deleteProfileThunk,
 } from './operations';
-
-interface Address {
-  region?: string;
-  city: string;
-  village?: string;
-  street: string;
-  number: string;
-}
+import { Address } from '@/models/dataToSubmit';
 
 interface AuthState {
   access?: string;
@@ -29,7 +22,7 @@ interface AuthState {
   isLoggedIn: boolean;
   isLoading: boolean;
   isRefresh: boolean;
-  error: string;
+  // error: string;
 }
 
 const initialState: AuthState = {
@@ -42,7 +35,7 @@ const initialState: AuthState = {
   isLoggedIn: false,
   isLoading: false,
   isRefresh: false,
-  error: '',
+  // error: '',
 };
 
 export const authSlice = createSlice({
@@ -80,10 +73,15 @@ export const authSlice = createSlice({
         state.refresh = '';
         state.full_name = '';
         state.phone = '';
+        state.address = {
+          city: '',
+          street: '',
+          number: '',
+        };
         state.isLoggedIn = false;
         state.isLoading = false;
         state.isRefresh = false;
-        state.error = '';
+        // state.error = '';
       })
       .addCase(updateProfileThunk.fulfilled, (state, { payload }) => {
         state.full_name = payload.full_name;
@@ -91,9 +89,7 @@ export const authSlice = createSlice({
         state.phone = payload.phone;
         state.address = payload.address
           ? {
-              region: payload.address.city,
               city: payload.address.city,
-              village: payload.address.village,
               street: payload.address.street,
               number: payload.address.number,
             }
@@ -102,25 +98,31 @@ export const authSlice = createSlice({
       })
       .addCase(updateProfileThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload ?? 'Помилка оновлення профілю';
+        // state.error = payload ?? 'Помилка оновлення профілю';
       })
       .addCase(currentUserThunk.fulfilled, (state, { payload }) => {
         state.full_name = payload.full_name;
         state.email = payload.email;
         state.phone = payload.phone;
-        state.isLoading = false;
+        state.address = payload.address
+          ? {
+              city: payload.address.city,
+              street: payload.address.street,
+              number: payload.address.number,
+            }
+          : undefined;
       })
       .addCase(currentUserThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload ?? 'Помилка отримання данних з серверу';
+        // state.error = payload ?? 'Помилка отримання данних з серверу';
       })
       .addCase(updatePasswordThunk.fulfilled, state => {
         state.isLoading = false;
-        state.error = '';
+        // state.error = '';
       })
       .addCase(updatePasswordThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload ?? 'Помилка зміни паролю';
+        // state.error = payload ?? 'Помилка зміни паролю';
       })
       .addCase(deleteProfileThunk.fulfilled, state => {
         state.access = '';
@@ -129,19 +131,17 @@ export const authSlice = createSlice({
         state.email = '';
         state.phone = '';
         state.address = {
-          region: '',
           city: '',
-          village: '',
           street: '',
           number: '',
         };
         state.isLoggedIn = false;
         state.isLoading = false;
-        state.error = '';
+        // state.error = '';
       })
       .addCase(deleteProfileThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload ?? 'Помилка видалення профілю';
+        // state.error = payload ?? 'Помилка видалення профілю';
       })
       .addMatcher(
         isAnyOf(
@@ -155,7 +155,7 @@ export const authSlice = createSlice({
         ),
         state => {
           state.isLoading = true;
-          state.error = '';
+          // state.error = '';
         }
       )
       .addMatcher(
@@ -166,7 +166,7 @@ export const authSlice = createSlice({
         ),
         (state, { payload }) => {
           state.isLoading = false;
-          state.error = payload ?? 'Помилка авторизації';
+          // state.error = payload ?? 'Помилка авторизації';
         }
       );
   },

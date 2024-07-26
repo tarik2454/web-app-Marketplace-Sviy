@@ -1,7 +1,16 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { authFormValues } from '../../models/authFormValues';
 import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API, clearToken, setToken } from '../../config-api/global-config-api';
+import { Address } from '@/models/dataToSubmit';
+
+export interface authFormValues {
+  full_name?: string;
+  email?: string;
+  phone?: string;
+  password?: string;
+  passwordRepeat?: string;
+  chekSignUp?: boolean;
+}
 
 interface AuthData {
   access?: string;
@@ -9,13 +18,7 @@ interface AuthData {
   full_name?: string;
   email?: string;
   phone?: string;
-  address?: {
-    region: string;
-    city: string;
-    village?: string;
-    street: string;
-    number: string;
-  };
+  address?: Address;
   password?: string;
   chekSignUp?: boolean;
 }
@@ -24,13 +27,7 @@ interface UpdateProfileValues {
   full_name?: string;
   email?: string;
   phone?: string;
-  address?: {
-    region: string;
-    city: string;
-    village?: string;
-    street: string;
-    number: string;
-  };
+  address?: Address;
 }
 
 // Register
@@ -118,11 +115,29 @@ export const logoutThunk = createAsyncThunk<
   { rejectValue: string }
 >('auth/logout', async (_, ThunkAPI) => {
   try {
-    localStorage.removeItem('token');
-    clearToken();
+    const token = JSON.parse(localStorage.getItem('token') as string);
 
-    return;
+    if (!token || !token.refresh) {
+      return ThunkAPI.rejectWithValue('Токен відсутній або недійсний.');
+    }
+
+    const response = await API.post('/api/account/user/logout/', {
+      refresh: token.refresh,
+    });
+
+    if (response.status === 204) {
+      // localStorage.removeItem('token');
+      // clearToken();
+      return;
+    }
   } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+      if (status === 401) {
+        clearToken();
+        return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
+      }
+    }
     return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
   }
 });
@@ -140,7 +155,6 @@ export const updateProfileThunk = createAsyncThunk<
     );
 
     const data = response.data;
-    console.log(data);
 
     return data;
   } catch (error) {
@@ -206,11 +220,10 @@ export const deleteProfileThunk = createAsyncThunk<
   { rejectValue: string }
 >('auth/deleteProfile', async (_, ThunkAPI) => {
   try {
-    const response = await API.delete('/api/account/user/disable_me/');
-
-    clearToken();
+    const response = await API.post('/api/account/user/disable_me/');
 
     if (response.status === 204) {
+      clearToken();
       return;
     }
   } catch (error) {

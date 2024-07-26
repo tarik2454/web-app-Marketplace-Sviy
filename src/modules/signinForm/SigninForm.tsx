@@ -9,6 +9,8 @@ import { selectAuth } from '@/redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { loginThunk } from '@/redux/auth/operations';
 
+import validationSchemaSignin from './helpers/validationSchemaSignin';
+
 import {
   FormInput,
   OrangeButton,
@@ -16,8 +18,6 @@ import {
   Section,
 } from '@/shared/components';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
-import validationSchemaSignin from './helpers/validationSchemaSignin';
-import { authFormValues } from '@/models/authFormValues';
 import Modal from '@/shared/components/Modal/Modal';
 import RegIsSuccesful from '@/shared/components/ModalRegSuccess/RegSuccess';
 
@@ -25,6 +25,11 @@ type SigninFormProps = {
   signinType: 'page' | 'burger';
   signupClick?: MouseEventHandler<HTMLButtonElement>;
   signinForgotClick?: MouseEventHandler<HTMLButtonElement>;
+};
+
+type SigninFormValues = {
+  email: string | undefined;
+  password: string;
 };
 
 export default function SigninForm({
@@ -41,8 +46,8 @@ export default function SigninForm({
   const signupPage = '/signup';
   const signinForgotPage = '/signin-forgot';
 
-  const handleSubmit = (values: authFormValues) => {
-    const { passwordRepeat, chekSignUp, ...formData } = values;
+  const handleSubmit = (values: SigninFormValues) => {
+    const { ...formData } = values;
 
     dispatch(loginThunk(formData))
       .unwrap()
@@ -55,7 +60,7 @@ export default function SigninForm({
       });
   };
 
-  const formik = useFormik<authFormValues>({
+  const formik = useFormik<SigninFormValues>({
     initialValues: {
       email: email,
       password: '',

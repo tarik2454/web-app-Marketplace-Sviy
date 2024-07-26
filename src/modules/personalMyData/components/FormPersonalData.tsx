@@ -1,42 +1,29 @@
-import { toast } from 'react-toastify';
+'use client';
+
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectAuth } from '@/redux/auth/authSlice';
-import { updateProfileThunk } from '@/redux/auth/operations';
+import { useAppSelector } from '@/redux/hooks';
 
 import validationSchemaFormikProfile from '../helpers/validationSchemaFormikProfile';
-import phoneFormattingBeforeSending from '@/shared/helpers/phoneFormattingBeforeSending';
 
 import { FormInput, ModalPersonalDataSuccess } from '@/shared/components';
 import ButtonProfile from './ButtonProfile';
 import Modal from '@/shared/components/Modal/Modal';
-
-type Address = {
-  region?: string;
-  city: string;
-  street: string;
-  number: string;
-};
-
-type FormPersonalDataValues = {
-  full_name: string | undefined;
-  lastName?: string;
-  address: Address;
-  phone: string | undefined;
-};
+import { FormPersonalDataValues } from '@/models/dataToSubmit';
 
 export default function FormPersonalData() {
   const [firstName, setFirstName] = useState('');
   const [remainingNames, setRemainingNames] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [deleteProfile, setDeleteProfile] = useState(false);
   const [updateProfile, setUpdateProfile] = useState(false);
+  const [deleteProfile, setDeleteProfile] = useState(false);
   const [dataToSubmitUpdate, setDataToSubmitUpdate] =
     useState<FormPersonalDataValues | null>(null);
 
-  const { full_name, phone, email, address } = useAppSelector(selectAuth);
+  const { full_name, phone, email, address, isLoggedIn } =
+    useAppSelector(selectAuth);
 
   useEffect(() => {
     if (full_name) {
@@ -52,28 +39,23 @@ export default function FormPersonalData() {
     full_name: firstName,
     lastName: remainingNames,
     address: {
-      region: address?.region || '',
       city: address?.city || '',
       street: address?.street || '',
       number: address?.number || '',
     },
     phone: phone || '',
+    email: email || '',
   };
 
-  const handleSubmit = (values: FormPersonalDataValues) => {
+  const handleSubmit = (values: FormPersonalDataValues, actions: any) => {
     const { full_name, lastName, address, ...formData } = values;
 
     const combinedFullName = `${full_name} ${lastName}`.trim();
-
-    // formData.phone = phoneFormattingBeforeSending(formData, 'phone');
-
-    console.log(formData.phone);
 
     let updatedAddress;
     if (address && address.city && address.street && address.number) {
       updatedAddress = {
         ...address,
-        region: address.city,
       };
     }
 
@@ -88,18 +70,9 @@ export default function FormPersonalData() {
     }
 
     setDataToSubmitUpdate(data);
-  };
-
-  const handleUpdateProfileButton = () => {
     setShowModal(true);
     setUpdateProfile(true);
     setDeleteProfile(false);
-  };
-
-  const handleDeleteProfileButton = () => {
-    setShowModal(true);
-    setUpdateProfile(false);
-    setDeleteProfile(true);
   };
 
   const formik = useFormik<FormPersonalDataValues>({
@@ -108,6 +81,16 @@ export default function FormPersonalData() {
     onSubmit: handleSubmit,
     enableReinitialize: true,
   });
+
+  const handleUpdateProfileButton = () => {
+    formik.handleSubmit();
+  };
+
+  const handleDeleteProfileButton = () => {
+    setDeleteProfile(true);
+    setUpdateProfile(false);
+    setShowModal(true);
+  };
 
   return (
     <>
@@ -180,10 +163,8 @@ export default function FormPersonalData() {
           <ModalPersonalDataSuccess
             showModal={showModal}
             setShowModal={setShowModal}
-            setUpdateProfile={setUpdateProfile}
             updateProfile={updateProfile}
             dataToSubmitUpdate={dataToSubmitUpdate}
-            setDeleteProfile={setDeleteProfile}
             deleteProfile={deleteProfile}
           />
         </Modal>

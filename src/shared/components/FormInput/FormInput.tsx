@@ -1,7 +1,7 @@
 'use client';
 
 import { FormikProps } from 'formik';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import InputMask from 'react-input-mask';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
@@ -19,6 +19,7 @@ type Props = {
   stylesInputWrapper?: string;
   id?: string;
   readOnly?: boolean;
+  textAreaStyle?: string;
 };
 
 export default function FormInput({
@@ -31,11 +32,13 @@ export default function FormInput({
   inputLink,
   classNameLogin,
   stylesInputWrapper,
+  textAreaStyle,
   id,
   readOnly = false,
 }: Props) {
   const [inputTypePass, setInputTypePass] = useState(inputType);
   const [borderColor, setBorderColor] = useState('border-blue-200');
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const fieldProps = formik.getFieldProps(name);
   const fieldMeta = formik.getFieldMeta(name);
@@ -44,6 +47,20 @@ export default function FormInput({
   useEffect(() => {
     setBorderColor(error ? 'border-[#C60000]' : 'border-blue-200');
   }, [error]);
+
+  const textAreaHeight = () => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = 'auto';
+      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
+    }
+  };
+
+  useEffect(() => {
+    if (inputType === 'textarea') {
+      textAreaHeight();
+    }
+    // eslint-disable-next-line
+  }, [formik.values[name], inputType]);
 
   const eyeButtonHandler = () => {
     setInputTypePass(inputTypePass === 'password' ? 'text' : 'password');
@@ -71,7 +88,7 @@ export default function FormInput({
       >
         {inputType === 'tel' ? (
           <InputMask
-            mask="+38 (099) 999 99 99"
+            mask="+38 (099) 999 9999"
             maskChar={'_'}
             placeholder="+38 (0"
             name={name}
@@ -82,8 +99,9 @@ export default function FormInput({
         ) : inputType === 'textarea' ? (
           <textarea
             {...fieldProps}
+            ref={textAreaRef}
             placeholder={placeholder}
-            className="w-full h-6 outline-none flex-grow order-2"
+            className={`${textAreaStyle} w-full h-6 outline-none flex-grow order-2`}
           />
         ) : (
           <input
@@ -91,7 +109,7 @@ export default function FormInput({
             {...fieldProps}
             type={inputTypePass}
             placeholder={placeholder}
-            className={`w-full h-6 outline-none flex-grow order-2 ${
+            className={`${textAreaStyle} w-full h-6 outline-none flex-grow order-2 ${
               readOnly ? 'text-gray-600' : ''
             }`}
             pattern={inputType === 'number' ? '[0-9]*' : undefined}

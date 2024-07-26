@@ -1,8 +1,8 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 
 import {
   deleteProfileThunk,
@@ -10,20 +10,17 @@ import {
   updatePasswordThunk,
   updateProfileThunk,
 } from '@/redux/auth/operations';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { selectAuth } from '@/redux/auth/authSlice';
+import { useAppDispatch } from '@/redux/hooks';
 
 import OrangeButton from '@/shared/components/OrangeButton/OrangeButton';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import { FormPersonalDataValues } from '@/models/dataToSubmit';
 
 type ModalPersonalDataSuccessProps = {
   showModal?: boolean;
   setShowModal?: (show: boolean) => void;
-  setDeleteProfile?: (show: boolean) => void;
-  setUpdateProfile?: (show: boolean) => void;
-  setChangePassword?: (show: boolean) => void;
   updateProfile?: boolean;
-  dataToSubmitUpdate?: any;
+  dataToSubmitUpdate?: FormPersonalDataValues | null;
   deleteProfile?: boolean;
   changePassword?: boolean;
   passwordToSubmitUpdate?: any;
@@ -32,30 +29,23 @@ type ModalPersonalDataSuccessProps = {
 export default function ModalPersonalDataSuccess({
   showModal,
   setShowModal,
-  setDeleteProfile,
-  setUpdateProfile,
   updateProfile,
   dataToSubmitUpdate,
   deleteProfile,
   changePassword,
-  setChangePassword,
   passwordToSubmitUpdate,
 }: ModalPersonalDataSuccessProps) {
-  const [deleteTitle, setDeleteTitle] = useState(
-    'Ви дійсно бажаете видалити профіль?'
-  );
-  const [updateTitle, setUpdateTitle] = useState(
-    'Ви дійсно бажаете оновити профіль?'
-  );
-  const [passwordTitle, setPasswordTitle] = useState(
-    'Ви дійсно бажаете змінити пароль?'
-  );
+  const router = useRouter();
 
   const dispatch = useAppDispatch();
 
-  const { email } = useAppSelector(selectAuth);
+  const singUpPage = '/signup';
 
-  const cataloguePage = '/catalogue';
+  const modalActions = () => {
+    setTimeout(() => {
+      setShowModal?.(false);
+    }, 300);
+  };
 
   useEffect(() => {
     if (showModal) {
@@ -64,18 +54,30 @@ export default function ModalPersonalDataSuccess({
   }, [showModal, dispatch]);
 
   const handleUpdateProfile = () => {
+    if (!dataToSubmitUpdate) return;
+
+    const { full_name, address, phone, email } = dataToSubmitUpdate;
+    const updateData: any = {
+      full_name,
+      phone,
+      email,
+    };
+
+    if (address?.city && address?.street && address?.number) {
+      updateData.address = address;
+    }
+
     dispatch(refreshThunk())
       .unwrap()
       .then(() => {
-        return dispatch(updateProfileThunk(dataToSubmitUpdate)).unwrap();
+        return dispatch(updateProfileThunk(updateData)).unwrap();
       })
       .then(() => {
-        setUpdateTitle('Ваш профіль успішно оновлено');
-        setTimeout(() => {
-          setShowModal?.(false);
-        }, 2000);
+        modalActions();
+        toast.success('Ваш профіль успішно оновлено');
       })
       .catch(error => {
+        modalActions();
         toast.error(error);
       });
   };
@@ -87,12 +89,12 @@ export default function ModalPersonalDataSuccess({
         return dispatch(deleteProfileThunk()).unwrap();
       })
       .then(() => {
-        setDeleteTitle('Ваш профіль успішно видалено');
-        setTimeout(() => {
-          setShowModal?.(false);
-        }, 2000);
+        modalActions();
+        toast.success('Ваш профіль успішно видалено');
+        router.push(singUpPage);
       })
       .catch(error => {
+        modalActions();
         toast.error(error);
       });
   };
@@ -104,24 +106,21 @@ export default function ModalPersonalDataSuccess({
         return dispatch(updatePasswordThunk(passwordToSubmitUpdate)).unwrap();
       })
       .then(() => {
-        setPasswordTitle('Ваш пароль успішно змінено');
-        setTimeout(() => {
-          setShowModal?.(false);
-        }, 2000);
+        modalActions();
+        toast.success('Ваш пароль успішно змінено');
       })
       .catch(error => {
+        modalActions();
         toast.error(error);
       });
-
-    console.log(changePassword);
   };
 
   return (
     <>
       <h2 className="text-center text-stone-900 text-xl font-normal font-['Lato'] leading-loose md:text-2xl">
-        {updateProfile && updateTitle}
-        {deleteProfile && deleteTitle}
-        {changePassword && passwordTitle}
+        {updateProfile && 'Ви дійсно бажаете оновити профіль?'}
+        {deleteProfile && 'Ви дійсно бажаете видалити профіль?'}
+        {changePassword && 'Ви дійсно бажаете змінити пароль?'}
       </h2>
 
       <div className="flex justify-center py-10">

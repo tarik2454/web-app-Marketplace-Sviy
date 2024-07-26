@@ -6,10 +6,8 @@ import { FormikHelpers, useFormik } from 'formik';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch } from '@/redux/hooks';
-import { authFormValues } from '@/models/authFormValues';
 import { registerThunk } from '@/redux/auth/operations';
 
-import phoneFormattingBeforeSending from '@/shared/helpers/phoneFormattingBeforeSending';
 import validationSchemaSignup from './helpers/validationSchemaSignup';
 
 import Modal from '@/shared/components/Modal/Modal';
@@ -27,6 +25,15 @@ type SignupFormProps = {
   signinClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
+type SignupFormValues = {
+  full_name: string;
+  email: string;
+  phone: string;
+  password: string;
+  passwordRepeat?: string;
+  chekSignUp?: boolean;
+};
+
 export default function SignupForm({
   signupType,
   signinClick,
@@ -39,12 +46,10 @@ export default function SignupForm({
   const signinPage = '/signin';
 
   const handleSubmit = (
-    values: authFormValues,
-    actions: FormikHelpers<authFormValues>
+    values: SignupFormValues,
+    actions: FormikHelpers<SignupFormValues>
   ) => {
     const { passwordRepeat, chekSignUp, ...formData } = values;
-
-    // formData.phone = phoneFormattingBeforeSending(formData, 'phone');
 
     dispatch(registerThunk(formData))
       .unwrap()
@@ -59,13 +64,13 @@ export default function SignupForm({
     actions.resetForm();
   };
 
-  const formik = useFormik<authFormValues>({
+  const formik = useFormik<SignupFormValues>({
     initialValues: {
       full_name: '',
       email: '',
       phone: '',
       password: '',
-      // passwordRepeat: '',
+      passwordRepeat: '',
       // chekSignUp: false,
     },
     validationSchema: validationSchemaSignup,

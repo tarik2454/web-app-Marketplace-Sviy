@@ -2,14 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-
 import ScreenSize from '@/shared/hooks/useMediaQuery';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
 type Category = {
   id: number;
   name: string;
-  children?: Category[];
+  sub_categories?: Category[];
 };
 
 type CatalogItemProps = {
@@ -48,7 +47,7 @@ export default function CatalogItem({
 
   return (
     <li
-      className={`w-full md:w-[302px] bg-neutral-50 md:bg-white `}
+      className="w-full md:w-[302px] bg-neutral-50 md:bg-white"
       onMouseEnter={() => handleMouseEnter(category.id)}
       onMouseLeave={handleMouseLeave}
     >
@@ -62,15 +61,15 @@ export default function CatalogItem({
         <div className={stylesLining}></div>
       </Link>
 
-      {isHoveredCategory && category.children && (
+      {isHoveredCategory && category.sub_categories && (
         <ul
           className={`w-full md:w-[302px] h-full bg-neutral-50 absolute top-0 z-10 pointer-events-auto ${
-            isHoveredCategory && isOnMobile
+            isOnMobile
               ? 'left-0 overflow-y-hidden'
               : 'left-[310px] overflow-y-visible'
           }`}
         >
-          {category.children.map(subCategory => (
+          {category.sub_categories.map(subCategory => (
             <li
               className="md:bg-white"
               onMouseEnter={() => handleMouseEnter(subCategory.id)}
@@ -91,10 +90,8 @@ export default function CatalogItem({
                       ? setIsThirdList('')
                       : setIsThirdList('pointer-events-none')}
 
-                    <ul
-                      className={`w-full md:w-[302px] xl:w-[302px] h-full bg-neutral-50 absolute top-0 left-[310px] md:-left-[310px] xl:left-[310px] z-50 pointer-events-auto`}
-                    >
-                      {subCategory.children?.map(item => (
+                    <ul className="w-full md:w-[302px] xl:w-[302px] h-full bg-neutral-50 absolute top-0 left-[310px] md:-left-[310px] xl:left-[310px] z-50 pointer-events-auto">
+                      {subCategory.sub_categories?.map(item => (
                         <li
                           key={item.id}
                           className="flex w-[302px] bg-neutral-50 md:bg-white"

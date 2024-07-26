@@ -1,15 +1,15 @@
+import axios from 'axios';
 import { API } from './global-config-api';
 
 export const fetchCatalog = async () => {
   try {
-    const response = await fetch('http://16.170.219.150/api/catalog/category/');
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    return data.results;
+    const response = await API.get('/api/catalog/category/');
+    return response.data.results;
   } catch (error) {
-    console.log('Error fetching catalog data:', error);
-    throw error;
+    if (axios.isAxiosError(error)) {
+      console.warn('Axios error fetching catalog data', error.message);
+    } else {
+      console.warn('Unknown error fetching catalog data', error);
+    }
   }
 };
