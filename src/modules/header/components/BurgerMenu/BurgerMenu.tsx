@@ -91,53 +91,50 @@ export default function BurgerMenu({
         closeCatalogClick={closeCatalogClick}
       />
 
-      <div
+      {/* <div
         className={`${signinFormDisplay} absolute top-0  bg-white w-full h-screen pr-[16px] pl-[16px] overflow-y-auto`}
       >
         <div className="absolute top-5 right-4">
           <CloseButton closeForm={closeForm} />
-        </div>
-        <SigninForm
-          signinType="burger"
-          signupClick={signupClick}
-          signinForgotClick={signinForgotClick}
-        />
-      </div>
+        </div> */}
+      {/* <SigninForm
+        signinType="burger"
+        signupClick={signupClick}
+        signinForgotClick={signinForgotClick}
+      /> */}
+      {/* </div>
 
       <div
         className={`${signupFormDisplay} absolute top-0  bg-white w-full h-screen  pr-[16px] pl-[16px] overflow-y-auto`}
       >
         <div className="absolute top-5 right-4">
           <CloseButton closeForm={closeForm} />
-        </div>
-        <SignupForm signupType="burger" signinClick={signinClick} />
-      </div>
+        </div> */}
+      {/* <SignupForm signupType="burger" signinClick={signinClick} /> */}
+      {/* </div>
 
       <div
         className={`${signinForgotDisplay} absolute top-0  bg-white w-full h-screen  pr-[16px] pl-[16px] `}
       >
         <div className="absolute top-5 right-4">
           <CloseButton closeForm={closeForm} />
-        </div>
-        <SigninForgotForm
-          signinForgotType="burger"
-          signinClick={signinClick}
-          signupClick={signupClick}
-          recoverPassClick={recoverPassClick}
-        />
-      </div>
+        </div> */}
+      {/* <SigninForgotForm
+        signinForgotType="burger"
+        signinClick={signinClick}
+        signupClick={signupClick}
+        recoverPassClick={recoverPassClick}
+      /> */}
+      {/* </div>
 
       <div
         className={`${recoverPassDisplay} absolute top-0  bg-white w-full h-screen  pr-[16px] pl-[16px] `}
       >
         <div className="absolute top-5 right-4">
           <CloseButton closeForm={closeForm} />
-        </div>
-        <RecoverPasswordForm
-          recoverPassword="burger"
-          signinClick={signinClick}
-        />
-      </div>
+        </div> */}
+      {/* <RecoverPasswordForm recoverPassword="burger" signinClick={signinClick} /> */}
+      {/* </div> */}
     </div>
   );
 }

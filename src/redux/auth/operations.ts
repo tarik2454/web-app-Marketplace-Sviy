@@ -121,15 +121,12 @@ export const logoutThunk = createAsyncThunk<
       return ThunkAPI.rejectWithValue('Токен відсутній або недійсний.');
     }
 
-    const response = await API.post('/api/account/user/logout/', {
+    await API.post('/api/account/user/logout/', {
       refresh: token.refresh,
     });
 
-    if (response.status === 204) {
-      // localStorage.removeItem('token');
-      // clearToken();
-      return;
-    }
+    clearToken();
+    return;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
@@ -191,14 +188,12 @@ export const updatePasswordThunk = createAsyncThunk<
   { rejectValue: string }
 >('auth/updatePassword', async ({ password, new_password }, ThunkAPI) => {
   try {
-    const response = await API.put('/api/account/user/set_password_me/', {
+    await API.put('/api/account/user/set_password_me/', {
       password,
       new_password,
     });
 
-    if (response.status === 204) {
-      return;
-    }
+    return;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
@@ -220,12 +215,10 @@ export const deleteProfileThunk = createAsyncThunk<
   { rejectValue: string }
 >('auth/deleteProfile', async (_, ThunkAPI) => {
   try {
-    const response = await API.post('/api/account/user/disable_me/');
+    await API.post('/api/account/user/disable_me/');
 
-    if (response.status === 204) {
-      clearToken();
-      return;
-    }
+    clearToken();
+    return;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       clearToken();

@@ -36,13 +36,13 @@ interface SubSubCategory {
   name: string;
 }
 
-
 export default function PersonalNewAd() {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [isCheckedPay, setIsCheckedPay] = useState<boolean>(false);
 
   const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
   const [isDeleteModal, setIsDeleteModal] = useState(true);
+
   const router = useRouter();
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
@@ -109,7 +109,9 @@ export default function PersonalNewAd() {
 
   const [catalogData, setCatalogData] = useState<Category[]>([]);
   const [subCategories, setSubCategories] = useState<SubCategory[]>([]);
-  const [subSubCategories, setSubSubCategories] = useState<SubSubCategory[]>([]);
+  const [subSubCategories, setSubSubCategories] = useState<SubSubCategory[]>(
+    []
+  );
 
   useEffect(() => {
     fetchCatalog()
