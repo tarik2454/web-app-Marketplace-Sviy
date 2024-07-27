@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 import { getStatusValues } from '@/modules/personalMyOrders/helpers/orderUtils';
 import { StaticImageData } from 'next/image';
@@ -28,11 +28,16 @@ type MySalesListProps = {
 export default function MySalesList({ mySalesData }: MySalesListProps) {
   const [openOrderList, setOpenOrderList] = useState<number | null>(null);
   const { isOnMobile, isOnTablet } = ScreenSize();
-  const [status, setStatus] = useState(null);
+  const [prevStatus, setStatus] = useState('new');
+
+  let s;
 
   const handleStatus = ({ value }: any) => {
-    console.log('статус', status);
-    setStatus(value);
+    setStatus(prevStatus => {
+      const newStatus = value;
+      console.log('новий статус:', newStatus);
+      return (s = newStatus);
+    });
   };
 
   return (
@@ -42,6 +47,7 @@ export default function MySalesList({ mySalesData }: MySalesListProps) {
           saleItem,
         ])[0];
         const containerClassName = `bg-white w-full h-full p-4 rounded-[20px] shadow border-l-4 ${statusClass}`;
+        console.log(statusName);
         const isListOpen = openOrderList === index;
 
         const openList = () => {
