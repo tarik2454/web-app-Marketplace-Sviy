@@ -9,7 +9,7 @@ import { twMerge } from 'tailwind-merge';
 
 type Props = {
   name: string;
-  label?: string;
+  label?: React.ReactNode;
   inputType?: 'password' | 'text' | 'email' | 'number' | 'textarea' | 'tel';
   formik: FormikProps<any>;
   placeholder?: string;
