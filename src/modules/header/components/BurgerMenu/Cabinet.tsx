@@ -5,27 +5,31 @@ import { useRouter } from 'next/navigation';
 import { Dispatch, MouseEventHandler, SetStateAction } from 'react';
 
 type Props = {
-  signinClick: MouseEventHandler<HTMLButtonElement>;
-  signupClick: MouseEventHandler<HTMLButtonElement>;
   setDisplayMenu?: Dispatch<SetStateAction<string>>;
 };
 
-export default function Cabinet({
-  signinClick,
-  signupClick,
-  setDisplayMenu,
-}: Props) {
+export default function Cabinet({ setDisplayMenu }: Props) {
   const { full_name, isLoggedIn } = useAppSelector(selectAuth);
 
-  const route = useRouter();
+  const router = useRouter();
 
   const personalOfficePage = '/personal-office/profile';
+  const signinPage = '/signin';
+  const signupPage = '/signup';
+
+  const signupClick = () => {
+    router.push(signupPage);
+  };
+
+  const signinClick = () => {
+    router.push(signinPage);
+  };
 
   const handleCloseBurgerMenu = () => {
     if (setDisplayMenu) {
       setDisplayMenu('hidden');
     }
-    route.push(personalOfficePage);
+    router.push(personalOfficePage);
   };
 
   return (
