@@ -26,8 +26,7 @@ export default function InputPhoto({
     event: React.ChangeEvent<HTMLInputElement>,
     groupIndex: number
   ) => {
-    setError(null); // Сбросить сообщение об ошибке перед проверкой файлов
-
+    setError(null);
     const files = Array.from(event.target.files || []);
     const newPhotos: Photo[] = [];
     const newFiles: File[] = [];
@@ -35,7 +34,7 @@ export default function InputPhoto({
 
     files.forEach(file => {
       if (file.size > 2 * 1024 * 1024) {
-        setError('Размер файла должен быть не более 2 МБ');
+        setError('Розмір файлу повинен бути не більше 2 МБ');
         hasInvalidFile = true;
       } else {
         newPhotos.push({
@@ -80,8 +79,7 @@ export default function InputPhoto({
       <p className="text-sm text-gray-600 mb-6">
         Формат jpg, jpeg, png. розмір файлу до 2Мб,
       </p>
-
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="error !text-left">{error}</p>}
 
       <div className="flex flex-col md:flex-row xl:flex-col gap-3">
         <div className="form-group flex flex-col">

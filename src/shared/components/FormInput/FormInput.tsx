@@ -45,7 +45,7 @@ export default function FormInput({
   const error = fieldMeta.touched && fieldMeta.error;
 
   useEffect(() => {
-    setBorderColor(error ? 'border-[#C60000]' : 'border-blue-200');
+    setBorderColor(error ? 'border-red-800' : 'border-blue-200');
   }, [error]);
 
   const textAreaHeight = () => {
@@ -139,7 +139,7 @@ export default function FormInput({
       </div>
 
       {error && (
-        <p className="text-[#C60000] text-end text-sm">{String(error)}</p>
+        <p className="text-red-800 text-end text-sm">{String(error)}</p>
       )}
     </div>
   );

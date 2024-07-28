@@ -49,10 +49,9 @@ export default function CheckboxForm({
           <span className="text-[16px]">{labelText}</span>
         </label>
         {error && (
-          <p className="text-[#C60000] text-end text-sm">{String(error)}</p>
+          <p className="text-red-800 text-end text-sm">{String(error)}</p>
         )}
       </span>
     </div>
   );
 }
-

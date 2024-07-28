@@ -17,10 +17,10 @@ export default function OrderPayDetail({ formik }: any) {
 
   useEffect(() => {
     formik.errors.picked && formik.touched.picked
-      ? setErrorClassRadio('border-[#C60000] border-[1px]')
+      ? setErrorClassRadio('border-red-800 border-[1px]')
       : setErrorClassRadio('');
     formik.errors.customer && formik.touched.customer
-      ? setErrorClassInput('border-[#C60000]')
+      ? setErrorClassInput('border-red-800')
       : setErrorClassInput('border-blue-200');
   }, [formik.touched, formik.errors]);
 
@@ -59,7 +59,7 @@ export default function OrderPayDetail({ formik }: any) {
         <ErrorMessage
           name="picked"
           component="p"
-          className="text-[#C60000] text-end text-sm"
+          className="text-red-800 text-end text-sm"
         />
       </div>
       <div className="mb-10">
@@ -90,7 +90,7 @@ export default function OrderPayDetail({ formik }: any) {
         <ErrorMessage
           name="customer"
           component="p"
-          className="text-[#C60000] text-end text-sm"
+          className="text-red-800 text-end text-sm"
         />
       </div>
       <div>

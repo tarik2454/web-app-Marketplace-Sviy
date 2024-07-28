@@ -318,4 +318,10 @@ input::-webkit-inner-spin-button {
   color: #1565c0;
 }
 
-/* Modal */
+.error {
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  text-align: right;
+  color: #c60000;
+}

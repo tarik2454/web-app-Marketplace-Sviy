@@ -101,9 +101,7 @@ export default function DropDownForm({
           onChange={handleChange}
         />
       </div>
-      {error && (
-        <p className="text-[#C60000] text-end text-sm">{String(error)}</p>
-      )}
+      {error && <p className="error">{String(error)}</p>}
     </div>
   );
 }

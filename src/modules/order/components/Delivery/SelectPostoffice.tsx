@@ -110,16 +110,16 @@ export default function SelectPostoffice({
 
   useEffect(() => {
     formik.errors.city && formik.touched.city
-      ? setErrorClassInputCity('border-[#C60000]')
+      ? setErrorClassInputCity('border-red-800')
       : setErrorClassInputCity('border-blue-200');
     formik.errors.warehouse && formik.touched.warehouse
-      ? setErrorClassInputWarehouse('border-[#C60000]')
+      ? setErrorClassInputWarehouse('border-red-800')
       : setErrorClassInputWarehouse('border-blue-200');
     formik.errors.address && formik.touched.address
-      ? setErrorClassInputStreet('border-[#C60000]')
+      ? setErrorClassInputStreet('border-red-800')
       : setErrorClassInputStreet('border-blue-200');
     formik.errors.homeAddress && formik.touched.homeAddress
-      ? setErrorClassInputHome('border-[#C60000]')
+      ? setErrorClassInputHome('border-red-800')
       : setErrorClassInputHome('border-blue-200');
   }, [formik]);
 
@@ -184,7 +184,7 @@ export default function SelectPostoffice({
         <ErrorMessage
           name="city"
           component="p"
-          className="text-[#C60000] text-end"
+          className="text-red-800 text-end"
         />
         <div>
           <Field
@@ -199,7 +199,7 @@ export default function SelectPostoffice({
         <ErrorMessage
           name="warehouse"
           component="p"
-          className="text-[#C60000] text-end"
+          className="text-red-800 text-end"
         />
       </div>
 

@@ -27,7 +27,6 @@ import CatalogForm from './components/СatalogForm';
 import { descriptionPlaceholder } from './helpers/description-placeholder-data';
 import ModalForm from './components/ModalForm';
 
-
 interface Category {
   id: string;
   name: string;
@@ -76,8 +75,18 @@ export default function PersonalNewAd() {
     formData.append('subSubCategory', subSubCategoryName);
 
     for (const key in values) {
-      if (!['category', 'subCategory', 'subSubCategory'].includes(key)) {
-        formData.append(key, values[key]);
+      if (key === 'photos') {
+        values.photos.forEach((photo: File) => {
+          formData.append('photos', photo);
+        });
+      } else if (!['category', 'subCategory', 'subSubCategory'].includes(key)) {
+        if (Array.isArray(values[key])) {
+          values[key].forEach((value: any) => {
+            formData.append(key, value);
+          });
+        } else {
+          formData.append(key, values[key]);
+        }
       }
     }
 

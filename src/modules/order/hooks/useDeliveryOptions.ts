@@ -42,7 +42,7 @@ export default function useDeliveryOptions({ formik }: any) {
 
   useEffect(() => {
     formik.errors.deliveryPicked && formik.touched.deliveryPicked
-      ? setErrorClassRadio('border-[#C60000] border-[1px]')
+      ? setErrorClassRadio('border-red-800 border-[1px]')
       : setErrorClassRadio('border-blue-200');
   }, [formik]);
 
