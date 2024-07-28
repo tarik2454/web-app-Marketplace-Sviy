@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 
 import {
@@ -11,13 +11,22 @@ import {
   Section,
 } from '@/shared/components';
 
+import {
+  optionsAvailability,
+  optionsLocation,
+  optionsUnit,
+} from './helpers/dropdown-data';
+
 import CheckboxForm from './components/СheckboxForm';
 import InputPhoto from './components/InputPhotoForm';
 import DropDownForm from './components/DropDownForm';
 import validationSchemaNewAd from './helpers/validationSchemaNewAd';
 import useModal from '@/shared/hooks/useModal';
 import { useRouter } from 'next/navigation';
-import { fetchCatalog } from '@/config-api/catalog-api';
+import CatalogForm from './components/СatalogForm';
+import { descriptionPlaceholder } from './helpers/description-placeholder-data';
+import ModalForm from './components/ModalForm';
+
 
 interface Category {
   id: string;
@@ -40,26 +49,34 @@ export default function PersonalNewAd() {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [isCheckedPay, setIsCheckedPay] = useState<boolean>(false);
 
+  const [catalogData, setCatalogData] = useState<Category[]>([]);
+  const [subCategories, setSubCategories] = useState<SubCategory[]>([]);
+  const [subSubCategories, setSubSubCategories] = useState<SubSubCategory[]>(
+    []
+  );
+
   const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
   const [isDeleteModal, setIsDeleteModal] = useState(true);
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
     const formData = new FormData();
 
+    const categoryName =
+      catalogData.find(cat => cat.id === values.category)?.name || '';
+    const subCategoryName =
+      subCategories.find(sub => sub.id === values.subCategory)?.name || '';
+    const subSubCategoryName =
+      subSubCategories.find(subSub => subSub.id === values.subSubCategory)
+        ?.name || '';
+
+    formData.append('category', categoryName);
+    formData.append('subCategory', subCategoryName);
+    formData.append('subSubCategory', subSubCategoryName);
+
     for (const key in values) {
-      if (Array.isArray(values[key])) {
-        values[key].forEach((item: any, index: number) => {
-          if (Array.isArray(item)) {
-            item.forEach((subItem, subIndex) => {
-              formData.append(`${key}[${index}][${subIndex}]`, subItem);
-            });
-          } else {
-            formData.append(`${key}[${index}]`, item);
-          }
-        });
-      } else {
+      if (!['category', 'subCategory', 'subSubCategory'].includes(key)) {
         formData.append(key, values[key]);
       }
     }
@@ -99,56 +116,12 @@ export default function PersonalNewAd() {
       card: '',
       comment: '',
       photos: [],
-      // photos2: [[], [], [], [], []],
     },
     validationSchema: validationSchemaNewAd,
     onSubmit: handleSubmit,
     validateOnChange: true,
     validateOnBlur: true,
   });
-
-  const [catalogData, setCatalogData] = useState<Category[]>([]);
-  const [subCategories, setSubCategories] = useState<SubCategory[]>([]);
-  const [subSubCategories, setSubSubCategories] = useState<SubSubCategory[]>(
-    []
-  );
-
-  useEffect(() => {
-    fetchCatalog()
-      .then(data => {
-        setCatalogData(data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
-
-  console.log(catalogData);
-
-  useEffect(() => {
-    const selectedCategory = catalogData.find(
-      category => category.id === formik.values.category
-    );
-    if (selectedCategory) {
-      setSubCategories(selectedCategory.sub_categories);
-      setSubSubCategories([]);
-      formik.setFieldValue('subCategory', '');
-      formik.setFieldValue('subSubCategory', '');
-    }
-    // eslint-disable-next-line
-  }, [formik.values.category]);
-
-  useEffect(() => {
-    const selectedSubCategory = subCategories.find(
-      subCategory => subCategory.id === formik.values.subCategory
-    );
-    if (selectedSubCategory) {
-      setSubSubCategories(selectedSubCategory.sub_categories);
-      formik.setFieldValue('subSubCategory', '');
-    }
-    // eslint-disable-next-line
-  }, [formik.values.subCategory]);
-
   return (
     <Section className="pt-0 xl:pt-0 md:pt-0 pb-[80px] md:pb-[104px] xl:pb-[164px]">
       <Container>
@@ -167,110 +140,19 @@ export default function PersonalNewAd() {
                 inputType="text"
                 classNameLogin="!text-xl mb-4 !ml-0"
               />
-              {/* <div className="mt-6 mb-6 md:mb-10 md-mt-10">
-                <label
-                  htmlFor="category-dropdown"
-                  className="block text-xl text-gray-900 mb-4"
-                >
-                  Категорія/підкатегорія
-                  <span className="text-red-600"> *</span>
-                </label>
-                <DropDownForm
-                  formik={formik}
-                  options={[
-                    { value: 'category-1', label: 'Категорія 1' },
-                    { value: 'category-2', label: 'Категорія 2' },
-                  ]}
-                  name="category"
-                  placeholder="Оберіть категорію"
-                  dropdownIndicatorClassName="text-gray-600"
-                  stylesInput="py-1.5"
-                  id="category-dropdown"
-                  onChange={selectedOption =>
-                    formik.setFieldValue(
-                      'category',
-                      selectedOption ? selectedOption.value : ''
-                    )
-                  }
-                />
-              </div> */}
-              <div className="mt-6 mb-6 md:mb-10 md-mt-10">
-                <label
-                  htmlFor="category-dropdown"
-                  className="block text-xl text-gray-900 mb-4"
-                >
-                  Категорія/підкатегорія
-                  <span className="text-red-600"> *</span>
-                </label>
-                <span className="flex flex-col md:flex-row gap-6 ">
-                  <DropDownForm
-                    formik={formik}
-                    options={catalogData.map(category => ({
-                      value: category.id,
-                      label: category.name,
-                    }))}
-                    name="category"
-                    placeholder="Оберіть категорію"
-                    dropdownIndicatorClassName="text-gray-600"
-                    wrapperClassName="w-full md:w-[301px]"
-                    stylesInput="py-1.5 "
-                    id="category-dropdown"
-                    onChange={selectedOption =>
-                      formik.setFieldValue(
-                        'category',
-                        selectedOption ? selectedOption.value : ''
-                      )
-                    }
-                  />
-                  <DropDownForm
-                    formik={formik}
-                    options={subCategories.map(subCategory => ({
-                      value: subCategory.id,
-                      label: subCategory.name,
-                    }))}
-                    name="subCategory"
-                    placeholder="Оберіть підкатегорію"
-                    dropdownIndicatorClassName="text-gray-600"
-                    wrapperClassName="w-full md:w-[301px]"
-                    stylesInput="py-1.5"
-                    id="subcategory-dropdown"
-                    onChange={selectedOption =>
-                      formik.setFieldValue(
-                        'subCategory',
-                        selectedOption ? selectedOption.value : ''
-                      )
-                    }
-                  />
-                  <DropDownForm
-                    formik={formik}
-                    options={subSubCategories.map(subSubCategory => ({
-                      value: subSubCategory.id,
-                      label: subSubCategory.name,
-                    }))}
-                    name="subSubCategory"
-                    placeholder="Оберіть субкатегорію"
-                    dropdownIndicatorClassName="text-gray-600"
-                    wrapperClassName="w-full md:w-[301px]"
-                    stylesInput="py-1.5"
-                    id="subsubcategory-dropdown"
-                    onChange={selectedOption =>
-                      formik.setFieldValue(
-                        'subSubCategory',
-                        selectedOption ? selectedOption.value : ''
-                      )
-                    }
-                  />
-                </span>
-              </div>
+              <CatalogForm
+                formik={formik}
+                catalogData={catalogData}
+                subCategories={subCategories}
+                subSubCategories={subSubCategories}
+                setCatalogData={setCatalogData}
+                setSubCategories={setSubCategories}
+                setSubSubCategories={setSubSubCategories}
+              />
               <FormInput
                 formik={formik}
                 name="description"
-                placeholder={`Наприклад: Шановні гурмани та зайняті особи, ми раді представити вам нашу нову послугу - готові комплексні обіди на замовлення! Забудьте про готування та планування, ми покриємо ваші потреби в смачному та ситному харчуванні. Пропонуємо меню: 
-                1. Біле м'ясо в соусі теріякі з овочами. 
-                2. Паста з лососем та шпинатом в вершковому соусі
-                3. Індійський каррі з куркою та базматі-рисом
-                4. Салат 'Мікс зелених' з гарніром киш-миш
-                5. Суп-крем з брокколі та сиром`}
+                placeholder={descriptionPlaceholder}
                 label={'Опис товару'}
                 inputType="textarea"
                 classNameLogin="!text-xl mb-4 !ml-0"
@@ -301,12 +183,7 @@ export default function PersonalNewAd() {
                   <DropDownForm
                     formik={formik}
                     name="unit"
-                    options={[
-                      { value: 'шт', label: 'Шт' },
-                      { value: 'кг', label: 'Кг' },
-                      { value: 'гр', label: 'Гр' },
-                      { value: 'літ', label: 'Літ' },
-                    ]}
+                    options={optionsUnit}
                     stylesInput="py-1.5"
                     placeholder="Оберіть одиницю"
                     dropdownIndicatorClassName="text-gray-600"
@@ -332,10 +209,7 @@ export default function PersonalNewAd() {
                   <DropDownForm
                     formik={formik}
                     name="availability"
-                    options={[
-                      { value: 'available', label: 'В наявності' },
-                      { value: 'preorder', label: 'Під замовлення' },
-                    ]}
+                    options={optionsAvailability}
                     placeholder="Оберіть наявність"
                     stylesInput="py-1.5"
                     dropdownIndicatorClassName="text-gray-600"
@@ -360,15 +234,7 @@ export default function PersonalNewAd() {
                 <DropDownForm
                   formik={formik}
                   name="location"
-                  options={[
-                    { value: 'Весь Львів', label: 'Весь Львів' },
-                    { value: 'Галицький', label: 'Галицький р-н' },
-                    { value: 'Сихівський', label: 'Сихівський р-н' },
-                    { value: 'Залізничний', label: 'Залізничний р-н' },
-                    { value: 'Залізничний', label: 'Залізничний р-н' },
-                    { value: 'Личаківський', label: 'Личаківський р-н' },
-                    { value: 'Шевченківський', label: 'Шевченківський р-н' },
-                  ]}
+                  options={optionsLocation}
                   placeholder="Оберіть місце розташування"
                   dropdownIndicatorClassName="text-gray-600"
                   stylesInput="py-1.5"
@@ -476,45 +342,12 @@ export default function PersonalNewAd() {
           </span>
         </form>
 
-        {isOpenModal && (
-          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-            {!isDeleteModal ? (
-              <div className="bg-white px-5 md:px-[60px] py-6 md:py-[40px] rounded-[20px]">
-                <h2 className="text-gray-900 text-xl xl:text-2xl mb-6 md:mb-10 flex flex-wrap justify-center">
-                  Ви дійсно бажаєте скасувати створення оголошення?
-                </h2>
-                <div className="flex justify-center gap-[28px] md:gap-[48px]">
-                  <OrangeButton
-                    cssSettings="text-white text-sm px-[45px] xl:px-[67px] xl:text-base"
-                    onClick={handleCloseModal}
-                  >
-                    Назад
-                  </OrangeButton>
-                  <ArrowButton
-                    cssSettings="text-sm xl:text-base !py-1 xl:!py-3"
-                    onClick={handleDeleteForm}
-                  >
-                    Скасувати
-                  </ArrowButton>
-                </div>
-              </div>
-            ) : (
-              <div className="bg-white rounded-[20px] px-5 md:px-[20px] py-6 md:py-[30px]">
-                <h2 className="px-[60px] text-xl xl:text-2xl mb-6 md:mb-10">
-                  Оголошення додано
-                </h2>
-                <div className="flex justify-center mb-5">
-                  <OrangeButton
-                    cssSettings="text-white w-full max-w-[215px] !py-3"
-                    onClick={() => router.push('/personal-office/my-ads')}
-                  >
-                    Мої оголошення
-                  </OrangeButton>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
+        <ModalForm
+          isOpen={isOpenModal}
+          isDeleteModal={isDeleteModal}
+          handleClose={handleCloseModal}
+          handleDelete={handleDeleteForm}
+        />
       </Container>
     </Section>
   );
