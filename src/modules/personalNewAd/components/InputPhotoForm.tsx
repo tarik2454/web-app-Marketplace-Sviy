@@ -3,6 +3,12 @@ import Image from 'next/image';
 import AddImage from '@/shared/img/add-image.png';
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
 
+interface Photo {
+  id: string;
+  url: string;
+  groupIndex: number;
+}
+
 export default function InputPhoto({
   formik,
   setFieldValue,
@@ -10,134 +16,126 @@ export default function InputPhoto({
   formik: any;
   setFieldValue: any;
 }) {
-  const [previewPhotos1, setPreviewPhotos1] = useState<string[]>([]);
-  const [previewPhotos2, setPreviewPhotos2] = useState<string[][]>([
-    [],
-    [],
-    [],
-    [],
-    [],
-  ]);
-  const [trashVisibleIndex1, setTrashVisibleIndex1] = useState<number | null>(
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [trashVisibleIndex, setTrashVisibleIndex] = useState<string | null>(
     null
   );
-  const [trashVisibleIndex2, setTrashVisibleIndex2] = useState<{
-    groupIndex: number | null;
-    photoIndex: number | null;
-  }>({ groupIndex: null, photoIndex: null });
+  const [error, setError] = useState<string | null>(null);
 
-  const handleFileChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(event.target.files || []);
-    setFieldValue('photos1', files);
-    setPreviewPhotos1(files.map(file => URL.createObjectURL(file)));
-  };
-
-  const handleFileChange2 = (
+  const handleFileChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    index: number
+    groupIndex: number
   ) => {
+    setError(null); // Сбросить сообщение об ошибке перед проверкой файлов
+
     const files = Array.from(event.target.files || []);
-    const newPhotos: string[] = [];
+    const newPhotos: Photo[] = [];
+    const newFiles: File[] = [];
+    let hasInvalidFile = false;
 
     files.forEach(file => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        newPhotos.push(reader.result as string);
-        if (newPhotos.length === files.length) {
-          setFieldValue(`photos2[${index}]`, files);
-          setPreviewPhotos2(prevState => {
-            const updatedPreviews = [...prevState];
-            updatedPreviews[index] = newPhotos;
-            return updatedPreviews;
-          });
-        }
-      };
-      reader.readAsDataURL(file);
+      if (file.size > 2 * 1024 * 1024) {
+        setError('Размер файла должен быть не более 2 МБ');
+        hasInvalidFile = true;
+      } else {
+        newPhotos.push({
+          id: URL.createObjectURL(file),
+          url: URL.createObjectURL(file),
+          groupIndex,
+        });
+        newFiles.push(file);
+      }
     });
+
+    if (!hasInvalidFile) {
+      setPhotos(prevPhotos => [...prevPhotos, ...newPhotos]);
+      setFieldValue('photos', [...formik.values['photos'], ...newFiles]);
+    }
   };
-  const handleDeletePhoto1 = () => {
-    setPreviewPhotos1([]);
-  };
-  const handleDeletePhoto2 = (groupIndex: number, photoIndex: number) => {
-    setPreviewPhotos2(prevState => {
-      const updatedPreviews = [...prevState];
-      updatedPreviews[groupIndex] = updatedPreviews[groupIndex].filter(
-        (_, idx) => idx !== photoIndex
-      );
-      return updatedPreviews;
-    });
-    const updatedPhotos = formik.values.photos2[groupIndex].filter(
-      (_: any, idx: number) => idx !== photoIndex
+
+  const handleDeletePhoto = (photoId: string) => {
+    const photoToDelete = photos.find(photo => photo.id === photoId);
+    if (!photoToDelete) return;
+
+    setPhotos(prevPhotos => prevPhotos.filter(photo => photo.id !== photoId));
+
+    const updatedPhotos = formik.values['photos'].filter(
+      (_: any, index: number) => index !== photoToDelete.groupIndex
     );
-    setFieldValue(`photos2[${groupIndex}]`, updatedPhotos);
+    setFieldValue('photos', updatedPhotos);
   };
 
   useEffect(() => {
     return () => {
-      previewPhotos1.forEach(photoUrl => URL.revokeObjectURL(photoUrl));
-      previewPhotos2.forEach(photos => {
-        photos.forEach(photoUrl => URL.revokeObjectURL(photoUrl));
-      });
+      photos.forEach(photo => URL.revokeObjectURL(photo.url));
     };
-  }, [previewPhotos1, previewPhotos2]);
+  }, [photos]);
 
   return (
     <div className="w-[325px] md:w-full xl:w-[325px] bg-white rounded-[20px] px-5 py-6">
       <label htmlFor="photos1" className="mb-6 text-xl">
         Додати фото 1*
       </label>
+
       <p className="text-sm text-gray-600 mb-6">
         Формат jpg, jpeg, png. розмір файлу до 2Мб,
       </p>
+
+      {error && <p className="text-red-500">{error}</p>}
+
       <div className="flex flex-col md:flex-row xl:flex-col gap-3">
         <div className="form-group flex flex-col">
-          <div className="relative">
+          <div className="relative w-[262px] h-[243px]">
             <input
               type="file"
               id="photos1"
               name="photos1"
-              accept=".jpg, .jpeg, .png"
+              accept="image/png, image/jpeg, image/jpg"
               className="absolute inset-0 z-10 w-full h-full opacity-0 cursor-pointer"
-              onChange={handleFileChange1}
+              onChange={e => handleFileChange(e, 0)}
             />
-            <div className="relative flex gap-2 flex-col mb-3">
-              {previewPhotos1.length === 0 ? (
-                <div className="absolute top-[274px] left-[133px] md:relative md:top-0 md:left-0 w-[121px] h-[113px] md:w-[262px] md:h-[243px] rounded-[20px] flex items-center justify-center border">
-                  <div className="flex flex-col">
-                    <div className="w-[47px] h-[53px] md:w-[115px] md:h-[112px] mb-[5px]">
-                      <Image
-                        className="w-full h-full"
-                        width={0}
-                        height={0}
-                        sizes="100vh"
-                        src={AddImage}
-                        alt="Order photo"
-                      />
-                    </div>
+
+            <div className="relative flex gap-2 flex-col mb-3 w-full h-full">
+              {photos.filter(photo => photo.groupIndex === 0).length === 0 ? (
+                <div className="w-full h-full flex items-center justify-center border rounded-[20px]">
+                  <div className="w-[115px] h-[112px]">
+                    <Image
+                      className="w-full h-full"
+                      width={0}
+                      height={0}
+                      sizes="100vh"
+                      src={AddImage}
+                      alt="Order photo"
+                    />
                   </div>
                 </div>
               ) : (
-                <div
-                  className="absolute top-[274px] left-[133px] md:relative md:top-0 md:left-0 w-[121px] h-[113px] md:w-[262px] md:h-[243px] z-10"
-                  onMouseEnter={() => setTrashVisibleIndex1(0)}
-                  onMouseLeave={() => setTrashVisibleIndex1(null)}
-                >
-                  <Image
-                    src={previewPhotos1[0]}
-                    alt={`Uploaded photo 1`}
-                    className="object-cover w-full h-full rounded-[20px]"
-                    width={0}
-                    height={0}
-                  />
-                  {trashVisibleIndex1 === 0 && (
-                    <button
-                      className="absolute top-1/3 md:top-1/2 right-2 bg-neutral-500 rounded-lg p-1"
-                      onClick={handleDeletePhoto1}
+                photos
+                  .filter(photo => photo.groupIndex === 0)
+                  .map(photo => (
+                    <div
+                      key={photo.id}
+                      className="relative z-10 w-[262px] h-[243px]"
+                      onMouseEnter={() => setTrashVisibleIndex(photo.id)}
+                      onMouseLeave={() => setTrashVisibleIndex(null)}
                     >
-                      <SpriteSVG name="trash" />
-                    </button>
-                  )}
-                </div>
+                      <Image
+                        src={photo.url}
+                        alt={`Uploaded photo`}
+                        className="object-cover w-full h-full rounded-[20px]"
+                        width={262}
+                        height={243}
+                      />
+                      {trashVisibleIndex === photo.id && (
+                        <button
+                          className="absolute top-1/3 md:top-1/2 right-2 bg-neutral-500 rounded-lg p-1"
+                          onClick={() => handleDeletePhoto(photo.id)}
+                        >
+                          <SpriteSVG name="trash" />
+                        </button>
+                      )}
+                    </div>
+                  ))
               )}
             </div>
           </div>
@@ -146,19 +144,20 @@ export default function InputPhoto({
         <ul className="flex flex-wrap gap-3">
           {[1, 2, 3, 4, 5].map(index => (
             <li key={index} className="form-group flex flex-col">
-              <label htmlFor={`photos2-${index}`} className="text-xl"></label>
+              <label htmlFor={`photos-${index}`} className="text-xl"></label>
               <div className="relative">
                 <input
                   type="file"
-                  id={`photos2-${index}`}
-                  name={`photos2-${index}`}
+                  id={`photos-${index}`}
+                  name={`photos-${index}`}
                   accept=".jpg, .jpeg, .png"
                   className="absolute inset-0 z-10 w-full h-full opacity-0 cursor-pointer"
                   multiple
-                  onChange={e => handleFileChange2(e, index - 1)}
+                  onChange={e => handleFileChange(e, index)}
                 />
                 <div className="relative flex gap-2 flex-wrap">
-                  {previewPhotos2[index - 1].length === 0 ? (
+                  {photos.filter(photo => photo.groupIndex === index).length ===
+                  0 ? (
                     <div className="relative w-[121px] h-[113px] border rounded-[20px] flex items-center justify-center">
                       <div className="w-[47px] h-[53px]">
                         <Image
@@ -172,41 +171,32 @@ export default function InputPhoto({
                       </div>
                     </div>
                   ) : (
-                    previewPhotos2[index - 1].map((photoUrl, idx) => (
-                      <div
-                        key={idx}
-                        className="relative w-[121px] h-[113px] z-10"
-                        onMouseEnter={() =>
-                          setTrashVisibleIndex2({
-                            groupIndex: index,
-                            photoIndex: idx,
-                          })
-                        }
-                        onMouseLeave={() =>
-                          setTrashVisibleIndex2({
-                            groupIndex: null,
-                            photoIndex: null,
-                          })
-                        }
-                      >
-                        <Image
-                          src={photoUrl}
-                          alt={`Uploaded photo ${index} - ${idx + 1}`}
-                          className="object-cover w-full h-full rounded-[20px]"
-                          width={121}
-                          height={113}
-                        />
-                        {trashVisibleIndex2.groupIndex === index &&
-                          trashVisibleIndex2.photoIndex === idx && (
+                    photos
+                      .filter(photo => photo.groupIndex === index)
+                      .map(photo => (
+                        <div
+                          key={photo.id}
+                          className="relative z-10 w-[121px] h-[113px]"
+                          onMouseEnter={() => setTrashVisibleIndex(photo.id)}
+                          onMouseLeave={() => setTrashVisibleIndex(null)}
+                        >
+                          <Image
+                            src={photo.url}
+                            alt={`Uploaded photo`}
+                            className="object-cover w-full h-full rounded-[20px]"
+                            width={121}
+                            height={113}
+                          />
+                          {trashVisibleIndex === photo.id && (
                             <button
                               className="absolute top-1/3 md:top-1/2 right-2 bg-neutral-500 rounded-lg p-1"
-                              onClick={() => handleDeletePhoto2(index - 1, idx)}
+                              onClick={() => handleDeletePhoto(photo.id)}
                             >
                               <SpriteSVG name="trash" />
                             </button>
                           )}
-                      </div>
-                    ))
+                        </div>
+                      ))
                   )}
                 </div>
               </div>
