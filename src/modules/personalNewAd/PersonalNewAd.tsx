@@ -48,6 +48,7 @@ export default function PersonalNewAd() {
 
   const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
   const [isDeleteModal, setIsDeleteModal] = useState(true);
+
   const router = useRouter();
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
@@ -105,15 +106,14 @@ export default function PersonalNewAd() {
       pay: [],
       card: '',
       comment: '',
-      photos1: [],
-      photos2: [[], [], [], [], []],
+      photos: [],
+      // photos2: [[], [], [], [], []],
     },
     validationSchema: validationSchemaNewAd,
     onSubmit: handleSubmit,
     validateOnChange: true,
     validateOnBlur: true,
   });
-
   return (
     <Section className="pt-0 xl:pt-0 md:pt-0 pb-[80px] md:pb-[104px] xl:pb-[164px]">
       <Container>
