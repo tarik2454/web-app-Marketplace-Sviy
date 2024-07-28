@@ -29,7 +29,7 @@ interface SubSubCategory {
   name: string;
 }
 
-const CatalogForm: React.FC<CatalogFormProps> = ({
+export default function CatalogForm ({
   formik,
   catalogData,
   subCategories,
@@ -37,7 +37,7 @@ const CatalogForm: React.FC<CatalogFormProps> = ({
   setCatalogData,
   setSubCategories,
   setSubSubCategories,
-}) => {
+} : CatalogFormProps) {
   useEffect(() => {
     fetchCatalog()
       .then(data => setCatalogData(data))
@@ -144,4 +144,3 @@ const CatalogForm: React.FC<CatalogFormProps> = ({
   );
 };
 
-export default CatalogForm;

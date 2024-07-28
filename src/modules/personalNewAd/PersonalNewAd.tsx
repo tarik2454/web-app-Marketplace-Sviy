@@ -11,6 +11,12 @@ import {
   Section,
 } from '@/shared/components';
 
+import {
+  optionsAvailability,
+  optionsLocation,
+  optionsUnit,
+} from './helpers/dropdown-data';
+
 import CheckboxForm from './components/СheckboxForm';
 import InputPhoto from './components/InputPhotoForm';
 import DropDownForm from './components/DropDownForm';
@@ -18,6 +24,9 @@ import validationSchemaNewAd from './helpers/validationSchemaNewAd';
 import useModal from '@/shared/hooks/useModal';
 import { useRouter } from 'next/navigation';
 import CatalogForm from './components/СatalogForm';
+import { descriptionPlaceholder } from './helpers/description-placeholder-data';
+import ModalForm from './components/ModalForm';
+
 
 interface Category {
   id: string;
@@ -49,7 +58,7 @@ export default function PersonalNewAd() {
   const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
   const [isDeleteModal, setIsDeleteModal] = useState(true);
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
     const formData = new FormData();
@@ -107,7 +116,6 @@ export default function PersonalNewAd() {
       card: '',
       comment: '',
       photos: [],
-      // photos2: [[], [], [], [], []],
     },
     validationSchema: validationSchemaNewAd,
     onSubmit: handleSubmit,
@@ -144,12 +152,7 @@ export default function PersonalNewAd() {
               <FormInput
                 formik={formik}
                 name="description"
-                placeholder={`Наприклад: Шановні гурмани та зайняті особи, ми раді представити вам нашу нову послугу - готові комплексні обіди на замовлення! Забудьте про готування та планування, ми покриємо ваші потреби в смачному та ситному харчуванні. Пропонуємо меню: 
-                1. Біле м'ясо в соусі теріякі з овочами. 
-                2. Паста з лососем та шпинатом в вершковому соусі
-                3. Індійський каррі з куркою та базматі-рисом
-                4. Салат 'Мікс зелених' з гарніром киш-миш
-                5. Суп-крем з брокколі та сиром`}
+                placeholder={descriptionPlaceholder}
                 label={'Опис товару'}
                 inputType="textarea"
                 classNameLogin="!text-xl mb-4 !ml-0"
@@ -180,12 +183,7 @@ export default function PersonalNewAd() {
                   <DropDownForm
                     formik={formik}
                     name="unit"
-                    options={[
-                      { value: 'шт', label: 'Шт' },
-                      { value: 'кг', label: 'Кг' },
-                      { value: 'гр', label: 'Гр' },
-                      { value: 'літ', label: 'Літ' },
-                    ]}
+                    options={optionsUnit}
                     stylesInput="py-1.5"
                     placeholder="Оберіть одиницю"
                     dropdownIndicatorClassName="text-gray-600"
@@ -211,10 +209,7 @@ export default function PersonalNewAd() {
                   <DropDownForm
                     formik={formik}
                     name="availability"
-                    options={[
-                      { value: 'В наявності', label: 'В наявності' },
-                      { value: 'Під замовлення', label: 'Під замовлення' },
-                    ]}
+                    options={optionsAvailability}
                     placeholder="Оберіть наявність"
                     stylesInput="py-1.5"
                     dropdownIndicatorClassName="text-gray-600"
@@ -239,15 +234,7 @@ export default function PersonalNewAd() {
                 <DropDownForm
                   formik={formik}
                   name="location"
-                  options={[
-                    { value: 'Весь Львів', label: 'Весь Львів' },
-                    { value: 'Галицький', label: 'Галицький р-н' },
-                    { value: 'Сихівський', label: 'Сихівський р-н' },
-                    { value: 'Залізничний', label: 'Залізничний р-н' },
-                    { value: 'Залізничний', label: 'Залізничний р-н' },
-                    { value: 'Личаківський', label: 'Личаківський р-н' },
-                    { value: 'Шевченківський', label: 'Шевченківський р-н' },
-                  ]}
+                  options={optionsLocation}
                   placeholder="Оберіть місце розташування"
                   dropdownIndicatorClassName="text-gray-600"
                   stylesInput="py-1.5"
@@ -355,45 +342,12 @@ export default function PersonalNewAd() {
           </span>
         </form>
 
-        {isOpenModal && (
-          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-            {!isDeleteModal ? (
-              <div className="bg-white px-5 md:px-[60px] py-6 md:py-[40px] rounded-[20px]">
-                <h2 className="text-gray-900 text-xl xl:text-2xl mb-6 md:mb-10 flex flex-wrap justify-center">
-                  Ви дійсно бажаєте скасувати створення оголошення?
-                </h2>
-                <div className="flex justify-center gap-[28px] md:gap-[48px]">
-                  <OrangeButton
-                    cssSettings="text-white text-sm px-[45px] xl:px-[67px] xl:text-base"
-                    onClick={handleCloseModal}
-                  >
-                    Назад
-                  </OrangeButton>
-                  <ArrowButton
-                    cssSettings="text-sm xl:text-base !py-1 xl:!py-3"
-                    onClick={handleDeleteForm}
-                  >
-                    Скасувати
-                  </ArrowButton>
-                </div>
-              </div>
-            ) : (
-              <div className="bg-white rounded-[20px] px-5 md:px-[20px] py-6 md:py-[30px]">
-                <h2 className="px-[60px] text-xl xl:text-2xl mb-6 md:mb-10">
-                  Оголошення додано
-                </h2>
-                <div className="flex justify-center mb-5">
-                  <OrangeButton
-                    cssSettings="text-white w-full max-w-[215px] !py-3"
-                    onClick={() => router.push('/personal-office/my-ads')}
-                  >
-                    Мої оголошення
-                  </OrangeButton>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
+        <ModalForm
+          isOpen={isOpenModal}
+          isDeleteModal={isDeleteModal}
+          handleClose={handleCloseModal}
+          handleDelete={handleDeleteForm}
+        />
       </Container>
     </Section>
   );

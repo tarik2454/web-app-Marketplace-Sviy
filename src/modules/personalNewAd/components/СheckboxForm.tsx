@@ -10,7 +10,7 @@ interface CheckboxFormProps {
   onClick?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function CheckboxForm({
+export default function CheckboxForm({
   name,
   labelText,
   formik,
@@ -56,4 +56,3 @@ function CheckboxForm({
   );
 }
 
-export default CheckboxForm;
