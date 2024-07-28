@@ -67,7 +67,7 @@ export default function DropDownForm({
   };
 
   return (
-    <div className={twMerge('flex flex-col gap-4 mt-0', wrapperClassName)}>
+    <div className={twMerge('flex flex-col mt-0', wrapperClassName)}>
       {dropdownName ? <label htmlFor={id}>{dropdownName}</label> : null}
 
       <div
