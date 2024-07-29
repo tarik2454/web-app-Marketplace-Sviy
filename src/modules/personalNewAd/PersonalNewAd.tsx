@@ -20,12 +20,13 @@ import {
 import CheckboxForm from './components/СheckboxForm';
 import InputPhoto from './components/InputPhotoForm';
 import DropDownForm from './components/DropDownForm';
+import ModalForm from './components/ModalForm';
 import validationSchemaNewAd from './helpers/validationSchemaNewAd';
 import useModal from '@/shared/hooks/useModal';
-import { useRouter } from 'next/navigation';
 import CatalogForm from './components/СatalogForm';
 import { descriptionPlaceholder } from './helpers/description-placeholder-data';
-import ModalForm from './components/ModalForm';
+
+import Modal from '@/shared/components/Modal/Modal';
 
 interface Category {
   id: string;
@@ -56,8 +57,6 @@ export default function PersonalNewAd() {
 
   const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
   const [isDeleteModal, setIsDeleteModal] = useState(true);
-
-  // const router = useRouter();
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
     const formData = new FormData();
@@ -167,7 +166,7 @@ export default function PersonalNewAd() {
                 classNameLogin="!text-xl mb-4 !ml-0"
                 textAreaStyle="h-auto resize-none overflow-hidden"
               />
-              <span className="flex flex-col md:flex-row gap-6 mt-6 mb-6 md:mt-10 md:mb-10">
+              <span className="flex flex-col md:flex-row gap-6 mt-6 mb-6">
                 <span className="w-full md:w-[301px]">
                   <FormInput
                     formik={formik}
@@ -175,7 +174,7 @@ export default function PersonalNewAd() {
                     placeholder="Вартість"
                     label={
                       <span>
-                        Вартість<span className="text-red-600"> *</span>
+                        Вартість<span className="text-red-900"> *</span>
                       </span>
                     }
                     inputType="number"
@@ -213,7 +212,7 @@ export default function PersonalNewAd() {
                     className="block mb-4 text-xl text-gray-900"
                   >
                     Наявність
-                    <span className="text-red-600"> *</span>
+                    <span className="text-red-900"> *</span>
                   </label>
                   <DropDownForm
                     formik={formik}
@@ -232,13 +231,13 @@ export default function PersonalNewAd() {
                   />
                 </div>
               </span>
-              <div className="mb-6 md:mb-10">
+              <div className="mb-6">
                 <label
                   htmlFor="availability-dropdown"
-                  className="block text-xl text-gray-900 mb-4 md:mb-8"
+                  className="block text-xl text-gray-900 mb-4"
                 >
                   Місце розташування товару
-                  <span className="text-red-600"> *</span>
+                  <span className="text-red-900"> *</span>
                 </label>
                 <DropDownForm
                   formik={formik}
@@ -258,9 +257,9 @@ export default function PersonalNewAd() {
               </div>
               <span>
                 <span className="text-xl">
-                  Доставка <span className="text-red-600"> *</span>
+                  Доставка <span className="text-red-900"> *</span>
                 </span>
-                <span className="flex gap-8 md:gap-[113px] mt-6 mb-6 md:mb-10">
+                <span className="flex gap-8 md:gap-[113px] mt-4 mb-6">
                   <span onChange={() => setIsChecked(!isChecked)}>
                     <CheckboxForm
                       name="deliveryMethods"
@@ -290,7 +289,7 @@ export default function PersonalNewAd() {
                   />
                 )}
                 <span className="flex flex-col mb-4 mt-6">
-                  <span className="text-xl mb-6">Оплата</span>
+                  <span className="text-xl mb-4">Оплата</span>
                   <span className="flex flex-col md:flex-row gap-6">
                     <span className="w-full md:w-[487px]">
                       <span onChange={() => setIsCheckedPay(!isCheckedPay)}>
@@ -350,13 +349,13 @@ export default function PersonalNewAd() {
             </ArrowButton>
           </span>
         </form>
-
-        <ModalForm
-          isOpen={isOpenModal}
-          isDeleteModal={isDeleteModal}
-          handleClose={handleCloseModal}
-          handleDelete={handleDeleteForm}
-        />
+        <Modal isOpen={isOpenModal} onClose={handleCloseModal}>
+          <ModalForm
+            handleClose={handleCloseModal}
+            isDeleteModal={isDeleteModal}
+            handleDelete={handleDeleteForm}
+          />
+        </Modal>
       </Container>
     </Section>
   );
