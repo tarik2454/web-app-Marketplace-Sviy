@@ -9,13 +9,13 @@ export default function FormikProfile() {
   return (
     <>
       {(isOnMobile && (
-        <div className="flex flex-col gap-8 mb-8 mt-8">
+        <div className="flex flex-col gap-6 pb-8 pt-8">
           <FormPersonalData />
           <FormLoginPassword />
         </div>
       )) ||
         (isOnTablet && (
-          <div className="flex md:gap-4 mb-10 mt-10 items-start ">
+          <div className="flex md:gap-4 pb-10 pt-10 items-start ">
             <div className="basis-1/2 max-w-[344px]">
               <FormPersonalData />
             </div>

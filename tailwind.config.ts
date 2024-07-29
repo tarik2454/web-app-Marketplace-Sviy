@@ -35,6 +35,7 @@ const config: Config = {
         red: {
           700: '#C50000',
           800: '#C60000',
+          900: '#DD4F46',
         },
         slate: {
           300: '#B3C5D3',

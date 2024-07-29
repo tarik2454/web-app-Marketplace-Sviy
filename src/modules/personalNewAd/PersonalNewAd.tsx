@@ -143,7 +143,7 @@ export default function PersonalNewAd() {
                 placeholder="Назва оголошення"
                 label={
                   <span>
-                    Назва оголошення <span className="text-red-600">*</span>
+                    Назва оголошення <span className="text-red-900">*</span>
                   </span>
                 }
                 inputType="text"

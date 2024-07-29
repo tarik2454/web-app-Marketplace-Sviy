@@ -138,9 +138,7 @@ export default function FormInput({
         )}
       </div>
 
-      {error && (
-        <p className="text-red-800 text-end text-sm">{String(error)}</p>
-      )}
+      {error && <p className="error">{String(error)}</p>}
     </div>
   );
 }

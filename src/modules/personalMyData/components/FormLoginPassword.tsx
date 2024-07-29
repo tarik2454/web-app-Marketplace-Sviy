@@ -59,9 +59,12 @@ export default function FormLoginPassword() {
 
   return (
     <>
-      <h3 className="text-2xl xl:mb-7 md:mb-10 mb-6">Логін та пароль</h3>
+      <h3 className="text-2xl xl:mb-7 md:mb-10 mb-0">Логін та пароль</h3>
 
-      <form className="flex flex-col gap-10" onSubmit={formik.handleSubmit}>
+      <form
+        className="flex flex-col gap-8 md:gap-10"
+        onSubmit={formik.handleSubmit}
+      >
         <div className="flex flex-col gap-6">
           <FormInput
             formik={formik}

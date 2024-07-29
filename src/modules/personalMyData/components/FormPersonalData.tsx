@@ -93,10 +93,13 @@ export default function FormPersonalData() {
   };
 
   return (
-    <>
+    <div className="pb-2 md:pb-0">
       <h3 className="text-2xl xl:mb-7 md:mb-10 mb-6">Персональні дані</h3>
 
-      <form className="flex flex-col gap-10" onSubmit={formik.handleSubmit}>
+      <form
+        className="flex flex-col gap-8 md:gap-10"
+        onSubmit={formik.handleSubmit}
+      >
         <div className="flex flex-col gap-6">
           <FormInput
             formik={formik}
@@ -169,6 +172,6 @@ export default function FormPersonalData() {
           />
         </Modal>
       )}
-    </>
+    </div>
   );
 }
