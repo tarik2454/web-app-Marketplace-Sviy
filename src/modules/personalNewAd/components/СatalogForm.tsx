@@ -1,3 +1,5 @@
+'use client '
+
 import React, { useEffect } from 'react';
 import DropDownForm from './DropDownForm';
 import { fetchCatalog } from '@/config-api/catalog-api';
@@ -29,7 +31,7 @@ interface SubSubCategory {
   name: string;
 }
 
-export default function CatalogForm ({
+export default function CatalogForm({
   formik,
   catalogData,
   subCategories,
@@ -37,7 +39,7 @@ export default function CatalogForm ({
   setCatalogData,
   setSubCategories,
   setSubSubCategories,
-} : CatalogFormProps) {
+}: CatalogFormProps) {
   useEffect(() => {
     fetchCatalog()
       .then(data => setCatalogData(data))
@@ -74,7 +76,7 @@ export default function CatalogForm ({
   }, [formik.values.subCategory, subCategories, setSubSubCategories]);
 
   return (
-    <div className="mb-6 md:mb-10">
+    <div className="mb-6 mt-6">
       <label
         htmlFor="category-dropdown"
         className="block text-xl text-gray-900 mb-4"
@@ -142,5 +144,4 @@ export default function CatalogForm ({
       </span>
     </div>
   );
-};
-
+}

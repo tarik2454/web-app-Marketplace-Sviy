@@ -1,5 +1,3 @@
-'use client';
-
 import Select from 'react-select';
 import { twMerge } from 'tailwind-merge';
 import { FormikProps } from 'formik';
