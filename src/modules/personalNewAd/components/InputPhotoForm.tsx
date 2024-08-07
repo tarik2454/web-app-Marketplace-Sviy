@@ -103,7 +103,7 @@ export default function InputPhoto({
                       height={0}
                       sizes="100vh"
                       src={AddImage}
-                      alt="Order photo"
+                      alt='Order photo'
                     />
                   </div>
                 </div>
