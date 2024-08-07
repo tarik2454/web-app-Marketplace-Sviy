@@ -47,7 +47,7 @@ export default function CatalogForm({
   }, [setCatalogData]);
 
   useEffect(() => {
-    const selectedCategory = catalogData.find(
+    const selectedCategory = catalogData?.find(
       cat => cat.id === formik.values.category
     );
     if (selectedCategory) {
@@ -86,7 +86,7 @@ export default function CatalogForm({
       <span className="flex flex-col md:flex-row gap-6">
         <DropDownForm
           formik={formik}
-          options={catalogData.map(category => ({
+          options={catalogData?.map(category => ({
             value: category.id,
             label: category.name,
           }))}

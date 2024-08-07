@@ -43,7 +43,7 @@ export default function DropDownForm({
   useEffect(() => {
     const formikValue = formik.values[name];
     setSelectedOption(
-      options.find(option => option.value === formikValue) || null
+      options?.find(option => option.value === formikValue) || null
     );
     // eslint-disable-next-line
   }, [formik.values[name], options]);
