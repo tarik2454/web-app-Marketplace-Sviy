@@ -17,6 +17,7 @@ export default function InputPhoto({
   setFieldValue: any;
 }) {
   const [photos, setPhotos] = useState<Photo[]>([]);
+  // const [photos, setPhotos] = useState<Photo[]>([]);
   const [trashVisibleIndex, setTrashVisibleIndex] = useState<string | null>(
     null
   );
