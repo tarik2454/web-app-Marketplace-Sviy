@@ -349,7 +349,7 @@ export default function PersonalNewAd() {
             </ArrowButton>
           </span>
         </form>
-        <Modal isOpen={isOpenModal} onClose={handleCloseModal}>
+        <Modal stylesWrapper='!pt-[48px]' isOpen={isOpenModal} onClose={handleCloseModal}>
           <ModalForm
             handleClose={handleCloseModal}
             isDeleteModal={isDeleteModal}

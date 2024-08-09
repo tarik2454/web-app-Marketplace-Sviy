@@ -21,7 +21,7 @@ export default function ModalForm({
   return (
     <>
       {!isDeleteModal ? (
-        <div>
+        <div className='mx-[60px]'>
           <h2 className="text-gray-900 text-xl xl:text-2xl mb-6 md:mb-10 flex flex-wrap justify-center">
             Ви дійсно бажаєте скасувати створення оголошення?
           </h2>
