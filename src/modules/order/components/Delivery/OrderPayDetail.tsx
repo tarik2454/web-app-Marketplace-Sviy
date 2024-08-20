@@ -3,16 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { Field, ErrorMessage } from 'formik';
 
 import { SpriteSVG } from '@/shared/img/SpriteSVG';
+import RecipientSwitcher from './RecipientSwitcher';
 
 export default function OrderPayDetail({ formik }: any) {
   const [isDisabled, setIsDisabled] = useState(true);
   const [errorClassRadio, setErrorClassRadio] = useState('');
   const [errorClassInput, setErrorClassInput] = useState('border-blue-200');
   const [selectInput, setSelectInput] = useState('');
+  const [switchRecipient, setSwitchRecipient] = useState(false);
 
   const handleInput = () => {
     setIsDisabled(false);
     setSelectInput('border-[#1565C0] border-[1px] rounded-[20px] pl-2');
+    setSwitchRecipient(true);
   };
 
   useEffect(() => {
@@ -65,14 +68,14 @@ export default function OrderPayDetail({ formik }: any) {
       <div className="mb-10">
         <h3 className="mb-5 font-lora text-2xl md:mb-6">Отримувач</h3>
         <div
-          className={`bg-white flex pl-4 pr-4 pt-3 pb-3 items-center justify-between rounded-[20px] border-[1px] xl:min-w-[845px] md:max-w-[700px] sm:max-w-[343px] ${errorClassInput}`}
+          className={`bg-white flex pl-4 pr-4 pt-3 pb-3 items-center justify-between rounded-[20px] border-[1px] mb-8 xl:min-w-[845px] md:max-w-[700px] sm:max-w-[343px] ${errorClassInput}`}
         >
           <div className="flex gap-2 basis-5/6">
             <span className="text-gray-400">
               <SpriteSVG name="user" />
             </span>
             <Field
-              className={`bg-white focus:outline-none basis-5/6 ${selectInput} `}
+              className={`bg-white ${selectInput} `}
               type="text"
               name="customer"
               disabled={isDisabled}
@@ -87,6 +90,7 @@ export default function OrderPayDetail({ formik }: any) {
             Змінити
           </button>
         </div>
+        <div>{switchRecipient && <RecipientSwitcher />}</div>
         <ErrorMessage
           name="customer"
           component="p"

@@ -71,7 +71,6 @@ export default function SignupForm({
       phone: '',
       password: '',
       passwordRepeat: '',
-      // chekSignUp: false,
     },
     validationSchema: validationSchemaSignup,
     onSubmit: handleSubmit,
