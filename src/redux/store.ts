@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-// import usersReducer from './users/usersSlice';
+import advertsReducer from './adverts/advertsSlice';
 import authReducer from './auth/authSlice';
 
 import {
@@ -39,19 +39,22 @@ const authPersistConfig = {
   whitelist: ['full_name', 'email', 'phone', 'address'],
 };
 
-// const usersPersistConfig = {
-//   key: 'users',
-//   version: 1,
-//   storage: storage,
-//   whitelist: ['value'],
-// };
+const advertsPersistConfig = {
+  key: 'adverts',
+  version: 1,
+  storage: storage,
+  whitelist: [''],
+};
 
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
-// const persistedUsersReducer = persistReducer(usersPersistConfig, usersReducer);
+const persistedUsersReducer = persistReducer(
+  advertsPersistConfig,
+  advertsReducer
+);
 
 const rootReducer = combineReducers({
   auth: persistedAuthReducer,
-  // users: persistedUsersReducer,
+  adverts: persistedUsersReducer,
 });
 
 export const store = configureStore({
