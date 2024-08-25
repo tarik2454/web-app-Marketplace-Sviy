@@ -79,7 +79,7 @@ export default function DropDownForm({
             control: () => twMerge('font-lato', controlClassName),
             menu: () =>
               twMerge(
-                'w-full mt-[14px] bg-neutral-50 border-x-[1px] border-b-[1px] border-slate-300 rounded-default overflow-hidden absolute -left-[16px] xl:overflow-auto',
+                'w-full mt-[14px] bg-neutral-50 border-x-[1px] border-b-[1px] border-slate-300 rounded-default overflow-hidden absolute -right-[16px] xl:overflow-auto',
                 menuClassName
               ),
             option: () =>
