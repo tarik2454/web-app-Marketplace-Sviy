@@ -1,5 +1,6 @@
 import { API } from '@/config-api/global-config-api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState } from '../store'; // Імпортуємо RootState для типізації state
 import axios from 'axios';
 
 // Типы данных для объявления и ответа
@@ -31,12 +32,21 @@ interface AdvertResponse extends AdvertData {
 export const createAdvertThunk = createAsyncThunk<
   AdvertResponse, // Тип данных, возвращаемых асинхронным действием
   AdvertData, // Тип параметра асинхронного действия (данные для создания объявления)
-  { rejectValue: string } // Тип дополнительных параметров асинхронного действия
+  { rejectValue: string; state: RootState } // Тип дополнительных параметров асинхронного действия, включая RootState
 >('adverts/createAdvert', async (credentials, ThunkAPI) => {
+  const state = ThunkAPI.getState(); // Отримуємо стан Redux
+  const token = state.auth.access; // Отримуємо access токен з auth стану
+  console.log(`Tokkken ${token}`);
+
   try {
     const response = await API.post<AdvertResponse>(
       '/api/catalog/adverts/',
-      credentials
+      credentials,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Додаємо токен у заголовки
+        },
+      }
     );
     return response.data;
   } catch (error: any) {
