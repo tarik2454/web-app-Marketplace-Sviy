@@ -28,7 +28,7 @@ interface AdvertResponse extends AdvertData {
   id: number;
 }
 
-// Определение типа данных, возвращаемых асинхронным действием
+// create new advert
 export const createAdvertThunk = createAsyncThunk<
   AdvertResponse, // Тип данных, возвращаемых асинхронным действием
   AdvertData, // Тип параметра асинхронного действия (данные для создания объявления)
@@ -53,3 +53,15 @@ export const createAdvertThunk = createAsyncThunk<
     return ThunkAPI.rejectWithValue(error.message);
   }
 });
+
+// get advert by id
+// export const getAdvertThunk =
+
+// update advert by id
+// export const updateAdvertThunk =
+
+// delete advert by id
+// export const deleteAdvertThunk =
+
+// get adverts list
+// export const getAdvertsListThunk =
