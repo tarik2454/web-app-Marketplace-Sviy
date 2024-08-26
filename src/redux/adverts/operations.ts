@@ -52,7 +52,7 @@ export const createAdvertThunk = createAsyncThunk<
   }
 });
 
-export const fetchAdvertsThunk = createAsyncThunk<
+export const getAdvertListThunk = createAsyncThunk<
   AdvertResponse[], // Тип даних, що повертаються асинхронним дією (масив оголошень)
   void, // Параметри дії (не потрібні для цього запиту)
   { rejectValue: string; state: RootState } // Додаткові параметри
@@ -72,22 +72,15 @@ export const fetchAdvertsThunk = createAsyncThunk<
   }
 });
 
-export const fetchAdvertByIdThunk = createAsyncThunk<
-  AdvertResponse, // Тип даних, що повертаються асинхронним дією (одне оголошення)
-  number, // Параметр - ID оголошення
-  { rejectValue: string; state: RootState } // Додаткові параметри
+export const getAdvertThunk = createAsyncThunk<
+  AdvertResponse, 
+  number,
+  { rejectValue: string; state: RootState }
 >('adverts/fetchAdvertById', async (id, ThunkAPI) => {
-  const state = ThunkAPI.getState();
-  const token = state.auth.access;
 
   try {
     const response = await API.get<AdvertResponse>(
-      `/api/catalog/adverts/${id}/`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      `/api/catalog/adverts/${id}/`
     );
     return response.data;
   } catch (error: any) {

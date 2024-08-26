@@ -7,7 +7,7 @@ import {
 } from '@/shared/components';
 import PersonalMyAdsItems from './components/PersonalMyAddItems';
 // import { useDispatch } from 'react-redux';
-// import { createAdvertThunk, deleteAdvertThunk, fetchAdvertByIdThunk, fetchAdvertsThunk, updateAdvertThunk } from '@/redux/adverts/operations';
+// import { createAdvertThunk, deleteAdvertThunk, getAdvertListThunk, getAdvertThunk, updateAdvertThunk } from '@/redux/adverts/operations';
 
 
 export default function PersonalMyAds() {
@@ -41,7 +41,7 @@ export default function PersonalMyAds() {
 
     // const handleFetchAdverts = () => {
     //   console.log('Fetch Adverts button clicked');
-    //   dispatch(fetchAdvertsThunk())
+    //   dispatch(getAdvertListThunk())
     //     .unwrap()
     //     .then(response => console.log('Adverts fetched:', response))
     //     .catch(error => console.error('Error fetching adverts:', error));
@@ -50,7 +50,7 @@ export default function PersonalMyAds() {
     // const handleFetchAdvertById = () => {
     //   console.log('Fetch Advert by ID button clicked');
     //   const advertId = 1; // замінити на існуючий ID
-    //   dispatch(fetchAdvertByIdThunk(advertId))
+    //   dispatch(getAdvertThunk(advertId))
     //     .unwrap()
     //     .then(response => console.log('Advert fetched by ID:', response))
     //     .catch(error => console.error('Error fetching advert by ID:', error));
@@ -83,7 +83,7 @@ export default function PersonalMyAds() {
 
     // const handleDeleteAdvert = () => {
     //   console.log('Delete Advert button clicked');
-    //   const advertId = 1; // замінити на існуючий ID
+    //   const advertId = 32; // замінити на існуючий ID
     //   dispatch(deleteAdvertThunk(advertId))
     //     .unwrap()
     //     .then(response => console.log('Advert deleted, ID:', response))
@@ -92,13 +92,13 @@ export default function PersonalMyAds() {
 
     return (
       <Section className="pt-0 xl:pt-0 md:pt-0 pb-[80px] md:pb-[104px] xl:pb-[164px]">
-        <div className='flex gap-6'>
-        {/* <button onClick={handleCreateAdvert}>Create</button>
+        {/* <div className='flex gap-6'>
+        <button onClick={handleCreateAdvert}>Create</button>
         <button onClick={handleFetchAdverts}>Fetch</button>
         <button onClick={handleFetchAdvertById}>by ID</button>
         <button onClick={handleUpdateAdvert}>Update</button>
-          <button onClick={handleDeleteAdvert}>Delete</button> */}
-          </div>
+          <button onClick={handleDeleteAdvert}>Delete</button>
+          </div> */}
         <Container>
           {(isOnMobile && (
             <PersonalDynamicSidebar
