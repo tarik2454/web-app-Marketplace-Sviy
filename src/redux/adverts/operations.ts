@@ -53,9 +53,9 @@ export const createAdvertThunk = createAsyncThunk<
 });
 
 export const getAdvertListThunk = createAsyncThunk<
-  AdvertResponse[], // Тип даних, що повертаються асинхронним дією (масив оголошень)
-  void, // Параметри дії (не потрібні для цього запиту)
-  { rejectValue: string; state: RootState } // Додаткові параметри
+  AdvertResponse[],
+  void,
+  { rejectValue: string; state: RootState }
 >('adverts/fetchAdverts', async (_, ThunkAPI) => {
   try {
     const response = await API.get<AdvertResponse[]>('/api/catalog/adverts/');
@@ -64,7 +64,6 @@ export const getAdvertListThunk = createAsyncThunk<
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
       if (status === 401) {
-        clearToken();
         return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
       }
     }
@@ -87,7 +86,6 @@ export const getAdvertThunk = createAsyncThunk<
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
       if (status === 401) {
-        clearToken();
         return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
       }
     }
@@ -96,9 +94,9 @@ export const getAdvertThunk = createAsyncThunk<
 });
 
 export const updateAdvertThunk = createAsyncThunk<
-  AdvertResponse, // Тип даних, що повертаються асинхронним дією (оновлене оголошення)
-  { id: number; data: Partial<AdvertData> }, // Параметри - ID оголошення та дані для оновлення
-  { rejectValue: string; state: RootState } // Додаткові параметри
+  AdvertResponse, 
+  { id: number; data: Partial<AdvertData> },
+  { rejectValue: string; state: RootState }
 >('adverts/updateAdvert', async ({ id, data }, ThunkAPI) => {
   try {
     const response = await API.patch<AdvertResponse>(
@@ -110,7 +108,6 @@ export const updateAdvertThunk = createAsyncThunk<
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
       if (status === 401) {
-        clearToken();
         return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
       }
     }
@@ -131,7 +128,6 @@ export const deleteAdvertThunk = createAsyncThunk<
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
       if (status === 401) {
-        clearToken();
         return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
       }
     }
