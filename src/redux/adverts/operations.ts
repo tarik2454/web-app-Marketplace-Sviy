@@ -1,4 +1,4 @@
-import { API } from '@/config-api/global-config-api';
+import { API, clearToken } from '@/config-api/global-config-api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../store'; // Імпортуємо RootState для типізації state
 import axios from 'axios';
@@ -34,22 +34,114 @@ export const createAdvertThunk = createAsyncThunk<
   AdvertData, // Тип параметра асинхронного действия (данные для создания объявления)
   { rejectValue: string; state: RootState } // Тип дополнительных параметров асинхронного действия, включая RootState
 >('adverts/createAdvert', async (credentials, ThunkAPI) => {
-  const state = ThunkAPI.getState(); // Отримуємо стан Redux
-  const token = state.auth.access; // Отримуємо access токен з auth стану
-  console.log(`Tokkken ${token}`);
-
   try {
     const response = await API.post<AdvertResponse>(
       '/api/catalog/adverts/',
-      credentials,
+      credentials
+    );
+    return response.data;
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+      if (status === 401) {
+        clearToken();
+        return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
+      }
+    }
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
+  }
+});
+
+export const fetchAdvertsThunk = createAsyncThunk<
+  AdvertResponse[], // Тип даних, що повертаються асинхронним дією (масив оголошень)
+  void, // Параметри дії (не потрібні для цього запиту)
+  { rejectValue: string; state: RootState } // Додаткові параметри
+>('adverts/fetchAdverts', async (_, ThunkAPI) => {
+  try {
+    const response = await API.get<AdvertResponse[]>('/api/catalog/adverts/');
+    return response.data;
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+      if (status === 401) {
+        clearToken();
+        return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
+      }
+    }
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
+  }
+});
+
+export const fetchAdvertByIdThunk = createAsyncThunk<
+  AdvertResponse, // Тип даних, що повертаються асинхронним дією (одне оголошення)
+  number, // Параметр - ID оголошення
+  { rejectValue: string; state: RootState } // Додаткові параметри
+>('adverts/fetchAdvertById', async (id, ThunkAPI) => {
+  const state = ThunkAPI.getState();
+  const token = state.auth.access;
+
+  try {
+    const response = await API.get<AdvertResponse>(
+      `/api/catalog/adverts/${id}/`,
       {
         headers: {
-          Authorization: `Bearer ${token}`, // Додаємо токен у заголовки
+          Authorization: `Bearer ${token}`,
         },
       }
     );
     return response.data;
   } catch (error: any) {
-    return ThunkAPI.rejectWithValue(error.message);
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+      if (status === 401) {
+        clearToken();
+        return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
+      }
+    }
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
+  }
+});
+
+export const updateAdvertThunk = createAsyncThunk<
+  AdvertResponse, // Тип даних, що повертаються асинхронним дією (оновлене оголошення)
+  { id: number; data: Partial<AdvertData> }, // Параметри - ID оголошення та дані для оновлення
+  { rejectValue: string; state: RootState } // Додаткові параметри
+>('adverts/updateAdvert', async ({ id, data }, ThunkAPI) => {
+  try {
+    const response = await API.patch<AdvertResponse>(
+      `/api/catalog/adverts/${id}/`,
+      data
+    );
+    return response.data;
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+      if (status === 401) {
+        clearToken();
+        return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
+      }
+    }
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
+  }
+});
+
+export const deleteAdvertThunk = createAsyncThunk<
+  number,
+  number,
+  { rejectValue: string; state: RootState }
+>('adverts/deleteAdvert', async (id, ThunkAPI) => {
+
+  try {
+    const response = await API.delete(`/api/catalog/adverts/${id}/`);
+    return id;
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+      if (status === 401) {
+        clearToken();
+        return ThunkAPI.rejectWithValue('Користувач не автентифікований.');
+      }
+    }
+    return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
   }
 });
