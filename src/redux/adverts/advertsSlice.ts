@@ -67,7 +67,6 @@ const advertsSlice = createSlice({
       }
     )
   
-
     .addCase(getAdvertListThunk.fulfilled, (state, { payload }: PayloadAction<AdvertResponse[]>) => {
       state.entities = payload;
       state.isLoading = false;
@@ -80,7 +79,6 @@ const advertsSlice = createSlice({
       state.isLoading = false;
       state.error = payload || 'Не вдалося створити оголошення';
     })
-
 
     .addCase(getAdvertThunk.fulfilled, (state, { payload }: PayloadAction<AdvertResponse>) => {
       const index = state.entities.findIndex(ad => ad.id === payload.id);
@@ -100,7 +98,6 @@ const advertsSlice = createSlice({
       state.error = payload || 'Не вдалося створити оголошення';
     })
 
-
     .addCase(updateAdvertThunk.fulfilled, (state, { payload }: PayloadAction<AdvertResponse>) => {
       const index = state.entities.findIndex(ad => ad.id === payload.id);
       if (index !== -1) {
@@ -116,7 +113,6 @@ const advertsSlice = createSlice({
       state.isLoading = false;
       state.error = payload || 'Не вдалося створити оголошення';
     })
-
 
     .addCase(deleteAdvertThunk.fulfilled, (state, { payload }: PayloadAction<number>) => {
       state.entities = state.entities.filter(ad => ad.id !== payload);
