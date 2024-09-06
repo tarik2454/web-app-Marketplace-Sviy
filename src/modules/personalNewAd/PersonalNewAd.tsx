@@ -27,6 +27,10 @@ import CatalogForm from './components/СatalogForm';
 import { descriptionPlaceholder } from './helpers/description-placeholder-data';
 
 import Modal from '@/shared/components/Modal/Modal';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { selectAdverts } from '@/redux/adverts/advertsSlice';
+import { createAdvertThunk } from '@/redux/adverts/operations';
+import { toast } from 'react-toastify';
 
 interface Category {
   id: string;
@@ -58,6 +62,8 @@ export default function PersonalNewAd() {
   const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
   const [isDeleteModal, setIsDeleteModal] = useState(true);
 
+  const dispatch = useAppDispatch();
+
   const handleSubmit = (values: any, { resetForm }: any): void => {
     const formData = new FormData();
 
@@ -73,35 +79,49 @@ export default function PersonalNewAd() {
     formData.append('subCategory', subCategoryName);
     formData.append('subSubCategory', subSubCategoryName);
 
-    for (const key in values) {
-      if (key === 'photos') {
-        values.photos.forEach((photo: File) => {
-          formData.append('photos', photo);
-        });
-      } else if (!['category', 'subCategory', 'subSubCategory'].includes(key)) {
-        if (Array.isArray(values[key])) {
-          values[key].forEach((value: any) => {
-            formData.append(key, value);
-          });
-        } else {
-          formData.append(key, values[key]);
-        }
-      }
-    }
+    // for (const key in values) {
+    //   if (key === 'photos') {
+    //     values.photos.forEach((photo: File) => {
+    //       formData.append('photos', photo);
+    //     });
+    //   } else if (!['category', 'subCategory', 'subSubCategory'].includes(key)) {
+    //     if (Array.isArray(values[key])) {
+    //       values[key].forEach((value: any) => {
+    //         formData.append(key, value);
+    //       });
+    //     } else {
+    //       formData.append(key, values[key]);
+    //     }
+    //   }
+    // }
 
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
+    // dispatch(createAdvertThunk(formData))
+    //   .unwrap()
+    //   .then(() => {
+    //     console.log(formData);
+    //   })
+    //   .catch(error => {
+    //     toast.error(error);
+    //   });
+
+    // formData.forEach((value, key) => {
+    //   const data = { key: value };
+    //   console.log(data);
+    // });
 
     resetForm();
     handleOpenModal();
     setIsDeleteModal(true);
   };
 
+  // const { entris } = useAppSelector(selectAdverts);
+  // console.log(entris);
+
   const handleCancel = () => {
     handleOpenModal();
     setIsDeleteModal(false);
   };
+
   const handleDeleteForm = () => {
     formik.resetForm();
     handleCloseModal();
@@ -130,6 +150,7 @@ export default function PersonalNewAd() {
     validateOnChange: true,
     validateOnBlur: true,
   });
+
   return (
     <Section className="pt-0 xl:pt-0 md:pt-0 pb-[80px] md:pb-[104px] xl:pb-[164px]">
       <Container>
@@ -349,7 +370,11 @@ export default function PersonalNewAd() {
             </ArrowButton>
           </span>
         </form>
-        <Modal stylesWrapper='!pt-[48px]' isOpen={isOpenModal} onClose={handleCloseModal}>
+        <Modal
+          stylesWrapper="!pt-[48px]"
+          isOpen={isOpenModal}
+          onClose={handleCloseModal}
+        >
           <ModalForm
             handleClose={handleCloseModal}
             isDeleteModal={isDeleteModal}

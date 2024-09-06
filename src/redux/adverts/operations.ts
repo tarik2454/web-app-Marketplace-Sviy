@@ -30,13 +30,10 @@ interface AdvertResponse extends AdvertData {
 export const createAdvertThunk = createAsyncThunk<
   AdvertResponse, // Тип данных, возвращаемых асинхронным действием
   AdvertData, // Тип параметра асинхронного действия (данные для создания объявления)
-  { rejectValue: string; state: RootState } // Тип дополнительных параметров асинхронного действия, включая RootState
+  { rejectValue: string } // Тип дополнительных параметров асинхронного действия, включая RootState
 >('adverts/createAdvert', async (credentials, ThunkAPI) => {
   try {
-    const response = await API.post(
-      '/api/catalog/adverts/',
-      credentials
-    );
+    const response = await API.post('/api/catalog/adverts/', credentials);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -51,8 +48,8 @@ export const createAdvertThunk = createAsyncThunk<
 
 export const getAdvertListThunk = createAsyncThunk<
   AdvertResponse[],
-  void,
-  { rejectValue: string; state: RootState }
+  undefined,
+  { rejectValue: string }
 >('adverts/fetchAdverts', async (_, ThunkAPI) => {
   try {
     const response = await API.get('/api/catalog/adverts/');
@@ -69,15 +66,12 @@ export const getAdvertListThunk = createAsyncThunk<
 });
 
 export const getAdvertThunk = createAsyncThunk<
-  AdvertResponse, 
+  AdvertResponse,
   number,
-  { rejectValue: string; state: RootState }
+  { rejectValue: string }
 >('adverts/fetchAdvertById', async (id, ThunkAPI) => {
-
   try {
-    const response = await API.get(
-      `/api/catalog/adverts/${id}/`
-    );
+    const response = await API.get(`/api/catalog/adverts/${id}/`);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -91,15 +85,12 @@ export const getAdvertThunk = createAsyncThunk<
 });
 
 export const updateAdvertThunk = createAsyncThunk<
-  AdvertResponse, 
+  AdvertResponse,
   { id: number; data: Partial<AdvertData> },
-  { rejectValue: string; state: RootState }
+  { rejectValue: string }
 >('adverts/updateAdvert', async ({ id, data }, ThunkAPI) => {
   try {
-    const response = await API.patch(
-      `/api/catalog/adverts/${id}`,
-      data
-    );
+    const response = await API.patch(`/api/catalog/adverts/${id}`, data);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -115,9 +106,8 @@ export const updateAdvertThunk = createAsyncThunk<
 export const deleteAdvertThunk = createAsyncThunk<
   number,
   number,
-  { rejectValue: string; state: RootState }
+  { rejectValue: string }
 >('adverts/deleteAdvert', async (id, ThunkAPI) => {
-
   try {
     await API.delete(`/api/catalog/adverts/${id}`);
     return id;
@@ -131,4 +121,3 @@ export const deleteAdvertThunk = createAsyncThunk<
     return ThunkAPI.rejectWithValue('Щось пішло не так! Спробуйте знову....');
   }
 });
-

@@ -112,6 +112,6 @@ const advertsSlice = createSlice({
   },
 });
 
-export const selectUsers = (state: RootState) => state.adverts;
+export const selectAdverts = (state: RootState) => state.adverts;
 
 export default advertsSlice.reducer;
