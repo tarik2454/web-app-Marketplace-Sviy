@@ -1,13 +1,4 @@
-export interface MyAd {
-  id: number;
-  number: string;
-  date: string;
-  image: string;
-  description: string;
-  price: string;
-}
-
-const adsData: MyAd[] = [
+const adsData = [
   {
     id: 1,
     number: '№ 1223',

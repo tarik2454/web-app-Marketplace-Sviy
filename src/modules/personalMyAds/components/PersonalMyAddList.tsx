@@ -3,9 +3,16 @@ import Image from 'next/image';
 import OrderImage from '@/shared/img/salo.jpeg';
 import adsData from '../data/my-add-data';
 import options from '../data/my-options-data';
-import { MyAd } from '../types';
 
 
+interface MyAd {
+  id: number;
+  number: string;
+  date: string;
+  image: string;
+  description: string;
+  price: string;
+}
 export default function PersonalMyAdsList() {
   return (
     <>
