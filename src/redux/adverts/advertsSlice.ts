@@ -52,11 +52,14 @@ const advertsSlice = createSlice({
     builder
       .addCase(createAdvertThunk.fulfilled, (state, { payload }) => {
         state.entities.push(payload);
+        console.log(state.entities);
+        console.log(state.entities)
         state.isLoading = false;
         state.error = '';
       })
       .addCase(getAdvertListThunk.fulfilled, (state, { payload }) => {
         state.entities = payload;
+        console.log(state.entities);
         state.isLoading = false;
         state.error = '';
       })
@@ -64,6 +67,7 @@ const advertsSlice = createSlice({
         const index = state.entities.findIndex(ad => ad.id === payload.id);
         if (index !== -1) {
           state.entities[index] = payload;
+          console.log( state.entities);
         } else {
           state.entities.push(payload);
         }
