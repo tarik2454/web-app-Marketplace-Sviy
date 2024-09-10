@@ -65,51 +65,8 @@ export default function PersonalNewAd() {
   const dispatch = useAppDispatch();
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
-    const formData = new FormData();
-
-    const categoryName =
-      catalogData.find(cat => cat.id === values.category)?.name || '';
-    const subCategoryName =
-      subCategories.find(sub => sub.id === values.subCategory)?.name || '';
-    const subSubCategoryName =
-      subSubCategories.find(subSub => subSub.id === values.subSubCategory)
-        ?.name || '';
-
-    formData.append('category', categoryName);
-    formData.append('subCategory', subCategoryName);
-    formData.append('subSubCategory', subSubCategoryName);
-
-    // for (const key in values) {
-    //   if (key === 'photos') {
-    //     values.photos.forEach((photo: File) => {
-    //       formData.append('photos', photo);
-    //     });
-    //   } else if (!['category', 'subCategory', 'subSubCategory'].includes(key)) {
-    //     if (Array.isArray(values[key])) {
-    //       values[key].forEach((value: any) => {
-    //         formData.append(key, value);
-    //       });
-    //     } else {
-    //       formData.append(key, values[key]);
-    //     }
-    //   }
-    // }
-
-    // dispatch(createAdvertThunk(formData))
-    //   .unwrap()
-    //   .then(() => {
-    //     console.log(formData);
-    //   })
-    //   .catch(error => {
-    //     toast.error(error);
-    //   });
-
-    // formData.forEach((value, key) => {
-    //   const data = { key: value };
-    //   console.log(data);
-    // });
-
     resetForm();
+    console.log(values);
     handleOpenModal();
     setIsDeleteModal(true);
   };
@@ -139,11 +96,11 @@ export default function PersonalNewAd() {
       availability: '',
       location: '',
       deliveryMethods: [],
-      deliveryCom: '',
+      diliveryComment: '',
       pay: [],
       card: '',
       comment: '',
-      photos: [],
+      // photos: [],
     },
     validationSchema: validationSchemaNewAd,
     onSubmit: handleSubmit,
@@ -351,10 +308,10 @@ export default function PersonalNewAd() {
               </span>
             </span>
             <span className="basik-1/4 mb-8 md:mb-10 xl:mb-0">
-              <InputPhoto
+              {/* <InputPhoto
                 formik={formik}
                 setFieldValue={formik.setFieldValue}
-              />
+              /> */}
             </span>
           </span>
           <span className="flex gap-2">
@@ -385,3 +342,47 @@ export default function PersonalNewAd() {
     </Section>
   );
 }
+
+// const categoryName =
+//   catalogData.find(cat => cat.id === values.category)?.name || '';
+// const subCategoryName =
+//   subCategories.find(sub => sub.id === values.subCategory)?.name || '';
+// const subSubCategoryName =
+//   subSubCategories.find(subSub => subSub.id === values.subSubCategory)
+//     ?.name || '';
+
+// const formData = new FormData();
+
+// formData.append('category', categoryName);
+// formData.append('subCategory', subCategoryName);
+// formData.append('subSubCategory', subSubCategoryName);
+
+// for (const key in values) {
+//   if (key === 'photos') {
+//     values.photos.forEach((photo: File) => {
+//       formData.append('photos', photo);
+//     });
+//   } else if (!['category', 'subCategory', 'subSubCategory'].includes(key)) {
+//     if (Array.isArray(values[key])) {
+//       values[key].forEach((value: any) => {
+//         formData.append(key, value);
+//       });
+//     } else {
+//       formData.append(key, values[key]);
+//     }
+//   }
+// }
+
+// dispatch(createAdvertThunk(formData))
+//   .unwrap()
+//   .then(() => {
+//     console.log(formData);
+//   })
+//   .catch(error => {
+//     toast.error(error);
+//   });
+
+// formData.forEach((value, key) => {
+//   const data = { key: value };
+//   console.log(data);
+// });
