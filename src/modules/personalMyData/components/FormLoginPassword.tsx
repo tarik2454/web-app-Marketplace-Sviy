@@ -59,7 +59,7 @@ export default function FormLoginPassword() {
 
   return (
     <>
-      <h3 className="text-2xl xl:mb-7 md:mb-10 mb-0">Логін та пароль</h3>
+      <h3 className="text-2xl xl:mb-7 md:mb-10 mb-0">Емейл та пароль</h3>
 
       <form
         className="flex flex-col gap-8 md:gap-10"
@@ -69,7 +69,7 @@ export default function FormLoginPassword() {
           <FormInput
             formik={formik}
             name="email"
-            label={'Логін'}
+            label={'Емейл'}
             inputType="email"
             classNameLogin="mb-2 ml-0"
             readOnly
