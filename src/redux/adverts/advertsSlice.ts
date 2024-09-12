@@ -20,7 +20,7 @@ interface AdvertData {
   name: string;
   descr: string;
   price: string;
-  quantity: number;
+  quantity?: number;
   pickup: boolean;
   nova_post: boolean;
   courier: boolean;
