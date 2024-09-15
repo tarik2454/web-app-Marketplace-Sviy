@@ -67,44 +67,8 @@ export default function PersonalNewAd() {
   
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
-    console.log(values)
-        const categoryName =
-      catalogData.find(cat => cat.id === values.category)?.name || '';
-    const subCategoryName =
-      subCategories.find(sub => sub.id === values.subCategory)?.name || '';
-    const subSubCategoryName =
-      subSubCategories.find(subSub => subSub.id === values.subSubCategory)
-        ?.name || '';
-
-    const formData = {
-      owner: 1, 
-      category: values.category,
-      name: values.title,
-      descr: values.descr,
-      price: values.price, 
-      pickup: values.deliveryMethods.includes('pickup'),
-      nova_post: values.deliveryMethods.includes('nova_post'),
-      courier: values.deliveryMethods.includes('courier'),
-      address: {
-        city: values.location, 
-        street: 'Your street', 
-        number: '7', 
-      },
-    };
-
-     console.log('formData', formData); 
-
-    dispatch(createAdvertThunk((formData)))
-      .unwrap()
-      .then(() => {
-        console.log('Advert created');
-      })
-      .catch(error => {
-
-        toast.error(error);
-      });
-
     resetForm();
+    console.log(values);
     handleOpenModal();
     setIsDeleteModal(true);
   };
@@ -133,7 +97,7 @@ export default function PersonalNewAd() {
       availability: '',
       location: '',
       deliveryMethods: [],
-      deliveryCom: '',
+      diliveryComment: '',
       pay: [],
       card: '',
       comment: '',
@@ -345,10 +309,10 @@ export default function PersonalNewAd() {
               </span>
             </span>
             <span className="basik-1/4 mb-8 md:mb-10 xl:mb-0">
-              <InputPhoto
+              {/* <InputPhoto
                 formik={formik}
                 setFieldValue={formik.setFieldValue}
-              />
+              /> */}
             </span>
           </span>
           <span className="flex gap-2">
@@ -380,52 +344,3 @@ export default function PersonalNewAd() {
   );
 }
 
-//____________________________________________________________________________________________________________________________
-
-// const categoryName =
-//   catalogData.find(cat => cat.id === values.category)?.name || '';
-// const subCategoryName =
-//   subCategories.find(sub => sub.id === values.subCategory)?.name || '';
-// const subSubCategoryName =
-//   subSubCategories.find(subSub => subSub.id === values.subSubCategory)
-//     ?.name || '';
-
-// const formData = new FormData();
-
-// formData.append('category', categoryName);
-// formData.append('subCategory', subCategoryName);
-// formData.append('subSubCategory', subSubCategoryName);
-
-// for (const key in values) {
-//   if (key === 'photos') {
-//     values.photos.forEach((photo: File) => {
-//       formData.append('photos', photo);
-//     });
-//   } else if (!['category', 'subCategory', 'subSubCategory'].includes(key)) {
-//     if (Array.isArray(values[key])) {
-//       values[key].forEach((value: any) => {
-//         formData.append(key, value);
-//       });
-//     } else {
-//       formData.append(key, values[key]);
-//     }
-//   }
-// }
-
-// dispatch(createAdvertThunk(formData))
-//   .unwrap()
-//   .then(() => {
-//     console.log(formData);
-//   })
-//   .catch(error => {
-//     toast.error(error);
-//   });
-
-// formData.forEach((value, key) => {
-//   const data = { key: value };
-//   console.log(data);
-// });
-
-
-
-//_________________________________________________________________________________________________________________________________________
