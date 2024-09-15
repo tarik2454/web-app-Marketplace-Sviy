@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 
 import {
@@ -29,7 +29,7 @@ import { descriptionPlaceholder } from './helpers/description-placeholder-data';
 import Modal from '@/shared/components/Modal/Modal';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectAdverts } from '@/redux/adverts/advertsSlice';
-import { createAdvertThunk } from '@/redux/adverts/operations';
+import { createAdvertThunk, getAdvertListThunk } from '@/redux/adverts/operations';
 import { toast } from 'react-toastify';
 
 interface Category {
@@ -62,7 +62,9 @@ export default function PersonalNewAd() {
   const { isOpenModal, handleOpenModal, handleCloseModal } = useModal();
   const [isDeleteModal, setIsDeleteModal] = useState(true);
 
+  const { entities, isLoading, error } = useAppSelector(selectAdverts);
   const dispatch = useAppDispatch();
+  
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
     resetForm();
@@ -71,8 +73,7 @@ export default function PersonalNewAd() {
     setIsDeleteModal(true);
   };
 
-  // const { entris } = useAppSelector(selectAdverts);
-  // console.log(entris);
+
 
   const handleCancel = () => {
     handleOpenModal();
@@ -88,10 +89,10 @@ export default function PersonalNewAd() {
     initialValues: {
       title: '',
       category: '',
-      subCategory: '',
-      subSubCategory: '',
-      description: '',
-      quantity: 0,
+      // subCategory: '',
+      // subSubCategory: '',
+      descr: '',
+      price: '',
       unit: '',
       availability: '',
       location: '',
@@ -137,7 +138,7 @@ export default function PersonalNewAd() {
               />
               <FormInput
                 formik={formik}
-                name="description"
+                name="descr"
                 placeholder={descriptionPlaceholder}
                 label={'Опис товару'}
                 inputType="textarea"
@@ -148,14 +149,14 @@ export default function PersonalNewAd() {
                 <span className="w-full md:w-[301px]">
                   <FormInput
                     formik={formik}
-                    name="quantity"
+                    name="price"
                     placeholder="Вартість"
                     label={
                       <span>
                         Вартість<span className="text-red-900"> *</span>
                       </span>
                     }
-                    inputType="number"
+                    inputType="text"
                     classNameLogin="!text-xl mb-4 !ml-0"
                   />
                 </span>
@@ -343,46 +344,3 @@ export default function PersonalNewAd() {
   );
 }
 
-// const categoryName =
-//   catalogData.find(cat => cat.id === values.category)?.name || '';
-// const subCategoryName =
-//   subCategories.find(sub => sub.id === values.subCategory)?.name || '';
-// const subSubCategoryName =
-//   subSubCategories.find(subSub => subSub.id === values.subSubCategory)
-//     ?.name || '';
-
-// const formData = new FormData();
-
-// formData.append('category', categoryName);
-// formData.append('subCategory', subCategoryName);
-// formData.append('subSubCategory', subSubCategoryName);
-
-// for (const key in values) {
-//   if (key === 'photos') {
-//     values.photos.forEach((photo: File) => {
-//       formData.append('photos', photo);
-//     });
-//   } else if (!['category', 'subCategory', 'subSubCategory'].includes(key)) {
-//     if (Array.isArray(values[key])) {
-//       values[key].forEach((value: any) => {
-//         formData.append(key, value);
-//       });
-//     } else {
-//       formData.append(key, values[key]);
-//     }
-//   }
-// }
-
-// dispatch(createAdvertThunk(formData))
-//   .unwrap()
-//   .then(() => {
-//     console.log(formData);
-//   })
-//   .catch(error => {
-//     toast.error(error);
-//   });
-
-// formData.forEach((value, key) => {
-//   const data = { key: value };
-//   console.log(data);
-// });

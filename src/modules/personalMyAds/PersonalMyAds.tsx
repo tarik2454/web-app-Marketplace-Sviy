@@ -6,38 +6,38 @@ import {
   Section,
 } from '@/shared/components';
 import PersonalMyAdsItems from './components/PersonalMyAddItems';
-// import { useDispatch } from 'react-redux';
-// import {
-//   createAdvertThunk,
-//   deleteAdvertThunk,
-//   getAdvertListThunk,
-//   getAdvertThunk,
-//   updateAdvertThunk,
-// } from '@/redux/adverts/operations';
+import { useDispatch } from 'react-redux';
+import {
+  createAdvertThunk,
+  deleteAdvertThunk,
+  getAdvertListThunk,
+  getAdvertThunk,
+  updateAdvertThunk,
+} from '@/redux/adverts/operations';
 
 export default function PersonalMyAds() {
   const { isOnMobile, isOnTablet } = ScreenSize();
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const handleCreateAdvert = () => {
-  //   console.log('Create Advert button clicked');
-  //   const advertData = {
-  //     owner: 1,
-  //     category: 2,
-  //     name: 'NIK',
-  //     descr: 'mas',
-  //     price: '77',
-  //     quantity: 32,
-  //     pickup: true,
-  //     nova_post: true,
-  //     courier: true,
-  //     address: {
-  //       city: 'Kherson',
-  //       street: 'Any',
-  //       number: '7',
-  //     },
-  //   };
+  const handleCreateAdvert = () => {
+    console.log('Create Advert button clicked');
+    const advertData = {
+      owner: 1,
+      category: 2,
+      name: 'NIK',
+      descr: 'mas',
+      price: '77',
+      quantity: 32,
+      pickup: true,
+      nova_post: true,
+      courier: true,
+      address: {
+        city: 'Kherson',
+        street: 'Any',
+        number: '7',
+      },
+    };
   //   dispatch(createAdvertThunk(advertData))
   //     .unwrap()
   //     .then(response => console.log('Advert created:', response))
@@ -59,27 +59,27 @@ export default function PersonalMyAds() {
   //     .unwrap()
   //     .then(response => console.log('Advert fetched by ID:', response))
   //     .catch(error => console.error('Error fetching advert by ID:', error));
-  // };
+  };
 
-  // const handleUpdateAdvert = () => {
-  //   console.log('Update Advert button clicked');
-  //   const advertId = 1; // замінити на існуючий ID
-  //   const updateData = {
-  //     owner: 1,
-  //     category: 2,
-  //     name: 'Updated Name',
-  //     descr: 'Updated Description',
-  //     price: '99',
-  //     quantity: 32,
-  //     pickup: true,
-  //     nova_post: true,
-  //     courier: true,
-  //     address: {
-  //       city: 'Kherson',
-  //       street: 'Any',
-  //       number: '7',
-  //     },
-  //   };
+  const handleUpdateAdvert = () => {
+    console.log('Update Advert button clicked');
+    const advertId = 1; // замінити на існуючий ID
+    const updateData = {
+      owner: 1,
+      category: 2,
+      name: 'Updated Name',
+      descr: 'Updated Description',
+      price: '99',
+      quantity: 32,
+      pickup: true,
+      nova_post: true,
+      courier: true,
+      address: {
+        city: 'Kherson',
+        street: 'Any',
+        number: '7',
+      },
+    };
   //   dispatch(updateAdvertThunk({ id: advertId, data: updateData }))
   //     .unwrap()
   //     .then(response => console.log('Advert updated:', response))
@@ -93,7 +93,7 @@ export default function PersonalMyAds() {
   //     .unwrap()
   //     .then(response => console.log('Advert deleted, ID:', response))
   //     .catch(error => console.error('Error deleting advert:', error));
-  // };
+  };
 
   return (
     <Section className="pt-0 xl:pt-0 md:pt-0 pb-[80px] md:pb-[104px] xl:pb-[164px]">

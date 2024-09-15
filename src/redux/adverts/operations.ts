@@ -16,7 +16,7 @@ interface AdvertData {
   name: string;
   descr: string;
   price: string;
-  quantity: number;
+  quantity?: number;
   pickup: boolean;
   nova_post: boolean;
   courier: boolean;
@@ -33,7 +33,14 @@ export const createAdvertThunk = createAsyncThunk<
   { rejectValue: string } // Тип дополнительных параметров асинхронного действия, включая RootState
 >('adverts/createAdvert', async (credentials, ThunkAPI) => {
   try {
-    const response = await API.post('/api/catalog/adverts/', credentials);
+    const response = await API.post('/api/catalog/adverts/', credentials, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+      
+    );
+
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
