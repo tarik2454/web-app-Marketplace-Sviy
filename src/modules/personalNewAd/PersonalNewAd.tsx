@@ -89,18 +89,18 @@ export default function PersonalNewAd() {
     initialValues: {
       title: '',
       category: '',
-      // subCategory: '',
-      // subSubCategory: '',
+      subCategory: '',
+      subSubCategory: '',
       descr: '',
       price: '',
       unit: '',
       availability: '',
       location: '',
       deliveryMethods: [],
-      diliveryComment: '',
-      pay: [],
-      card: '',
-      comment: '',
+      deliveryComment: '',
+      payment: [],
+      paymentCard: '',
+      paymentComment: '',
       // photos: [],
     },
     validationSchema: validationSchemaNewAd,
@@ -260,7 +260,7 @@ export default function PersonalNewAd() {
                 {isChecked && (
                   <FormInput
                     formik={formik}
-                    name="diliveryComment"
+                    name="deliveryComment"
                     placeholder="Львів"
                     label={''}
                     inputType="textarea"
@@ -273,14 +273,14 @@ export default function PersonalNewAd() {
                     <span className="w-full md:w-[487px]">
                       <span onChange={() => setIsCheckedPay(!isCheckedPay)}>
                         <CheckboxForm
-                          name="pay"
+                          name="payment"
                           labelText="На картку продавця"
                           formik={formik}
                         />
                       </span>
                       <FormInput
                         formik={formik}
-                        name="card"
+                        name="paymentCard"
                         placeholder="0000 0000 0000 0000"
                         label={'Вкажіть номер картки'}
                         inputType="number"
@@ -290,13 +290,13 @@ export default function PersonalNewAd() {
                     </span>
                     <span className="w-full md:w-[378px]">
                       <CheckboxForm
-                        name="pay"
+                        name="payment"
                         labelText="Оплата під час отримання товару"
                         formik={formik}
                       />
                       <FormInput
                         formik={formik}
-                        name="comment"
+                        name="paymentComment"
                         placeholder="Наприклад: Бескоштовна доставка на суму від 1000 грн"
                         label={'Коментар'}
                         inputType="textarea"
