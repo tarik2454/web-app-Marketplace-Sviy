@@ -22,12 +22,12 @@ const validationSchemaNewAd = Yup.object({
   diliveryComment: Yup.string()
     .min(2, 'Опис повинен містити принаймні 2 символи')
     .max(1024, 'Опис не повинен перевищувати 256 символів'),
-  card: Yup.string().test(
+  paymentCard: Yup.string().test(
     'card-validation',
     'Введіть коректний номер карти',
     function (value) {
-      const { pay } = this.parent;
-      if (pay.includes('На картку продавця')) {
+      const { payment } = this.parent;
+      if (payment.includes('На картку продавця')) {
         return Yup.string()
           .required("Номер карти обов'язковий")
           .length(16, 'Номер карти повинен містити рівно 16 символів')
@@ -37,7 +37,7 @@ const validationSchemaNewAd = Yup.object({
       return true;
     }
   ),
-  comment: Yup.string()
+  paymentComment: Yup.string()
     .min(2, 'Опис повинен містити принаймні 2 символи')
     .max(1024, 'Опис не повинен перевищувати 256 символів'),
 });
