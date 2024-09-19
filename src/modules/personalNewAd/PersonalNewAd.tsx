@@ -29,7 +29,10 @@ import { descriptionPlaceholder } from './helpers/description-placeholder-data';
 import Modal from '@/shared/components/Modal/Modal';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { selectAdverts } from '@/redux/adverts/advertsSlice';
-import { createAdvertThunk, getAdvertListThunk } from '@/redux/adverts/operations';
+import {
+  createAdvertThunk,
+  getAdvertListThunk,
+} from '@/redux/adverts/operations';
 import { toast } from 'react-toastify';
 
 interface Category {
@@ -64,7 +67,6 @@ export default function PersonalNewAd() {
 
   const { entities, isLoading, error } = useAppSelector(selectAdverts);
   const dispatch = useAppDispatch();
-  
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
     resetForm();
@@ -72,8 +74,6 @@ export default function PersonalNewAd() {
     handleOpenModal();
     setIsDeleteModal(true);
   };
-
-
 
   const handleCancel = () => {
     handleOpenModal();
@@ -101,7 +101,7 @@ export default function PersonalNewAd() {
       payment: [],
       paymentCard: '',
       paymentComment: '',
-      // photos: [],
+      photos: [],
     },
     validationSchema: validationSchemaNewAd,
     onSubmit: handleSubmit,
@@ -343,4 +343,3 @@ export default function PersonalNewAd() {
     </Section>
   );
 }
-
