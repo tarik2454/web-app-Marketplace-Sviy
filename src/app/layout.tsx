@@ -25,10 +25,6 @@ export default function RootLayout({
     <StoreProvider>
       <html lang="en" suppressHydrationWarning={isDev}>
         {/* <body className="font-lato font-normal"> */}
-        <meta
-          http-equiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        />
         <body>
           <ToastProvider>
             <Header />

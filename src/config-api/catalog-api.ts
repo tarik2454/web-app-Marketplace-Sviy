@@ -3,7 +3,7 @@ import { API } from './global-config-api';
 
 export const fetchCatalog = async () => {
   try {
-    const response = await API.get('/api/catalog/category/');
+    const response = await API.get('/api/catalog/category');
     return response.data.results;
   } catch (error) {
     if (axios.isAxiosError(error)) {
