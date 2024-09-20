@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 
 // Define a type for  API
 export const API: AxiosInstance = axios.create({
-  baseURL: 'https://cors-anywhere.herokuapp.com/http://13.60.194.15:80',
+  baseURL: 'http://13.60.194.15:80',
 });
 
 // `token` parameter is typed as a string
