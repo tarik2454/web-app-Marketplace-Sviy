@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npx next dev -p 3000",
+    "dev": "npx next dev -p 0080",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
