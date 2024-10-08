@@ -8,11 +8,11 @@ import {
 } from './operations';
 import { RootState } from '../store';
 
-interface Address {
-  city: string;
-  street: string;
-  number: string;
-}
+// interface Address {
+//   city: string;
+//   street: string;
+//   number: string;
+// }
 
 interface AdvertData {
   owner: number;
@@ -20,13 +20,29 @@ interface AdvertData {
   name: string;
   descr: string;
   price: string;
-  quantity?: number;
-  pickup: boolean;
-  // payment_card: string;
-  nova_post: boolean;
-  courier: boolean;
-  address: Address;
+  unit: string;
+  availability: string;
+  location: string;
+  delivery_methods: string[];
+  delivery_comment: string;
+  payment_methods: string[];
+  payment_card: string;
+  payment_comment: string;
 }
+
+// name: '',
+// // category: 0,
+// descr: '',
+// price: '',
+// unit: '',
+// availability: '',
+// location: '',
+// delivery_methods: [],
+// delivery_comment: '',
+// payment: [],
+// payment_card: '',
+// payment_comment: '',
+// photos: [],
 
 interface AdvertResponse extends AdvertData {
   id: number;

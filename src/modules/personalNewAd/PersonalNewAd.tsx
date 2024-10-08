@@ -69,6 +69,7 @@ export default function PersonalNewAd() {
   const dispatch = useAppDispatch();
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
+    dispatch(createAdvertThunk(values));
     resetForm();
     console.log(values);
     handleOpenModal();
@@ -89,8 +90,6 @@ export default function PersonalNewAd() {
     initialValues: {
       name: '',
       // category: '',
-      // subCategory: '',
-      // subSubCategory: '',
       descr: '',
       price: '',
       unit: '',
