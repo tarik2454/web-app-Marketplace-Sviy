@@ -87,20 +87,20 @@ export default function PersonalNewAd() {
 
   const formik = useFormik({
     initialValues: {
-      title: '',
-      category: '',
-      subCategory: '',
-      subSubCategory: '',
+      name: '',
+      // category: '',
+      // subCategory: '',
+      // subSubCategory: '',
       descr: '',
       price: '',
       unit: '',
       availability: '',
       location: '',
-      deliveryMethods: [],
-      deliveryComment: '',
+      delivery_methods: [],
+      delivery_comment: '',
       payment: [],
-      paymentCard: '',
-      paymentComment: '',
+      payment_card: '',
+      payment_comment: '',
       photos: [],
     },
     validationSchema: validationSchemaNewAd,
@@ -117,7 +117,7 @@ export default function PersonalNewAd() {
             <span className="basik-3/4">
               <FormInput
                 formik={formik}
-                name="title"
+                name="name"
                 placeholder="Назва оголошення"
                 label={
                   <span>
