@@ -30,20 +30,6 @@ interface AdvertData {
   payment_comment: string;
 }
 
-// name: '',
-// // category: 0,
-// descr: '',
-// price: '',
-// unit: '',
-// availability: '',
-// location: '',
-// delivery_methods: [],
-// delivery_comment: '',
-// payment: [],
-// payment_card: '',
-// payment_comment: '',
-// photos: [],
-
 interface AdvertResponse extends AdvertData {
   id: number;
 }

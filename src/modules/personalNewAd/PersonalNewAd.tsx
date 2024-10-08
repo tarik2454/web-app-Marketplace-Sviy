@@ -69,9 +69,9 @@ export default function PersonalNewAd() {
   const dispatch = useAppDispatch();
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
+    console.log(values);
     dispatch(createAdvertThunk(values));
     resetForm();
-    console.log(values);
     handleOpenModal();
     setIsDeleteModal(true);
   };
@@ -88,6 +88,7 @@ export default function PersonalNewAd() {
 
   const formik = useFormik({
     initialValues: {
+      owner: 1,
       name: '',
       // category: '',
       descr: '',
@@ -97,10 +98,9 @@ export default function PersonalNewAd() {
       location: '',
       delivery_methods: [],
       delivery_comment: '',
-      payment: [],
+      payment_methods: [],
       payment_card: '',
       payment_comment: '',
-      photos: [],
     },
     validationSchema: validationSchemaNewAd,
     onSubmit: handleSubmit,
