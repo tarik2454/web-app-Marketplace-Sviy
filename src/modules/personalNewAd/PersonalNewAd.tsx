@@ -102,7 +102,7 @@ export default function PersonalNewAd() {
       payment_card: '',
       payment_comment: '',
     },
-    validationSchema: validationSchemaNewAd,
+    // validationSchema: validationSchemaNewAd,
     onSubmit: handleSubmit,
     validateOnChange: true,
     validateOnBlur: true,
