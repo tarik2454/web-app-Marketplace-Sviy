@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 
 // Define a type for  API
 export const API: AxiosInstance = axios.create({
-  baseURL: 'http://localhost',
+  baseURL: 'https://13.60.194.15',
 });
 
 // `token` parameter is typed as a string

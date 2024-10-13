@@ -34,6 +34,7 @@ import {
   getAdvertListThunk,
 } from '@/redux/adverts/operations';
 import { toast } from 'react-toastify';
+import { createPhotosThunk } from '@/redux/advertsPhotos/operations';
 
 interface Category {
   id: string;
@@ -69,6 +70,16 @@ export default function PersonalNewAd() {
   const dispatch = useAppDispatch();
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
+
+    dispatch(
+      createPhotosThunk({
+        photos: values.photos,
+        advertId: 2, 
+        types: ['0', '1'],
+      })
+    );
+    resetForm();
+
     console.log(values);
     dispatch(createAdvertThunk(values));
     resetForm();
@@ -308,10 +319,10 @@ export default function PersonalNewAd() {
               </span>
             </span>
             <span className="basik-1/4 mb-8 md:mb-10 xl:mb-0">
-              {/* <InputPhoto
+              <InputPhoto
                 formik={formik}
                 setFieldValue={formik.setFieldValue}
-              /> */}
+              />
             </span>
           </span>
           <span className="flex gap-2">
