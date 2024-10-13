@@ -70,6 +70,7 @@ export default function PersonalNewAd() {
   const dispatch = useAppDispatch();
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
+
     dispatch(
       createPhotosThunk({
         photos: values.photos,
@@ -77,9 +78,11 @@ export default function PersonalNewAd() {
         types: ['0', '1'],
       })
     );
-
     resetForm();
+
     console.log(values);
+    dispatch(createAdvertThunk(values));
+    resetForm();
     handleOpenModal();
     setIsDeleteModal(true);
   };
@@ -96,21 +99,19 @@ export default function PersonalNewAd() {
 
   const formik = useFormik({
     initialValues: {
-      title: '',
-      category: '',
-      subCategory: '',
-      subSubCategory: '',
+      owner: 1,
+      name: '',
+      // category: '',
       descr: '',
       price: '',
       unit: '',
       availability: '',
       location: '',
-      deliveryMethods: [],
-      deliveryComment: '',
-      payment: [],
-      paymentCard: '',
-      paymentComment: '',
-      photos: [],
+      delivery_methods: [],
+      delivery_comment: '',
+      payment_methods: [],
+      payment_card: '',
+      payment_comment: '',
     },
     // validationSchema: validationSchemaNewAd,
     onSubmit: handleSubmit,
@@ -126,7 +127,7 @@ export default function PersonalNewAd() {
             <span className="basik-3/4">
               <FormInput
                 formik={formik}
-                name="title"
+                name="name"
                 placeholder="Назва оголошення"
                 label={
                   <span>

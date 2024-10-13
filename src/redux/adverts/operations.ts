@@ -4,11 +4,11 @@ import { RootState } from '../store';
 import axios from 'axios';
 
 // Типы данных для объявления и ответа
-interface Address {
-  city: string;
-  street: string;
-  number: string;
-}
+// interface Address {
+//   city: string;
+//   street: string;
+//   number: string;
+// }
 
 interface AdvertData {
   owner: number;
@@ -16,11 +16,14 @@ interface AdvertData {
   name: string;
   descr: string;
   price: string;
-  quantity?: number;
-  pickup: boolean;
-  nova_post: boolean;
-  courier: boolean;
-  address: Address;
+  unit: string;
+  availability: string;
+  location: string;
+  delivery_methods: string[];
+  delivery_comment: string;
+  payment_methods: string[];
+  payment_card: string;
+  payment_comment: string;
 }
 
 interface AdvertResponse extends AdvertData {
@@ -37,9 +40,7 @@ export const createAdvertThunk = createAsyncThunk<
       headers: {
         'Content-Type': 'application/json',
       },
-    }
-      
-    );
+    });
 
     return response.data;
   } catch (error) {
