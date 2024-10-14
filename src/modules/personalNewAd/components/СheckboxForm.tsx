@@ -3,7 +3,8 @@ import { FormikProps } from 'formik';
 
 interface CheckboxFormProps {
   name: string;
-  labelText: string;
+  labelText: string; // текст для відображення
+  value: string; // значення для валідації
   formik: FormikProps<any>;
   className?: string;
   id?: string;
@@ -13,6 +14,7 @@ interface CheckboxFormProps {
 export default function CheckboxForm({
   name,
   labelText,
+  value, // новий пропс для значення валідації
   formik,
   className,
   id,
@@ -26,9 +28,9 @@ export default function CheckboxForm({
       : [];
 
     if (isChecked) {
-      updatedValues.push(labelText);
+      updatedValues.push(value); // використовуємо value для валідації
     } else {
-      updatedValues = updatedValues.filter(item => item !== labelText);
+      updatedValues = updatedValues.filter(item => item !== value); // використовуємо value для видалення
     }
 
     formik.setFieldValue(name, updatedValues);
@@ -42,15 +44,13 @@ export default function CheckboxForm({
             id={id}
             name={name}
             type="checkbox"
-            checked={formik.values[name]?.includes(labelText)}
+            checked={formik.values[name]?.includes(value)} // перевірка за value
             onChange={handleChange}
             className="mr-2"
           />
           <span className="text-[16px]">{labelText}</span>
         </label>
-        {error && (
-          <p className="error">{String(error)}</p>
-        )}
+        {error && <p className="error">{String(error)}</p>}
       </span>
     </div>
   );

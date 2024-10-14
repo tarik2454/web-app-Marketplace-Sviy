@@ -1,13 +1,13 @@
 export const optionsUnit = [
-  { value: 'шт', label: 'Шт' },
-  { value: 'кг', label: 'Кг' },
-  { value: 'гр', label: 'Гр' },
-  { value: 'літ', label: 'Літ' },
+  { value: 'pcs', label: 'Шт' },
+  { value: 'kg', label: 'Кг' },
+  { value: 'g', label: 'Гр' },
+  { value: 'l', label: 'Літ' },
 ];
 
 export const optionsAvailability = [
-  { value: 'В наявності', label: 'В наявності' },
-  { value: 'Під замовлення', label: 'Під замовлення' },
+  { value: 'available', label: 'В наявності' },
+  { value: 'order', label: 'Під замовлення' },
 ];
 
 export const optionsLocation = [

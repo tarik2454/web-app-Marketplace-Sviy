@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 interface CreatePhotosParams {
   photos: File[];
   advertId: number;
-  types: string[];
 }
 
 export interface Type {
@@ -18,7 +17,6 @@ interface UploadResponse {
   data: {
     id: number;
     url: string;
-    types: Type[];
   }[];
 }
 
@@ -26,7 +24,7 @@ export const createPhotosThunk = createAsyncThunk<
   UploadResponse,
   CreatePhotosParams,
   { rejectValue: string }
->('photos/submit', async ({ photos, advertId, types }, ThunkAPI) => {
+>('photos/submit', async ({ photos, advertId }, ThunkAPI) => {
   const formData = new FormData();
 
   photos.forEach(photo => {
@@ -35,9 +33,6 @@ export const createPhotosThunk = createAsyncThunk<
 
   formData.append('advert', String(advertId));
 
-  types.forEach(type => {
-    formData.append('types', type);
-  });
 
   try {
     const response = await API.post<UploadResponse>(
