@@ -35,6 +35,7 @@ import {
 } from '@/redux/adverts/operations';
 import { toast } from 'react-toastify';
 import { createPhotosThunk } from '@/redux/advertsPhotos/operations';
+import CardInput from './components/CardInput';
 
 interface Category {
   id: string;
@@ -70,19 +71,31 @@ export default function PersonalNewAd() {
   const dispatch = useAppDispatch();
 
   const handleSubmit = (values: any, { resetForm }: any): void => {
+    dispatch(createAdvertThunk(values))
+      .then((resultAction: any) => {
+        const createdAd = resultAction.payload;
 
-    dispatch(
-      createPhotosThunk({
-        photos: values.photos,
-        advertId: 2, 
-        types: ['0', '1'],
+        if (
+          createdAd &&
+          createdAd.id &&
+          Array.isArray(values.photos) &&
+          values.photos.length > 0
+        ) {
+          const advertId = createdAd.id;
+
+          console.log('ID оголошення:', advertId);
+
+          dispatch(createPhotosThunk({ photos: values.photos, advertId }))
+            .then(() => {
+              console.log('Фото успішно завантажено');
+            })
+            .catch(error => console.log(error));
+        }
       })
-    );
+      .catch(error => console.log(error));
+
     resetForm();
 
-    console.log(values);
-    dispatch(createAdvertThunk(values));
-    resetForm();
     handleOpenModal();
     setIsDeleteModal(true);
   };
@@ -100,8 +113,8 @@ export default function PersonalNewAd() {
   const formik = useFormik({
     initialValues: {
       owner: 1,
+      category: '',
       name: '',
-      // category: '',
       descr: '',
       price: '',
       unit: '',
@@ -112,6 +125,7 @@ export default function PersonalNewAd() {
       payment_methods: [],
       payment_card: '',
       payment_comment: '',
+      photos: [],
     },
     // validationSchema: validationSchemaNewAd,
     onSubmit: handleSubmit,
@@ -251,26 +265,29 @@ export default function PersonalNewAd() {
                 <span className="flex gap-8 md:gap-[113px] mt-4 mb-6">
                   <span onChange={() => setIsChecked(!isChecked)}>
                     <CheckboxForm
-                      name="deliveryMethods"
+                      name="delivery_methods"
                       labelText="Самовивіз"
+                      value="pickup"
                       formik={formik}
                     />
                   </span>
                   <CheckboxForm
-                    name="deliveryMethods"
+                    name="delivery_methods"
                     labelText="Нова Пошта"
+                    value="nova_post"
                     formik={formik}
                   />
                   <CheckboxForm
-                    name="deliveryMethods"
+                    name="delivery_methods"
                     labelText="Кур’єр"
                     formik={formik}
+                    value="courier"
                   />
                 </span>
                 {isChecked && (
                   <FormInput
                     formik={formik}
-                    name="deliveryComment"
+                    name="delivery_comment"
                     placeholder="Львів"
                     label={''}
                     inputType="textarea"
@@ -283,30 +300,37 @@ export default function PersonalNewAd() {
                     <span className="w-full md:w-[487px]">
                       <span onChange={() => setIsCheckedPay(!isCheckedPay)}>
                         <CheckboxForm
-                          name="payment"
+                          name="payment_methods"
                           labelText="На картку продавця"
+                          value="card"
                           formik={formik}
                         />
                       </span>
-                      <FormInput
+                      {/* <FormInput
                         formik={formik}
-                        name="paymentCard"
+                        name="payment_card"
                         placeholder="0000 0000 0000 0000"
                         label={'Вкажіть номер картки'}
                         inputType="number"
                         classNameLogin="text-xl mt-4 mb-2 text-gray-600 !ml-0"
                         readOnly={!isCheckedPay}
+                      /> */}
+                      <CardInput
+                        name="payment_card"
+                        label="Вкажіть номер картки"
+                        formik={formik}
                       />
                     </span>
                     <span className="w-full md:w-[378px]">
                       <CheckboxForm
-                        name="payment"
+                        name="payment_methods"
                         labelText="Оплата під час отримання товару"
+                        value="cash"
                         formik={formik}
                       />
                       <FormInput
                         formik={formik}
-                        name="paymentComment"
+                        name="payment_comment"
                         placeholder="Наприклад: Бескоштовна доставка на суму від 1000 грн"
                         label={'Коментар'}
                         inputType="textarea"
