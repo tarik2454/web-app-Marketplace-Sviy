@@ -25,7 +25,7 @@ export default function useModal() {
 
   const handleOpenItemModal = () => {
     setItemModalOpen(true);
-    setIsOpenModal(false); // Закриваємо першу модалку
+    setIsOpenModal(false); 
   };
   const handleCloseItemModal = () => setItemModalOpen(false);
 
